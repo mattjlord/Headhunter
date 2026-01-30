@@ -1,0 +1,18 @@
+# Force LF line endings for all text files
+* text=auto eol=lf
+
+# Unity YAML files (scenes, prefabs, scriptable objects)
+*.unity text
+*.prefab text
+*.asset text
+*.meta text
+
+# Don't touch binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.fbx binary
+*.wav binary
+*.mp3 binary
+*.ogg binary
+*.mp4 binary
