@@ -4,22 +4,40 @@ using UnityEngine;
 public class TrailLocation : ALocation
 {
     [SerializeField] private List<Vector2> _points;
+    [SerializeField] private Dictionary<AIOrganism, int> _wanderIndices;
+
+    protected override void Start()
+    {
+        base.Start();
+        _wanderIndices = new Dictionary<AIOrganism, int>();
+    }
     public override Vector2 GetClosestPoint(Vector2 point)
     {
-        Vector2 closestPoint = _points[0];
+        int index = GetClosestIndex(point);
+        if (index >= 0)
+        {
+            return _points[index];
+        }
+        return point;
+    }
+
+    private int GetClosestIndex(Vector2 point)
+    {
+        int index = -1;
         float distance = Mathf.Infinity;
 
-        foreach (Vector2 p in _points)
+        for (int i = 0; i < _points.Count; i++)
         {
-            float distToPoint = Vector2.Distance(point, p);
+            Vector2 nextPoint = _points[i];
+            float distToPoint = Vector2.Distance(point, nextPoint);
             if (distToPoint < distance)
             {
                 distance = distToPoint;
-                closestPoint = p;
+                index = i;
             }
         }
 
-        return closestPoint;
+        return index;
     }
 
     public override float GetDistanceFrom(Vector2 point)
@@ -27,9 +45,66 @@ public class TrailLocation : ALocation
         Vector2 closestPoint = GetClosestPoint(point);
         return Vector2.Distance(point, closestPoint);
     }
+
+    public override bool LocationReachedByOrganism(AIOrganism organism)
+    {
+        if (!_wanderIndices.ContainsKey(organism))
+            return base.LocationReachedByOrganism(organism);
+        else
+            return true;
+    }
+
     public override bool LocationReached(Vector2 point)
     {
         return Vector2.Distance(GetClosestPoint(point), point) < sensitivity;
+    }
+
+    public override void Wander(AIOrganism organism)
+    {
+        int nextWanderIndex = GetNextWanderIndex(organism);
+        if (nextWanderIndex == -1)
+        {
+            organism.Navigation.StopMovement(organism);
+            return;
+        }
+        Vector2 nextWanderPoint = _points[nextWanderIndex];
+        bool doneWandering = (nextWanderIndex == _points.Count - 1) && Vector2.Distance(organism.Position, nextWanderPoint) < sensitivity;
+        if (!doneWandering)
+        {
+            organism.Navigation.MoveTowards(organism, nextWanderPoint);
+            Debug.Log("Wandering");
+        }
+        else
+        {
+            Debug.Log("Stopping");
+            organism.Navigation.StopMovement(organism);
+        }
+    }
+
+    private int GetNextWanderIndex(AIOrganism organism)
+    {
+        int currentWanderIndex = -1;
+        if (_wanderIndices.ContainsKey(organism)) // Organism is already wandering on the path
+        {
+            currentWanderIndex = _wanderIndices[organism];
+        }
+        else // Organism hasn't started following the path yet
+        {
+            currentWanderIndex = GetClosestIndex(organism.Position); // Find the nearest index on the path
+        }
+        if (currentWanderIndex == -1) { return currentWanderIndex; } // Something went wrong
+
+        Vector2 currentWanderPoint = _points[currentWanderIndex]; // Convert current index to a point
+        int nextWanderIndex = currentWanderIndex; // By default, assume the organism is still finding its way to the current wander point, so next = current
+
+        if (Vector2.Distance(organism.Position, currentWanderPoint) < sensitivity) // The organism has reached the point
+        {
+            nextWanderIndex = Mathf.Clamp(nextWanderIndex + 1, 0, _points.Count - 1); // Increment the wander index, unless it's the last index on the path (clamp it)
+        }
+
+        _wanderIndices[organism] = nextWanderIndex; // Update the wanderer indices dictionary
+
+        return nextWanderIndex;
     }
 
     private void OnDrawGizmos()

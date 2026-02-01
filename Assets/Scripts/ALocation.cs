@@ -6,11 +6,11 @@ public abstract class ALocation : MonoBehaviour
 {
     private Dictionary<AIOrganism, (float, float)> _wanderers;
     protected static float sensitivity = 1.0f;
-    private void Start()
+    protected virtual void Start()
     {
         _wanderers = new Dictionary<AIOrganism, (float, float)>();
     }
-    protected void Update()
+    protected virtual void Update()
     {
         List<AIOrganism> toRemove = new List<AIOrganism>();
         foreach (var entry in _wanderers)
@@ -36,10 +36,16 @@ public abstract class ALocation : MonoBehaviour
 
     public abstract Vector2 GetClosestPoint(Vector2 point);
     public abstract float GetDistanceFrom(Vector2 point);
+    public virtual bool LocationReachedByOrganism(AIOrganism organism)
+    {
+        return LocationReached(organism.Position);
+    }
     public abstract bool LocationReached(Vector2 point);
     public void StartWandering(AIOrganism organism, float patience)
     {
         if (_wanderers.ContainsKey(organism)) { return; }
         _wanderers.Add(organism, (Time.time, patience));
     }
+
+    public virtual void Wander(AIOrganism organism) { }
 }

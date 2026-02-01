@@ -30,7 +30,9 @@ public class Navigation : MonoBehaviour
             StopMovement(organism);
             location.StartWandering(organism, _patience);
             _wandering = true;
+            return;
         }
+        location.Wander(organism);
     }
 
     public void StopWandering()

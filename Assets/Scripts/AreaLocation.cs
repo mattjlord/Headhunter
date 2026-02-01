@@ -4,8 +4,15 @@ using UnityEngine;
 public class AreaLocation : ALocation
 {
     [SerializeField] private List<Vector2> _points;
+    private Dictionary<AIOrganism, Vector2> _wanderDestinations;
 
-    public void Update()
+    protected override void Start()
+    {
+        base.Start();
+        _wanderDestinations = new Dictionary<AIOrganism, Vector2>();
+    }
+
+    protected override void Update()
     {
         if (IsConcave())
         {
@@ -126,6 +133,55 @@ public class AreaLocation : ALocation
         }
 
         return false;
+    }
+
+    public override void Wander(AIOrganism organism)
+    {
+        Vector2 wanderDestination = GetOrUpdateWanderDestination(organism);
+        organism.Navigation.MoveTowards(organism, wanderDestination);
+    }
+
+    private Vector2 GetOrUpdateWanderDestination(AIOrganism organism)
+    {
+        if (_wanderDestinations.ContainsKey(organism))
+        {
+            float distance = Vector2.Distance(organism.Position, _wanderDestinations[organism]);
+            if (distance >= sensitivity)
+            {
+                return _wanderDestinations[organism];
+            }
+        }
+        Vector2 wanderDestination = GetRandomPointInArea();
+        _wanderDestinations[organism] = wanderDestination;
+        return wanderDestination;
+    }
+
+    private Vector2 GetRandomPointInArea()
+    {
+        if (_points == null || _points.Count < 3)
+            return Vector2.zero;
+
+        float minX = float.MaxValue, maxX = float.MinValue;
+        float minY = float.MaxValue, maxY = float.MinValue;
+
+        foreach (var p in _points)
+        {
+            Vector2 wp = WorldSpacePoint(_points.IndexOf(p));
+            if (wp.x < minX) minX = wp.x;
+            if (wp.x > maxX) maxX = wp.x;
+            if (wp.y < minY) minY = wp.y;
+            if (wp.y > maxY) maxY = wp.y;
+        }
+
+        while (true)
+        {
+            float x = Random.Range(minX, maxX);
+            float y = Random.Range(minY, maxY);
+            Vector2 candidate = new Vector2(x, y);
+
+            if (LocationReached(candidate))
+                return candidate;
+        }
     }
 
     void OnDrawGizmos()
