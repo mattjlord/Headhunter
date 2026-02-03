@@ -17,6 +17,8 @@ public class Movement : MonoBehaviour
     {
         if (_organism == null)
             return;
+        if (_dir != Vector2.zero)
+            _organism.LookDirection = _dir;
         _organism.Position += (_dir * _walkSpeed);
     }
 

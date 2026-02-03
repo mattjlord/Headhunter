@@ -72,11 +72,9 @@ public class TrailLocation : ALocation
         if (!doneWandering)
         {
             organism.Navigation.MoveTowards(organism, nextWanderPoint);
-            Debug.Log("Wandering");
         }
         else
         {
-            Debug.Log("Stopping");
             organism.Navigation.StopMovement(organism);
         }
     }
