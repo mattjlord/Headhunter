@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PointLocation : ALocation
@@ -15,6 +16,12 @@ public class PointLocation : ALocation
     public override bool LocationReached(Vector2 point)
     {
         return Vector2.Distance(VectorUtils.Vec3ToVec2(transform.position), point) < sensitivity;
+    }
+
+    public override List<Collider> GetNearbyColliders(float radius)
+    {
+        Collider[] hits = Physics.OverlapSphere(transform.position, radius);
+        return new List<Collider>(hits);
     }
 
     void OnDrawGizmos()

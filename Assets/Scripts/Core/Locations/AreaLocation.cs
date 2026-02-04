@@ -161,6 +161,35 @@ public class AreaLocation : ALocation
         if (_points == null || _points.Count < 3)
             return Vector2.zero;
 
+        (Vector2, Vector2) boundingBox = GetBoundingBox();
+
+        float minX = boundingBox.Item1.x, maxX = boundingBox.Item2.x;
+        float minY = boundingBox.Item1.y, maxY = boundingBox.Item2.y;
+
+        while (true)
+        {
+            float x = Random.Range(minX, maxX);
+            float y = Random.Range(minY, maxY);
+            Vector2 candidate = new Vector2(x, y);
+
+            if (LocationReached(candidate))
+                return candidate;
+        }
+    }
+
+    public override List<Collider> GetNearbyColliders(float radius)
+    {
+        (Vector2, float) boundingCircle = GetBoundingCircle();
+        Vector3 boundingCenter = VectorUtils.Vec2ToVec3(boundingCircle.Item1);
+        float boundingRadius = boundingCircle.Item2;
+
+        Collider[] hits = Physics.OverlapSphere(boundingCenter, boundingRadius + radius);
+
+        return new List<Collider>(hits);
+    }
+
+    private (Vector2, Vector2) GetBoundingBox()
+    {
         float minX = float.MaxValue, maxX = float.MinValue;
         float minY = float.MaxValue, maxY = float.MinValue;
 
@@ -173,15 +202,31 @@ public class AreaLocation : ALocation
             if (wp.y > maxY) maxY = wp.y;
         }
 
-        while (true)
-        {
-            float x = Random.Range(minX, maxX);
-            float y = Random.Range(minY, maxY);
-            Vector2 candidate = new Vector2(x, y);
+        return (new Vector2(minX, minY), new Vector2(maxX, maxY));
+    }
 
-            if (LocationReached(candidate))
-                return candidate;
+    private (Vector2, float) GetBoundingCircle()
+    {
+        (Vector2, Vector2) boundingBox = GetBoundingBox();
+
+        float minX = boundingBox.Item1.x, maxX = boundingBox.Item2.x;
+        float minY = boundingBox.Item1.y, maxY = boundingBox.Item2.y;
+
+        float centerX = (minX + maxX) / 2;
+        float centerY = (minY + maxY) / 2;
+
+        Vector2 center = new Vector2(centerX, centerY);
+
+        float radius = 0;
+
+        for (int i = 0; i < _points.Count; i++)
+        {
+            Vector2 point = WorldSpacePoint(i);
+            float dist = Vector2.Distance(point, center);
+            if (dist > radius) radius = dist;
         }
+
+        return (center, radius);
     }
 
     void OnDrawGizmos()

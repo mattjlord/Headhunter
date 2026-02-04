@@ -1,4 +1,6 @@
-public abstract class StimulusResponseTask : BehaviorTask
+using UnityEngine;
+
+public class StimulusResponseTask : BehaviorTask
 {
     private AStimulus _stimulus;
     private StimulusResponseType _responseType;
@@ -14,7 +16,11 @@ public abstract class StimulusResponseTask : BehaviorTask
         if (!Organism.Senses.CanSense(_stimulus))
         {
             Priority = 0;
-            return;
+        }
+
+        if (Priority == 0)
+        {
+            Organism.Memory.ForgetStimulus(_stimulus);
         }
 
         switch (_responseType)
@@ -34,24 +40,89 @@ public abstract class StimulusResponseTask : BehaviorTask
     private void PursueStimulus()
     {
         ALocation stimulusLocation = _stimulus.Location;
-        if (!_stimulus.WithinReach(Organism))
+        bool stimulusReached;
+        if (_stimulus.IsInteractible)
+        {
+            stimulusReached = _stimulus.WithinReach(Organism);
+        }
+        else
+        {
+            stimulusReached = stimulusLocation.LocationReachedByOrganism(Organism);
+        }
+
+        if (!stimulusReached)
+        {
             Organism.Navigation.MoveTowards(Organism, stimulusLocation.GetClosestPoint(Organism.Position));
-        else { }
-            // TODO: Interact with stimulus
+            description = "Pursuing stimulus";
+            return;
+        }
+
+        // Stimulus has been reached, stop movement
+        Organism.Navigation.StopMovement(Organism);
+
+        if (!_stimulus.IsInteractible) // Nothing to do but wander
+        {
+            Organism.Navigation.WanderAround(Organism, stimulusLocation);
+            description = "Location reached, wandering around";
+            return;
+        }
     }
 
     private void EliminateStimulus()
     {
         ALocation stimulusLocation = _stimulus.Location;
-        if (!_stimulus.WithinReach(Organism))
+        bool stimulusReached;
+        if (_stimulus.IsInteractible)
+        {
+            stimulusReached = _stimulus.WithinReach(Organism);
+        }
+        else
+        {
+            stimulusReached = stimulusLocation.LocationReachedByOrganism(Organism);
+        }
+
+        if (!stimulusReached)
+        {
             Organism.Navigation.MoveTowards(Organism, stimulusLocation.GetClosestPoint(Organism.Position));
-        else { }
-        // TODO: Interact with stimulus
+            description = "Pursuing stimulus";
+            return;
+        }
+
+        // Stimulus has been reached, stop movement
+        Organism.Navigation.StopMovement(Organism);
+
+        if (!_stimulus.IsInteractible) // Nothing to do but wander
+        {
+            Organism.Navigation.WanderAround(Organism, stimulusLocation);
+            description = "Location reached, wandering around";
+            return;
+        }
     }
 
     private void FleeStimulus()
     {
         ALocation stimulusLocation = _stimulus.Location;
         Organism.Navigation.MoveAwayFrom(Organism, stimulusLocation.GetClosestPoint(Organism.Position));
+        description = "Fleeing stimulus";
+    }
+
+    public override string GetName()
+    {
+        switch (_responseType)
+        {
+            case StimulusResponseType.Pursue:
+                return "Responding to stimulus (goal: pursue)";
+            case StimulusResponseType.Eliminate:
+                return "Responding to stimulus (goal: eliminate)";
+            case StimulusResponseType.Flee:
+                return "Responding to stimulus (goal: flee)";
+            default:
+                return "Ignoring stimulus";
+        }
+    }
+
+    public override bool HasAssociatedLocation(ALocation location)
+    {
+        return _stimulus.Location.Equals(location);
     }
 }

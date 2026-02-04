@@ -79,4 +79,9 @@ public class LocationKnowledge : MonoBehaviour
     {
         _blockedLocations.Add(location);
     }
+
+    public bool IsLocationBlocked(ALocation location)
+    {
+        return _blockedLocations.Contains(location);
+    }
 }

@@ -5,6 +5,7 @@ public class BehaviorTask
     private float _priority;
     private bool _isFrozen;
     private bool _isRunning;
+    private bool _isEssential = false;
 
     protected string description;
 
@@ -26,6 +27,12 @@ public class BehaviorTask
     {
         get { return _isFrozen; }
         set { _isFrozen = value; }
+    }
+
+    public bool IsEssential
+    {
+        get { return _isEssential; }
+        set { _isEssential = value;}
     }
 
     public void Run()
@@ -52,6 +59,7 @@ public class BehaviorTask
     public virtual void Update() { }
     public virtual void Stop() { }
     public virtual void UpdatePriority() { }
+    public virtual bool HasAssociatedLocation(ALocation location) { return false; }
     public virtual string GetName()
     {
         return "No Task";

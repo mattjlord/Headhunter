@@ -79,6 +79,20 @@ public class TrailLocation : ALocation
         }
     }
 
+    public override List<Collider> GetNearbyColliders(float radius)
+    {
+        List<Collider> colliders = new List<Collider>();
+
+        foreach (Vector2 point in _points)
+        {
+            Vector3 worldPoint = VectorUtils.Vec2ToVec3(point);
+            Collider[] hits = Physics.OverlapSphere(worldPoint, radius);
+            colliders.AddRange(hits);
+        }
+
+        return colliders;
+    }
+
     private int GetNextWanderIndex(AIOrganism organism)
     {
         int currentWanderIndex = -1;

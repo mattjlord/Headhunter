@@ -6,11 +6,6 @@ public class MudyakBrain : ABrain
 {
     public override StimulusInterpretation AcceptStimulus(AStimulus stimulus)
     {
-        throw new System.NotImplementedException();
-    }
-
-    public override StimulusResponseTask GenerateStimulusResponseTask(AStimulus stimulus, StimulusResponseType responseType)
-    {
-        throw new System.NotImplementedException();
+        return stimulus.Visit(this);
     }
 }

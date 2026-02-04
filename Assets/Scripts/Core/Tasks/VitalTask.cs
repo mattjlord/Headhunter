@@ -6,6 +6,7 @@ public class VitalTask : BehaviorTask
 
     public VitalTask(AIOrganism organism, VitalType vital) : base(organism)
     {
+        IsEssential = true;
         _vital = vital;
     }
 

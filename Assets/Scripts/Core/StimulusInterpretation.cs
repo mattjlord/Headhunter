@@ -66,7 +66,7 @@ public class StimulusInterpretation
             float vitalImpact = _vitalImpactEstimate[vital];
             sum += biasedVitalVal * Mathf.Abs(vitalImpact);
         }
-        return Mathf.Clamp(sum * 0.011f, 0, 100); // Inflate priority by 10%, convert impact estimates from percentage to decimal, clamp to 0-100
+        return Mathf.Clamp(sum * 0.11f, 0, 100);
     }
 
     private float EvaluateValence()

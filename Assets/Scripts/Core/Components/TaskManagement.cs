@@ -15,10 +15,19 @@ public class TaskManagement : MonoBehaviour
 
     private void Update()
     {
+        List<BehaviorTask> toRemove = new List<BehaviorTask>();
         foreach (var task in _tasks)
         {
             if (!task.IsFrozen)
                 task.UpdatePriority();
+
+            if (task.Priority == 0 && !task.IsEssential)
+                toRemove.Add(task);
+        }
+
+        foreach (var task in toRemove)
+        {
+            _tasks.Remove(task);
         }
 
         BehaviorTask nextTask = GetHighestPriorityTask();
@@ -62,5 +71,21 @@ public class TaskManagement : MonoBehaviour
     public void AddTask(BehaviorTask task)
     {
         _tasks.Add(task);
+    }
+
+    public void RemoveAssociatedTasks(ALocation location)
+    {
+        List<BehaviorTask> toRemove = new List<BehaviorTask>();
+        foreach (BehaviorTask task in _tasks)
+        {
+            if (task.HasAssociatedLocation(location))
+            {
+                toRemove.Add(task);
+            }
+        }
+        foreach (BehaviorTask task in toRemove)
+        {
+            _tasks.Remove(task);
+        }
     }
 }

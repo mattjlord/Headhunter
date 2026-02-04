@@ -9,13 +9,23 @@ public abstract class ABrain : MonoBehaviour
         InitDefaultTasks();
     }
 
+    public AIOrganism Organism { get { return organism; } }
+
     public void RespondToStimulus(AStimulus stimulus)
     {
+        if (organism.Memory.IsStimulusActive(stimulus) || organism.LocationKnowledge.IsLocationBlocked(stimulus.Location))
+            return;
+        
         StimulusInterpretation interpretation = AcceptStimulus(stimulus);
         StimulusResponseType responseType = interpretation.EvaluateResponseType();
         BehaviorTask task = GenerateStimulusResponseTask(stimulus, responseType);
+        task.Priority = interpretation.EvaluatePriority();
+
         if (task.Priority > 0)
+        {
+            organism.Memory.AddStimulus(stimulus);
             organism.TaskManagement.AddTask(task);
+        }
     }
 
     protected virtual void InitDefaultTasks()
@@ -30,5 +40,8 @@ public abstract class ABrain : MonoBehaviour
 
     public abstract StimulusInterpretation AcceptStimulus(AStimulus stimulus);
 
-    public abstract  StimulusResponseTask GenerateStimulusResponseTask(AStimulus stimulus, StimulusResponseType responseType);
+    public StimulusResponseTask GenerateStimulusResponseTask(AStimulus stimulus, StimulusResponseType responseType)
+    {
+        return new StimulusResponseTask(organism, stimulus, responseType);
+    }
 }

@@ -32,6 +32,7 @@ public abstract class ALocation : MonoBehaviour
         _wanderers.Remove(organism);
         organism.Navigation.StopWandering();
         organism.LocationKnowledge.BlockLocation(this);
+        organism.TaskManagement.RemoveAssociatedTasks(this);
     }
 
     public abstract Vector2 GetClosestPoint(Vector2 point);
@@ -48,4 +49,6 @@ public abstract class ALocation : MonoBehaviour
     }
 
     public virtual void Wander(AIOrganism organism) { }
+
+    public abstract List<Collider> GetNearbyColliders(float radius);
 }

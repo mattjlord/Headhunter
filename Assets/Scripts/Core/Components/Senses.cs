@@ -7,6 +7,7 @@ public class Senses : MonoBehaviour
     [SerializeField] private float _fov;
     [SerializeField] private float _hearingRadius;
     [SerializeField] private float _smellRadius;
+
     public bool CanSense(AStimulus stimulus)
     {
         switch (stimulus.SenseType)

@@ -59,6 +59,7 @@
     <Compile Include="Assets\Scripts\Core\Locations\TrailLocation.cs" />
     <Compile Include="Assets\Scripts\Core\Components\Vitals.cs" />
     <Compile Include="Assets\Scripts\Core\Locations\PointLocation.cs" />
+    <Compile Include="Assets\Scripts\Stimuli\Grass\Stim_Grass.cs" />
     <Compile Include="Assets\Scripts\Core\Organism.cs" />
     <Compile Include="Assets\Scripts\Core\Components\TaskManagement.cs" />
     <Compile Include="Assets\Scripts\Core\StimulusInterpretation.cs" />
@@ -75,10 +76,11 @@
     <Compile Include="Assets\Scripts\Core\Tasks\VitalTask.cs" />
     <Compile Include="Assets\Scripts\Core\Components\Movement.cs" />
     <Compile Include="Assets\Scripts\Core\Locations\AreaLocation.cs" />
-    <Compile Include="Assets\Scripts\Core\Locations\WorldObject.cs" />
+    <Compile Include="Assets\Scripts\Core\WorldObject.cs" />
     <Compile Include="Assets\Scripts\Core\ALocation.cs" />
     <Compile Include="Assets\Scripts\Core\Components\Navigation.cs" />
     <Compile Include="Assets\Scripts\Core\Enums\StimulusResponseType.cs" />
+    <Compile Include="Assets\Scripts\Core\Components\Memory.cs" />
     <Compile Include="Assets\Scripts\Core\Tasks\StimulusResponseTask.cs" />
     <Compile Include="Assets\Scripts\Core\AIOrganism.cs" />
     <Compile Include="Assets\Scripts\Core\Enums\VitalType.cs" />
