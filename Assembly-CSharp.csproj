@@ -56,21 +56,29 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Core\Utils\LanguageUtils.cs" />
+    <Compile Include="Assets\Scripts\Core\Components\Visibility.cs" />
     <Compile Include="Assets\Scripts\Core\Locations\TrailLocation.cs" />
+    <Compile Include="Assets\Scripts\Core\Enums\OrganismType.cs" />
+    <Compile Include="Assets\Scripts\Stimuli\Stim_Footstep.cs" />
+    <Compile Include="Assets\Scripts\Stimuli\Organisms\Stim_Hunter.cs" />
     <Compile Include="Assets\Scripts\Core\Components\Vitals.cs" />
     <Compile Include="Assets\Scripts\Core\Locations\PointLocation.cs" />
-    <Compile Include="Assets\Scripts\Stimuli\Grass\Stim_Grass.cs" />
+    <Compile Include="Assets\Scripts\Stimuli\Organisms\Stim_Mudyak.cs" />
+    <Compile Include="Assets\Scripts\Stimuli\Stim_Grass.cs" />
     <Compile Include="Assets\Scripts\Core\Organism.cs" />
     <Compile Include="Assets\Scripts\Core\Components\TaskManagement.cs" />
     <Compile Include="Assets\Scripts\Core\StimulusInterpretation.cs" />
+    <Compile Include="Assets\Scripts\Stimuli\Organisms\Stim_Shellhead.cs" />
     <Compile Include="Assets\Scripts\Core\Components\Senses.cs" />
     <Compile Include="Assets\Scripts\Brains\MudyakBrain.cs" />
     <Compile Include="Assets\Scripts\Core\Components\LocationKnowledge.cs" />
     <Compile Include="Assets\Scripts\Core\ABrain.cs" />
-    <Compile Include="Assets\Scripts\Core\AStimulus.cs" />
+    <Compile Include="Assets\Scripts\Core\Stimulus.cs" />
     <Compile Include="Assets\Scripts\Core\Vital.cs" />
     <Compile Include="Assets\Scripts\Core\BehaviorTask.cs" />
-    <Compile Include="Assets\Scripts\Core\VectorUtils.cs" />
+    <Compile Include="Assets\Scripts\Core\Utils\VectorUtils.cs" />
+    <Compile Include="Assets\Scripts\Core\Components\Odor.cs" />
     <Compile Include="Assets\Scripts\Core\Enums\SenseType.cs" />
     <Compile Include="Assets\Scripts\Core\Components\HerdManagement.cs" />
     <Compile Include="Assets\Scripts\Core\Tasks\VitalTask.cs" />
@@ -81,6 +89,7 @@
     <Compile Include="Assets\Scripts\Core\Components\Navigation.cs" />
     <Compile Include="Assets\Scripts\Core\Enums\StimulusResponseType.cs" />
     <Compile Include="Assets\Scripts\Core\Components\Memory.cs" />
+    <Compile Include="Assets\Scripts\Brains\ShellheadBrain.cs" />
     <Compile Include="Assets\Scripts\Core\Tasks\StimulusResponseTask.cs" />
     <Compile Include="Assets\Scripts\Core\AIOrganism.cs" />
     <Compile Include="Assets\Scripts\Core\Enums\VitalType.cs" />

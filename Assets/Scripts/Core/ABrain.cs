@@ -11,18 +11,19 @@ public abstract class ABrain : MonoBehaviour
 
     public AIOrganism Organism { get { return organism; } }
 
-    public void RespondToStimulus(AStimulus stimulus)
+    public void RespondToStimulus(Stimulus stimulus)
     {
-        if (organism.Memory.IsStimulusActive(stimulus) || organism.LocationKnowledge.IsLocationBlocked(stimulus.Location))
+        if (organism.Memory.IsStimulusActive(stimulus) || organism.LocationKnowledge.IsLocationBlocked(stimulus.Location) || stimulus.ProducerOrganism == organism)
             return;
         
-        StimulusInterpretation interpretation = AcceptStimulus(stimulus);
+        StimulusInterpretation interpretation = AcceptAndInterpret(stimulus);
         StimulusResponseType responseType = interpretation.EvaluateResponseType();
         BehaviorTask task = GenerateStimulusResponseTask(stimulus, responseType);
         task.Priority = interpretation.EvaluatePriority();
 
         if (task.Priority > 0)
         {
+            Debug.Log(organism.OrganismType + " " + LanguageUtils.GetSenseVerb(stimulus.SenseType) + " " + stimulus.GetDescription() + ", response type: " + responseType);
             organism.Memory.AddStimulus(stimulus);
             organism.TaskManagement.AddTask(task);
         }
@@ -38,10 +39,12 @@ public abstract class ABrain : MonoBehaviour
         organism.TaskManagement.AddTask(new VitalTask(organism, VitalType.Injury));
     }
 
-    public abstract StimulusInterpretation AcceptStimulus(AStimulus stimulus);
+    public abstract StimulusInterpretation AcceptAndInterpret(Stimulus stimulus);
 
-    public StimulusResponseTask GenerateStimulusResponseTask(AStimulus stimulus, StimulusResponseType responseType)
+    public abstract void AcceptAndInteract(Stimulus stimulus, StimulusResponseType type);
+
+    public StimulusResponseTask GenerateStimulusResponseTask(Stimulus stimulus, StimulusResponseType responseType)
     {
-        return new StimulusResponseTask(organism, stimulus, responseType);
+        return new StimulusResponseTask(organism, stimulus, responseType, this);
     }
 }

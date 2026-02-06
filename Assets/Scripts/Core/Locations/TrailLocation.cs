@@ -10,6 +10,8 @@ public class TrailLocation : ALocation
     {
         base.Start();
         _wanderIndices = new Dictionary<AIOrganism, int>();
+        if (_points == null)
+            _points = new List<Vector2>();
     }
     public override Vector2 GetClosestPoint(Vector2 point)
     {
@@ -91,6 +93,17 @@ public class TrailLocation : ALocation
         }
 
         return colliders;
+    }
+
+    public void AddPoint(Vector2 point)
+    {
+        _points.Add(point);
+    }
+
+    public void Reduce()
+    {
+        if (_points.Count > 0)
+            _points.RemoveAt(0);
     }
 
     private int GetNextWanderIndex(AIOrganism organism)

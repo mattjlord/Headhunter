@@ -8,7 +8,7 @@ public class Senses : MonoBehaviour
     [SerializeField] private float _hearingRadius;
     [SerializeField] private float _smellRadius;
 
-    public bool CanSense(AStimulus stimulus)
+    public bool CanSense(Stimulus stimulus)
     {
         switch (stimulus.SenseType)
         {
@@ -21,7 +21,7 @@ public class Senses : MonoBehaviour
         }
     }
 
-    private bool CanSee(AStimulus stimulus)
+    private bool CanSee(Stimulus stimulus)
     {
         if (stimulus.SenseType != SenseType.Sight)
             return false;
@@ -29,21 +29,21 @@ public class Senses : MonoBehaviour
         return StimulusInRange(stimulus, _sightRadius) && StimulusInFOV(stimulus);
     }
 
-    private bool CanHear(AStimulus stimulus)
+    private bool CanHear(Stimulus stimulus)
     {
         if (stimulus.SenseType != SenseType.Sound)
             return false;
         return StimulusInRange(stimulus, _hearingRadius);
     }
 
-    private bool CanSmell(AStimulus stimulus)
+    private bool CanSmell(Stimulus stimulus)
     {
         if (stimulus.SenseType != SenseType.Smell) 
             return false;
         return StimulusInRange(stimulus, _smellRadius);
     }
 
-    private bool StimulusInRange(AStimulus stimulus, float radius)
+    private bool StimulusInRange(Stimulus stimulus, float radius)
     {
         ALocation stimulusLocation = stimulus.Location;
         Vector2 headPos = VectorUtils.Vec3ToVec2(_headTransform.position);
@@ -54,7 +54,7 @@ public class Senses : MonoBehaviour
         return distanceToStimulus <= maxDistance;
     }
 
-    private bool StimulusInFOV(AStimulus stimulus)
+    private bool StimulusInFOV(Stimulus stimulus)
     {
         ALocation stimulusLocation = stimulus.Location;
 

@@ -2,13 +2,15 @@ using UnityEngine;
 
 public class StimulusResponseTask : BehaviorTask
 {
-    private AStimulus _stimulus;
+    private Stimulus _stimulus;
     private StimulusResponseType _responseType;
+    private ABrain _brain;
 
-    public StimulusResponseTask(AIOrganism organism, AStimulus stimulus, StimulusResponseType responseType) : base(organism)
+    public StimulusResponseTask(AIOrganism organism, Stimulus stimulus, StimulusResponseType responseType, ABrain brain) : base(organism)
     {
         _stimulus = stimulus;
         _responseType = responseType;
+        _brain = brain;
     }
 
     public override void Update()
@@ -29,7 +31,7 @@ public class StimulusResponseTask : BehaviorTask
                 PursueStimulus();
                 return;
             case StimulusResponseType.Eliminate:
-                EliminateStimulus();
+                PursueStimulus();
                 return;
             case StimulusResponseType.Flee:
                 FleeStimulus();
@@ -66,37 +68,8 @@ public class StimulusResponseTask : BehaviorTask
             description = "Location reached, wandering around";
             return;
         }
-    }
 
-    private void EliminateStimulus()
-    {
-        ALocation stimulusLocation = _stimulus.Location;
-        bool stimulusReached;
-        if (_stimulus.IsInteractible)
-        {
-            stimulusReached = _stimulus.WithinReach(Organism);
-        }
-        else
-        {
-            stimulusReached = stimulusLocation.LocationReachedByOrganism(Organism);
-        }
-
-        if (!stimulusReached)
-        {
-            Organism.Navigation.MoveTowards(Organism, stimulusLocation.GetClosestPoint(Organism.Position));
-            description = "Pursuing stimulus";
-            return;
-        }
-
-        // Stimulus has been reached, stop movement
-        Organism.Navigation.StopMovement(Organism);
-
-        if (!_stimulus.IsInteractible) // Nothing to do but wander
-        {
-            Organism.Navigation.WanderAround(Organism, stimulusLocation);
-            description = "Location reached, wandering around";
-            return;
-        }
+        _brain.AcceptAndInteract(_stimulus, _responseType);
     }
 
     private void FleeStimulus()
