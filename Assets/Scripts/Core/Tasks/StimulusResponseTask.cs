@@ -15,14 +15,14 @@ public class StimulusResponseTask : BehaviorTask
 
     public override void Update()
     {
-        if (!Organism.Senses.CanSense(_stimulus))
+        if (!Organism.Senses.CanSense(_stimulus) && !Organism.Memory.CanRemember(_stimulus) && !Organism.Memory.IsStimulusActive(_stimulus))
         {
             Priority = 0;
         }
 
         if (Priority == 0)
         {
-            Organism.Memory.ForgetStimulus(_stimulus);
+            Organism.Memory.StartForgettingStimulus(_stimulus);
         }
 
         switch (_responseType)

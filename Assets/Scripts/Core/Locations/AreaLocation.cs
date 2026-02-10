@@ -12,13 +12,13 @@ public class AreaLocation : ALocation
         _wanderDestinations = new Dictionary<AIOrganism, Vector2>();
     }
 
-    protected override void Update()
+    protected override void FixedUpdate()
     {
         if (IsConcave())
         {
             throw new System.Exception("Concave AreaLocation!");
         }
-        base.Update();
+        base.FixedUpdate();
     }
 
     private Vector2 WorldSpacePoint(int index)

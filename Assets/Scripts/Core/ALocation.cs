@@ -10,7 +10,7 @@ public abstract class ALocation : MonoBehaviour
     {
         _wanderers = new Dictionary<AIOrganism, (float, float)>();
     }
-    protected virtual void Update()
+    protected virtual void FixedUpdate()
     {
         List<AIOrganism> toRemove = new List<AIOrganism>();
         foreach (var entry in _wanderers)
@@ -45,7 +45,7 @@ public abstract class ALocation : MonoBehaviour
     public void StartWandering(AIOrganism organism, float patience)
     {
         if (_wanderers.ContainsKey(organism)) { return; }
-        _wanderers.Add(organism, (Time.time, patience));
+        _wanderers.Add(organism, (Time.fixedTime, patience));
     }
 
     public virtual void Wander(AIOrganism organism) { }
