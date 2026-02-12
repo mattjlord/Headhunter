@@ -13,7 +13,7 @@ public class TaskManagement : MonoBehaviour
         set { _currentTask = value; }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         List<BehaviorTask> toRemove = new List<BehaviorTask>();
         foreach (var task in _tasks)

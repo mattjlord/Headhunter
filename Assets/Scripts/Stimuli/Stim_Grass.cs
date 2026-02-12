@@ -17,7 +17,12 @@ public class Stim_Grass : Stimulus
 
     public override void VisitAndInteract(MudyakBrain brain, StimulusResponseType type)
     {
-        
+        if (AssociatedObject == null || AssociatedObject.GetType() != typeof(FoodOrWaterObject))
+            return;
+
+        FoodOrWaterObject obj = AssociatedObject as FoodOrWaterObject;
+
+        brain.Eat(obj);
     }
 
     public override string GetDescription()

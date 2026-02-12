@@ -14,7 +14,7 @@ public class Movement : MonoBehaviour
         _dir = Vector2.zero;
     }
 
-    public bool IsMoving { get { return _dir != Vector2.zero;} }
+    public bool IsMoving { get { return _dir != Vector2.zero; } }
 
     private void FixedUpdate()
     {

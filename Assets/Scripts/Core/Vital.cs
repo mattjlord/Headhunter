@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public struct Vital
+public class Vital
 {
     [SerializeField, Range(0f, 100f)] private float _value;
     [SerializeField, Min(0f)] private float _passiveIncreaseRate; // Per minute of game time

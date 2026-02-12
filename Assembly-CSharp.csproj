@@ -79,6 +79,7 @@
     <Compile Include="Assets\Scripts\Core\BehaviorTask.cs" />
     <Compile Include="Assets\Scripts\Core\Utils\VectorUtils.cs" />
     <Compile Include="Assets\Scripts\Core\Components\Odor.cs" />
+    <Compile Include="Assets\Scripts\Core\FoodOrWaterObject.cs" />
     <Compile Include="Assets\Scripts\Core\Enums\SenseType.cs" />
     <Compile Include="Assets\Scripts\Core\Components\HerdManagement.cs" />
     <Compile Include="Assets\Scripts\Core\Tasks\VitalTask.cs" />
@@ -91,8 +92,11 @@
     <Compile Include="Assets\Scripts\Core\Components\Memory.cs" />
     <Compile Include="Assets\Scripts\Brains\ShellheadBrain.cs" />
     <Compile Include="Assets\Scripts\Core\Tasks\StimulusResponseTask.cs" />
+    <Compile Include="Assets\Scripts\Core\VitalResourceObject.cs" />
     <Compile Include="Assets\Scripts\Core\AIOrganism.cs" />
     <Compile Include="Assets\Scripts\Core\Enums\VitalType.cs" />
+    <Compile Include="Assets\Scripts\Core\Components\ActionManagement.cs" />
+    <Compile Include="Assets\Scripts\Core\OrganismAction.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

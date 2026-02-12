@@ -7,6 +7,7 @@ public class Organism : WorldObject
     [SerializeField] private Movement _movement;
     [SerializeField] private Odor _odor;
     [SerializeField] private Visibility _visibility;
+    [SerializeField] private ActionManagement _actionManagement;
     [SerializeField] private OrganismType _organismType;
     [SerializeField] private float _reach;
 
@@ -19,6 +20,7 @@ public class Organism : WorldObject
     public Movement Movement { get { return _movement; } }
     public Odor Odor { get { return _odor; } }
     public Visibility Visibility { get { return _visibility; } }
+    public ActionManagement ActionManagement { get { return _actionManagement; } }
     public OrganismType OrganismType { get { return _organismType; } }
     public float Reach { get { return _reach; } }
 

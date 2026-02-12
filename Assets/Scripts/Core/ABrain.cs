@@ -47,4 +47,18 @@ public abstract class ABrain : MonoBehaviour
     {
         return new StimulusResponseTask(organism, stimulus, responseType, this);
     }
+
+    // Actions
+    public void Eat(FoodOrWaterObject obj)
+    {
+        ActionManagement actionManagement = organism.ActionManagement;
+
+        if (actionManagement.IsReadyForQueue())
+        {
+            OrganismAction action = new OrganismAction();
+            action.Duration = 1.0f; // Placeholder, until an eating animation is added
+            action.TriggeredAction = () => obj.ConsumeThis(organism);
+            actionManagement.QueueAction(action);
+        }
+    }
 }
