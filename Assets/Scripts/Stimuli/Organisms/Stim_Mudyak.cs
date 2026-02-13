@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class Stim_Mudyak : Stimulus
 {
-    public override StimulusInterpretation VisitAndInterpret(ShellheadBrain brain)
+    public override StimulusInterpretation VisitAndInterpret(BulletRaptorBrain brain)
     {
         StimulusInterpretation interpretation = GenerateBaseInterpretation(brain);
         interpretation.AssignVitalImpact(VitalType.Hunger, -10);
-        interpretation.CanEliminate = true;
+        interpretation.Hostile = true;
 
         if (SenseType == SenseType.Sight)
         {
@@ -14,6 +14,16 @@ public class Stim_Mudyak : Stimulus
         }
 
         return interpretation;
+    }
+
+    public override void VisitAndInteract(BulletRaptorBrain brain, StimulusResponseType type)
+    {
+        if (AssociatedObject == null || AssociatedObject.GetType() != typeof(AIOrganism))
+            return;
+
+        Organism organism = AssociatedObject as Organism;
+
+        brain.Attack(organism);
     }
 
     public override string GetDescription()

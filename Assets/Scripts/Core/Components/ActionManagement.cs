@@ -14,11 +14,16 @@ public class ActionManagement : MonoBehaviour
 
     private float _elapsedTime = 0;
 
+    private Vector2 _startPosition;
+    private Vector2 _endPosition;
+
     private void Update()
     {
         if (_currentAction != null)
         {
             _elapsedTime += Time.deltaTime;
+
+            UpdateCurrentActionDisplacement();
 
             if (IsCurrentActionTriggerReady())
                 FireCurrentActionTrigger();
@@ -31,6 +36,18 @@ public class ActionManagement : MonoBehaviour
         {
             StartNextAction();
         }
+    }
+
+    private void UpdateCurrentActionDisplacement()
+    {
+        if (_currentAction.Displacement == null || _currentAction.Displacement == Vector2.zero)
+            return;
+
+        float positionLerp = _elapsedTime / _currentAction.Duration;
+
+        Vector2 currentPosition = Vector2.Lerp(_startPosition, _endPosition, positionLerp);
+
+        _currentAction.Organism.Position = currentPosition;
     }
 
     private bool IsCurrentActionTriggerReady()
@@ -82,6 +99,11 @@ public class ActionManagement : MonoBehaviour
         if (_currentAction.AnimationName != null)
         {
             _animator.Play(_currentAction.AnimationName);
+        }
+        if (_currentAction.Displacement != null)
+        {
+            _startPosition = _currentAction.Organism.Position;
+            _endPosition = _startPosition + _currentAction.Displacement;
         }
         _currentActionTriggered = false;
     }

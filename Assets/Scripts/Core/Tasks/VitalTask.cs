@@ -51,12 +51,12 @@ public class VitalTask : BehaviorTask
         if (!closestFood.LocationReachedByOrganism(Organism))
         {
             description = "Moving to location";
-            Organism.Navigation.MoveTowards(Organism, closestFood.GetClosestPoint(Organism.Position));
+            Organism.Navigation.MoveTowards(Organism, closestFood.GetClosestPoint(Organism.Position), false);
         }
         else
         {
             description = "Location reached, wandering around";
-            Organism.Navigation.WanderAround(Organism, closestFood);
+            Organism.Navigation.WanderAround(Organism, closestFood, false);
         }
     }
 
@@ -68,12 +68,12 @@ public class VitalTask : BehaviorTask
         if (!closestWater.LocationReachedByOrganism(Organism))
         {
             description = "Moving to location";
-            Organism.Navigation.MoveTowards(Organism, closestWater.GetClosestPoint(Organism.Position));
+            Organism.Navigation.MoveTowards(Organism, closestWater.GetClosestPoint(Organism.Position), false);
         }
         else
         {
             description = "Location reached, wandering around";
-            Organism.Navigation.WanderAround(Organism, closestWater);
+            Organism.Navigation.WanderAround(Organism, closestWater, false);
         }
     }
 
@@ -85,12 +85,12 @@ public class VitalTask : BehaviorTask
         if (!closestShelter.LocationReachedByOrganism(Organism))
         {
             description = "Moving to location";
-            Organism.Navigation.MoveTowards(Organism, closestShelter.GetClosestPoint(Organism.Position));
+            Organism.Navigation.MoveTowards(Organism, closestShelter.GetClosestPoint(Organism.Position), false);
         }
         else
         {
             description = "Location reached, wandering around";
-            Organism.Navigation.WanderAround(Organism, closestShelter);
+            Organism.Navigation.WanderAround(Organism, closestShelter, false);
         }
     }
 

@@ -66,10 +66,12 @@
     <Compile Include="Assets\Scripts\Core\Locations\PointLocation.cs" />
     <Compile Include="Assets\Scripts\Stimuli\Organisms\Stim_Mudyak.cs" />
     <Compile Include="Assets\Scripts\Stimuli\Stim_Grass.cs" />
+    <Compile Include="Assets\Scripts\Core\Components\ActionManagement.cs" />
     <Compile Include="Assets\Scripts\Core\Organism.cs" />
     <Compile Include="Assets\Scripts\Core\Components\TaskManagement.cs" />
     <Compile Include="Assets\Scripts\Core\StimulusInterpretation.cs" />
-    <Compile Include="Assets\Scripts\Stimuli\Organisms\Stim_Shellhead.cs" />
+    <Compile Include="Assets\Scripts\Core\OrganismAction.cs" />
+    <Compile Include="Assets\Scripts\Stimuli\Organisms\Stim_BulletRaptor.cs" />
     <Compile Include="Assets\Scripts\Core\Components\Senses.cs" />
     <Compile Include="Assets\Scripts\Brains\MudyakBrain.cs" />
     <Compile Include="Assets\Scripts\Core\Components\LocationKnowledge.cs" />
@@ -90,13 +92,11 @@
     <Compile Include="Assets\Scripts\Core\Components\Navigation.cs" />
     <Compile Include="Assets\Scripts\Core\Enums\StimulusResponseType.cs" />
     <Compile Include="Assets\Scripts\Core\Components\Memory.cs" />
-    <Compile Include="Assets\Scripts\Brains\ShellheadBrain.cs" />
+    <Compile Include="Assets\Scripts\Brains\BulletRaptorBrain.cs" />
     <Compile Include="Assets\Scripts\Core\Tasks\StimulusResponseTask.cs" />
     <Compile Include="Assets\Scripts\Core\VitalResourceObject.cs" />
     <Compile Include="Assets\Scripts\Core\AIOrganism.cs" />
     <Compile Include="Assets\Scripts\Core\Enums\VitalType.cs" />
-    <Compile Include="Assets\Scripts\Core\Components\ActionManagement.cs" />
-    <Compile Include="Assets\Scripts\Core\OrganismAction.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

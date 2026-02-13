@@ -9,4 +9,9 @@ public class MudyakBrain : ABrain
     {
         stimulus.VisitAndInteract(this, type);
     }
+
+    public override void Attack(Organism obj)
+    {
+        throw new System.NotImplementedException();
+    }
 }

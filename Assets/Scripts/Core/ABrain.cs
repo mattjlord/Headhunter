@@ -18,7 +18,7 @@ public abstract class ABrain : MonoBehaviour
         
         StimulusInterpretation interpretation = AcceptAndInterpret(stimulus);
         StimulusResponseType responseType = interpretation.EvaluateResponseType();
-        BehaviorTask task = GenerateStimulusResponseTask(stimulus, responseType);
+        BehaviorTask task = GenerateStimulusResponseTask(stimulus, responseType, interpretation.Hostile);
         task.Priority = interpretation.EvaluatePriority();
 
         if (task.Priority > 0)
@@ -43,9 +43,9 @@ public abstract class ABrain : MonoBehaviour
 
     public abstract void AcceptAndInteract(Stimulus stimulus, StimulusResponseType type);
 
-    public StimulusResponseTask GenerateStimulusResponseTask(Stimulus stimulus, StimulusResponseType responseType)
+    public StimulusResponseTask GenerateStimulusResponseTask(Stimulus stimulus, StimulusResponseType responseType, bool hostile)
     {
-        return new StimulusResponseTask(organism, stimulus, responseType, this);
+        return new StimulusResponseTask(organism, stimulus, responseType, this, hostile);
     }
 
     // Actions
@@ -55,10 +55,25 @@ public abstract class ABrain : MonoBehaviour
 
         if (actionManagement.IsReadyForQueue())
         {
-            OrganismAction action = new OrganismAction();
+            OrganismAction action = new OrganismAction(organism);
             action.Duration = 1.0f; // Placeholder, until an eating animation is added
             action.TriggeredAction = () => obj.ConsumeThis(organism);
             actionManagement.QueueAction(action);
         }
     }
+
+    public void Drink(FoodOrWaterObject obj)
+    {
+        ActionManagement actionManagement = organism.ActionManagement;
+
+        if (actionManagement.IsReadyForQueue())
+        {
+            OrganismAction action = new OrganismAction(organism);
+            action.Duration = 1.0f; // Placeholder, until an eating animation is added
+            action.TriggeredAction = () => obj.ConsumeThis(organism);
+            actionManagement.QueueAction(action);
+        }
+    }
+
+    public abstract void Attack(Organism obj);
 }

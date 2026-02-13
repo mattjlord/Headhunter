@@ -7,7 +7,7 @@ public class StimulusInterpretation
 
     private Dictionary<VitalType, float> _vitalImpactEstimate;
 
-    private bool _canEliminate = false;
+    private bool _hostile = false;
 
     private bool _overridePriority = false;
     private float _priorityOverrideValue = 0.0f;
@@ -28,10 +28,10 @@ public class StimulusInterpretation
         };
     }
 
-    public bool CanEliminate
+    public bool Hostile
     {
-        get { return _canEliminate; }
-        set { _canEliminate = value; }
+        get { return _hostile; }
+        set { _hostile = value; }
     }
 
     public void OverridePriority(float value)
@@ -97,7 +97,7 @@ public class StimulusInterpretation
         {
             return StimulusResponseType.Pursue;
         }
-        if (_canEliminate)
+        if (_hostile)
         {
             return StimulusResponseType.Eliminate;
         }

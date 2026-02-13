@@ -50,12 +50,16 @@ public class Stimulus : MonoBehaviour
     }
     public bool IsInteractible { get { return _associatedObject != null; } }
 
-    public bool WithinReach(Organism organism)
+    public bool WithinReach(Organism organism, bool useCombatReach)
     {
         if (_associatedObject == null)
             return false;
 
-        float reach = organism.Reach;
+        float reach;
+        if (useCombatReach)
+            reach = organism.CombatReach;
+        else
+            reach = organism.Reach;
 
         AreaLocation areaLocation = _associatedObject.AreaLocation;
         float dist;
@@ -120,11 +124,11 @@ public class Stimulus : MonoBehaviour
     }
     public virtual void VisitAndInteract(MudyakBrain brain, StimulusResponseType type) { }
 
-    public virtual StimulusInterpretation VisitAndInterpret(ShellheadBrain brain)
+    public virtual StimulusInterpretation VisitAndInterpret(BulletRaptorBrain brain)
     {
         return GenerateBaseInterpretation(brain);
     }
-    public virtual void VisitAndInteract(ShellheadBrain brain, StimulusResponseType type) { }
+    public virtual void VisitAndInteract(BulletRaptorBrain brain, StimulusResponseType type) { }
 
     public virtual string GetDescription()
     {

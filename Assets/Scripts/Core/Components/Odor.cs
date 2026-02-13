@@ -68,8 +68,8 @@ public class Odor : MonoBehaviour
             case OrganismType.Mudyak:
                 obj.AddComponent<Stim_Mudyak>();
                 return;
-            case OrganismType.Shellhead:
-                obj.AddComponent<Stim_Shellhead>();
+            case OrganismType.BulletRaptor:
+                obj.AddComponent<Stim_BulletRaptor>();
                 return;
         }
     }

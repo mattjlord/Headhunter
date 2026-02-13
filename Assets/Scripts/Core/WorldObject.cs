@@ -11,5 +11,28 @@ public class WorldObject : MonoBehaviour
         set { transform.position = VectorUtils.Vec2ToVec3(value); } // TODO: Better position logic later for flying organisms and whatnot, this is a temporary solution
     }
 
+    public float Radius
+    {
+        get
+        {
+            CapsuleCollider collider = GetComponent<CapsuleCollider>();
+            if (collider)
+            {
+                return collider.radius;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+    }
+
     public AreaLocation AreaLocation { get { return _areaLocation; } }
+
+    public bool WithinReach(Vector2 position, float reach)
+    {
+        float dist = Vector2.Distance(Position, position);
+
+        return dist <= (reach + _radius);
+    }
 }

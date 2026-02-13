@@ -73,7 +73,7 @@ public class TrailLocation : ALocation
         bool doneWandering = (nextWanderIndex == _points.Count - 1) && Vector2.Distance(organism.Position, nextWanderPoint) < sensitivity;
         if (!doneWandering)
         {
-            organism.Navigation.MoveTowards(organism, nextWanderPoint);
+            organism.Navigation.MoveTowards(organism, nextWanderPoint, false);
         }
         else
         {

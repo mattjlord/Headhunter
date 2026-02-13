@@ -138,7 +138,7 @@ public class AreaLocation : ALocation
     public override void Wander(AIOrganism organism)
     {
         Vector2 wanderDestination = GetOrUpdateWanderDestination(organism);
-        organism.Navigation.MoveTowards(organism, wanderDestination);
+        organism.Navigation.MoveTowards(organism, wanderDestination, false);
     }
 
     private Vector2 GetOrUpdateWanderDestination(AIOrganism organism)

@@ -1,4 +1,4 @@
-public class Stim_Shellhead : Stimulus
+public class Stim_BulletRaptor : Stimulus
 {
     public override StimulusInterpretation VisitAndInterpret(MudyakBrain brain)
     {
@@ -16,6 +16,6 @@ public class Stim_Shellhead : Stimulus
 
     public override string GetDescription()
     {
-        return "a shellhead";
+        return "a bullet raptor";
     }
 }

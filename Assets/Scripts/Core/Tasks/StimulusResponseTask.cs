@@ -5,12 +5,14 @@ public class StimulusResponseTask : BehaviorTask
     private Stimulus _stimulus;
     private StimulusResponseType _responseType;
     private ABrain _brain;
+    private bool _hostile;
 
-    public StimulusResponseTask(AIOrganism organism, Stimulus stimulus, StimulusResponseType responseType, ABrain brain) : base(organism)
+    public StimulusResponseTask(AIOrganism organism, Stimulus stimulus, StimulusResponseType responseType, ABrain brain, bool hostile) : base(organism)
     {
         _stimulus = stimulus;
         _responseType = responseType;
         _brain = brain;
+        _hostile = hostile;
     }
 
     public override void Update()
@@ -45,7 +47,7 @@ public class StimulusResponseTask : BehaviorTask
         bool stimulusReached;
         if (_stimulus.IsInteractible)
         {
-            stimulusReached = _stimulus.WithinReach(Organism);
+            stimulusReached = _stimulus.WithinReach(Organism, _hostile);
         }
         else
         {
@@ -54,7 +56,7 @@ public class StimulusResponseTask : BehaviorTask
 
         if (!stimulusReached)
         {
-            Organism.Navigation.MoveTowards(Organism, stimulusLocation.GetClosestPoint(Organism.Position));
+            Organism.Navigation.MoveTowards(Organism, stimulusLocation.GetClosestPoint(Organism.Position), _hostile);
             description = "Pursuing stimulus";
             return;
         }
@@ -64,7 +66,7 @@ public class StimulusResponseTask : BehaviorTask
 
         if (!_stimulus.IsInteractible) // Nothing to do but wander
         {
-            Organism.Navigation.WanderAround(Organism, stimulusLocation);
+            Organism.Navigation.WanderAround(Organism, stimulusLocation, false);
             description = "Location reached, wandering around";
             return;
         }
@@ -75,7 +77,7 @@ public class StimulusResponseTask : BehaviorTask
     private void FleeStimulus()
     {
         ALocation stimulusLocation = _stimulus.Location;
-        Organism.Navigation.MoveAwayFrom(Organism, stimulusLocation.GetClosestPoint(Organism.Position));
+        Organism.Navigation.MoveAwayFrom(Organism, stimulusLocation.GetClosestPoint(Organism.Position), true);
         description = "Fleeing stimulus";
     }
 

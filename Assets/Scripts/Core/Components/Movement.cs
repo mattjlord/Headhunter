@@ -3,11 +3,13 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     [SerializeField] private float _walkSpeed; // TODO: Integrate vitals into speed
+    [SerializeField] private float _runSpeed;
     [SerializeField] private float _footstepFrequency;
     [SerializeField] private float _footstepLoudness;
     private float _lastFootstep;
     private Vector2 _dir;
     private Organism _organism;
+    private bool _isRunning = false;
 
     private void Start()
     {
@@ -15,6 +17,21 @@ public class Movement : MonoBehaviour
     }
 
     public bool IsMoving { get { return _dir != Vector2.zero; } }
+
+    public Vector2 Velocity
+    {
+        get 
+        {
+            float speed;
+
+            if (_isRunning)
+                speed = _runSpeed;
+            else
+                speed = _walkSpeed;
+
+            return _dir * speed;
+        }
+    }
 
     private void FixedUpdate()
     {
@@ -26,13 +43,20 @@ public class Movement : MonoBehaviour
             if (Time.fixedTime > _lastFootstep + _footstepFrequency)
                 Footstep();
         }
-        _organism.Position += (_dir * _walkSpeed);
+        float speed;
+        if (_isRunning)
+            speed = _runSpeed;
+        else
+            speed = _walkSpeed;
+
+        _organism.Position += (_dir * speed);
     }
 
-    public void Move(Organism organism, Vector2 dir)
+    public void Move(Organism organism, Vector2 dir, bool run)
     {
         _organism = organism;
         _dir = dir;
+        _isRunning = run;
     }
 
     private void Footstep()
