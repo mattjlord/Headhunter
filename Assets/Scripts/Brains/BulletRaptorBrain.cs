@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class BulletRaptorBrain : ABrain
 {
+
     public override void AcceptAndInteract(Stimulus stimulus, StimulusResponseType type)
     {
         stimulus.VisitAndInteract(this, type);
@@ -21,9 +22,9 @@ public class BulletRaptorBrain : ABrain
 
         if (obj.WithinReach(organism.Position, organism.Reach))
         {
-            Debug.Log("Within biting range!");
-            action.Duration = 0.2f; // Placeholder
-            // TODO: Attack the target
+            action.Duration = 0.1f; // Placeholder
+            action.TriggerDelay = 0.05f; // Placeholder
+            action.TriggeredAction = () => organism.MeleeAttack.AttackOrganism(obj);
         }
         else
         {

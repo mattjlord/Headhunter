@@ -8,6 +8,7 @@ public class Organism : WorldObject
     [SerializeField] private Odor _odor;
     [SerializeField] private Visibility _visibility;
     [SerializeField] private ActionManagement _actionManagement;
+    [SerializeField] private MeleeAttack _meleeAttack;
     [SerializeField] private OrganismType _organismType;
     [SerializeField] private float _reach;
     [SerializeField] private float _combatReach;
@@ -22,6 +23,7 @@ public class Organism : WorldObject
     public Odor Odor { get { return _odor; } }
     public Visibility Visibility { get { return _visibility; } }
     public ActionManagement ActionManagement { get { return _actionManagement; } }
+    public MeleeAttack MeleeAttack { get { return _meleeAttack; } }
     public OrganismType OrganismType { get { return _organismType; } }
     public float Reach { get { return _reach; } }
     public float CombatReach {  get { return _combatReach; } }

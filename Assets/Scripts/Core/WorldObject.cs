@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class WorldObject : MonoBehaviour
 {
-    [SerializeField] private float _radius;
     [SerializeField] private AreaLocation _areaLocation; // Optional, for regional objects like grass and bodies of water
 
     public Vector2 Position
@@ -33,6 +32,6 @@ public class WorldObject : MonoBehaviour
     {
         float dist = Vector2.Distance(Position, position);
 
-        return dist <= (reach + _radius);
+        return dist <= (reach + Radius);
     }
 }

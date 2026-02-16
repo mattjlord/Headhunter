@@ -14,7 +14,7 @@ public class Odor : MonoBehaviour
     private Stimulus _odorTrailStim;
     private TrailLocation _odorTrail;
 
-    [SerializeField] private int _trailLength = 0;
+    private int _trailLength = 0;
 
     public Organism Organism 
     { 

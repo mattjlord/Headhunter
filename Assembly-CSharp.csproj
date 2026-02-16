@@ -97,6 +97,9 @@
     <Compile Include="Assets\Scripts\Core\VitalResourceObject.cs" />
     <Compile Include="Assets\Scripts\Core\AIOrganism.cs" />
     <Compile Include="Assets\Scripts\Core\Enums\VitalType.cs" />
+    <Compile Include="Assets\Scripts\Core\Components\MeleeAttack.cs" />
+    <Compile Include="Assets\Scripts\Core\PlayerOrganism.cs" />
+    <Compile Include="Assets\Scripts\Controls\PlayerController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

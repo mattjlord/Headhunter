@@ -6,6 +6,9 @@ public class Movement : MonoBehaviour
     [SerializeField] private float _runSpeed;
     [SerializeField] private float _footstepFrequency;
     [SerializeField] private float _footstepLoudness;
+
+    [SerializeField] private GameObject _footprintPrefab;
+
     private float _lastFootstep;
     private Vector2 _dir;
     private Organism _organism;
@@ -79,6 +82,17 @@ public class Movement : MonoBehaviour
 
         footstep.Fire();
 
-        // TODO: Footprints for the player to see (other organisms are too dumb to recognize them, no need to generate stimulus)
+        if (_footprintPrefab != null)
+        {
+            Vector3 footprintPos = VectorUtils.Vec2ToVec3(_organism.Position);
+            Vector2 lookDir = _organism.LookDirection;
+
+            float angleInRadians = Mathf.Atan2(lookDir.x, lookDir.y);
+            float angleInDeg = Mathf.Rad2Deg * angleInRadians;
+
+            footprintPos.y = 0.01f;
+            Instantiate(_footprintPrefab, footprintPos, Quaternion.Euler(0, angleInDeg, 0));
+
+        }
     }
 }
