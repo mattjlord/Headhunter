@@ -252,4 +252,18 @@ public class AreaLocation : ALocation
         }
         Gizmos.DrawLine((Vector3)prevPoint, startPoint);
     }
+
+    // Editor methods
+
+    public int PointCount => _points.Count;
+
+    public Vector2 GetLocalPoint(int index)
+    {
+        return _points[index];
+    }
+
+    public void SetLocalPoint(int index, Vector2 value)
+    {
+        _points[index] = value;
+    }
 }
