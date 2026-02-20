@@ -49,6 +49,7 @@ public class Memory : MonoBehaviour
 
     public void StartForgettingStimulus(Stimulus stimulus)
     {
+        Debug.Log("Started forgetting");
         _activeStimuli.Remove(stimulus);
         _stimuliInMemory.Add(stimulus, Time.fixedTime);
     }

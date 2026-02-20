@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.AI;
+using static UnityEditor.PlayerSettings;
 
 public class Navigation : MonoBehaviour
 {
@@ -6,16 +8,68 @@ public class Navigation : MonoBehaviour
 
     private bool _wandering = false;
 
-    public void MoveTowards(Organism organism, Vector2 pos, bool run)
+    private Vector2 _currentDestination;
+    private NavMeshPath _path;
+    private int _pathIndex;
+
+    private void Start()
     {
-        Vector2 dir = (pos - organism.Position).normalized;
+        _path = new NavMeshPath();
+    }
+
+    public void MoveTowards(Organism organism, Vector2 pos, bool run, bool chasing = false)
+    {
+        Vector2 dir;
+
+        if (chasing)
+        {
+            dir = (pos - organism.Position).normalized;
+        }
+        else
+        {
+            dir = GetNavMeshDir(organism, pos);
+        }
+
+        
         organism.Movement.Move(organism, dir, run);
+    }
+
+    Vector2 GetNavMeshDir(Organism organism, Vector2 pos)
+    {
+        if (_currentDestination != pos)
+        {
+            InitPath(organism, pos);
+        }
+
+        Vector3 nextPoint = _path.corners[_pathIndex];
+        Vector2 nextPoint2D = VectorUtils.Vec3ToVec2(nextPoint);
+
+        float distToNextPoint = Vector2.Distance(organism.Position, nextPoint2D);
+        if (distToNextPoint < organism.Movement.CurrentSpeed)
+        {
+            _pathIndex++;
+        }
+
+        return (nextPoint2D - organism.Position).normalized;
     }
 
     public void MoveAwayFrom(Organism organism, Vector2 pos, bool run)
     {
-        Vector2 dir = (organism.Position - pos).normalized;
-        organism.Movement.Move(organism, dir, run);
+        // TODO: Fix this shitty code it barely works and looks terrible in-game
+        Vector2 lookDir = (organism.Position - pos).normalized;
+        organism.LookDirection = lookDir;
+
+        Vector2? pointAhead = organism.Senses.GetPointAhead();
+
+        if (pointAhead == null)
+        {
+            // TODO: Somehow integrate behavior for when the organism gets cornered
+            return;
+        }
+
+        Vector2 moveDir = ((Vector2)pointAhead - organism.Position).normalized;
+
+        organism.Movement.Move(organism, moveDir, run);
     }
 
     public void StopMovement(Organism organism)
@@ -38,5 +92,27 @@ public class Navigation : MonoBehaviour
     public void StopWandering()
     {
         _wandering = false;
+        _path.ClearCorners();
+    }
+
+    private void InitPath(Organism organism, Vector2 destination)
+    {
+        _currentDestination = destination;
+        _pathIndex = 0;
+        NavMesh.CalculatePath(VectorUtils.Vec2ToVec3(organism.Position), VectorUtils.Vec2ToVec3(destination), NavMesh.AllAreas, _path);
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (_path == null || _path.corners.Length == 0)
+            return;
+
+        Vector3 lastCorner = transform.position;
+
+        foreach(var corner in _path.corners)
+        {
+            Debug.DrawLine(lastCorner, corner);
+            lastCorner = corner;
+        }
     }
 }

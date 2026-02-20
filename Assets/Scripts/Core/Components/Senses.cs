@@ -21,12 +21,61 @@ public class Senses : MonoBehaviour
         }
     }
 
+    public Vector2? GetPointAhead()
+    {
+        Vector2 point = VectorUtils.Vec3ToVec2(_headTransform.position + (_headTransform.forward * _sightRadius));
+        bool hasLOS = HasLineOfSight(point, out RaycastHit hit);
+
+        if (hasLOS)
+        {
+            DrawDebugLine(point);
+            return point;
+        }
+
+        // Try to find the nearest point nearby
+        const int angleStep = 15;       // degrees per check
+        const int maxAngle = 90;        // maximum rotation left/right
+
+        for (int angle = angleStep; angle <= maxAngle; angle += angleStep)
+        {
+            Vector3 leftDir = Quaternion.Euler(0, -angle, 0) * _headTransform.forward;
+            Vector2 leftPoint = VectorUtils.Vec3ToVec2(_headTransform.position + leftDir * _sightRadius);
+            if (HasLineOfSight(leftPoint, out hit))
+            {
+                DrawDebugLine(leftPoint);
+                return leftPoint;
+            }
+
+            Vector3 rightDir = Quaternion.Euler(0, angle, 0) * _headTransform.forward;
+            Vector2 rightPoint = VectorUtils.Vec3ToVec2(_headTransform.position + rightDir * _sightRadius);
+            if (HasLineOfSight(rightPoint, out hit))
+            {
+                DrawDebugLine(rightPoint);
+                return rightPoint;
+            }
+        }
+
+        return null; // Nothing ahead
+    }
+
+    private void DrawDebugLine(Vector2 point)
+    {
+        Debug.DrawLine(_headTransform.position, VectorUtils.Vec2ToVec3(point), Color.green);
+    }
+
     private bool CanSee(Stimulus stimulus)
     {
         if (stimulus.SenseType != SenseType.Sight)
             return false;
         // TODO: Also block stuff that's hidden behind obstacles
         return StimulusInRange(stimulus, _sightRadius) && StimulusInFOV(stimulus);
+    }
+
+    public bool HasLineOfSight(Vector2 point, out RaycastHit obstacle)
+    {
+        obstacle = default;
+        Vector2 dir = (point - VectorUtils.Vec3ToVec2(_headTransform.position)).normalized;
+        return !Physics.Raycast(_headTransform.position, VectorUtils.Vec2ToVec3(dir), out obstacle, _sightRadius, -1);
     }
 
     private bool CanHear(Stimulus stimulus)

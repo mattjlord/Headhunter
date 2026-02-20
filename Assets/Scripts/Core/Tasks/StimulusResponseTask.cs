@@ -56,7 +56,7 @@ public class StimulusResponseTask : BehaviorTask
 
         if (!stimulusReached)
         {
-            Organism.Navigation.MoveTowards(Organism, stimulusLocation.GetClosestPoint(Organism.Position), _hostile);
+            Organism.Navigation.MoveTowards(Organism, stimulusLocation.GetClosestPoint(Organism.Position), _hostile, !_stimulus.Fixed);
             description = "Pursuing stimulus";
             return;
         }

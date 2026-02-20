@@ -1,3 +1,4 @@
+[System.Serializable]
 public class BehaviorTask
 {
     private AIOrganism _organism;
@@ -50,6 +51,7 @@ public class BehaviorTask
         if (_isRunning)
         {
             _isRunning = false;
+            _organism.Navigation.StopMovement(_organism);
             Stop();
         }
     }

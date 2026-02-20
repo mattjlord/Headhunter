@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class TaskManagement : MonoBehaviour
 {
-    private List<BehaviorTask> _tasks;
+    [SerializeField] private List<BehaviorTask> _tasks;
     private BehaviorTask _currentTask;
     [SerializeField] private string _currentTaskName;
 
@@ -22,11 +22,19 @@ public class TaskManagement : MonoBehaviour
                 task.UpdatePriority();
 
             if (task.Priority == 0 && !task.IsEssential)
+            {
+                if (task == _currentTask)
+                {
+                    _currentTask.Exit();
+                    _currentTask = null;
+                }
                 toRemove.Add(task);
+            }
         }
 
         foreach (var task in toRemove)
         {
+            Debug.Log("Removed task " + task.GetType().Name);
             _tasks.Remove(task);
         }
 

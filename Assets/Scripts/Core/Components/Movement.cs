@@ -23,16 +23,17 @@ public class Movement : MonoBehaviour
 
     public Vector2 Velocity
     {
-        get 
+        get { return _dir * CurrentSpeed; }
+    }
+
+    public float CurrentSpeed
+    {
+        get
         {
-            float speed;
-
             if (_isRunning)
-                speed = _runSpeed;
+                return _runSpeed;
             else
-                speed = _walkSpeed;
-
-            return _dir * speed;
+                return _walkSpeed;
         }
     }
 

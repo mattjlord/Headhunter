@@ -7,6 +7,7 @@ public class Stimulus : MonoBehaviour
     [SerializeField] private SenseType _senseType;
     [SerializeField] private float _detectableDistance;
     [SerializeField] private bool _lingering = false;
+    [SerializeField] private bool _fixed = true;
 
     [SerializeField] private WorldObject? _associatedObject;
 
@@ -48,6 +49,13 @@ public class Stimulus : MonoBehaviour
         get { return _lingering; }
         set { _lingering = value; }
     }
+
+    public bool Fixed
+    {
+        get { return _fixed; }
+        set { _fixed = value; }
+    }
+
     public bool IsInteractible { get { return _associatedObject != null; } }
 
     public bool WithinReach(Organism organism, bool useCombatReach)

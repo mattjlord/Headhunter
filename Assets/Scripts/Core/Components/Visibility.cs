@@ -19,6 +19,7 @@ public class Visibility : MonoBehaviour
             _visibilityStimulus.SenseType = SenseType.Sight;
             _visibilityStimulus.AssociatedObject = _organism;
             _visibilityStimulus.Lingering = true;
+            _visibilityStimulus.Fixed = false;
         }
     }
 
