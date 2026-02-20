@@ -253,6 +253,86 @@ public class AreaLocation : ALocation
         Gizmos.DrawLine((Vector3)prevPoint, startPoint);
     }
 
+    private void UpdateCollision()
+    {
+        MeshCollider? collider = GetComponent<MeshCollider>();
+        if (collider == null) return;
+
+        if (_points == null || _points.Count < 3)
+            return;
+
+        float height = 10f;
+        int count = _points.Count;
+
+        Mesh mesh = new Mesh();
+        mesh.name = "AreaLocationCollider";
+
+        List<Vector3> vertices = new List<Vector3>();
+        List<int> triangles = new List<int>();
+
+        // --- Bottom vertices ---
+        for (int i = 0; i < count; i++)
+        {
+            Vector3 v = VectorUtils.Vec2ToVec3(_points[i]);
+            v.y = 0f;
+            vertices.Add(v);
+        }
+
+        // --- Top vertices ---
+        for (int i = 0; i < count; i++)
+        {
+            Vector3 v = VectorUtils.Vec2ToVec3(_points[i]);
+            v.y = height;
+            vertices.Add(v);
+        }
+
+        // --- Bottom face (triangle fan) ---
+        for (int i = 1; i < count - 1; i++)
+        {
+            triangles.Add(0);
+            triangles.Add(i);
+            triangles.Add(i + 1);
+        }
+
+        // --- Top face (reverse winding) ---
+        int topOffset = count;
+        for (int i = 1; i < count - 1; i++)
+        {
+            triangles.Add(topOffset);
+            triangles.Add(topOffset + i + 1);
+            triangles.Add(topOffset + i);
+        }
+
+        // --- Side walls ---
+        for (int i = 0; i < count; i++)
+        {
+            int next = (i + 1) % count;
+
+            int bottomA = i;
+            int bottomB = next;
+            int topA = i + topOffset;
+            int topB = next + topOffset;
+
+            // First triangle
+            triangles.Add(bottomA);
+            triangles.Add(topA);
+            triangles.Add(topB);
+
+            // Second triangle
+            triangles.Add(bottomA);
+            triangles.Add(topB);
+            triangles.Add(bottomB);
+        }
+
+        mesh.SetVertices(vertices);
+        mesh.SetTriangles(triangles, 0);
+        mesh.RecalculateNormals();
+        mesh.RecalculateBounds();
+
+        collider.sharedMesh = null; // Important: force refresh
+        collider.sharedMesh = mesh;
+    }
+
     // Editor methods
 
     public int PointCount => _points.Count;
@@ -265,5 +345,6 @@ public class AreaLocation : ALocation
     public void SetLocalPoint(int index, Vector2 value)
     {
         _points[index] = value;
+        UpdateCollision();
     }
 }
