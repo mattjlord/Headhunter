@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class ALocation : MonoBehaviour
 {
+    [SerializeField] protected Color debugColor = Color.green;
+
     private Dictionary<AIOrganism, (float, float)> _wanderers;
     protected static float sensitivity = 1.0f;
     protected virtual void Start()

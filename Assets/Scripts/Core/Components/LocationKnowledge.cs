@@ -10,6 +10,10 @@ public class LocationKnowledge : MonoBehaviour
     [SerializeField] private List<ALocation> _shelterLocations;
     private List<ALocation> _blockedLocations;
 
+    public List<ALocation> FoodLocations { set { _foodLocations = value; } }
+    public List<ALocation> WaterLocations { set { _waterLocations = value; } }
+    public List<ALocation> ShelterLocation { set { _shelterLocations = value;} }
+
     private void Start()
     {
         _blockedLocations = new List<ALocation>();

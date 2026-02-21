@@ -156,7 +156,7 @@ public class AreaLocation : ALocation
         return wanderDestination;
     }
 
-    private Vector2 GetRandomPointInArea()
+    public Vector2 GetRandomPointInArea()
     {
         if (_points == null || _points.Count < 3)
             return Vector2.zero;
@@ -173,7 +173,15 @@ public class AreaLocation : ALocation
             Vector2 candidate = new Vector2(x, y);
 
             if (LocationReached(candidate))
+            {
+                Debug.DrawLine(
+                    VectorUtils.Vec2ToVec3(candidate),
+                    VectorUtils.Vec2ToVec3(candidate) + Vector3.up * 2,
+                    Color.yellow,
+                    2f
+                );
                 return candidate;
+            }
         }
     }
 
@@ -238,7 +246,7 @@ public class AreaLocation : ALocation
         startPoint.y = 0.25f;
         Vector3? prevPoint = null;
         if (!IsConcave())
-            Gizmos.color = Color.green;
+            Gizmos.color = debugColor;
         else
             Gizmos.color = Color.red;
         foreach (Vector2 vec2 in _points)

@@ -11,7 +11,11 @@ public class Vital
     [SerializeField, Min(0f)] private float _increaseSensitivity;
     [SerializeField, Min(0f)] private float _decreaseSensitivity;
 
-    public float Value { get { return _value; } }
+    public float Value 
+    { 
+        get { return _value; } 
+        set { _value = value; }
+    }
 
     public void Update()
     {

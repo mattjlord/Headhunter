@@ -6,7 +6,7 @@ using UnityEngine;
 public class HerdManagement : MonoBehaviour
 {
     [SerializeField, Range(0f, 100f)] private float _herdBehavior;
-    [SerializeField] List<Organism> _herd;
+    [SerializeField] List<AIOrganism> _herd;
 
     private float GetHerdVitalAverage(VitalType vital)
     {
@@ -29,5 +29,11 @@ public class HerdManagement : MonoBehaviour
         float lerp = _herdBehavior / 100;
         float biasedValue = Mathf.Lerp(rawValue, herdValue, lerp);
         return biasedValue;
+    }
+
+    public List<AIOrganism> Herd
+    {
+        get { return _herd; }
+        set { _herd = value; }
     }
 }

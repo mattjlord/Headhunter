@@ -53,6 +53,7 @@ public class Movement : MonoBehaviour
         else
             speed = _walkSpeed;
 
+
         _organism.Position += (_dir * speed);
     }
 
