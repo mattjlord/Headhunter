@@ -14,7 +14,7 @@ public class LocationKnowledge : MonoBehaviour
     public List<ALocation> WaterLocations { set { _waterLocations = value; } }
     public List<ALocation> ShelterLocation { set { _shelterLocations = value;} }
 
-    private void Start()
+    private void Awake()
     {
         _blockedLocations = new List<ALocation>();
     }

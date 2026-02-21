@@ -12,7 +12,7 @@ public class Navigation : MonoBehaviour
     private NavMeshPath _path;
     private int _pathIndex;
 
-    private void Start()
+    private void Awake()
     {
         _path = new NavMeshPath();
     }
@@ -30,7 +30,6 @@ public class Navigation : MonoBehaviour
             dir = GetNavMeshDir(organism, pos);
         }
 
-        
         organism.Movement.Move(organism, dir, run);
     }
 
@@ -41,7 +40,21 @@ public class Navigation : MonoBehaviour
             InitPath(organism, pos);
         }
 
+        if (_path.corners.Length == 0)
+        {
+            Debug.DrawRay(transform.position, Vector3.up * 10, Color.red);
+            return Vector2.zero;
+        }
+
+        Debug.DrawRay(transform.position, Vector3.up * 10, Color.green);
+
+        if (_pathIndex >= _path.corners.Length)
+            return Vector2.zero;
+
         Vector3 nextPoint = _path.corners[_pathIndex];
+
+        Debug.DrawLine(transform.position + Vector3.up, nextPoint + Vector3.up, Color.blue);
+
         Vector2 nextPoint2D = VectorUtils.Vec3ToVec2(nextPoint);
 
         float distToNextPoint = Vector2.Distance(organism.Position, nextPoint2D);
@@ -98,7 +111,7 @@ public class Navigation : MonoBehaviour
     private void InitPath(Organism organism, Vector2 destination)
     {
         _currentDestination = destination;
-        _pathIndex = 0;
+        _pathIndex = 1;
         NavMesh.CalculatePath(VectorUtils.Vec2ToVec3(organism.Position), VectorUtils.Vec2ToVec3(destination), NavMesh.AllAreas, _path);
     }
 
@@ -107,11 +120,12 @@ public class Navigation : MonoBehaviour
         if (_path == null || _path.corners.Length == 0)
             return;
 
-        Vector3 lastCorner = transform.position;
+        Vector3? lastCorner = null;
 
         foreach(var corner in _path.corners)
         {
-            Debug.DrawLine(lastCorner, corner);
+            if (lastCorner != null)
+                Gizmos.DrawLine((Vector3)lastCorner, corner);
             lastCorner = corner;
         }
     }

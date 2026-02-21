@@ -42,6 +42,7 @@ public static class VectorUtils
 
         float t = Vector2.Dot(p - a, ab) / abSqr;
         t = Mathf.Clamp01(t);
+
         return a + t * ab;
     }
 }

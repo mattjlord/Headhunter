@@ -14,7 +14,7 @@ public class Movement : MonoBehaviour
     private Organism _organism;
     private bool _isRunning = false;
 
-    private void Start()
+    private void Awake()
     {
         _dir = Vector2.zero;
     }
@@ -86,14 +86,14 @@ public class Movement : MonoBehaviour
 
         if (_footprintPrefab != null)
         {
-            Vector3 footprintPos = VectorUtils.Vec2ToVec3(_organism.Position);
+            /*Vector3 footprintPos = VectorUtils.Vec2ToVec3(_organism.Position);
             Vector2 lookDir = _organism.LookDirection;
 
             float angleInRadians = Mathf.Atan2(lookDir.x, lookDir.y);
             float angleInDeg = Mathf.Rad2Deg * angleInRadians;
 
             footprintPos.y = 0.01f;
-            Instantiate(_footprintPrefab, footprintPos, Quaternion.Euler(0, angleInDeg, 0));
+            Instantiate(_footprintPrefab, footprintPos, Quaternion.Euler(0, angleInDeg, 0));*/
 
         }
     }

@@ -19,11 +19,12 @@ public class WorldObject : MonoBehaviour
             Vector3 targetPos = VectorUtils.Vec2ToVec3(value);
             if (_collider != null)
             {
-                if (WouldCollideAt(targetPos))
-                {
-                    Debug.Log("Cannot move: collision detected!");
-                    return; // Don't set position
-                }
+                // TODO: Clean up collision later
+                //if (WouldCollideAt(targetPos))
+                //{
+                //    Debug.Log("Cannot move: collision detected!");
+                //    return; // Don't set position
+                //}
             }
 
             transform.position = targetPos;
@@ -50,8 +51,9 @@ public class WorldObject : MonoBehaviour
         float scaledRadius = _collider.radius * Mathf.Max(transform.lossyScale.x, transform.lossyScale.z);
 
         Vector3 center = targetPos + transform.rotation * _collider.center;
-        Vector3 point1 = center + up * (scaledHeight / 2 - scaledRadius);
-        Vector3 point2 = center - up * (scaledHeight / 2 - scaledRadius);
+        float cylinderHeight = Mathf.Max(0f, scaledHeight - 2f * scaledRadius); // cannot be negative
+        Vector3 point1 = center + up * (cylinderHeight / 2f);
+        Vector3 point2 = center - up * (cylinderHeight / 2f);
 
         Collider[] hits = Physics.OverlapCapsule(point1, point2, scaledRadius);
         foreach (var hit in hits)

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ public class Memory : MonoBehaviour
     private List<Stimulus> _activeStimuli;
     private Dictionary<Stimulus, float> _stimuliInMemory;
 
-    private void Start()
+    private void Awake()
     {
         _activeStimuli = new List<Stimulus>();
         _stimuliInMemory = new Dictionary<Stimulus, float>();
@@ -35,6 +36,20 @@ public class Memory : MonoBehaviour
         {
             _stimuliInMemory.Remove(stimulus);
         }
+
+        Stimulus existingStimulus = null;
+
+        foreach (Stimulus activeStimulus in _activeStimuli)
+        {
+            if (activeStimulus.GetType() == stimulus.GetType())
+            {
+                existingStimulus = activeStimulus;
+                break;
+            }
+        }
+
+        if (existingStimulus != null)
+            ForgetStimulus(existingStimulus);
         
         _activeStimuli.Add(stimulus);
         stimulus.IncrementObservers();
@@ -62,5 +77,43 @@ public class Memory : MonoBehaviour
     public bool CanRemember(Stimulus stimulus)
     {
         return _stimuliInMemory.ContainsKey(stimulus);
+    }
+
+    public bool HasCloserSimilarStimulus(Stimulus newStimulus, Vector2 position)
+    {
+        Type stimType = newStimulus.GetType();
+
+        Stimulus existingStimulus = null;
+
+        foreach (Stimulus activeStimulus in _activeStimuli)
+        {
+            if (activeStimulus.GetType() == stimType)
+            {
+                existingStimulus = activeStimulus;
+                break;
+            }
+        }
+
+        if (existingStimulus == null)
+            return false;
+
+        float distanceToExistingStimulus = existingStimulus.Location.GetDistanceFrom(position);
+        float distanceToNewStimulus = newStimulus.Location.GetDistanceFrom(position);
+
+        return distanceToNewStimulus >= distanceToExistingStimulus;
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (_activeStimuli == null)
+            return;
+
+        Gizmos.color = Color.yellow;
+        Vector3 origin = transform.position + Vector3.up * 3;
+        foreach (Stimulus stimulus in _activeStimuli)
+        {
+            Vector3 stimulusPosition = VectorUtils.Vec2ToVec3(stimulus.Location.GetClosestPoint(VectorUtils.Vec3ToVec2(origin))) + Vector3.up * 3;
+            Gizmos.DrawLine(origin, stimulusPosition);
+        }
     }
 }

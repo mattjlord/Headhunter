@@ -15,6 +15,9 @@ public abstract class ABrain : MonoBehaviour
     {
         if (organism.Memory.IsStimulusActive(stimulus) || organism.LocationKnowledge.IsLocationBlocked(stimulus.Location) || stimulus.ProducerOrganism == organism)
             return;
+
+        if (organism.Memory.HasCloserSimilarStimulus(stimulus, organism.Position))
+            return;
         
         StimulusInterpretation interpretation = AcceptAndInterpret(stimulus);
         StimulusResponseType responseType = interpretation.EvaluateResponseType();

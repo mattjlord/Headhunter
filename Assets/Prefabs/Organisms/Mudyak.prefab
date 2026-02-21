@@ -104,12 +104,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hunger:
-    _value: 0
+    _value: 2.4001837
     _passiveIncreaseRate: 4
     _increaseSensitivity: 1
     _decreaseSensitivity: 1
   _thirst:
-    _value: 0
+    _value: 52.213913
     _passiveIncreaseRate: 4
     _increaseSensitivity: 1
     _decreaseSensitivity: 1
@@ -185,7 +185,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _herdBehavior: 0
-  _herd: []
+  _herd:
+  - {fileID: 8816648452552321059}
+  - {fileID: 8816648452552321059}
 --- !u!114 &8816648452552321080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,7 +203,23 @@ MonoBehaviour:
   _foodLocations:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _waterLocations:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   _shelterLocations: []
 --- !u!114 &8816648452552321081
@@ -287,6 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fad6f51eba3ced044af07ea37f8dc1a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debugColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!114 &8816648452552321069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -318,7 +337,7 @@ CapsuleCollider:
   m_Radius: 5
   m_Height: 1
   m_Direction: 1
-  m_Center: {x: 0, y: 5.1, z: 0}
+  m_Center: {x: 0, y: 5.5, z: 0}
 --- !u!1 &8816648453989378103
 GameObject:
   m_ObjectHideFlags: 0

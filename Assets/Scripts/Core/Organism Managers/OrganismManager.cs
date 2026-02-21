@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class OrganismManager : MonoBehaviour
 {
+    [SerializeField] private int _maxOrganisms = 30;
+
     [SerializeField] private GameObject _spawnTemplate;
 
     [SerializeField, Range(0f, 100f)] float _minHunger = 0f;
@@ -25,11 +27,20 @@ public class OrganismManager : MonoBehaviour
     [SerializeField] private List<ALocation> _waterLocations;
     [SerializeField] private List<ALocation> _shelterLocations;
 
-    public Organism SpawnOrganism(Vector2 point)
+    private List<AIOrganism> _organisms;
+
+    private void Start()
+    {
+        _organisms = new List<AIOrganism>();
+    }
+
+    public bool CanSpawn() => _organisms.Count < _maxOrganisms;
+
+    public AIOrganism SpawnOrganism(Vector2 point)
     {
         Vector3 worldPoint = VectorUtils.Vec2ToVec3(point);
         GameObject spawnedInstance = Instantiate(_spawnTemplate, worldPoint, Quaternion.identity);
-        AIOrganism organism = spawnedInstance.GetComponent<AIOrganism>();
+        AIOrganism organism = _spawnTemplate.GetComponent<AIOrganism>();
 
         AssignVital(organism, VitalType.Hunger, _minHunger, _maxHunger);
         AssignVital(organism, VitalType.Thirst, _minThirst, _maxThirst);
@@ -40,6 +51,8 @@ public class OrganismManager : MonoBehaviour
         organism.LocationKnowledge.FoodLocations = _foodLocations;
         organism.LocationKnowledge.WaterLocations = _waterLocations;
         organism.LocationKnowledge.ShelterLocation = _shelterLocations;
+
+        _organisms.Add(organism);
 
         return organism;
     }

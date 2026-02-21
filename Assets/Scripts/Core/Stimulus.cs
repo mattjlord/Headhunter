@@ -11,11 +11,11 @@ public class Stimulus : MonoBehaviour
 
     [SerializeField] private WorldObject? _associatedObject;
 
-    private int _observers = 0;
+    [SerializeField] private int _observers = 0;
 
     private Organism? _producerOrganism;
 
-    private void Update()
+    protected virtual void Update()
     {
         if (_observers == 0 && !_lingering)
         {

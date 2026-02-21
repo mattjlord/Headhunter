@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class AreaLocation : ALocation
 {
@@ -46,6 +47,9 @@ public class AreaLocation : ALocation
             Vector2 b = WorldSpacePoint((i + 1) % count);
 
             Vector2 candidate = VectorUtils.ClosestPointOnSegment(point, a, b);
+
+
+
             float distSq = (point - candidate).sqrMagnitude;
 
             if (distSq < minDistSq)
@@ -55,7 +59,7 @@ public class AreaLocation : ALocation
             }
         }
 
-        return closest;
+        return GetClosestPointOnNavMesh(closest);
     }
 
     public override float GetDistanceFrom(Vector2 point)
@@ -339,6 +343,23 @@ public class AreaLocation : ALocation
 
         collider.sharedMesh = null; // Important: force refresh
         collider.sharedMesh = mesh;
+    }
+
+    // NavMesh
+
+    public Vector2 GetClosestPointOnNavMesh(Vector2 targetPosition, float maxDistance = 10f)
+    {
+        Vector3 targetWorldPosition = VectorUtils.Vec2ToVec3(targetPosition);
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(targetWorldPosition, out hit, maxDistance, NavMesh.AllAreas))
+        {
+            return VectorUtils.Vec3ToVec2(hit.position);
+        }
+        else
+        {
+            Debug.LogWarning("No NavMesh nearby!");
+            return targetPosition;
+        }
     }
 
     // Editor methods

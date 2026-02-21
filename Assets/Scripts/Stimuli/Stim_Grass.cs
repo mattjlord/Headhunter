@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class Stim_Grass : Stimulus
 {
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         Fire();
     }
 

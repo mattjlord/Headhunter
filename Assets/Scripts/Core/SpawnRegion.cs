@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class SpawnRegion : MonoBehaviour
 {
+    [SerializeField] private Organism _player;
     [SerializeField] private MasterOrganismManager _masterOrganismManager;
     [SerializeField] private int _density;
+    [SerializeField] private float _tickRate = 5f;
     [SerializeField] private List<OrganismType> _organismTypes;
 
     private AreaLocation _areaLocation;
@@ -13,12 +15,24 @@ public class SpawnRegion : MonoBehaviour
 
     private List<AIOrganism> _activeOrganisms;
 
+    private float _timeSinceLastTick = 0f;
+
     private void Start()
     {
         _areaLocation = GetComponent<AreaLocation>();
         _subregions = GetComponentsInChildren<AreaLocation>();
 
         _activeOrganisms = new List<AIOrganism>();
+    }
+
+    private void Update()
+    {
+        _timeSinceLastTick += Time.deltaTime;
+
+        if (_timeSinceLastTick > _tickRate)
+        {
+            CheckForPlayer();
+        }
     }
 
     public void SpawnAllOrganisms()
@@ -34,6 +48,11 @@ public class SpawnRegion : MonoBehaviour
 
             int organismTypeIdx = Random.Range(0, _organismTypes.Count - 1);
             OrganismType organismType = _organismTypes[organismTypeIdx];
+
+            if (!_masterOrganismManager.CanSpawnOrganism(organismType))
+            {
+                return;
+            }
 
             AIOrganism spawnedOrganism = SpawnOrganism(organismType, spawnPoint);
 
@@ -57,9 +76,16 @@ public class SpawnRegion : MonoBehaviour
         }
     }
 
+    private void CheckForPlayer()
+    {
+        float distanceToPlayer = _areaLocation.GetDistanceFrom(_player.Position);
+        if (distanceToPlayer < 200f)
+            SpawnAllOrganisms();
+    }
+
     private AIOrganism SpawnOrganism(OrganismType organismType, Vector2 spawnPoint)
     {
-        return null;
+        return _masterOrganismManager.SpawnOrganism(organismType, spawnPoint);
     }
 
     private void ConfigureHerd(List<AIOrganism> herd)

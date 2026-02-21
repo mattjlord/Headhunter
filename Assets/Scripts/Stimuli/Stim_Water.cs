@@ -1,7 +1,8 @@
 public class Stim_Water : Stimulus
 {
-    private void Update()
+    protected virtual void Update()
     {
+        base.Update();
         Fire();
     }
 
