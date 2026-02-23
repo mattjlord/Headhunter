@@ -7,6 +7,7 @@ public abstract class ABrain : MonoBehaviour
     private void Start()
     {
         InitDefaultTasks();
+        InitDeathEvents();
     }
 
     public AIOrganism Organism { get { return organism; } }
@@ -40,6 +41,20 @@ public abstract class ABrain : MonoBehaviour
         organism.TaskManagement.AddTask(new VitalTask(organism, VitalType.Exhaustion));
         organism.TaskManagement.AddTask(new VitalTask(organism, VitalType.Heat));
         organism.TaskManagement.AddTask(new VitalTask(organism, VitalType.Injury));
+    }
+
+    public void InitDeathEvents()
+    {
+        InitDeathEvent(VitalType.Hunger);
+        InitDeathEvent(VitalType.Thirst);
+        InitDeathEvent(VitalType.Exhaustion);
+        InitDeathEvent(VitalType.Heat);
+        InitDeathEvent(VitalType.Injury);
+    }
+
+    private void InitDeathEvent(VitalType type)
+    {
+        organism.Vitals.GetVital(type).OnMaxValueReached += () => Die(type);
     }
 
     public abstract StimulusInterpretation AcceptAndInterpret(Stimulus stimulus);
@@ -79,4 +94,9 @@ public abstract class ABrain : MonoBehaviour
     }
 
     public abstract void Attack(Organism obj);
+
+    public void Die(VitalType type)
+    {
+        Destroy(gameObject);
+    }
 }

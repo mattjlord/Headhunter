@@ -6,6 +6,8 @@ using UnityEngine;
 [Serializable]
 public class Vital
 {
+    public event Action OnMaxValueReached;
+
     [SerializeField, Range(0f, 100f)] private float _value;
     [SerializeField, Min(0f)] private float _passiveIncreaseRate; // Per minute of game time
     [SerializeField, Min(0f)] private float _increaseSensitivity;
@@ -37,6 +39,9 @@ public class Vital
             Debug.Log("Increasing this vital by " + (value * m));
         _value += (m * value);
         _value = Mathf.Clamp(_value, 0, 100);
+        if (_value == 100f)
+            OnMaxValueReached();
+
     }
 
     public void DecreaseValue(float value, bool ignoreSensitivity = false)

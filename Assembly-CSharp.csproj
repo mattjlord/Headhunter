@@ -69,14 +69,14 @@
     <Compile Include="Assets\Scripts\Core\Components\ActionManagement.cs" />
     <Compile Include="Assets\Scripts\Art\TerrainHeightPainter.cs" />
     <Compile Include="Assets\Scripts\Core\Organism.cs" />
-    <Compile Include="Assets\Scripts\Core\Components\TaskManagement.cs" />
+    <Compile Include="Assets\Scripts\Core\Components\AI\TaskManagement.cs" />
     <Compile Include="Assets\Scripts\Core\StimulusInterpretation.cs" />
     <Compile Include="Assets\Scripts\Core\Components\MeleeAttack.cs" />
     <Compile Include="Assets\Scripts\Core\OrganismAction.cs" />
     <Compile Include="Assets\Scripts\Stimuli\Organisms\Stim_BulletRaptor.cs" />
     <Compile Include="Assets\Scripts\Core\Components\Senses.cs" />
     <Compile Include="Assets\Scripts\Brains\MudyakBrain.cs" />
-    <Compile Include="Assets\Scripts\Core\Components\LocationKnowledge.cs" />
+    <Compile Include="Assets\Scripts\Core\Components\AI\LocationKnowledge.cs" />
     <Compile Include="Assets\Scripts\Core\ABrain.cs" />
     <Compile Include="Assets\Scripts\Core\Stimulus.cs" />
     <Compile Include="Assets\Scripts\Core\Vital.cs" />
@@ -86,7 +86,7 @@
     <Compile Include="Assets\Scripts\Core\Components\Odor.cs" />
     <Compile Include="Assets\Scripts\Core\FoodOrWaterObject.cs" />
     <Compile Include="Assets\Scripts\Core\Enums\SenseType.cs" />
-    <Compile Include="Assets\Scripts\Core\Components\HerdManagement.cs" />
+    <Compile Include="Assets\Scripts\Core\Components\AI\HerdManagement.cs" />
     <Compile Include="Assets\Scripts\Core\Tasks\VitalTask.cs" />
     <Compile Include="Assets\Scripts\Stimuli\Stim_Water.cs" />
     <Compile Include="Assets\Scripts\Core\Components\Movement.cs" />
@@ -94,9 +94,9 @@
     <Compile Include="Assets\Scripts\Core\WorldObject.cs" />
     <Compile Include="Assets\Scripts\Core\ALocation.cs" />
     <Compile Include="Assets\Scripts\Core\PlayerOrganism.cs" />
-    <Compile Include="Assets\Scripts\Core\Components\Navigation.cs" />
+    <Compile Include="Assets\Scripts\Core\Components\AI\Navigation.cs" />
     <Compile Include="Assets\Scripts\Core\Enums\StimulusResponseType.cs" />
-    <Compile Include="Assets\Scripts\Core\Components\Memory.cs" />
+    <Compile Include="Assets\Scripts\Core\Components\AI\Memory.cs" />
     <Compile Include="Assets\Scripts\Brains\BulletRaptorBrain.cs" />
     <Compile Include="Assets\Scripts\Core\Tasks\StimulusResponseTask.cs" />
     <Compile Include="Assets\Scripts\Core\VitalResourceObject.cs" />
@@ -105,6 +105,7 @@
     <Compile Include="Assets\Scripts\Core\SpawnRegion.cs" />
     <Compile Include="Assets\Scripts\Core\Organism Managers\MasterOrganismManager.cs" />
     <Compile Include="Assets\Scripts\Core\Organism Managers\OrganismManager.cs" />
+    <Compile Include="Assets\Scripts\Core\Components\Player\Shooting.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
