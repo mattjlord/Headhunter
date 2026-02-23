@@ -33,6 +33,8 @@ public class Vital
         {
             m = _increaseSensitivity;
         }
+        if (value > 10)
+            Debug.Log("Increasing this vital by " + (value * m));
         _value += (m * value);
         _value = Mathf.Clamp(_value, 0, 100);
     }

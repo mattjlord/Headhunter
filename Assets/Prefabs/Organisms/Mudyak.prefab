@@ -324,6 +324,7 @@ MonoBehaviour:
   _lingering: 0
   _fixed: 1
   _associatedObject: {fileID: 8816648452552321059}
+  _observers: 0
 --- !u!136 &8816648452552321056
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -424,8 +425,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mudyak
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0682dc19cd77b5447809555c475eb07f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0682dc19cd77b5447809555c475eb07f, type: 3}
+--- !u!1 &8546265150864311404 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0682dc19cd77b5447809555c475eb07f, type: 3}
+  m_PrefabInstance: {fileID: 8816648452447172925}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &7404773771956452324
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8546265150864311404}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4, y: 5, z: 7}
+  m_Center: {x: 0, y: 2.5, z: -0.5}
 --- !u!4 &9066236927935586006 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0682dc19cd77b5447809555c475eb07f, type: 3}

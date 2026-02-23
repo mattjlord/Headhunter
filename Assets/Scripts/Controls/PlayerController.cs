@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
         UpdateLookDirection();
         UpdateMovement();
         UpdateCamera();
+
+        ParseAndUpdateShooting();
     }
 
     private void ParseZooming()
@@ -75,6 +77,14 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateCamera()
     {
+        // TODO: Dynamic camera controls
+    }
 
+    private void ParseAndUpdateShooting()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            _organism.Shooting.Shoot(_organism.LookDirection);
+        }
     }
 }

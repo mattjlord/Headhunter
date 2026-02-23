@@ -1297,6 +1297,7 @@ GameObject:
   - component: {fileID: 426138457}
   - component: {fileID: 426138453}
   - component: {fileID: 426138454}
+  - component: {fileID: 426138458}
   - component: {fileID: 426138456}
   m_Layer: 0
   m_Name: Hunter
@@ -1320,6 +1321,7 @@ Transform:
   - {fileID: 189929970}
   - {fileID: 1116432964}
   - {fileID: 258972117}
+  - {fileID: 1876261606}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1358,8 +1360,8 @@ MonoBehaviour:
   _injury:
     _value: 0
     _passiveIncreaseRate: 0
-    _increaseSensitivity: 0
-    _decreaseSensitivity: 0
+    _increaseSensitivity: 1
+    _decreaseSensitivity: 1
 --- !u!114 &426138448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1384,6 +1386,7 @@ MonoBehaviour:
   _reach: 1
   _combatReach: 0
   _debugColor: {r: 1, g: 0, b: 0, a: 1}
+  _shooting: {fileID: 426138458}
 --- !u!114 &426138449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1505,6 +1508,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugColor: {r: 0, g: 1, b: 0, a: 1}
+--- !u!114 &426138458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426138443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3386d20e98e85d14ea8e1126cb3c0192, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _barrel: {fileID: 1876261606}
+  _hitLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  _range: 200
+  _damage: 20
 --- !u!1 &444141122
 GameObject:
   m_ObjectHideFlags: 0
@@ -2793,7 +2814,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 6b544f0b6c6b75643b2f9d56930031c9, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: ea72a5c6748dfe14f8a31d45e8b5bb5b, type: 2}
   m_BuildHeightMesh: 0
 --- !u!114 &968806170
 MonoBehaviour:
@@ -5486,6 +5507,37 @@ MonoBehaviour:
   - {x: 178.26154, y: -103.297874}
   - {x: -4.977234, y: 212.58852}
   - {x: -183.93707, y: 49.16713}
+--- !u!1 &1876261605
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1876261606}
+  m_Layer: 0
+  m_Name: Barrel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1876261606
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1876261605}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.55, z: 1.19}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 426138446}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1901528121
 GameObject:
   m_ObjectHideFlags: 0

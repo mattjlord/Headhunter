@@ -18,6 +18,11 @@ public class Vitals : MonoBehaviour
         _exhaustion.Update();
         _heat.Update();
         _injury.Update();
+
+        if (_hunger.Value == 100f || _thirst.Value == 100f || _exhaustion.Value == 100f || _heat.Value == 100f || _injury.Value == 100f )
+        {
+            Die();
+        }
     }
 
     public Vital GetVital(VitalType vital)
@@ -30,5 +35,10 @@ public class Vitals : MonoBehaviour
             case VitalType.Heat: return _heat;
             default: return _injury;
         }
+    }
+
+    private bool Die()
+    {
+
     }
 }
