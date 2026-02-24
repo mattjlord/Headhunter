@@ -1,8 +1,17 @@
 using UnityEngine;
 
+public enum ControlState
+{
+    World,
+    Menu
+}
+
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private PlayerOrganism _organism;
+    [SerializeField] private InventoryUI _inventoryUI;
+
+    private ControlState _controlState = ControlState.World;
 
     private bool _isZooming;
 
@@ -14,6 +23,25 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        // TODO: Optimize menu code once there is more than just one menu type
+
+        switch(_controlState)
+        {
+            case ControlState.World:
+                WhileInWorldState();
+                break;
+            case ControlState.Menu:
+                WhileInMenuState();
+                break;
+            default:
+                break;
+        }
+
+        ParseAndUpdateMenuControls();
+    }
+
+    private void WhileInWorldState()
+    {
         ParseZooming();
         ParseLookDirection();
         ParseMovement();
@@ -23,6 +51,11 @@ public class PlayerController : MonoBehaviour
         UpdateCamera();
 
         ParseAndUpdateShooting();
+    }
+
+    private void WhileInMenuState()
+    {
+        
     }
 
     private void ParseZooming()
@@ -85,6 +118,21 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             _organism.Shooting.Shoot(_organism.LookDirection);
+        }
+    }
+
+    private void ParseAndUpdateMenuControls()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            _inventoryUI.Enabled = !_inventoryUI.Enabled;
+            if (_inventoryUI.Enabled)
+            {
+                _controlState = ControlState.Menu;
+                _organism.Movement.Move(_organism, Vector2.zero, false);
+            }
+            else
+                _controlState = ControlState.World;
         }
     }
 }
