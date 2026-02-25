@@ -1,0 +1,97 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class ContainerUI : MonoBehaviour
+{
+    [SerializeField] protected Container container;
+    [SerializeField] private GameObject _highlight;
+    [SerializeField] private GameObject _itemIconPrefab;
+    [SerializeField] private ItemDetails _itemDetails;
+
+    private bool _enabled;
+
+    private Image _menuFrame;
+    private RectTransform _rectTransform;
+
+    private Image[][] _iconGrid;
+
+    private InventoryItem? _currentItem;
+
+    public Container Container { set { container = value; } }
+
+    public InventoryItem? CurrentItem { get { return _currentItem; } }
+
+    protected virtual void Start()
+    {
+        _menuFrame = GetComponent<Image>();
+        _rectTransform = GetComponent<RectTransform>();
+        _highlight.SetActive(false);
+        Enabled = false;
+        _iconGrid = UIUtils.InitIconGrid(_rectTransform, _itemIconPrefab);
+    }
+
+    private void Update()
+    {
+        if (!_enabled)
+            return;
+
+        DisplayContainer();
+    }
+
+    public bool Enabled
+    {
+        get { return _enabled; }
+        set
+        {
+            _enabled = value;
+            _menuFrame.enabled = value;
+            if (value == false)
+                _highlight.SetActive(false);
+        }
+    }
+
+    private void DisplayContainer()
+    {
+        if (container.Items.Count == 0)
+            return;
+
+        Vector2 localMouse;
+
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            _rectTransform,
+            Input.mousePosition,
+            null, // null if Screen Space - Overlay
+            out localMouse
+        );
+
+        UIUtils.DisplayContainerContents(
+            container,
+            _rectTransform,
+            localMouse,
+            _iconGrid,
+            out InventoryItem currentItem,
+            out Vector2? currentItemPos
+        );
+
+        if (currentItem != null)
+        {
+            RectTransform highlightRect = _highlight.GetComponent<RectTransform>();
+
+            highlightRect.anchoredPosition = currentItemPos.Value;
+            _highlight.SetActive(true);
+
+            _itemDetails.gameObject.SetActive(true);
+            _itemDetails.ShowItem(localMouse, currentItem);
+
+            _currentItem = currentItem;
+        }
+        else
+        {
+            _highlight.SetActive(false);
+            _itemDetails.gameObject.SetActive(false);
+            _currentItem = null;
+        }
+    }
+}

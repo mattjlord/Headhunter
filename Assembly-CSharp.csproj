@@ -85,7 +85,7 @@
     <Compile Include="Assets\Scripts\Controls\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Utils\VectorUtils.cs" />
     <Compile Include="Assets\Scripts\Core\Components\Odor.cs" />
-    <Compile Include="Assets\Scripts\Core\FoodOrWaterObject.cs" />
+    <Compile Include="Assets\Scripts\Core\Special Objects\FoodOrWaterObject.cs" />
     <Compile Include="Assets\Scripts\Core\Organism Managers\MasterOrganismManager.cs" />
     <Compile Include="Assets\Scripts\Core\Components\Player\Shooting.cs" />
     <Compile Include="Assets\Scripts\Core\Enums\SenseType.cs" />
@@ -112,6 +112,8 @@
     <Compile Include="Assets\Scripts\Art\UI\InventoryUI.cs" />
     <Compile Include="Assets\Scripts\Utils\UIUtils.cs" />
     <Compile Include="Assets\Scripts\Art\UI\ItemDetails.cs" />
+    <Compile Include="Assets\Scripts\Art\UI\ContainerUI.cs" />
+    <Compile Include="Assets\Scripts\Core\Special Objects\Carcass.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

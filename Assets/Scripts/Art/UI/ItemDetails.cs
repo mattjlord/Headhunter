@@ -26,7 +26,6 @@ public class ItemDetails : MonoBehaviour
         _name.text = item.Name;
         _description.text = item.Description;
         _weight.text = item.Weight.ToString() + " lb";
-
-        // TODO: Images
+        _image.sprite = item.Image;
     }
 }

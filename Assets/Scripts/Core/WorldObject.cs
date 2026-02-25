@@ -64,4 +64,6 @@ public class WorldObject : MonoBehaviour
 
         return false;
     }
+
+    public virtual void OnInteraction(PlayerController playerController) { }
 }

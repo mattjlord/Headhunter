@@ -6,20 +6,37 @@ public enum ControlState
     Menu
 }
 
+// TODO: Improve state handling all around - this is messy but it works
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private PlayerOrganism _organism;
     [SerializeField] private InventoryUI _inventoryUI;
+    [SerializeField] private ContainerUI _scavengingUI;
 
     private ControlState _controlState = ControlState.World;
-
-    private bool _isZooming;
 
     private Vector2 _lookDirection = Vector2.up;
     private Vector2 _lookPoint;
 
     private bool _isRunning = false;
     private Vector2 _moveDirection = Vector2.zero;
+
+    private Container _openContainer = null;
+
+    public void OpenContainer(Container container)
+    {
+        _scavengingUI.Container = container;
+        _scavengingUI.Enabled = true;
+        _openContainer = container;
+        OnOpenAnyMenu();
+    }
+
+    private void CloseContainer()
+    {
+        _scavengingUI.Container = null;
+        _scavengingUI.Enabled = false;
+        _openContainer = null;
+    }
 
     private void Update()
     {
@@ -42,25 +59,20 @@ public class PlayerController : MonoBehaviour
 
     private void WhileInWorldState()
     {
-        ParseZooming();
         ParseLookDirection();
         ParseMovement();
 
         UpdateLookDirection();
         UpdateMovement();
-        UpdateCamera();
 
         ParseAndUpdateShooting();
+        ParseAndUpdateInteraction();
     }
 
     private void WhileInMenuState()
     {
-        
-    }
-
-    private void ParseZooming()
-    {
-        _isZooming = Input.GetKey(KeyCode.Mouse1);
+        ParseAndUpdateMenuClose();
+        ParseAndUpdateItemInteraction();
     }
 
     private void ParseLookDirection()
@@ -108,11 +120,6 @@ public class PlayerController : MonoBehaviour
         _organism.Movement.Move(_organism, _moveDirection, _isRunning);
     }
 
-    private void UpdateCamera()
-    {
-        // TODO: Dynamic camera controls
-    }
-
     private void ParseAndUpdateShooting()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -121,18 +128,95 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void ParseAndUpdateInteraction()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            Vector3 worldLookPoint = VectorUtils.Vec2ToVec3(_lookPoint);
+            bool objectHit = Physics.Raycast(worldLookPoint + 20 * Vector3.up, Vector3.down * 20f, out RaycastHit hitInfo);
+
+            if (!objectHit) { return; }
+
+            WorldObject obj = hitInfo.collider.gameObject.GetComponent<WorldObject>();
+
+            if (obj == null) { return; }
+
+            if (!obj.WithinReach(_organism.Position, _organism.Reach)) { return; }
+
+            Debug.DrawRay(worldLookPoint + 20 * Vector3.up, Vector3.down * 20f, Color.red, 1f);
+
+            obj.OnInteraction(this);
+        }
+    }
+
     private void ParseAndUpdateMenuControls()
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            _inventoryUI.Enabled = !_inventoryUI.Enabled;
             if (_inventoryUI.Enabled)
             {
-                _controlState = ControlState.Menu;
-                _organism.Movement.Move(_organism, Vector2.zero, false);
+                if (!_scavengingUI.Enabled)
+                    OnCloseAnyMenu();
+                CloseInventory();
             }
             else
-                _controlState = ControlState.World;
+            {
+                if (!_scavengingUI.Enabled)
+                    OnOpenAnyMenu();
+                OpenInventory();
+            }
+        }
+    }
+
+    private void OnOpenAnyMenu()
+    {
+        _controlState = ControlState.Menu;
+        _organism.Movement.Move(_organism, Vector2.zero, false);
+    }
+
+    private void OnCloseAnyMenu()
+    {
+        _controlState = ControlState.World;
+    }
+
+    private void OpenInventory()
+    {
+        _inventoryUI.Enabled = true;
+    }
+
+    private void CloseInventory()
+    {
+        _inventoryUI.Enabled = false;
+    }
+
+    private void ParseAndUpdateMenuClose()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (_inventoryUI.Enabled)
+            {
+                CloseInventory();
+            }
+            if (_scavengingUI.enabled)
+            {
+                CloseContainer();
+            }
+
+            OnCloseAnyMenu();
+        }
+    }
+
+    private void ParseAndUpdateItemInteraction()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            InventoryItem currentItem = _scavengingUI.CurrentItem;
+            if (currentItem != null)
+            {
+                Inventory inventory = _organism.Inventory;
+                if (inventory.CanTakeItem(currentItem))
+                    _openContainer.TakeItem(currentItem, inventory.Container);
+            }
         }
     }
 }
