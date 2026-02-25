@@ -232,6 +232,7 @@ MonoBehaviour:
   _description: {fileID: 4574818836435510829}
   _weight: {fileID: 4574818836995380393}
   _image: {fileID: 4574818835784531309}
+  _rectTransform: {fileID: 4574818835511848368}
 --- !u!1 &4574818835784531307
 GameObject:
   m_ObjectHideFlags: 0

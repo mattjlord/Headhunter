@@ -48,15 +48,25 @@ public class ContainerUI : MonoBehaviour
             _enabled = value;
             _menuFrame.enabled = value;
             if (value == false)
+            {
                 _highlight.SetActive(false);
+                _itemDetails.gameObject.SetActive(false);
+                if (_iconGrid != null)
+                {
+                    foreach (Image[] row in _iconGrid)
+                    {
+                        foreach (Image image in row)
+                        {
+                            image.enabled = false;
+                        }
+                    }
+                }
+            }
         }
     }
 
     private void DisplayContainer()
     {
-        if (container.Items.Count == 0)
-            return;
-
         Vector2 localMouse;
 
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
@@ -75,7 +85,7 @@ public class ContainerUI : MonoBehaviour
             out Vector2? currentItemPos
         );
 
-        if (currentItem != null)
+        if (currentItem != null && currentItemPos != null)
         {
             RectTransform highlightRect = _highlight.GetComponent<RectTransform>();
 

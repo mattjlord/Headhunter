@@ -12,12 +12,7 @@ public class ItemDetails : MonoBehaviour
 
     [SerializeField] private Image _image;
 
-    private RectTransform _rectTransform;
-
-    private void Start()
-    {
-        _rectTransform = GetComponent<RectTransform>();
-    }
+    [SerializeField] private RectTransform _rectTransform;
 
     public void ShowItem(Vector2 mousePos, InventoryItem item)
     {
