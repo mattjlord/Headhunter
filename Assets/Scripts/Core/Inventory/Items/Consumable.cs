@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Consumable", menuName = "Inventory Item/Consumable")]
@@ -5,6 +6,8 @@ public class Consumable : AInventoryItem
 {
     public bool Perishable;
     public bool Cookable;
+    // TODO: Implement decay
+    public float DecayRate; // Per minute of game time
     public Consumable? PerishedVersion;
     public Consumable? CookedVersion;
     public float HungerImpact;
@@ -33,7 +36,11 @@ public class Consumable : AInventoryItem
         }
         if (value < 0)
         {
-            vitals.GetVital(type).DecreaseValue(value);
+            vitals.GetVital(type).DecreaseValue(-value);
         }
     }
+
+    public override AInventoryItem? GetPerishedVersion() { return PerishedVersion; }
+
+    public override List<ItemInteractionType> GetInteractionOptions() => new List<ItemInteractionType>() { ItemInteractionType.Consume, ItemInteractionType.Discard };
 }

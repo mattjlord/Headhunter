@@ -44,6 +44,11 @@ public class Container
         _items.Add(item);
     }
 
+    public void RemoveItem(InventoryItemInstance item)
+    {
+        _items.Remove(item);
+    }
+
     public void RemoveItemOfType(Type type)
     {
         InventoryItemInstance item = _items.FirstOrDefault(i => i.Item.GetType() == type);

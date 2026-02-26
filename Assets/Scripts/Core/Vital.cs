@@ -10,8 +10,8 @@ public class Vital
 
     [SerializeField, Range(0f, 100f)] private float _value;
     [SerializeField, Min(0f)] private float _passiveIncreaseRate; // Per minute of game time
-    [SerializeField, Min(0f)] private float _increaseSensitivity;
-    [SerializeField, Min(0f)] private float _decreaseSensitivity;
+    [SerializeField, Min(0f)] private float _increaseSensitivity = 1f;
+    [SerializeField, Min(0f)] private float _decreaseSensitivity = 1f;
 
     public float Value 
     { 
@@ -35,8 +35,6 @@ public class Vital
         {
             m = _increaseSensitivity;
         }
-        if (value > 10)
-            Debug.Log("Increasing this vital by " + (value * m));
         _value += (m * value);
         _value = Mathf.Clamp(_value, 0, 100);
         if (_value == 100f)

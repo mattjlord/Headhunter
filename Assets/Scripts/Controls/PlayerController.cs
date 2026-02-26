@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public enum ControlState
@@ -218,6 +219,21 @@ public class PlayerController : MonoBehaviour
                     Inventory inventory = _organism.Inventory;
                     if (inventory.CanTakeItem(currentItem) && _openContainer.Items.Contains(currentItem))
                         _openContainer.TakeItem(currentItem, inventory.Container);
+                }
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse1)) 
+        {
+            if (_inventoryUI.Enabled)
+            {
+                InventoryItemInstance currentItem = _inventoryUI.CurrentItem;
+                if (currentItem != null)
+                {
+                    Inventory inventory = _organism.Inventory;
+                    List<ItemInteractionType> interactionOptions = currentItem.Item.GetInteractionOptions();
+                    ItemInteractionType selectedOption = interactionOptions[0]; // TODO: Implement an actual context menu later if necessary, this is a temporary solution for single interaction items
+                    inventory.ProcessItemInteraction(currentItem, selectedOption, _organism);
                 }
             }
         }

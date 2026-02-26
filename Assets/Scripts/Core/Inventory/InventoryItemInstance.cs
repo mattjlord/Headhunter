@@ -13,4 +13,19 @@ public class InventoryItemInstance
     }
 
     public AInventoryItem Item { get => _item; }
+
+    public void DecreaseDurability(float amount)
+    {
+        if (amount < 0) { return;  }
+        float result = _durability - amount;
+        if (result > 0)
+        {
+            _durability = result;
+        }
+        else
+        {
+            _durability = 0;
+            _item = _item.GetPerishedVersion();
+        }
+    }
 }

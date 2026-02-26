@@ -1555,23 +1555,23 @@ MonoBehaviour:
   _hunger:
     _value: 0
     _passiveIncreaseRate: 0
-    _increaseSensitivity: 0
-    _decreaseSensitivity: 0
+    _increaseSensitivity: 1
+    _decreaseSensitivity: 1
   _thirst:
     _value: 0
     _passiveIncreaseRate: 0
-    _increaseSensitivity: 0
-    _decreaseSensitivity: 0
+    _increaseSensitivity: 1
+    _decreaseSensitivity: 1
   _exhaustion:
     _value: 0
     _passiveIncreaseRate: 0
-    _increaseSensitivity: 0
-    _decreaseSensitivity: 0
+    _increaseSensitivity: 1
+    _decreaseSensitivity: 1
   _heat:
     _value: 0
     _passiveIncreaseRate: 0
-    _increaseSensitivity: 0
-    _decreaseSensitivity: 0
+    _increaseSensitivity: 1
+    _decreaseSensitivity: 1
   _injury:
     _value: 0
     _passiveIncreaseRate: 0
@@ -1580,8 +1580,8 @@ MonoBehaviour:
   _toxicity:
     _value: 0
     _passiveIncreaseRate: 0
-    _increaseSensitivity: 0
-    _decreaseSensitivity: 0
+    _increaseSensitivity: 1
+    _decreaseSensitivity: 1
 --- !u!114 &426138448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1760,7 +1760,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _container:
-    _items: []
+    _items:
+    - _item: {fileID: 11400000, guid: b4c548bfa7aabfc499419861b435b328, type: 2}
   _carryingCapacity: 50
 --- !u!1 &444141122
 GameObject:
@@ -6649,7 +6650,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4574818835511848367, guid: df26671219d9e9d4baaf42881f02a8af, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4574818835511848368, guid: df26671219d9e9d4baaf42881f02a8af, type: 3}
       propertyPath: m_Pivot.x
