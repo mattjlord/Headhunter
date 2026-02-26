@@ -4,24 +4,29 @@ using UnityEngine;
 
 public class FoodOrWaterObject : WorldObject
 {
-    [SerializeField] private float _hungerImpact;
-    [SerializeField] private float _thirstImpact;
-    [SerializeField] private int _uses = -1; // -1 indicates an infinite resource
+    [SerializeField] protected float hungerImpact;
+    [SerializeField] protected float thirstImpact;
+    [SerializeField] protected int uses = -1; // -1 indicates an infinite resource
 
     public void ConsumeThis(Organism organism)
     {
-        if (_uses == 0)
+        if (uses == 0)
             return;
 
-        organism.Vitals.GetVital(VitalType.Hunger).DecreaseValue(_hungerImpact);
-        organism.Vitals.GetVital(VitalType.Thirst).DecreaseValue(_thirstImpact);
+        organism.Vitals.GetVital(VitalType.Hunger).DecreaseValue(hungerImpact);
+        organism.Vitals.GetVital(VitalType.Thirst).DecreaseValue(thirstImpact);
 
-        if (_uses > 0)
-            _uses--;
+        if (uses > 0)
+        {
+            OnConsumeOnce();
+            uses--;
+        }
     }
 
     public bool CanConsume()
     {
-        return _uses != 0;
+        return uses != 0;
     }
+
+    protected virtual void OnConsumeOnce() { }
 }

@@ -17,11 +17,11 @@ public class ContainerUI : MonoBehaviour
 
     private Image[][] _iconGrid;
 
-    private InventoryItem? _currentItem;
+    private InventoryItemInstance? _currentItem;
 
     public Container Container { set { container = value; } }
 
-    public InventoryItem? CurrentItem { get { return _currentItem; } }
+    public InventoryItemInstance? CurrentItem { get { return _currentItem; } }
 
     protected virtual void Start()
     {
@@ -81,7 +81,7 @@ public class ContainerUI : MonoBehaviour
             _rectTransform,
             localMouse,
             _iconGrid,
-            out InventoryItem currentItem,
+            out InventoryItemInstance currentItem,
             out Vector2? currentItemPos
         );
 

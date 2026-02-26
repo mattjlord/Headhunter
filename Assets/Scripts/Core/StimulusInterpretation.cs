@@ -24,7 +24,8 @@ public class StimulusInterpretation
             { VitalType.Thirst, 0f },
             { VitalType.Exhaustion, 0f },
             { VitalType.Heat, 0f },
-            { VitalType.Injury, 0f }
+            { VitalType.Injury, 0f },
+            { VitalType.Toxicity, 0f }
         };
     }
 

@@ -14,13 +14,13 @@ public class ItemDetails : MonoBehaviour
 
     [SerializeField] private RectTransform _rectTransform;
 
-    public void ShowItem(Vector2 mousePos, InventoryItem item)
+    public void ShowItem(Vector2 mousePos, InventoryItemInstance item)
     {
         _rectTransform.anchoredPosition = mousePos;
 
-        _name.text = item.Name;
-        _description.text = item.Description;
-        _weight.text = item.Weight.ToString() + " lb";
-        _image.sprite = item.Image;
+        _name.text = item.Item.Name;
+        _description.text = item.Item.Description;
+        _weight.text = item.Item.Weight.ToString() + " lb";
+        _image.sprite = item.Item.Image;
     }
 }

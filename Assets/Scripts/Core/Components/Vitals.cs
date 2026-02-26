@@ -7,6 +7,7 @@ public class Vitals : MonoBehaviour
     [SerializeField] private Vital _exhaustion;
     [SerializeField] private Vital _heat;
     [SerializeField] private Vital _injury;
+    [SerializeField] private Vital _toxicity;
 
     private bool _awake = true;
     private bool _alive = true;
@@ -18,6 +19,7 @@ public class Vitals : MonoBehaviour
         _exhaustion.Update();
         _heat.Update();
         _injury.Update();
+        _toxicity.Update();
     }
 
     public Vital GetVital(VitalType vital)
@@ -28,7 +30,8 @@ public class Vitals : MonoBehaviour
             case VitalType.Thirst: return _thirst;
             case VitalType.Exhaustion: return _exhaustion;
             case VitalType.Heat: return _heat;
-            default: return _injury;
+            case VitalType.Injury: return _injury;
+            default: return _toxicity;
         }
     }
 }

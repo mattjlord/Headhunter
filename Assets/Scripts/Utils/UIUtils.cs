@@ -55,7 +55,7 @@ public static class UIUtils
     }
 
     public static void DisplayContainerContents(Container container, RectTransform rectTransform, Vector2 mousePosition, Image[][] iconGrid, 
-                                                out InventoryItem? currentItem, out Vector2? currentItemPos)
+                                                out InventoryItemInstance? currentItem, out Vector2? currentItemPos)
     {
         currentItem = null;
         currentItemPos = null;
@@ -80,7 +80,7 @@ public static class UIUtils
                     continue;
                 }
 
-                InventoryItem item = container.Items[itemIdx];
+                InventoryItemInstance item = container.Items[itemIdx];
 
                 Vector2 cellPosition = new Vector2(
                     start.x + x * gridSize,
@@ -96,7 +96,7 @@ public static class UIUtils
                 if (iconGrid != null)
                 {
                     Image gridImage = iconGrid[y][x];
-                    gridImage.sprite = item.Image;
+                    gridImage.sprite = item.Item.Image;
                     gridImage.enabled = true;
                 }
 

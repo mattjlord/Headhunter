@@ -3,6 +3,7 @@ using UnityEngine;
 public abstract class ABrain : MonoBehaviour
 {
     [SerializeField] protected AIOrganism organism;
+    [SerializeField] private GameObject _carcass;
 
     private void Start()
     {
@@ -41,6 +42,7 @@ public abstract class ABrain : MonoBehaviour
         organism.TaskManagement.AddTask(new VitalTask(organism, VitalType.Exhaustion));
         organism.TaskManagement.AddTask(new VitalTask(organism, VitalType.Heat));
         organism.TaskManagement.AddTask(new VitalTask(organism, VitalType.Injury));
+        organism.TaskManagement.AddTask(new VitalTask(organism, VitalType.Toxicity));
     }
 
     public void InitDeathEvents()
@@ -50,6 +52,7 @@ public abstract class ABrain : MonoBehaviour
         InitDeathEvent(VitalType.Exhaustion);
         InitDeathEvent(VitalType.Heat);
         InitDeathEvent(VitalType.Injury);
+        InitDeathEvent(VitalType.Toxicity);
     }
 
     private void InitDeathEvent(VitalType type)
@@ -97,6 +100,7 @@ public abstract class ABrain : MonoBehaviour
 
     public void Die(VitalType type)
     {
-        Destroy(gameObject);
+        Instantiate(_carcass, VectorUtils.Vec2ToVec3(organism.Position), Quaternion.identity);
+        Destroy(this);
     }
 }

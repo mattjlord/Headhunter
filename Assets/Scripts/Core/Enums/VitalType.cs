@@ -4,5 +4,6 @@ public enum VitalType
     Thirst,
     Exhaustion,
     Heat,
-    Injury
+    Injury,
+    Toxicity
 }

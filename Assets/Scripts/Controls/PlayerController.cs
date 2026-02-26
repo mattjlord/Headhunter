@@ -210,12 +210,15 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            InventoryItem currentItem = _scavengingUI.CurrentItem;
-            if (currentItem != null)
+            if (_scavengingUI.Enabled)
             {
-                Inventory inventory = _organism.Inventory;
-                if (inventory.CanTakeItem(currentItem) && _openContainer.Items.Contains(currentItem))
-                    _openContainer.TakeItem(currentItem, inventory.Container);
+                InventoryItemInstance currentItem = _scavengingUI.CurrentItem;
+                if (currentItem != null)
+                {
+                    Inventory inventory = _organism.Inventory;
+                    if (inventory.CanTakeItem(currentItem) && _openContainer.Items.Contains(currentItem))
+                        _openContainer.TakeItem(currentItem, inventory.Container);
+                }
             }
         }
     }

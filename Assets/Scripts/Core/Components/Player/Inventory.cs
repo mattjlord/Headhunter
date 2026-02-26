@@ -9,5 +9,5 @@ public class Inventory : MonoBehaviour
 
     public Container Container => _container;
 
-    public bool CanTakeItem(InventoryItem item) => _container.TotalWeight + item.Weight < _carryingCapacity;
+    public bool CanTakeItem(InventoryItemInstance item) => _container.TotalWeight + item.Item.Weight < _carryingCapacity;
 }

@@ -21,7 +21,10 @@ public class OrganismManager : MonoBehaviour
     [SerializeField, Range(0f, 100f)] float _maxHeat = 100f;
 
     [SerializeField, Range(0f, 100f)] float _minInjury = 0f;
-    [SerializeField, Range(0f, 100f)] float _maxInjury = 100f;
+    [SerializeField, Range(0f, 100f)] float _maxInjury = 0f;
+
+    [SerializeField, Range(0f, 100f)] float _minToxicity = 0f;
+    [SerializeField, Range(0f, 100f)] float _maxToxicity = 0f;
 
     [SerializeField] private List<ALocation> _foodLocations;
     [SerializeField] private List<ALocation> _waterLocations;
@@ -47,6 +50,7 @@ public class OrganismManager : MonoBehaviour
         AssignVital(organism, VitalType.Exhaustion, _minExhaustion, _maxExhaustion);
         AssignVital(organism, VitalType.Heat, _minHeat, _maxHeat);
         AssignVital(organism, VitalType.Injury, _minInjury, _maxInjury);
+        AssignVital(organism, VitalType.Toxicity, _minToxicity, _maxToxicity);
 
         organism.LocationKnowledge.FoodLocations = _foodLocations;
         organism.LocationKnowledge.WaterLocations = _waterLocations;

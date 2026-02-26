@@ -129,6 +129,11 @@ MonoBehaviour:
     _passiveIncreaseRate: 0
     _increaseSensitivity: 1
     _decreaseSensitivity: 1
+  _toxicity:
+    _value: 0
+    _passiveIncreaseRate: 0
+    _increaseSensitivity: 0
+    _decreaseSensitivity: 0
 --- !u!114 &3198518219397569816
 MonoBehaviour:
   m_ObjectHideFlags: 0
