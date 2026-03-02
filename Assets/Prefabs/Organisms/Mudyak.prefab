@@ -62,6 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   organism: {fileID: 8816648452552321059}
+  _carcass: {fileID: 3962123820247030542, guid: ebf3cd7a9dbfdb944a3366d52c96940b, type: 3}
 --- !u!114 &8816648452552321059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,12 +105,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hunger:
-    _value: 2.4001837
+    _value: 29.878578
     _passiveIncreaseRate: 4
     _increaseSensitivity: 1
     _decreaseSensitivity: 1
   _thirst:
-    _value: 52.213913
+    _value: 24.396606
     _passiveIncreaseRate: 4
     _increaseSensitivity: 1
     _decreaseSensitivity: 1
@@ -126,7 +127,12 @@ MonoBehaviour:
   _injury:
     _value: 0
     _passiveIncreaseRate: 0
-    _increaseSensitivity: 0
+    _increaseSensitivity: 1
+    _decreaseSensitivity: 1
+  _toxicity:
+    _value: 0
+    _passiveIncreaseRate: 0
+    _increaseSensitivity: 1
     _decreaseSensitivity: 1
 --- !u!114 &8816648452552321061
 MonoBehaviour:
@@ -141,10 +147,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _headTransform: {fileID: 8816648453989378102}
-  _sightRadius: 100
+  _sightRadius: 200
   _fov: 90
-  _hearingRadius: 20
-  _smellRadius: 25
+  _hearingRadius: 180
+  _smellRadius: 100
 --- !u!114 &8816648452552321066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,7 +192,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _herdBehavior: 0
   _herd:
-  - {fileID: 8816648452552321059}
   - {fileID: 8816648452552321059}
 --- !u!114 &8816648452552321080
 MonoBehaviour:
@@ -234,7 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08d62cc911c10bd488287fcf4b80b5f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _patience: 3
+  _patience: 60
 --- !u!114 &8816648452552321057
 MonoBehaviour:
   m_ObjectHideFlags: 0

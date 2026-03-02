@@ -1,8 +1,12 @@
+using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Stimulus : MonoBehaviour
 {
+    public event Action<Stimulus> OnDestroyed;
+
     [SerializeField] private ALocation _location;
     [SerializeField] private SenseType _senseType;
     [SerializeField] private float _detectableDistance;
@@ -14,14 +18,6 @@ public class Stimulus : MonoBehaviour
     [SerializeField] private int _observers = 0;
 
     private Organism? _producerOrganism;
-
-    protected virtual void Update()
-    {
-        if (_observers == 0 && !_lingering)
-        {
-            Destroy(gameObject);
-        }
-    }
 
     public ALocation Location { 
         get { return _location; }
@@ -57,6 +53,19 @@ public class Stimulus : MonoBehaviour
     }
 
     public bool IsInteractible { get { return _associatedObject != null; } }
+
+    protected virtual void Update()
+    {
+        if (_observers == 0 && !_lingering)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        OnDestroyed?.Invoke(this);
+    }
 
     public bool WithinReach(Organism organism, bool useCombatReach)
     {

@@ -63,6 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   organism: {fileID: 3198518219397569818}
+  _carcass: {fileID: 0}
 --- !u!114 &3198518219397569818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,7 +86,7 @@ MonoBehaviour:
   _meleeAttack: {fileID: 3198518219397569810}
   _organismType: 2
   _reach: 5.5
-  _combatReach: 10
+  _combatReach: 20
   _debugColor: {r: 0.97479916, g: 0, b: 1, a: 1}
   _taskManagement: {fileID: 3198518219397569817}
   _herdManagement: {fileID: 3198518219397569822}
@@ -105,7 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hunger:
-    _value: 0
+    _value: 28.33092
     _passiveIncreaseRate: 4
     _increaseSensitivity: 1
     _decreaseSensitivity: 1
@@ -132,8 +133,8 @@ MonoBehaviour:
   _toxicity:
     _value: 0
     _passiveIncreaseRate: 0
-    _increaseSensitivity: 0
-    _decreaseSensitivity: 0
+    _increaseSensitivity: 1
+    _decreaseSensitivity: 1
 --- !u!114 &3198518219397569816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,10 +148,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _headTransform: {fileID: 3198518220330288089}
-  _sightRadius: 100
+  _sightRadius: 200
   _fov: 90
-  _hearingRadius: 20
-  _smellRadius: 25
+  _hearingRadius: 150
+  _smellRadius: 300
 --- !u!114 &3198518219397569811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,8 +177,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf4cb20433c411148ae5922e1cfbdf9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _walkSpeed: 0.1
-  _runSpeed: 0.3
+  _walkSpeed: 0.35
+  _runSpeed: 0.7
   _footstepFrequency: 0.25
   _footstepLoudness: 5
   _footprintPrefab: {fileID: 0}
@@ -250,7 +251,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _herdBehavior: 0
-  _herd: []
+  _herd:
+  - {fileID: 3198518219397569818}
 --- !u!114 &3198518219397569823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,8 +265,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edbfdebbf577f1e479af9fa840fea4fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _foodLocations: []
-  _waterLocations: []
+  _foodLocations:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _waterLocations:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _shelterLocations: []
 --- !u!114 &3198518219397569820
 MonoBehaviour:
@@ -278,7 +290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08d62cc911c10bd488287fcf4b80b5f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _patience: 3
+  _patience: 60
 --- !u!114 &3198518219397569826
 MonoBehaviour:
   m_ObjectHideFlags: 0

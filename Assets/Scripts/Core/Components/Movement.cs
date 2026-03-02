@@ -30,6 +30,8 @@ public class Movement : MonoBehaviour
     {
         get
         {
+            if (_dir == Vector2.zero)
+                return 0f;
             if (_isRunning)
                 return _runSpeed;
             else

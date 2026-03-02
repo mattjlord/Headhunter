@@ -28,7 +28,7 @@ public abstract class ABrain : MonoBehaviour
 
         if (task.Priority > 0)
         {
-            //Debug.Log(organism.OrganismType + " " + LanguageUtils.GetSenseVerb(stimulus.SenseType) + " " + stimulus.GetDescription() + ", response type: " + responseType + " (priority " + task.Priority + ")");
+            Debug.Log(organism.OrganismType + " " + LanguageUtils.GetSenseVerb(stimulus.SenseType) + " " + stimulus.GetDescription() + ", response type: " + responseType + " (priority " + task.Priority + ")");
             organism.Memory.AddStimulus(stimulus);
             organism.TaskManagement.AddTask(task);
         }
@@ -101,6 +101,6 @@ public abstract class ABrain : MonoBehaviour
     public void Die(VitalType type)
     {
         Instantiate(_carcass, VectorUtils.Vec2ToVec3(organism.Position), Quaternion.identity);
-        Destroy(this);
+        Destroy(gameObject);
     }
 }

@@ -52,6 +52,7 @@ public class Organism : WorldObject
         Vector3 pos = VectorUtils.Vec2ToVec3(Position);
         pos.y = 0.25f;
         Gizmos.DrawWireSphere(pos, _reach);
+        Gizmos.DrawWireSphere(pos, _combatReach);
 
         Gizmos.color = Color.white;
         Vector3 worldLookDir = VectorUtils.Vec2ToVec3(_lookDirection);

@@ -52,21 +52,28 @@ public class Memory : MonoBehaviour
             ForgetStimulus(existingStimulus);
         
         _activeStimuli.Add(stimulus);
-        stimulus.IncrementObservers();
+        stimulus.OnDestroyed += RemoveStimulus;
+    }
+
+    private void RemoveStimulus(Stimulus stimulus)
+    {
+        _activeStimuli.Remove(stimulus);
+        stimulus.OnDestroyed -= RemoveStimulus;
     }
 
     private void ForgetStimulus(Stimulus stimulus)
     {
-        Debug.Log("Forgetting " + stimulus.GetType().Name);
+        //Debug.Log("Forgetting " + stimulus.GetType().Name);
         _stimuliInMemory.Remove(stimulus);
-        stimulus.DecrementObservers();
+        stimulus.OnDestroyed -= ForgetStimulus;
     }
 
     public void StartForgettingStimulus(Stimulus stimulus)
     {
-        Debug.Log("Started forgetting");
+        //Debug.Log("Started forgetting");
         _activeStimuli.Remove(stimulus);
         _stimuliInMemory.Add(stimulus, Time.fixedTime);
+        stimulus.OnDestroyed += ForgetStimulus;
     }
 
     public bool IsStimulusActive(Stimulus stimulus)

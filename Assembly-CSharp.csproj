@@ -96,6 +96,7 @@
     <Compile Include="Assets\Scripts\Core\Components\Player\Shooting.cs" />
     <Compile Include="Assets\Scripts\Core\Enums\SenseType.cs" />
     <Compile Include="Assets\Scripts\Core\Components\AI\HerdManagement.cs" />
+    <Compile Include="Assets\Scripts\Core\Enums\ItemInteractionType.cs" />
     <Compile Include="Assets\Scripts\Core\Tasks\VitalTask.cs" />
     <Compile Include="Assets\Scripts\Stimuli\Stim_Water.cs" />
     <Compile Include="Assets\Scripts\Core\Components\Movement.cs" />
@@ -112,10 +113,10 @@
     <Compile Include="Assets\Scripts\Brains\BulletRaptorBrain.cs" />
     <Compile Include="Assets\Scripts\Core\Tasks\StimulusResponseTask.cs" />
     <Compile Include="Assets\Scripts\Core\VitalResourceObject.cs" />
+    <Compile Include="Assets\Scripts\Core\Inventory\InventoryItemInstance.cs" />
     <Compile Include="Assets\Scripts\Core\AIOrganism.cs" />
     <Compile Include="Assets\Scripts\Core\Inventory\Container.cs" />
     <Compile Include="Assets\Scripts\Core\Enums\VitalType.cs" />
-    <Compile Include="Assets\Scripts\Core\Inventory\InventoryItemInstance.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

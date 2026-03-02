@@ -363,16 +363,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _areaLocation: {fileID: 0}
-  _hungerImpact: 0
-  _thirstImpact: 0
-  _uses: -1
+  hungerImpact: 0
+  thirstImpact: 0
+  uses: -1
   _scavengeableParts:
     _items:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+    - _item: {fileID: 11400000, guid: b4c548bfa7aabfc499419861b435b328, type: 2}
+    - _item: {fileID: 11400000, guid: b4c548bfa7aabfc499419861b435b328, type: 2}
+    - _item: {fileID: 11400000, guid: b4c548bfa7aabfc499419861b435b328, type: 2}
+    - _item: {fileID: 11400000, guid: b4c548bfa7aabfc499419861b435b328, type: 2}
+    - _item: {fileID: 11400000, guid: b4c548bfa7aabfc499419861b435b328, type: 2}
 --- !u!136 &3962123820247030541
 CapsuleCollider:
   m_ObjectHideFlags: 0

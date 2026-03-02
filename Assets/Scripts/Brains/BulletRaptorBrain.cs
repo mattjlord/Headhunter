@@ -15,7 +15,7 @@ public class BulletRaptorBrain : ABrain
 
     public override void Attack(Organism obj)
     {
-        if (!organism.ActionManagement.IsReadyForQueue())
+        if (!obj || !organism.ActionManagement.IsReadyForQueue())
             return;
 
         OrganismAction action = new OrganismAction(organism);
@@ -24,7 +24,11 @@ public class BulletRaptorBrain : ABrain
         {
             action.Duration = 0.1f; // Placeholder
             action.TriggerDelay = 0.05f; // Placeholder
-            action.TriggeredAction = () => organism.MeleeAttack.AttackOrganism(obj);
+            action.TriggeredAction = () =>
+            {
+                if (obj)
+                    organism.MeleeAttack.AttackOrganism(obj);
+            };
         }
         else
         {

@@ -17,6 +17,11 @@ public class StimulusResponseTask : BehaviorTask
 
     public override void Update()
     {
+        if (!_stimulus)
+        {
+            Priority = 0;
+            return;
+        }
         if (!Organism.Senses.CanSense(_stimulus) && !Organism.Memory.CanRemember(_stimulus) && !Organism.Memory.IsStimulusActive(_stimulus))
         {
             Priority = 0;
@@ -77,6 +82,24 @@ public class StimulusResponseTask : BehaviorTask
     private void FleeStimulus()
     {
         ALocation stimulusLocation = _stimulus.Location;
+
+        WorldObject stimObj = _stimulus.AssociatedObject;
+        Organism pursuer = null;
+        if (stimObj != null && (stimObj.GetType() == typeof(AIOrganism) || stimObj.GetType() == typeof(PlayerOrganism)))
+            pursuer = stimObj as Organism;
+
+        if (pursuer != null) // Fleeing a moving organism, we have additional logic here
+        {
+            if (pursuer.WithinReach(Organism.Position, Organism.CombatReach)) // If the organism is within combat range, decide whether to fight or keep running
+            {
+                Debug.Log("Time to fight!");
+                _responseType = StimulusResponseType.Eliminate;
+                _hostile = true;
+                PursueStimulus();
+                return;
+            }
+        }
+
         Organism.Navigation.MoveAwayFrom(Organism, stimulusLocation.GetClosestPoint(Organism.Position), true);
         description = "Fleeing stimulus";
     }
