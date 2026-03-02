@@ -21,6 +21,9 @@ public class FoodOrWaterObject : WorldObject
             OnConsumeOnce();
             uses--;
         }
+
+        if (uses == 0)
+            Destroy(gameObject); // TODO: Maybe have something more visually interesting here
     }
 
     public bool CanConsume()

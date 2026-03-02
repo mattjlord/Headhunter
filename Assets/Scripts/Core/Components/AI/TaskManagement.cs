@@ -34,7 +34,6 @@ public class TaskManagement : MonoBehaviour
 
         foreach (var task in toRemove)
         {
-            Debug.Log("Removed task " + task.GetType().Name);
             _tasks.Remove(task);
         }
 

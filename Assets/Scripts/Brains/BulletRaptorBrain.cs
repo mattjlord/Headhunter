@@ -22,7 +22,7 @@ public class BulletRaptorBrain : ABrain
 
         if (obj.WithinReach(organism.Position, organism.Reach))
         {
-            action.Duration = 0.1f; // Placeholder
+            action.Duration = 0.3f; // Placeholder
             action.TriggerDelay = 0.05f; // Placeholder
             action.TriggeredAction = () =>
             {
@@ -37,7 +37,7 @@ public class BulletRaptorBrain : ABrain
             Vector2 targetToThis = (organism.Position - target).normalized;
             target += targetToThis * (obj.Radius + organism.Reach);
 
-            action.Duration = 0.1f; // Placeholder
+            action.Duration = 0.2f; // Placeholder
             action.Displacement = target - organism.Position;
         }
 

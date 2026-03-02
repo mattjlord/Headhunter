@@ -10,15 +10,23 @@ public class Carcass : FoodOrWaterObject
 
     private void Awake()
     {
+        Consumable consumable = null;
         int count = 0;
         foreach(InventoryItemInstance item in _scavengeableParts.Items)
         {
             if (item.Item.GetType() == typeof(Consumable))
             {
+                if (consumable == null)
+                {
+                    consumable = item.Item as Consumable;
+                }
                 count++;
             }
         }
         uses = count;
+        hungerImpact = -consumable.HungerImpact;
+        thirstImpact = -consumable.ThirstImpact;
+
     }
 
     public override void OnInteraction(PlayerController playerController)
