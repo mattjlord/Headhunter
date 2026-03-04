@@ -4,6 +4,7 @@ using static UnityEditor.PlayerSettings;
 
 public class Navigation : MonoBehaviour
 {
+    [SerializeField] private int _agentID;
     [SerializeField] private float _patience;
 
     private bool _wandering = false;
@@ -112,7 +113,13 @@ public class Navigation : MonoBehaviour
     {
         _currentDestination = destination;
         _pathIndex = 1;
-        NavMesh.CalculatePath(VectorUtils.Vec2ToVec3(organism.Position), VectorUtils.Vec2ToVec3(destination), NavMesh.AllAreas, _path);
+        int actualID = NavMesh.GetSettingsByIndex(_agentID).agentTypeID;
+        NavMeshQueryFilter filter = new NavMeshQueryFilter
+        {
+            agentTypeID = actualID,
+            areaMask = NavMesh.AllAreas
+        };
+        NavMesh.CalculatePath(VectorUtils.Vec2ToVec3(organism.Position), VectorUtils.Vec2ToVec3(destination), filter, _path);
     }
 
     private void OnDrawGizmos()
