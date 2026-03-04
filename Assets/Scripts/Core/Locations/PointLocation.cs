@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class PointLocation : ALocation
 {
-    public override Vector2 GetClosestPoint(Vector2 point)
+    public override Vector2? GetClosestPoint(Vector2 point, OrganismType organismType)
     {
         return VectorUtils.Vec3ToVec2(transform.position);
     }
 
-    public override float GetDistanceFrom(Vector2 point)
+    public override float GetDistanceFrom(Vector2 point, OrganismType organismType)
     {
         return Vector2.Distance(transform.position, point);
     }

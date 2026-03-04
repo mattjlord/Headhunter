@@ -96,10 +96,12 @@ public class Senses : MonoBehaviour
     {
         ALocation stimulusLocation = stimulus.Location;
         Vector2 headPos = VectorUtils.Vec3ToVec2(_headTransform.position);
-        Vector2 nearestPoint = stimulusLocation.GetClosestPoint(headPos);
+        Vector2? nearestPoint = stimulusLocation.GetClosestPoint(headPos, OrganismType.Hunter);
+
+        if (nearestPoint == null) return false;
 
         float maxDistance = radius + stimulus.DetectableDistance;
-        float distanceToStimulus = Vector2.Distance(nearestPoint, headPos);
+        float distanceToStimulus = Vector2.Distance((Vector2)nearestPoint, headPos);
         return distanceToStimulus <= maxDistance;
     }
 
@@ -108,9 +110,11 @@ public class Senses : MonoBehaviour
         ALocation stimulusLocation = stimulus.Location;
 
         Vector2 headPos = VectorUtils.Vec3ToVec2(_headTransform.position);
-        Vector2 closestPoint = stimulusLocation.GetClosestPoint(headPos);
+        Vector2? closestPoint = stimulusLocation.GetClosestPoint(headPos, OrganismType.Hunter);
 
-        Vector2 toStimulus = (closestPoint - headPos).normalized;
+        if (closestPoint == null) return false;
+
+        Vector2 toStimulus = ((Vector2)closestPoint - headPos).normalized;
         Vector2 forward = VectorUtils.Vec3ToVec2(_headTransform.forward).normalized;
 
         float angleToStimulus = Vector2.Angle(forward, toStimulus);
@@ -123,9 +127,11 @@ public class Senses : MonoBehaviour
         ALocation stimulusLocation = stimulus.Location;
 
         Vector2 headPos = VectorUtils.Vec3ToVec2(_headTransform.position);
-        Vector2 closestPoint = stimulusLocation.GetClosestPoint(headPos);
+        Vector2? closestPoint = stimulusLocation.GetClosestPoint(headPos, OrganismType.Hunter);
 
-        return HasLineOfSight(closestPoint, out RaycastHit hit);
+        if (closestPoint == null) return false;
+
+        return HasLineOfSight((Vector2)closestPoint, out RaycastHit hit);
     }
 
     private void OnDrawGizmos()

@@ -28,7 +28,7 @@ public class Organism : WorldObject
     public float Reach { get { return _reach; } }
     public float CombatReach {  get { return _combatReach; } }
 
-    private void Start()
+    protected virtual void Start()
     {
         _odor.Organism = this;
         _visibility.Organism = this;

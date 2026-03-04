@@ -4,7 +4,6 @@ using static UnityEditor.PlayerSettings;
 
 public class Navigation : MonoBehaviour
 {
-    [SerializeField] private int _agentID;
     [SerializeField] private float _patience;
 
     private bool _wandering = false;
@@ -113,10 +112,10 @@ public class Navigation : MonoBehaviour
     {
         _currentDestination = destination;
         _pathIndex = 1;
-        int actualID = NavMesh.GetSettingsByIndex(_agentID).agentTypeID;
+        int agentID = NavUtils.GetNavMeshID(organism.OrganismType);
         NavMeshQueryFilter filter = new NavMeshQueryFilter
         {
-            agentTypeID = actualID,
+            agentTypeID = agentID,
             areaMask = NavMesh.AllAreas
         };
         NavMesh.CalculatePath(VectorUtils.Vec2ToVec3(organism.Position), VectorUtils.Vec2ToVec3(destination), filter, _path);

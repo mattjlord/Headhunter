@@ -29,7 +29,7 @@ public class AreaLocation : ALocation
         return VectorUtils.Vec3ToVec2(world);
     }
 
-    public override Vector2 GetClosestPoint(Vector2 point)
+    public override Vector2? GetClosestPoint(Vector2 point, OrganismType organismType)
     {
         if (_points == null || _points.Count < 2)
             return point;
@@ -59,13 +59,16 @@ public class AreaLocation : ALocation
             }
         }
 
-        return GetClosestPointOnNavMesh(closest);
+        Debug.DrawLine(VectorUtils.Vec2ToVec3(point) + Vector3.up * 20f, VectorUtils.Vec2ToVec3(closest) + Vector3.up * 20f, Color.magenta);
+        return GetClosestPointOnNavMesh(closest, organismType);
     }
 
-    public override float GetDistanceFrom(Vector2 point)
+    public override float GetDistanceFrom(Vector2 point, OrganismType organismType)
     {
-        Vector2 closestPoint = GetClosestPoint(point);
-        return Vector2.Distance(closestPoint, point);
+        Vector2? closestPoint = GetClosestPoint(point, organismType);
+        if (closestPoint == null)
+            return Mathf.Infinity;
+        return Vector2.Distance((Vector2)closestPoint, point);
     }
 
     public override bool LocationReached(Vector2 point)
@@ -165,28 +168,28 @@ public class AreaLocation : ALocation
         if (_points == null || _points.Count < 3)
             return Vector2.zero;
 
-        (Vector2, Vector2) boundingBox = GetBoundingBox();
+        // Pick a random triangle in the convex polygon using a triangle fan
+        // Triangle fan: vertex 0 is shared, each triangle is (v0, vi, vi+1)
+        int triangleIndex = Random.Range(1, _points.Count - 1);
 
-        float minX = boundingBox.Item1.x, maxX = boundingBox.Item2.x;
-        float minY = boundingBox.Item1.y, maxY = boundingBox.Item2.y;
+        Vector2 a = WorldSpacePoint(0);            // first vertex
+        Vector2 b = WorldSpacePoint(triangleIndex);
+        Vector2 c = WorldSpacePoint(triangleIndex + 1);
 
-        while (true)
+        // Sample a random point inside the triangle using barycentric coordinates
+        float r1 = Random.value;
+        float r2 = Random.value;
+
+        // Ensure point is inside triangle
+        if (r1 + r2 > 1f)
         {
-            float x = Random.Range(minX, maxX);
-            float y = Random.Range(minY, maxY);
-            Vector2 candidate = new Vector2(x, y);
-
-            if (LocationReached(candidate))
-            {
-                Debug.DrawLine(
-                    VectorUtils.Vec2ToVec3(candidate),
-                    VectorUtils.Vec2ToVec3(candidate) + Vector3.up * 2,
-                    Color.yellow,
-                    2f
-                );
-                return candidate;
-            }
+            r1 = 1f - r1;
+            r2 = 1f - r2;
         }
+
+        Vector2 point = a + r1 * (b - a) + r2 * (c - a);
+
+        return point; // fallback to raw point
     }
 
     public override List<Collider> GetNearbyColliders(float radius)
@@ -347,18 +350,27 @@ public class AreaLocation : ALocation
 
     // NavMesh
 
-    public Vector2 GetClosestPointOnNavMesh(Vector2 targetPosition, float maxDistance = 10f)
+    public Vector2? GetClosestPointOnNavMesh(Vector2 targetPosition, OrganismType organismType, float maxDistance = 50f)
     {
         Vector3 targetWorldPosition = VectorUtils.Vec2ToVec3(targetPosition);
         NavMeshHit hit;
-        if (NavMesh.SamplePosition(targetWorldPosition, out hit, maxDistance, NavMesh.AllAreas))
+        int agentID = NavUtils.GetNavMeshID(organismType);
+        NavMeshQueryFilter filter = new NavMeshQueryFilter
         {
+            agentTypeID = agentID,
+            areaMask = NavMesh.AllAreas
+        };
+        Debug.DrawRay(targetWorldPosition, Vector3.up * 20f, Color.magenta);
+        if (NavMesh.SamplePosition(targetWorldPosition, out hit, maxDistance, filter))
+        {
+            Debug.DrawLine(targetWorldPosition + Vector3.up * 20f, hit.position + Vector3.up * 20f, Color.magenta);
+            Debug.DrawRay(hit.position, Vector3.up * 20f, Color.magenta);
             return VectorUtils.Vec3ToVec2(hit.position);
         }
         else
         {
             Debug.LogWarning("No NavMesh nearby!");
-            return targetPosition;
+            return null;
         }
     }
 

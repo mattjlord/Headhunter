@@ -6,8 +6,12 @@ public class Memory : MonoBehaviour
 {
     [SerializeField] private float _memory;
 
+    private OrganismType _organismType;
+
     private List<Stimulus> _activeStimuli;
     private Dictionary<Stimulus, float> _stimuliInMemory;
+
+    public OrganismType OrganismType { set { _organismType = value; } }
 
     private void Awake()
     {
@@ -104,8 +108,8 @@ public class Memory : MonoBehaviour
         if (existingStimulus == null)
             return false;
 
-        float distanceToExistingStimulus = existingStimulus.Location.GetDistanceFrom(position);
-        float distanceToNewStimulus = newStimulus.Location.GetDistanceFrom(position);
+        float distanceToExistingStimulus = existingStimulus.Location.GetDistanceFrom(position, _organismType);
+        float distanceToNewStimulus = newStimulus.Location.GetDistanceFrom(position, _organismType);
 
         return distanceToNewStimulus >= distanceToExistingStimulus;
     }
@@ -119,7 +123,9 @@ public class Memory : MonoBehaviour
         Vector3 origin = transform.position + Vector3.up * 3;
         foreach (Stimulus stimulus in _activeStimuli)
         {
-            Vector3 stimulusPosition = VectorUtils.Vec2ToVec3(stimulus.Location.GetClosestPoint(VectorUtils.Vec3ToVec2(origin))) + Vector3.up * 3;
+            Vector2? closestPoint = stimulus.Location.GetClosestPoint(VectorUtils.Vec3ToVec2(origin), _organismType);
+            if (closestPoint == null) { continue; }
+            Vector3 stimulusPosition = VectorUtils.Vec2ToVec3((Vector2)closestPoint) + Vector3.up * 3;
             Gizmos.DrawLine(origin, stimulusPosition);
         }
     }

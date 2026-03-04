@@ -12,14 +12,14 @@ public class LocationKnowledge : MonoBehaviour
 
     public List<ALocation> FoodLocations { set { _foodLocations = value; } }
     public List<ALocation> WaterLocations { set { _waterLocations = value; } }
-    public List<ALocation> ShelterLocation { set { _shelterLocations = value;} }
+    public List<ALocation> ShelterLocation { set { _shelterLocations = value; } }
 
     private void Awake()
     {
         _blockedLocations = new List<ALocation>();
     }
 
-    public ALocation? GetClosestFood(Vector2 currentPos)
+    public ALocation? GetClosestFood(Vector2 currentPos, OrganismType organismType)
     {
         float shortestDistance = Mathf.Infinity;
         ALocation closestLocation = null;
@@ -28,7 +28,7 @@ public class LocationKnowledge : MonoBehaviour
         {
             if (_blockedLocations.Contains(location))
                 continue;
-            float distance = location.GetDistanceFrom(currentPos);
+            float distance = location.GetDistanceFrom(currentPos, organismType);
             if (distance < shortestDistance)
             {
                 shortestDistance = distance;
@@ -39,7 +39,7 @@ public class LocationKnowledge : MonoBehaviour
         return closestLocation;
     }
 
-    public ALocation? GetClosestWater(Vector2 currentPos)
+    public ALocation? GetClosestWater(Vector2 currentPos, OrganismType organismType)
     {
         float shortestDistance = Mathf.Infinity;
         ALocation closestLocation = null;
@@ -48,7 +48,7 @@ public class LocationKnowledge : MonoBehaviour
         {
             if (_blockedLocations.Contains(location))
                 continue;
-            float distance = location.GetDistanceFrom(currentPos);
+            float distance = location.GetDistanceFrom(currentPos, organismType);
             if (distance < shortestDistance)
             {
                 shortestDistance = distance;
@@ -59,7 +59,7 @@ public class LocationKnowledge : MonoBehaviour
         return closestLocation;
     }
 
-    public ALocation? GetClosestShelter(Vector2 currentPos)
+    public ALocation? GetClosestShelter(Vector2 currentPos, OrganismType organismType)
     {
         float shortestDistance = Mathf.Infinity;
         ALocation closestLocation = null;
@@ -68,7 +68,7 @@ public class LocationKnowledge : MonoBehaviour
         {
             if (_blockedLocations.Contains(location))
                 continue;
-            float distance = location.GetDistanceFrom(currentPos);
+            float distance = location.GetDistanceFrom(currentPos, organismType);
             if (distance < shortestDistance)
             {
                 shortestDistance = distance;

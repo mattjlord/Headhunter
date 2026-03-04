@@ -118,6 +118,7 @@
     <Compile Include="Assets\Scripts\Core\AIOrganism.cs" />
     <Compile Include="Assets\Scripts\Core\Inventory\Container.cs" />
     <Compile Include="Assets\Scripts\Core\Enums\VitalType.cs" />
+    <Compile Include="Assets\Scripts\Utils\NavUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -84,7 +84,7 @@ public class Stimulus : MonoBehaviour
         {
             if (areaLocation.LocationReached(organism.Position))
                 return true;
-            dist = areaLocation.GetDistanceFrom(organism.Position);
+            dist = areaLocation.GetDistanceFrom(organism.Position, organism.OrganismType);
         }
         else
         {

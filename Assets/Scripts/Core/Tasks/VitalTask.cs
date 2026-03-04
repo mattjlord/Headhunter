@@ -45,13 +45,13 @@ public class VitalTask : BehaviorTask
 
     private void LookForFood()
     {
-        ALocation? closestFood = Organism.LocationKnowledge.GetClosestFood(Organism.Position);
+        ALocation? closestFood = Organism.LocationKnowledge.GetClosestFood(Organism.Position, Organism.OrganismType);
         if (closestFood == null)
             return;
         if (!closestFood.LocationReachedByOrganism(Organism))
         {
             description = "Moving to location";
-            Organism.Navigation.MoveTowards(Organism, closestFood.GetClosestPoint(Organism.Position), false);
+            Organism.Navigation.MoveTowards(Organism, (Vector2)closestFood.GetClosestPoint(Organism.Position, Organism.OrganismType), false);
         }
         else
         {
@@ -62,13 +62,13 @@ public class VitalTask : BehaviorTask
 
     private void LookForWater()
     {
-        ALocation? closestWater = Organism.LocationKnowledge.GetClosestWater(Organism.Position);
+        ALocation? closestWater = Organism.LocationKnowledge.GetClosestWater(Organism.Position, Organism.OrganismType);
         if (closestWater == null)
             return;
         if (!closestWater.LocationReachedByOrganism(Organism))
         {
             description = "Moving to location";
-            Organism.Navigation.MoveTowards(Organism, closestWater.GetClosestPoint(Organism.Position), false);
+            Organism.Navigation.MoveTowards(Organism, (Vector2)closestWater.GetClosestPoint(Organism.Position, Organism.OrganismType), false);
         }
         else
         {
@@ -79,13 +79,13 @@ public class VitalTask : BehaviorTask
 
     private void LookForShelter()
     {
-        ALocation? closestShelter = Organism.LocationKnowledge.GetClosestShelter(Organism.Position);
+        ALocation? closestShelter = Organism.LocationKnowledge.GetClosestShelter(Organism.Position, Organism.OrganismType);
         if (closestShelter == null)
             return;
         if (!closestShelter.LocationReachedByOrganism(Organism))
         {
             description = "Moving to location";
-            Organism.Navigation.MoveTowards(Organism, closestShelter.GetClosestPoint(Organism.Position), false);
+            Organism.Navigation.MoveTowards(Organism, (Vector2)closestShelter.GetClosestPoint(Organism.Position, Organism.OrganismType), false);
         }
         else
         {

@@ -8,6 +8,12 @@ public class AIOrganism : Organism
     [SerializeField] private Navigation _navigation;
     [SerializeField] private Memory _memory;
 
+    protected override void Start()
+    {
+        base.Start();
+        _memory.OrganismType = OrganismType;
+    }
+
     public TaskManagement TaskManagement { get { return _taskManagement; } }
     public HerdManagement HerdManagement { get { return _herdManagement; } }
     public LocationKnowledge LocationKnowledge { get { return _locationKnowledge; } }

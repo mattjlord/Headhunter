@@ -37,8 +37,8 @@ public abstract class ALocation : MonoBehaviour
         organism.TaskManagement.RemoveAssociatedTasks(this);
     }
 
-    public abstract Vector2 GetClosestPoint(Vector2 point);
-    public abstract float GetDistanceFrom(Vector2 point);
+    public abstract Vector2? GetClosestPoint(Vector2 point, OrganismType organismType);
+    public abstract float GetDistanceFrom(Vector2 point, OrganismType organismType);
     public virtual bool LocationReachedByOrganism(AIOrganism organism)
     {
         return LocationReached(organism.Position);

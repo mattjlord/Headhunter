@@ -11,7 +11,7 @@ public class SpawnRegion : MonoBehaviour
     [SerializeField] private List<OrganismType> _organismTypes;
 
     private AreaLocation _areaLocation;
-    private AreaLocation[] _subregions;
+    [SerializeField] private AreaLocation[] _subregions;
 
     private List<AIOrganism> _activeOrganisms;
 
@@ -41,7 +41,7 @@ public class SpawnRegion : MonoBehaviour
 
         for (int i = _activeOrganisms.Count; i < _density; i++)
         {
-            int subregionIdx = Random.Range(0, _subregions.Length - 1);
+            int subregionIdx = Random.Range(0, _subregions.Length);
             AreaLocation subregion = _subregions[subregionIdx];
 
             Vector2 spawnPoint = subregion.GetRandomPointInArea();
@@ -78,7 +78,7 @@ public class SpawnRegion : MonoBehaviour
 
     private void CheckForPlayer()
     {
-        float distanceToPlayer = _areaLocation.GetDistanceFrom(_player.Position);
+        float distanceToPlayer = _areaLocation.GetDistanceFrom(_player.Position, OrganismType.Hunter);
         if (distanceToPlayer < 200f)
             SpawnAllOrganisms();
     }

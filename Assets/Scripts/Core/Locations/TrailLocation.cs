@@ -13,7 +13,7 @@ public class TrailLocation : ALocation
         if (_points == null)
             _points = new List<Vector2>();
     }
-    public override Vector2 GetClosestPoint(Vector2 point)
+    public override Vector2? GetClosestPoint(Vector2 point, OrganismType organismType)
     {
         int index = GetClosestIndex(point);
         if (index >= 0)
@@ -42,10 +42,12 @@ public class TrailLocation : ALocation
         return index;
     }
 
-    public override float GetDistanceFrom(Vector2 point)
+    public override float GetDistanceFrom(Vector2 point, OrganismType organismType)
     {
-        Vector2 closestPoint = GetClosestPoint(point);
-        return Vector2.Distance(point, closestPoint);
+        Vector2? closestPoint = GetClosestPoint(point, OrganismType.Hunter);
+        if ((closestPoint) == null)
+            return Mathf.Infinity;
+        return Vector2.Distance(point, (Vector2)closestPoint);
     }
 
     public override bool LocationReachedByOrganism(AIOrganism organism)
@@ -58,7 +60,7 @@ public class TrailLocation : ALocation
 
     public override bool LocationReached(Vector2 point)
     {
-        return Vector2.Distance(GetClosestPoint(point), point) < sensitivity;
+        return GetDistanceFrom(point, OrganismType.Hunter) < sensitivity;
     }
 
     public override void Wander(AIOrganism organism)

@@ -61,7 +61,13 @@ public class StimulusResponseTask : BehaviorTask
 
         if (!stimulusReached)
         {
-            Organism.Navigation.MoveTowards(Organism, stimulusLocation.GetClosestPoint(Organism.Position), _hostile, !_stimulus.Fixed);
+            Vector2? closestPoint = stimulusLocation.GetClosestPoint(Organism.Position, Organism.OrganismType);
+            if (closestPoint == null) // Not reachable anymore, forget this
+            {
+                Priority = 0;
+                return;
+            }
+            Organism.Navigation.MoveTowards(Organism, (Vector2)closestPoint, _hostile, !_stimulus.Fixed);
             description = "Pursuing stimulus";
             return;
         }
@@ -100,7 +106,15 @@ public class StimulusResponseTask : BehaviorTask
             }
         }
 
-        Organism.Navigation.MoveAwayFrom(Organism, stimulusLocation.GetClosestPoint(Organism.Position), true);
+        Vector2? closestPoint = stimulusLocation.GetClosestPoint(Organism.Position, Organism.OrganismType);
+
+        if (closestPoint == null)
+        {
+            Priority = 0;
+            return;
+        }
+
+        Organism.Navigation.MoveAwayFrom(Organism, (Vector2)closestPoint, true);
         description = "Fleeing stimulus";
     }
 
