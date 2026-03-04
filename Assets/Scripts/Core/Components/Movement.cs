@@ -77,14 +77,24 @@ public class Movement : MonoBehaviour
         Stim_Footstep footstep = footstepObj.GetComponent<Stim_Footstep>();
         PointLocation pointLocation = footstepObj.GetComponent<PointLocation>();
 
+        float loudness = _footstepLoudness;
+        if (_isRunning) { loudness *= 2f; }
+
         footstep.Location = pointLocation;
         footstep.SenseType = SenseType.Sound;
-        footstep.DetectableDistance = _footstepLoudness;
+        footstep.DetectableDistance = loudness;
         footstep.ProducerOrganism = _organism;
 
-        Instantiate(footstepObj, VectorUtils.Vec2ToVec3(_organism.Position), Quaternion.identity);
+        Vector3 footstepPos = VectorUtils.Vec2ToVec3(_organism.Position);
+
+        Instantiate(footstepObj, footstepPos, Quaternion.identity);
 
         footstep.Fire();
+
+        Debug.DrawRay(footstepPos + Vector3.up, loudness * Vector3.right, Color.red, 1f);
+        Debug.DrawRay(footstepPos + Vector3.up, loudness * Vector3.back, Color.red, 1f);
+        Debug.DrawRay(footstepPos + Vector3.up, loudness * Vector3.left, Color.red, 1f);
+        Debug.DrawRay(footstepPos + Vector3.up, loudness * Vector3.forward, Color.red, 1f);
 
         if (_footprintPrefab != null)
         {

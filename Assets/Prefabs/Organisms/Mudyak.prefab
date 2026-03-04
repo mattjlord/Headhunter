@@ -105,12 +105,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hunger:
-    _value: 29.878578
+    _value: 19.073423
     _passiveIncreaseRate: 4
     _increaseSensitivity: 1
     _decreaseSensitivity: 1
   _thirst:
-    _value: 24.396606
+    _value: 4.6119213
     _passiveIncreaseRate: 4
     _increaseSensitivity: 1
     _decreaseSensitivity: 1
@@ -151,7 +151,7 @@ MonoBehaviour:
     m_Bits: 1
   _headTransform: {fileID: 8816648453989378102}
   _sightRadius: 200
-  _fov: 90
+  _fov: 270
   _hearingRadius: 180
   _smellRadius: 100
 --- !u!114 &8816648452552321066
@@ -195,6 +195,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _herdBehavior: 0
   _herd:
+  - {fileID: 8816648452552321059}
+  - {fileID: 8816648452552321059}
   - {fileID: 8816648452552321059}
 --- !u!114 &8816648452552321080
 MonoBehaviour:
@@ -242,7 +244,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08d62cc911c10bd488287fcf4b80b5f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _agentID: 1
   _patience: 60
 --- !u!114 &8816648452552321057
 MonoBehaviour:
@@ -259,7 +260,7 @@ MonoBehaviour:
   _walkSpeed: 0.25
   _runSpeed: 0.5
   _footstepFrequency: 0.25
-  _footstepLoudness: 5
+  _footstepLoudness: 40
   _footprintPrefab: {fileID: 7769087844988270549, guid: bd47f62d7894b5c4788cc9bb7d114947, type: 3}
 --- !u!114 &8816648452552321071
 MonoBehaviour:
@@ -286,7 +287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d6595aa148cb094fbd6f39bb4ea2b1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _strength: 10
+  _strength: 120
   _trailMaxLength: 5
 --- !u!114 &8816648452552321068
 MonoBehaviour:

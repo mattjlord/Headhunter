@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Senses : MonoBehaviour
 {
@@ -22,14 +23,14 @@ public class Senses : MonoBehaviour
         }
     }
 
-    public Vector2? GetPointAhead()
+    public Vector2? GetPointAhead(float radius, OrganismType organismType)
     {
         Vector2 point = VectorUtils.Vec3ToVec2(_headTransform.position + (_headTransform.forward * _sightRadius));
-        bool hasLOS = HasLineOfSight(point, out RaycastHit hit);
+        bool hasLOS = HasLineOfSight(point, out RaycastHit hit, organismType, radius);
 
         if (hasLOS)
         {
-            DrawDebugLine(point);
+            DrawDebugSphere(point, radius);
             return point;
         }
 
@@ -41,17 +42,17 @@ public class Senses : MonoBehaviour
         {
             Vector3 leftDir = Quaternion.Euler(0, -angle, 0) * _headTransform.forward;
             Vector2 leftPoint = VectorUtils.Vec3ToVec2(_headTransform.position + leftDir * _sightRadius);
-            if (HasLineOfSight(leftPoint, out hit))
+            if (HasLineOfSight(leftPoint, out hit, organismType, radius))
             {
-                DrawDebugLine(leftPoint);
+                DrawDebugSphere(leftPoint, radius);
                 return leftPoint;
             }
 
             Vector3 rightDir = Quaternion.Euler(0, angle, 0) * _headTransform.forward;
             Vector2 rightPoint = VectorUtils.Vec3ToVec2(_headTransform.position + rightDir * _sightRadius);
-            if (HasLineOfSight(rightPoint, out hit))
+            if (HasLineOfSight(rightPoint, out hit, organismType, radius))
             {
-                DrawDebugLine(rightPoint);
+                DrawDebugSphere(rightPoint, radius);
                 return rightPoint;
             }
         }
@@ -59,9 +60,11 @@ public class Senses : MonoBehaviour
         return null; // Nothing ahead
     }
 
-    private void DrawDebugLine(Vector2 point)
+    private void DrawDebugSphere(Vector2 point, float radius)
     {
-        Debug.DrawLine(_headTransform.position, VectorUtils.Vec2ToVec3(point), Color.green);
+        Vector3 dir = VectorUtils.Vec2ToVec3(point) - _headTransform.position;
+        Debug.DrawRay(_headTransform.position + _headTransform.right * radius, dir, Color.green);
+        Debug.DrawRay(_headTransform.position - _headTransform.right * radius, dir, Color.green);
     }
 
     private bool CanSee(Stimulus stimulus)
@@ -71,11 +74,35 @@ public class Senses : MonoBehaviour
         return StimulusInRange(stimulus, _sightRadius) && StimulusInFOV(stimulus) && StimulusUnblocked(stimulus);
     }
 
-    public bool HasLineOfSight(Vector2 point, out RaycastHit obstacle)
+    public bool HasLineOfSight(Vector2 point, out RaycastHit obstacle, OrganismType? organismType = null, float radius = 0f)
     {
         obstacle = default;
         Vector2 dir = (point - VectorUtils.Vec3ToVec2(_headTransform.position));
-        return!Physics.Raycast(_headTransform.position, VectorUtils.Vec2ToVec3(dir), out obstacle, dir.magnitude, _visionBlocking);
+        bool blocked = false;
+        if (radius == 0)
+            blocked = Physics.Raycast(_headTransform.position, VectorUtils.Vec2ToVec3(dir), out obstacle, dir.magnitude, _visionBlocking);
+        else
+            blocked = Physics.SphereCast(_headTransform.position, radius, VectorUtils.Vec2ToVec3(dir), out obstacle, dir.magnitude, _visionBlocking);
+
+        bool inBounds = true;
+
+        if (organismType != null)
+        {
+            NavMeshHit hit;
+            int agentID = NavUtils.GetNavMeshID((OrganismType)organismType);
+            NavMeshQueryFilter filter = new NavMeshQueryFilter
+            {
+                agentTypeID = agentID,
+                areaMask = NavMesh.AllAreas
+            };
+
+            Vector3 origin = _headTransform.position;
+            origin.y = 0;
+
+            inBounds = !NavMesh.Raycast(origin, VectorUtils.Vec2ToVec3(point), out hit, filter);
+        }
+
+        return !blocked && inBounds;
     }
 
     private bool CanHear(Stimulus stimulus)

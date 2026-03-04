@@ -72,7 +72,7 @@ public class Navigation : MonoBehaviour
         Vector2 lookDir = (organism.Position - pos).normalized;
         organism.LookDirection = lookDir;
 
-        Vector2? pointAhead = organism.Senses.GetPointAhead();
+        Vector2? pointAhead = organism.Senses.GetPointAhead(organism.Radius, organism.OrganismType);
 
         if (pointAhead == null)
         {

@@ -59,7 +59,7 @@ public class AreaLocation : ALocation
             }
         }
 
-        Debug.DrawLine(VectorUtils.Vec2ToVec3(point) + Vector3.up * 20f, VectorUtils.Vec2ToVec3(closest) + Vector3.up * 20f, Color.magenta);
+        //Debug.DrawLine(VectorUtils.Vec2ToVec3(point) + Vector3.up * 20f, VectorUtils.Vec2ToVec3(closest) + Vector3.up * 20f, Color.magenta);
         return GetClosestPointOnNavMesh(closest, organismType);
     }
 
@@ -360,11 +360,11 @@ public class AreaLocation : ALocation
             agentTypeID = agentID,
             areaMask = NavMesh.AllAreas
         };
-        Debug.DrawRay(targetWorldPosition, Vector3.up * 20f, Color.magenta);
+        //Debug.DrawRay(targetWorldPosition, Vector3.up * 20f, Color.magenta);
         if (NavMesh.SamplePosition(targetWorldPosition, out hit, maxDistance, filter))
         {
-            Debug.DrawLine(targetWorldPosition + Vector3.up * 20f, hit.position + Vector3.up * 20f, Color.magenta);
-            Debug.DrawRay(hit.position, Vector3.up * 20f, Color.magenta);
+            //Debug.DrawLine(targetWorldPosition + Vector3.up * 20f, hit.position + Vector3.up * 20f, Color.magenta);
+            //Debug.DrawRay(hit.position, Vector3.up * 20f, Color.magenta);
             return VectorUtils.Vec3ToVec2(hit.position);
         }
         else
