@@ -104,7 +104,8 @@ public class Stimulus : MonoBehaviour
         List<ABrain> foundBrains = FindBrainsInRange();
         foreach (ABrain brain in foundBrains)
         {
-            brain.RespondToStimulus(this);
+            if (brain.Organism.Senses.CanSense(this))
+                brain.RespondToStimulus(this);
         }
     }
 

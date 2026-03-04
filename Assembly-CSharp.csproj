@@ -61,6 +61,7 @@
     <Compile Include="Assets\Scripts\Core\Locations\TrailLocation.cs" />
     <Compile Include="Assets\Scripts\Core\Enums\OrganismType.cs" />
     <Compile Include="Assets\Scripts\Stimuli\Stim_Footstep.cs" />
+    <Compile Include="Assets\Scripts\Stimuli\Stim_Meat.cs" />
     <Compile Include="Assets\Scripts\Stimuli\Organisms\Stim_Hunter.cs" />
     <Compile Include="Assets\Scripts\Core\Components\Vitals.cs" />
     <Compile Include="Assets\Scripts\Core\Locations\PointLocation.cs" />
@@ -117,7 +118,6 @@
     <Compile Include="Assets\Scripts\Core\AIOrganism.cs" />
     <Compile Include="Assets\Scripts\Core\Inventory\Container.cs" />
     <Compile Include="Assets\Scripts\Core\Enums\VitalType.cs" />
-    <Compile Include="Assets\Scripts\Stimuli\Stim_Meat.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

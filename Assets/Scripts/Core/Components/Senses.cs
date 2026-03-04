@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Senses : MonoBehaviour
 {
+    [SerializeField] private LayerMask _visionBlocking;
     [SerializeField] private Transform _headTransform;
     [SerializeField] private float _sightRadius;
     [SerializeField] private float _fov;
@@ -67,15 +68,14 @@ public class Senses : MonoBehaviour
     {
         if (stimulus.SenseType != SenseType.Sight)
             return false;
-        // TODO: Also block stuff that's hidden behind obstacles
-        return StimulusInRange(stimulus, _sightRadius) && StimulusInFOV(stimulus);
+        return StimulusInRange(stimulus, _sightRadius) && StimulusInFOV(stimulus) && StimulusUnblocked(stimulus);
     }
 
     public bool HasLineOfSight(Vector2 point, out RaycastHit obstacle)
     {
         obstacle = default;
-        Vector2 dir = (point - VectorUtils.Vec3ToVec2(_headTransform.position)).normalized;
-        return !Physics.Raycast(_headTransform.position, VectorUtils.Vec2ToVec3(dir), out obstacle, _sightRadius, -1);
+        Vector2 dir = (point - VectorUtils.Vec3ToVec2(_headTransform.position));
+        return!Physics.Raycast(_headTransform.position, VectorUtils.Vec2ToVec3(dir), out obstacle, dir.magnitude, _visionBlocking);
     }
 
     private bool CanHear(Stimulus stimulus)
@@ -118,16 +118,26 @@ public class Senses : MonoBehaviour
         return angleToStimulus <= (_fov * 0.5f);
     }
 
+    private bool StimulusUnblocked(Stimulus stimulus)
+    {
+        ALocation stimulusLocation = stimulus.Location;
+
+        Vector2 headPos = VectorUtils.Vec3ToVec2(_headTransform.position);
+        Vector2 closestPoint = stimulusLocation.GetClosestPoint(headPos);
+
+        return HasLineOfSight(closestPoint, out RaycastHit hit);
+    }
+
     private void OnDrawGizmos()
     {
         Vector3 headPos = _headTransform.position;
 
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(headPos, _smellRadius);
+        //Gizmos.DrawWireSphere(headPos, _smellRadius);
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(headPos, _hearingRadius);
+        //Gizmos.DrawWireSphere(headPos, _hearingRadius);
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(headPos, _sightRadius);
+        //Gizmos.DrawWireSphere(headPos, _sightRadius);
 
         // FOV
         Vector3 forward = _headTransform.forward;
