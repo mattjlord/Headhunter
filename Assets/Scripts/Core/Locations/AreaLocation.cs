@@ -159,6 +159,8 @@ public class AreaLocation : ALocation
             }
         }
         Vector2 wanderDestination = GetRandomPointInArea();
+        while (!NavUtils.PointInBounds(organism.OrganismType, wanderDestination, organism.Radius, out NavMeshHit hit))
+            wanderDestination = GetRandomPointInArea();
         _wanderDestinations[organism] = wanderDestination;
         return wanderDestination;
     }
@@ -352,16 +354,9 @@ public class AreaLocation : ALocation
 
     public Vector2? GetClosestPointOnNavMesh(Vector2 targetPosition, OrganismType organismType, float maxDistance = 50f)
     {
-        Vector3 targetWorldPosition = VectorUtils.Vec2ToVec3(targetPosition);
-        NavMeshHit hit;
-        int agentID = NavUtils.GetNavMeshID(organismType);
-        NavMeshQueryFilter filter = new NavMeshQueryFilter
-        {
-            agentTypeID = agentID,
-            areaMask = NavMesh.AllAreas
-        };
+        //Vector3 targetWorldPosition = VectorUtils.Vec2ToVec3(targetPosition);
         //Debug.DrawRay(targetWorldPosition, Vector3.up * 20f, Color.magenta);
-        if (NavMesh.SamplePosition(targetWorldPosition, out hit, maxDistance, filter))
+        if (NavUtils.PointInBounds(organismType, targetPosition, 50f, out NavMeshHit hit))
         {
             //Debug.DrawLine(targetWorldPosition + Vector3.up * 20f, hit.position + Vector3.up * 20f, Color.magenta);
             //Debug.DrawRay(hit.position, Vector3.up * 20f, Color.magenta);

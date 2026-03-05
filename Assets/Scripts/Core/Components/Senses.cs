@@ -84,25 +84,14 @@ public class Senses : MonoBehaviour
         else
             blocked = Physics.SphereCast(_headTransform.position, radius, VectorUtils.Vec2ToVec3(dir), out obstacle, dir.magnitude, _visionBlocking);
 
+        if (blocked) return false;
+
         bool inBounds = true;
 
         if (organismType != null)
-        {
-            NavMeshHit hit;
-            int agentID = NavUtils.GetNavMeshID((OrganismType)organismType);
-            NavMeshQueryFilter filter = new NavMeshQueryFilter
-            {
-                agentTypeID = agentID,
-                areaMask = NavMesh.AllAreas
-            };
+            inBounds = NavUtils.LineInBounds((OrganismType)organismType, VectorUtils.Vec3ToVec2(_headTransform.position), point);
 
-            Vector3 origin = _headTransform.position;
-            origin.y = 0;
-
-            inBounds = !NavMesh.Raycast(origin, VectorUtils.Vec2ToVec3(point), out hit, filter);
-        }
-
-        return !blocked && inBounds;
+        return inBounds;
     }
 
     private bool CanHear(Stimulus stimulus)

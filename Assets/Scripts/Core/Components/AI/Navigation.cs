@@ -30,6 +30,8 @@ public class Navigation : MonoBehaviour
             dir = GetNavMeshDir(organism, pos);
         }
 
+        Debug.DrawLine(transform.position + Vector3.up, VectorUtils.Vec2ToVec3(pos) + Vector3.up, Color.cyan);
+
         organism.Movement.Move(organism, dir, run);
     }
 
@@ -43,6 +45,8 @@ public class Navigation : MonoBehaviour
         if (_path.corners.Length == 0)
         {
             Debug.DrawRay(transform.position, Vector3.up * 10, Color.red);
+            Debug.DrawLine(transform.position + (Vector3.up * 10), VectorUtils.Vec2ToVec3(pos) + (Vector3.up * 10), Color.red);
+            Debug.DrawRay(VectorUtils.Vec2ToVec3(pos), Vector3.up * 10, Color.red);
             return Vector2.zero;
         }
 
