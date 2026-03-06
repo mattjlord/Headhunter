@@ -1641,10 +1641,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf4cb20433c411148ae5922e1cfbdf9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _walkSpeed: 0.1
-  _runSpeed: 0.2
+  _walkSpeed: 0.25
+  _runSpeed: 0.5
   _footstepFrequency: 0.25
-  _footstepLoudness: 3
+  _footstepLoudness: 10
   _footprintPrefab: {fileID: 0}
 --- !u!114 &426138451
 MonoBehaviour:

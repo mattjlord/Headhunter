@@ -32,6 +32,6 @@ public class Stim_Water : Stimulus
 
     public override string GetDescription()
     {
-        return "grass";
+        return "water";
     }
 }

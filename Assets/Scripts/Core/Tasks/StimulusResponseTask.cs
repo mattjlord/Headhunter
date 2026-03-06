@@ -7,6 +7,9 @@ public class StimulusResponseTask : BehaviorTask
     private ABrain _brain;
     private bool _hostile;
 
+    private float _threatCheckInterval = 5f;
+    private float _lastThreatCheck;
+
     public StimulusResponseTask(AIOrganism organism, Stimulus stimulus, StimulusResponseType responseType, ABrain brain, bool hostile) : base(organism)
     {
         _stimulus = stimulus;
@@ -22,14 +25,17 @@ public class StimulusResponseTask : BehaviorTask
             Priority = 0;
             return;
         }
-        if (!Organism.Senses.CanSense(_stimulus) && !Organism.Memory.CanRemember(_stimulus) && !Organism.Memory.IsStimulusActive(_stimulus))
+        if (Organism.Memory.IsStimulusActive(_stimulus) && !Organism.Senses.CanSense(_stimulus))
         {
-            Priority = 0;
+            if (_responseType == StimulusResponseType.Flee)
+                _lastThreatCheck = Time.time;
+            Organism.Memory.StartForgettingStimulus(_stimulus);
         }
 
-        if (Priority == 0)
+        if (!Organism.Memory.IsStimulusActive(_stimulus) && !Organism.Memory.CanRemember(_stimulus))
         {
-            Organism.Memory.StartForgettingStimulus(_stimulus);
+            Priority = 0;
+            return;
         }
 
         switch (_responseType)
@@ -94,15 +100,11 @@ public class StimulusResponseTask : BehaviorTask
         if (stimObj != null && (stimObj.GetType() == typeof(AIOrganism) || stimObj.GetType() == typeof(PlayerOrganism)))
             pursuer = stimObj as Organism;
 
-        if (pursuer != null) // Fleeing a moving organism, we have additional logic here
+        if (pursuer != null) // Fleeing an organism, we have additional logic here
         {
             if (pursuer.WithinReach(Organism.Position, Organism.CombatReach)) // If the organism is within combat range, decide whether to fight or keep running
             {
-                Debug.Log("Time to fight!");
-                _responseType = StimulusResponseType.Eliminate;
-                _hostile = true;
-                PursueStimulus();
-                return;
+                OnCornered();
             }
         }
 
@@ -114,8 +116,51 @@ public class StimulusResponseTask : BehaviorTask
             return;
         }
 
-        Organism.Navigation.MoveAwayFrom(Organism, (Vector2)closestPoint, true);
-        description = "Fleeing stimulus";
+        if (Organism.Memory.CanRemember(_stimulus) && Time.time > _lastThreatCheck + _threatCheckInterval)
+        {
+            _lastThreatCheck = Time.time;
+            bool threatened = CheckForThreat();
+
+            if (!threatened)
+            {
+                Organism.Memory.ForgetStimulus(_stimulus);
+                return;
+            }
+        }
+
+        bool canFlee = Organism.Navigation.MoveAwayFrom(Organism, (Vector2)closestPoint, true);
+        if (canFlee)
+            description = "Fleeing stimulus";
+        else // Organism is cornered
+        {
+            if (pursuer != null)
+            {
+                OnCornered();
+            }
+            // Unhandled behavior: cornered by a non-organism (this should never happen)
+        }
+    }
+
+    private bool CheckForThreat()
+    {
+        if (_stimulus.SenseType == SenseType.Sight)
+        {
+            Vector2? point = _stimulus.Location.GetClosestPoint(Organism.Position, Organism.OrganismType);
+            if (point == null) { return false; }
+            Vector2 lookDir = ((Vector2)point - Organism.Position).normalized;
+            Organism.LookDirection = lookDir;
+        }
+
+        return Organism.Senses.CanSense(_stimulus);
+    }
+
+    private void OnCornered()
+    {
+        Debug.Log("Time to fight!");
+        _responseType = StimulusResponseType.Eliminate;
+        _hostile = true;
+        PursueStimulus();
+        return;
     }
 
     public override string GetName()

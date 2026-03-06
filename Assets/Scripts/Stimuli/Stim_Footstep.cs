@@ -4,5 +4,36 @@ using UnityEngine;
 
 public class Stim_Footstep : Stimulus
 {
-    
+    [SerializeField] private OrganismType _organismType;
+
+    public OrganismType OrganismType { set { _organismType = value; } }
+
+    public override StimulusInterpretation VisitAndInterpret(MudyakBrain brain)
+    {
+        StimulusInterpretation interpretation = GenerateBaseInterpretation(brain);
+
+        if (_organismType != OrganismType.Mudyak)
+        {
+            interpretation.OverrideValence(1);
+            interpretation.OverridePriority(80);
+        }
+
+        return interpretation;
+    }
+    public override void VisitAndInteract(MudyakBrain brain, StimulusResponseType type) { }
+
+    public virtual StimulusInterpretation VisitAndInterpret(BulletRaptorBrain brain)
+    {
+        StimulusInterpretation interpretation = GenerateBaseInterpretation(brain);
+
+        if (_organismType != OrganismType.BulletRaptor)
+            interpretation.AssignVitalImpact(VitalType.Hunger, -10);
+
+        return interpretation;
+    }
+
+    public override string GetDescription()
+    {
+        return "footsteps from a " + _organismType;
+    }
 }

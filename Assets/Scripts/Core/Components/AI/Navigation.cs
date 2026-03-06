@@ -70,9 +70,8 @@ public class Navigation : MonoBehaviour
         return (nextPoint2D - organism.Position).normalized;
     }
 
-    public void MoveAwayFrom(Organism organism, Vector2 pos, bool run)
+    public bool MoveAwayFrom(Organism organism, Vector2 pos, bool run)
     {
-        // TODO: Fix this shitty code it barely works and looks terrible in-game
         Vector2 lookDir = (organism.Position - pos).normalized;
         organism.LookDirection = lookDir;
 
@@ -81,12 +80,14 @@ public class Navigation : MonoBehaviour
         if (pointAhead == null)
         {
             // TODO: Somehow integrate behavior for when the organism gets cornered
-            return;
+            StopMovement(organism);
+            return false;
         }
 
         Vector2 moveDir = ((Vector2)pointAhead - organism.Position).normalized;
 
         organism.Movement.Move(organism, moveDir, run);
+        return true;
     }
 
     public void StopMovement(Organism organism)

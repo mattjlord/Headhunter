@@ -17,6 +17,9 @@ public class Stimulus : MonoBehaviour
 
     [SerializeField] private int _observers = 0;
 
+    private float _spawnTime;
+    private float _minLifetime = 1f;
+
     private Organism? _producerOrganism;
 
     public ALocation Location { 
@@ -54,9 +57,14 @@ public class Stimulus : MonoBehaviour
 
     public bool IsInteractible { get { return _associatedObject != null; } }
 
+    private void Start()
+    {
+        _spawnTime = Time.time;
+    }
+
     protected virtual void Update()
     {
-        if (_observers == 0 && !_lingering)
+        if (_observers == 0 && !_lingering && Time.time > _spawnTime + _minLifetime)
         {
             Destroy(gameObject);
         }
@@ -101,6 +109,10 @@ public class Stimulus : MonoBehaviour
 
     public void Fire()
     {
+        if (_location.GetType() == typeof(PointLocation))
+        {
+            DrawUtils.DrawCircle(transform.position + Vector3.up, _detectableDistance, Color.magenta, 1f);
+        }
         List<ABrain> foundBrains = FindBrainsInRange();
         foreach (ABrain brain in foundBrains)
         {

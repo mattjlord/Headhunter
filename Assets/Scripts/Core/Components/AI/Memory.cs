@@ -24,8 +24,11 @@ public class Memory : MonoBehaviour
         List<Stimulus> toRemove = new List<Stimulus>();
         foreach (var entry in _stimuliInMemory)
         {
-            if (Time.fixedTime > entry.Value + _memory)
+            float elapsedTime = Time.fixedTime - entry.Value;
+            if (elapsedTime > _memory)
+            {
                 toRemove.Add(entry.Key);
+            }
         }
 
         foreach (Stimulus stimulus in toRemove)
@@ -56,25 +59,26 @@ public class Memory : MonoBehaviour
             ForgetStimulus(existingStimulus);
         
         _activeStimuli.Add(stimulus);
+        stimulus.IncrementObservers();
         stimulus.OnDestroyed += RemoveStimulus;
     }
 
     private void RemoveStimulus(Stimulus stimulus)
     {
         _activeStimuli.Remove(stimulus);
+        stimulus.DecrementObservers();
         stimulus.OnDestroyed -= RemoveStimulus;
     }
 
-    private void ForgetStimulus(Stimulus stimulus)
+    public void ForgetStimulus(Stimulus stimulus)
     {
-        //Debug.Log("Forgetting " + stimulus.GetType().Name);
         _stimuliInMemory.Remove(stimulus);
+        stimulus.DecrementObservers();
         stimulus.OnDestroyed -= ForgetStimulus;
     }
 
     public void StartForgettingStimulus(Stimulus stimulus)
     {
-        //Debug.Log("Started forgetting");
         _activeStimuli.Remove(stimulus);
         _stimuliInMemory.Add(stimulus, Time.fixedTime);
         stimulus.OnDestroyed += ForgetStimulus;
@@ -122,6 +126,17 @@ public class Memory : MonoBehaviour
         Gizmos.color = Color.yellow;
         Vector3 origin = transform.position + Vector3.up * 3;
         foreach (Stimulus stimulus in _activeStimuli)
+        {
+            Vector2? closestPoint = stimulus.Location.GetClosestPoint(VectorUtils.Vec3ToVec2(origin), _organismType);
+            if (closestPoint == null) { continue; }
+            Vector3 stimulusPosition = VectorUtils.Vec2ToVec3((Vector2)closestPoint) + Vector3.up * 3;
+            Gizmos.DrawLine(origin, stimulusPosition);
+        }
+
+        if (_stimuliInMemory == null) return;
+
+        Gizmos.color = Color.red;
+        foreach (Stimulus stimulus in _stimuliInMemory.Keys)
         {
             Vector2? closestPoint = stimulus.Location.GetClosestPoint(VectorUtils.Vec3ToVec2(origin), _organismType);
             if (closestPoint == null) { continue; }
