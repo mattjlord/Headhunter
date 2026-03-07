@@ -22,6 +22,7 @@ public class MudyakBrain : ABrain
 
         if (obj.WithinReach(organism.Position, organism.Reach))
         {
+            Debug.Log("Attacking");
             action.Duration = 0.3f; // Placeholder
             action.TriggerDelay = 0.05f; // Placeholder
             action.TriggeredAction = () =>
@@ -34,6 +35,7 @@ public class MudyakBrain : ABrain
         }
         else
         {
+            Debug.Log("Charging!");
             Vector2 target = obj.Position + (2 * obj.Movement.Velocity);
 
             Vector2 targetToThis = (organism.Position - target).normalized;

@@ -28,6 +28,16 @@ public class Stim_Hunter : Stimulus
         brain.Attack(organism);
     }
 
+    public override void VisitAndInteract(MudyakBrain brain, StimulusResponseType type)
+    {
+        if (AssociatedObject == null || AssociatedObject.GetType() != typeof(PlayerOrganism))
+            return;
+
+        Organism organism = AssociatedObject as Organism;
+
+        brain.Attack(organism);
+    }
+
     public override StimulusInterpretation VisitAndInterpret(MudyakBrain brain)
     {
         StimulusInterpretation interpretation = GenerateBaseInterpretation(brain);

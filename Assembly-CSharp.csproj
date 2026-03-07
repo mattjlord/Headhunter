@@ -120,6 +120,7 @@
     <Compile Include="Assets\Scripts\Core\Enums\VitalType.cs" />
     <Compile Include="Assets\Scripts\Utils\NavUtils.cs" />
     <Compile Include="Assets\Scripts\Utils\DrawUtils.cs" />
+    <Compile Include="Assets\Scripts\Art\UI\VitalsUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

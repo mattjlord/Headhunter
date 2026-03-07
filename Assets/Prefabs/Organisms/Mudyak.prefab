@@ -106,12 +106,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hunger:
-    _value: 40.811974
-    _passiveIncreaseRate: 4
+    _value: 4.803622
+    _passiveIncreaseRate: 6
     _increaseSensitivity: 1
     _decreaseSensitivity: 1
   _thirst:
-    _value: 0.15060902
+    _value: 21.0511
     _passiveIncreaseRate: 8
     _increaseSensitivity: 1
     _decreaseSensitivity: 1
@@ -197,7 +197,6 @@ MonoBehaviour:
   _herdBehavior: 0
   _herd:
   - {fileID: 8816648452552321059}
-  - {fileID: 8816648452552321059}
 --- !u!114 &8816648452552321080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,8 +209,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edbfdebbf577f1e479af9fa840fea4fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _foodLocations: []
-  _waterLocations: []
+  _foodLocations:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _waterLocations:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _shelterLocations: []
 --- !u!114 &8816648452552321081
 MonoBehaviour:

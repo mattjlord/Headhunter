@@ -48,6 +48,7 @@ public class ActionManagement : MonoBehaviour
         Vector2 currentPosition = Vector2.Lerp(_startPosition, _endPosition, positionLerp);
 
         _currentAction.Organism.Position = currentPosition;
+        _currentAction.Organism.LookDirection = _currentAction.Displacement.normalized;
     }
 
     private bool IsCurrentActionTriggerReady()
