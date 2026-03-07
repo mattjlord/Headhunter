@@ -19,10 +19,11 @@ public class Shooting : MonoBehaviour
         if (hitSomething)
         {
             Debug.DrawLine(_barrel.position, hit.point, Color.red, 0.5f);
-            Organism organism = hit.transform.parent.gameObject.GetComponent<AIOrganism>();
+            Transform parent = hit.transform.parent;
+            if (parent == null) return;
+            Organism organism = parent.gameObject.GetComponent<AIOrganism>();
             if (organism != null)
             {
-                Debug.Log("Organisms vitals found");
                 organism.Vitals.GetVital(VitalType.Injury).IncreaseValue(_damage);
             }
         }

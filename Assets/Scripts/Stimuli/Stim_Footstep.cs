@@ -14,7 +14,7 @@ public class Stim_Footstep : Stimulus
 
         if (_organismType != OrganismType.Mudyak)
         {
-            interpretation.OverrideValence(1);
+            interpretation.OverrideValence(-1);
             interpretation.OverridePriority(80);
         }
 

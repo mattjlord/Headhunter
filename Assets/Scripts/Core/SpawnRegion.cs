@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SpawnRegion : MonoBehaviour
 {
-    [SerializeField] private Organism _player;
     [SerializeField] private MasterOrganismManager _masterOrganismManager;
     [SerializeField] private int _density;
     [SerializeField] private float _tickRate = 5f;
@@ -76,16 +75,44 @@ public class SpawnRegion : MonoBehaviour
         }
     }
 
+    private void RespondToOrganismPos(WorldObject obj)
+    {
+        if (obj.GetType() != typeof(AIOrganism)) return;
+
+        Organism organism = obj as Organism;
+
+        float distance = Vector2.Distance(_masterOrganismManager.Player.Position, organism.Position);
+
+        if (distance > _masterOrganismManager.DespawnDistance)
+        {
+            organism.Despawn();
+            RemoveOrganism(organism);
+        }
+    }
+
+    private void RemoveOrganism(Organism organism)
+    {
+        AIOrganism aiOrganism = (AIOrganism)organism;
+        _activeOrganisms.Remove(aiOrganism);
+        organism.OnDie -= RemoveOrganism;
+        organism.OnPositionUpdate -= RespondToOrganismPos;
+
+        _masterOrganismManager.RemoveOrganism(aiOrganism);
+    }
+
     private void CheckForPlayer()
     {
-        float distanceToPlayer = _areaLocation.GetDistanceFrom(_player.Position, OrganismType.Hunter);
+        float distanceToPlayer = _areaLocation.GetDistanceFrom(_masterOrganismManager.Player.Position, OrganismType.Hunter);
         if (distanceToPlayer < 200f)
             SpawnAllOrganisms();
     }
 
     private AIOrganism SpawnOrganism(OrganismType organismType, Vector2 spawnPoint)
     {
-        return _masterOrganismManager.SpawnOrganism(organismType, spawnPoint);
+        AIOrganism organism = _masterOrganismManager.SpawnOrganism(organismType, spawnPoint);
+        organism.OnPositionUpdate += RespondToOrganismPos;
+        organism.OnDie += RemoveOrganism;
+        return organism;
     }
 
     private void ConfigureHerd(List<AIOrganism> herd)

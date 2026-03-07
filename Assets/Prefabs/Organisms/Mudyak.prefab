@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 8816648452552321057}
   - component: {fileID: 8816648452552321071}
   - component: {fileID: 8816648452552321070}
+  - component: {fileID: 2380456198257632007}
   - component: {fileID: 8816648452552321068}
   - component: {fileID: 8816648452552321067}
   - component: {fileID: 8816648452552321069}
@@ -82,7 +83,7 @@ MonoBehaviour:
   _odor: {fileID: 8816648452552321070}
   _visibility: {fileID: 8816648452552321068}
   _actionManagement: {fileID: 8816648452552321066}
-  _meleeAttack: {fileID: 0}
+  _meleeAttack: {fileID: 2380456198257632007}
   _organismType: 1
   _reach: 7
   _combatReach: 15
@@ -105,13 +106,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hunger:
-    _value: 19.073423
+    _value: 40.811974
     _passiveIncreaseRate: 4
     _increaseSensitivity: 1
     _decreaseSensitivity: 1
   _thirst:
-    _value: 4.6119213
-    _passiveIncreaseRate: 4
+    _value: 0.15060902
+    _passiveIncreaseRate: 8
     _increaseSensitivity: 1
     _decreaseSensitivity: 1
   _exhaustion:
@@ -121,13 +122,13 @@ MonoBehaviour:
     _decreaseSensitivity: 1
   _heat:
     _value: 0
-    _passiveIncreaseRate: 0
-    _increaseSensitivity: 1
+    _passiveIncreaseRate: 8
+    _increaseSensitivity: 0.75
     _decreaseSensitivity: 1
   _injury:
     _value: 0
     _passiveIncreaseRate: 0
-    _increaseSensitivity: 1
+    _increaseSensitivity: 0.8
     _decreaseSensitivity: 1
   _toxicity:
     _value: 0
@@ -195,7 +196,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _herdBehavior: 0
   _herd:
-  - {fileID: 8816648452552321059}
   - {fileID: 8816648452552321059}
   - {fileID: 8816648452552321059}
 --- !u!114 &8816648452552321080
@@ -270,6 +270,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _strength: 120
   _trailMaxLength: 5
+--- !u!114 &2380456198257632007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8816648452552321084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f3daace01450ba47a2f8e1119d906cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _baseDamage: 12.5
+  _variance: 5
 --- !u!114 &8816648452552321068
 MonoBehaviour:
   m_ObjectHideFlags: 0

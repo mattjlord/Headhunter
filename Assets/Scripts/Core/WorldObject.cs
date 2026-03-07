@@ -1,20 +1,27 @@
+using System;
 using UnityEngine;
 
 public class WorldObject : MonoBehaviour
 {
+    public event Action<WorldObject> OnPositionUpdate;
+
     [SerializeField] private AreaLocation _areaLocation; // Optional, for regional objects like grass and bodies of water
 
     private CapsuleCollider _collider;
 
+    private float _posUpdateRate = 5f;
+    private float _lastPosUpdate;
+
     private void Awake()
     {
         _collider = GetComponent<CapsuleCollider>();
+        _lastPosUpdate = Time.time;
     }
 
     public Vector2 Position
     {
         get { return VectorUtils.Vec3ToVec2(transform.position); }
-        set 
+        set
         {
             Vector3 targetPos = VectorUtils.Vec2ToVec3(value);
             if (_collider != null)
@@ -28,6 +35,12 @@ public class WorldObject : MonoBehaviour
             }
 
             transform.position = targetPos;
+
+            if (Time.time > _lastPosUpdate + _posUpdateRate)
+            {
+                OnPositionUpdate?.Invoke(this);
+                _lastPosUpdate = Time.time;
+            }
         }
     }
 

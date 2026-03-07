@@ -102,7 +102,8 @@ public class StimulusResponseTask : BehaviorTask
 
         if (pursuer != null) // Fleeing an organism, we have additional logic here
         {
-            if (pursuer.WithinReach(Organism.Position, Organism.CombatReach)) // If the organism is within combat range, decide whether to fight or keep running
+            Debug.Log("Fleeing an organism");
+            if (pursuer.WithinReach(Organism.Position, Organism.CombatReach)) // If the organism is within combat range, act as if this organism is cornered
             {
                 OnCornered();
             }
@@ -156,7 +157,7 @@ public class StimulusResponseTask : BehaviorTask
 
     private void OnCornered()
     {
-        Debug.Log("Time to fight!");
+        Debug.Log(Organism.OrganismType + " is cornered, time to fight!");
         _responseType = StimulusResponseType.Eliminate;
         _hostile = true;
         PursueStimulus();

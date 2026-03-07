@@ -106,13 +106,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hunger:
-    _value: 20.605473
-    _passiveIncreaseRate: 4
+    _value: 0.8960962
+    _passiveIncreaseRate: 8
     _increaseSensitivity: 1
     _decreaseSensitivity: 1
   _thirst:
     _value: 0
-    _passiveIncreaseRate: 4
+    _passiveIncreaseRate: 6
     _increaseSensitivity: 1
     _decreaseSensitivity: 1
   _exhaustion:
@@ -122,13 +122,13 @@ MonoBehaviour:
     _decreaseSensitivity: 1
   _heat:
     _value: 0
-    _passiveIncreaseRate: 0
+    _passiveIncreaseRate: 8
     _increaseSensitivity: 1
     _decreaseSensitivity: 1
   _injury:
     _value: 0
     _passiveIncreaseRate: 0
-    _increaseSensitivity: 1
+    _increaseSensitivity: 0.9
     _decreaseSensitivity: 1
   _toxicity:
     _value: 0
@@ -184,7 +184,7 @@ MonoBehaviour:
   _runSpeed: 0.7
   _footstepFrequency: 0.25
   _footstepLoudness: 30
-  _footprintPrefab: {fileID: 0}
+  _footprintPrefab: {fileID: 7769087844988270549, guid: 2ae4e30d4aa0fb043b9075f02bb9e027, type: 3}
 --- !u!114 &3198518219397569810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,7 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f3daace01450ba47a2f8e1119d906cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseDamage: 30
+  _baseDamage: 20
   _variance: 10
 --- !u!114 &3198518219397569827
 MonoBehaviour:
@@ -255,7 +255,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _herdBehavior: 0
   _herd:
-  - {fileID: 3198518219397569818}
   - {fileID: 3198518219397569818}
 --- !u!114 &3198518219397569823
 MonoBehaviour:

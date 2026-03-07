@@ -2029,7 +2029,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 426138448}
   _masterOrganismManager: {fileID: 1171017548}
-  _density: 15
+  _density: 10
   _tickRate: 5
   _organismTypes: 01000000
   _subregions: []
@@ -3178,7 +3178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 426138448}
   _masterOrganismManager: {fileID: 1171017548}
-  _density: 15
+  _density: 10
   _tickRate: 5
   _organismTypes: 01000000
   _subregions: []
@@ -4419,6 +4419,8 @@ MonoBehaviour:
   _mudyakManager: {fileID: 2064665707}
   _bulletRaptorManager: {fileID: 1527434769}
   _maxOrganisms: 100
+  _despawnDistance: 400
+  _player: {fileID: 426138448}
 --- !u!1 &1184856230
 GameObject:
   m_ObjectHideFlags: 0
@@ -6708,7 +6710,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 426138448}
   _masterOrganismManager: {fileID: 1171017548}
-  _density: 10
+  _density: 4
   _tickRate: 5
   _organismTypes: 02000000
   _subregions: []
@@ -6756,7 +6758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efe9466a996c42a45836166105007d5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxOrganisms: 30
+  _maxOrganisms: 20
   _spawnTemplate: {fileID: 8816648452552321084, guid: efeb276522646ca4a8293c349391a27b, type: 3}
   _minHunger: 0
   _maxHunger: 50

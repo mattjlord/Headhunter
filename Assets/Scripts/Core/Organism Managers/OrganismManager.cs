@@ -30,7 +30,7 @@ public class OrganismManager : MonoBehaviour
     [SerializeField] private List<ALocation> _waterLocations;
     [SerializeField] private List<ALocation> _shelterLocations;
 
-    private List<AIOrganism> _organisms;
+    [SerializeField] private List<AIOrganism> _organisms;
 
     private void Start()
     {
@@ -43,7 +43,7 @@ public class OrganismManager : MonoBehaviour
     {
         Vector3 worldPoint = VectorUtils.Vec2ToVec3(point);
         GameObject spawnedInstance = Instantiate(_spawnTemplate, worldPoint, Quaternion.identity);
-        AIOrganism organism = _spawnTemplate.GetComponent<AIOrganism>();
+        AIOrganism organism = spawnedInstance.GetComponent<AIOrganism>();
 
         AssignVital(organism, VitalType.Hunger, _minHunger, _maxHunger);
         AssignVital(organism, VitalType.Thirst, _minThirst, _maxThirst);
@@ -59,6 +59,11 @@ public class OrganismManager : MonoBehaviour
         _organisms.Add(organism);
 
         return organism;
+    }
+
+    public void RemoveOrganism(AIOrganism organism)
+    {
+        _organisms.Remove(organism);
     }
 
     private void AssignVital(Organism organism, VitalType vitalType, float min, float max)

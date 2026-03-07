@@ -101,7 +101,8 @@ public class Movement : MonoBehaviour
             float angleInDeg = Mathf.Rad2Deg * angleInRadians;
 
             footprintPos.y = 0.01f;
-            Instantiate(_footprintPrefab, footprintPos, Quaternion.Euler(0, angleInDeg, 0));*/
+            GameObject footstepInstance = Instantiate(_footprintPrefab, footprintPos, Quaternion.Euler(0, angleInDeg, 0));
+            Destroy(footstepInstance, 1f);*/
 
         }
     }

@@ -10,6 +10,10 @@ public class Stim_Hunter : Stimulus
         {
             interpretation.OverridePriority(90); // If it can see the hunter, set priority VERY HIGH
         }
+        else
+        {
+            interpretation.OverridePriority(80); // Set it fairly high if its just smell
+        }
 
         return interpretation;
     }

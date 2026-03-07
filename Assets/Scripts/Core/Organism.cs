@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
 public class Organism : WorldObject
 {
+    public event Action<Organism> OnDie;
+
     [SerializeField] private Vitals _vitals;
     [SerializeField] private Senses _senses;
     [SerializeField] private Movement _movement;
@@ -57,5 +60,15 @@ public class Organism : WorldObject
         Gizmos.color = Color.white;
         Vector3 worldLookDir = VectorUtils.Vec2ToVec3(_lookDirection);
         Gizmos.DrawRay(pos, worldLookDir * 5f);
+    }
+
+    public void Despawn()
+    {
+        Destroy(gameObject);
+    }
+
+    public void OnOrganismDie()
+    {
+        OnDie?.Invoke(this);
     }
 }

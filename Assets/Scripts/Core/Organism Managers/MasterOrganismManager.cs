@@ -7,6 +7,11 @@ public class MasterOrganismManager : MonoBehaviour
     [SerializeField] private OrganismManager _mudyakManager;
     [SerializeField] private OrganismManager _bulletRaptorManager;
     [SerializeField] private int _maxOrganisms = 100;
+    [SerializeField] private float _despawnDistance = 400f;
+    [SerializeField] private PlayerOrganism _player;
+
+    public float DespawnDistance { get => _despawnDistance; }
+    public PlayerOrganism Player { get => _player; }
 
     private List<AIOrganism> _allOrganisms;
 
@@ -25,7 +30,15 @@ public class MasterOrganismManager : MonoBehaviour
     {
         AIOrganism organism = InstantiateOrganism(organismType, point);
         _allOrganisms.Add(organism);
+
         return organism;
+    }
+
+    public void RemoveOrganism(AIOrganism organism)
+    {
+        _allOrganisms.Remove(organism);
+        OrganismManager manager = GetOrganismManager(organism.OrganismType);
+        manager.RemoveOrganism(organism);
     }
 
     private AIOrganism InstantiateOrganism(OrganismType organismType, Vector2 point)
