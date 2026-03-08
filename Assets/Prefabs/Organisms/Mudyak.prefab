@@ -77,6 +77,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _areaLocation: {fileID: 0}
+  _collisionLayers:
+    serializedVersion: 2
+    m_Bits: 129
   _vitals: {fileID: 8816648452552321060}
   _senses: {fileID: 8816648452552321061}
   _movement: {fileID: 8816648452552321057}

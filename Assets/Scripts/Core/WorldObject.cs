@@ -6,13 +6,14 @@ public class WorldObject : MonoBehaviour
     public event Action<WorldObject> OnPositionUpdate;
 
     [SerializeField] private AreaLocation _areaLocation; // Optional, for regional objects like grass and bodies of water
+    [SerializeField] private LayerMask _collisionLayers;
 
     private CapsuleCollider _collider;
 
     private float _posUpdateRate = 5f;
     private float _lastPosUpdate;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         _collider = GetComponent<CapsuleCollider>();
         _lastPosUpdate = Time.time;
@@ -27,11 +28,11 @@ public class WorldObject : MonoBehaviour
             if (_collider != null)
             {
                 // TODO: Clean up collision later
-                //if (WouldCollideAt(targetPos))
-                //{
-                //    Debug.Log("Cannot move: collision detected!");
-                //    return; // Don't set position
-                //}
+                if (WouldCollideAt(targetPos))
+                {
+                    Debug.Log("Cannot move: collision detected!");
+                    return; // Don't set position
+                }
             }
 
             transform.position = targetPos;
@@ -52,10 +53,14 @@ public class WorldObject : MonoBehaviour
     {
         float dist = Vector2.Distance(Position, position);
 
+        Debug.Log("Distance from position: " + dist);
+        Debug.Log("Reach: " + reach);
+        Debug.Log("Radius: " + Radius);
+
         return dist <= (reach + Radius);
     }
 
-    private bool WouldCollideAt(Vector3 targetPos)
+    protected bool WouldCollideAt(Vector3 targetPos)
     {
         if (_collider == null) return false;
 
@@ -68,7 +73,7 @@ public class WorldObject : MonoBehaviour
         Vector3 point1 = center + up * (cylinderHeight / 2f);
         Vector3 point2 = center - up * (cylinderHeight / 2f);
 
-        Collider[] hits = Physics.OverlapCapsule(point1, point2, scaledRadius);
+        Collider[] hits = Physics.OverlapCapsule(point1, point2, scaledRadius, _collisionLayers);
         foreach (var hit in hits)
         {
             if (hit != _collider) // ignore self
@@ -76,6 +81,11 @@ public class WorldObject : MonoBehaviour
         }
 
         return false;
+    }
+
+    public bool IsPositionValid()
+    {
+        return !WouldCollideAt(Position);
     }
 
     public virtual void OnInteraction(PlayerController playerController) { }

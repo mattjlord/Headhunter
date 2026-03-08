@@ -94,7 +94,7 @@ public class Movement : MonoBehaviour
 
         if (_footprintPrefab != null)
         {
-            /*Vector3 footprintPos = VectorUtils.Vec2ToVec3(_organism.Position);
+            Vector3 footprintPos = VectorUtils.Vec2ToVec3(_organism.Position);
             Vector2 lookDir = _organism.LookDirection;
 
             float angleInRadians = Mathf.Atan2(lookDir.x, lookDir.y);
@@ -102,7 +102,7 @@ public class Movement : MonoBehaviour
 
             footprintPos.y = 0.01f;
             GameObject footstepInstance = Instantiate(_footprintPrefab, footprintPos, Quaternion.Euler(0, angleInDeg, 0));
-            Destroy(footstepInstance, 1f);*/
+            Destroy(footstepInstance, 1f);
 
         }
     }

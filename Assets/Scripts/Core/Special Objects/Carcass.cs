@@ -8,8 +8,9 @@ public class Carcass : FoodOrWaterObject
 
     public Container ScavengeableParts => _scavengeableParts;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         Consumable consumable = null;
         int count = 0;
         foreach(InventoryItemInstance item in _scavengeableParts.Items)

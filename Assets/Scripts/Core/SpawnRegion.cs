@@ -81,6 +81,12 @@ public class SpawnRegion : MonoBehaviour
 
         Organism organism = obj as Organism;
 
+        if (!organism.IsPositionValid()) // Band-aid fix for bad spawn logic
+        {
+            organism.Despawn();
+            RemoveOrganism(organism);
+        }
+
         float distance = Vector2.Distance(_masterOrganismManager.Player.Position, organism.Position);
 
         if (distance > _masterOrganismManager.DespawnDistance)

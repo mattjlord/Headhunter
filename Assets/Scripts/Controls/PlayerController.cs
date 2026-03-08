@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerOrganism _organism;
     [SerializeField] private InventoryUI _inventoryUI;
     [SerializeField] private ContainerUI _scavengingUI;
+    [SerializeField] private LayerMask _interactionLayers;
 
     private ControlState _controlState = ControlState.World;
 
@@ -134,7 +135,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             Vector3 worldLookPoint = VectorUtils.Vec2ToVec3(_lookPoint);
-            bool objectHit = Physics.Raycast(worldLookPoint + 20 * Vector3.up, Vector3.down * 20f, out RaycastHit hitInfo);
+            bool objectHit = Physics.Raycast(worldLookPoint + 20 * Vector3.up, Vector3.down * 20f, out RaycastHit hitInfo, _interactionLayers);
 
             if (!objectHit) { return; }
 
