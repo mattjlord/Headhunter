@@ -30,11 +30,10 @@ public class Odor : MonoBehaviour
     {
         if (Time.fixedTime > _lastEmission + _frequency)
         {
+            _odorTrailStim.Fire();
             Emit();
             Cleanup();
         }
-
-        _odorTrailStim.Fire();
     }
 
     private void GenerateOdorTrail()
