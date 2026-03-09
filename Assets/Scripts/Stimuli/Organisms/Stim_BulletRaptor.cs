@@ -7,7 +7,7 @@ public class Stim_BulletRaptor : Stimulus
 
         if (SenseType == SenseType.Sight)
         {
-            interpretation.OverridePriority(90); // If it's in sight, flee
+            interpretation.OverridePriority(100); // If it's in sight, flee
             interpretation.OverrideValence(1);
         }
         else

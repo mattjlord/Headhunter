@@ -10,7 +10,7 @@ public class Stim_Mudyak : Stimulus
 
         if (SenseType == SenseType.Sight)
         {
-            interpretation.OverridePriority(90); // If it can see the mudyak, set priority VERY HIGH
+            interpretation.OverridePriority(100); // If it can see the mudyak, set priority VERY HIGH
         }
 
         return interpretation;

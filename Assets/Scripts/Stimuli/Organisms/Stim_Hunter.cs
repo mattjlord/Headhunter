@@ -8,7 +8,7 @@ public class Stim_Hunter : Stimulus
 
         if (SenseType == SenseType.Sight)
         {
-            interpretation.OverridePriority(90); // If it can see the hunter, set priority VERY HIGH
+            interpretation.OverridePriority(100); // If it can see the hunter, set priority VERY HIGH
         }
         else
         {
@@ -45,7 +45,7 @@ public class Stim_Hunter : Stimulus
 
         if (SenseType == SenseType.Sight)
         {
-            interpretation.OverridePriority(90); // If the hunter is in sight, flee
+            interpretation.OverridePriority(100); // If the hunter is in sight, flee
             interpretation.OverrideValence(1);
         }
 

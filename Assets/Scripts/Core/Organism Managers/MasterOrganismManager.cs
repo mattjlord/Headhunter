@@ -13,7 +13,9 @@ public class MasterOrganismManager : MonoBehaviour
     public float DespawnDistance { get => _despawnDistance; }
     public PlayerOrganism Player { get => _player; }
 
-    private List<AIOrganism> _allOrganisms;
+    private static List<AIOrganism> _allOrganisms;
+
+    public static List<AIOrganism> AllOrganisms { get => _allOrganisms; }
 
     public bool CanSpawnOrganism(OrganismType organismType)
     {

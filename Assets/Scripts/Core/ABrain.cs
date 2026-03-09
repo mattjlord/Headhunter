@@ -9,6 +9,7 @@ public abstract class ABrain : MonoBehaviour
     {
         InitDefaultTasks();
         InitDeathEvents();
+        organism.OnStimulus += RespondToStimulus;
     }
 
     public AIOrganism Organism { get { return organism; } }

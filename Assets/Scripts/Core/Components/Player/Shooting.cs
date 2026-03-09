@@ -8,13 +8,20 @@ public class Shooting : MonoBehaviour
     [SerializeField] private LayerMask _hitLayers;
     [SerializeField] private float _range;
     [SerializeField] private float _damage;
+    [SerializeField] private GameObject _muzzleFlashVFX;
     public void Shoot(Vector2 forward)
     {
         Vector3 worldForward = VectorUtils.Vec2ToVec3(forward);
         bool hitSomething = Physics.Raycast(_barrel.position, worldForward * _range, out RaycastHit hit);
 
         // TODO: Integrate actual visuals later to replace this
-        Debug.DrawRay(_barrel.position, worldForward * _range, Color.yellow, 0.5f);
+        //Debug.DrawRay(_barrel.position, worldForward * _range, Color.yellow, 0.5f);
+
+        if (_muzzleFlashVFX != null)
+        {
+            GameObject flash = Instantiate(_muzzleFlashVFX, _barrel.position, _barrel.rotation);
+            Destroy(flash, 1f);
+        }
 
         if (hitSomething)
         {

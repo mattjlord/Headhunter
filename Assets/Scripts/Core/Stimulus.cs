@@ -21,7 +21,6 @@ public class Stimulus : MonoBehaviour
     private float _minLifetime = 1f;
 
     private Organism? _producerOrganism;
-
     public ALocation Location { 
         get { return _location; }
         set { _location = value; }
@@ -109,32 +108,10 @@ public class Stimulus : MonoBehaviour
 
     public void Fire()
     {
-        if (_location.GetType() == typeof(PointLocation))
+        foreach (AIOrganism organism in MasterOrganismManager.AllOrganisms)
         {
-            DrawUtils.DrawCircle(transform.position + Vector3.up, _detectableDistance, Color.magenta, 1f);
+            organism.RespondToStimulus(this);
         }
-        List<ABrain> foundBrains = FindBrainsInRange();
-        foreach (ABrain brain in foundBrains)
-        {
-            if (brain.Organism.Senses.CanSense(this))
-                brain.RespondToStimulus(this);
-        }
-    }
-
-    private List<ABrain> FindBrainsInRange()
-    {
-        List<ABrain> found = new List<ABrain>();
-        List<Collider> colliders = _location.GetNearbyColliders(_detectableDistance);
-        foreach (Collider collider in colliders)
-        {
-            ABrain brain = collider.GetComponent<ABrain>();
-            if (brain != null)
-            {
-                found.Add(brain);
-            }
-        }
-
-        return found;
     }
 
     public void IncrementObservers()

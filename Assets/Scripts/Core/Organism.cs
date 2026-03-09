@@ -4,6 +4,7 @@ using UnityEngine;
 public class Organism : WorldObject
 {
     public event Action<Organism> OnDie;
+    public event Action<Stimulus> OnStimulus;
 
     [SerializeField] private Vitals _vitals;
     [SerializeField] private Senses _senses;
@@ -70,5 +71,11 @@ public class Organism : WorldObject
     public void OnOrganismDie()
     {
         OnDie?.Invoke(this);
+    }
+
+    public void RespondToStimulus(Stimulus stimulus)
+    {
+        if (Senses.CanSense(stimulus))
+            OnStimulus?.Invoke(stimulus);
     }
 }
