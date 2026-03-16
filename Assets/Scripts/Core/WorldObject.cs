@@ -53,10 +53,6 @@ public class WorldObject : MonoBehaviour
     {
         float dist = Vector2.Distance(Position, position);
 
-        Debug.Log("Distance from position: " + dist);
-        Debug.Log("Reach: " + reach);
-        Debug.Log("Radius: " + Radius);
-
         return dist <= (reach + Radius);
     }
 

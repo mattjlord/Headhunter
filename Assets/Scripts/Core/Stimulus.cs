@@ -108,6 +108,10 @@ public class Stimulus : MonoBehaviour
 
     public void Fire()
     {
+        if (_location.GetType() == typeof(PointLocation))
+        {
+            //DrawUtils.DrawCircle(transform.position + Vector3.up, _detectableDistance, Color.magenta, 1f);
+        }
         foreach (AIOrganism organism in MasterOrganismManager.AllOrganisms)
         {
             organism.RespondToStimulus(this);

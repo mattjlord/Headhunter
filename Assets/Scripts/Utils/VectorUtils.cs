@@ -45,4 +45,29 @@ public static class VectorUtils
 
         return a + t * ab;
     }
+
+    public static bool DoRaysIntersect(Vector2 ray1Origin, Vector2 ray1Dir, Vector2 ray2Origin, Vector2 ray2Dir, out Vector2 intersection)
+    {
+        intersection = Vector2.zero;
+
+        float cross = ray1Dir.x * ray2Dir.y - ray1Dir.y * ray2Dir.x;
+
+        // Parallel rays
+        if (Mathf.Abs(cross) == 0.00001f)
+            return false;
+
+        Vector2 diff = ray2Origin - ray1Origin;
+
+        float t = (diff.x * ray2Dir.y - diff.y * ray2Dir.x) / cross;
+        float u = (diff.x * ray1Dir.y - diff.y * ray1Dir.x) / cross;
+
+        // Ensure intersection is forward along both rays
+        if (t >= 0f && u >= 0f)
+        {
+            intersection = ray1Origin + ray1Dir * t;
+            return true;
+        }
+
+        return false;
+    }
 }

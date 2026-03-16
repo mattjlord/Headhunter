@@ -25,6 +25,11 @@ public class PlayerController : MonoBehaviour
 
     private Container _openContainer = null;
 
+    private void Start() // TODO: GET RID OF THIS ASAP THIS IS A BAND-AID FIX
+    {
+        _organism.Vitals.GetVital(VitalType.Injury).OnMaxValueReached += () => Application.Quit();
+    }
+
     public void OpenContainer(Container container)
     {
         _scavengingUI.Container = container;

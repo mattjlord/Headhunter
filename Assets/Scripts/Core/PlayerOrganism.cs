@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerOrganism : Organism
 {
+
     [SerializeField] private Shooting _shooting;
     [SerializeField] private Inventory _inventory;
 

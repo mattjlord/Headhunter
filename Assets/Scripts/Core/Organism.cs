@@ -71,6 +71,11 @@ public class Organism : WorldObject
     public void OnOrganismDie()
     {
         OnDie?.Invoke(this);
+        //TODO: Actual player death logic later, this is a band-aid!
+        if (GetType() == typeof(PlayerOrganism))
+        {
+            Application.Quit();
+        }
     }
 
     public void RespondToStimulus(Stimulus stimulus)

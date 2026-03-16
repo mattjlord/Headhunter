@@ -38,7 +38,7 @@ public class Vital
         _value += (m * value);
         _value = Mathf.Clamp(_value, 0, 100);
         if (_value == 100f)
-            OnMaxValueReached();
+            OnMaxValueReached?.Invoke();
 
     }
 

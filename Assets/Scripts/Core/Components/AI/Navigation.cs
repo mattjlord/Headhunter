@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEditor.PlayerSettings;
 
 public class Navigation : MonoBehaviour
 {
@@ -23,11 +22,18 @@ public class Navigation : MonoBehaviour
 
         if (chasing)
         {
+            // TODO: Fix this to prevent running through walls
             dir = (pos - organism.Position).normalized;
         }
         else
         {
             dir = GetNavMeshDir(organism, pos);
+        }
+
+        if (organism.Movement.CurrentSpeed > 0f)
+        {
+            dir = NavUtils.AdjustVelocity(organism, dir * organism.Movement.CurrentSpeed);
+            dir.Normalize();
         }
 
         Debug.DrawLine(transform.position + Vector3.up, VectorUtils.Vec2ToVec3(pos) + Vector3.up, Color.cyan);
@@ -85,6 +91,12 @@ public class Navigation : MonoBehaviour
         }
 
         Vector2 moveDir = ((Vector2)pointAhead - organism.Position).normalized;
+
+        if (organism.Movement.CurrentSpeed > 0f)
+        {
+            moveDir = NavUtils.AdjustVelocity(organism, moveDir * organism.Movement.CurrentSpeed);
+            moveDir.Normalize();
+        }
 
         organism.Movement.Move(organism, moveDir, run);
         return true;

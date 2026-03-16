@@ -4876,7 +4876,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   organism: {fileID: 3198518219397569818}
-  _carcass: {fileID: 0}
+  _carcass: {fileID: 3962123820247030542, guid: 81255abcf3ad6d647b5ce4ed0b446e5c, type: 3}
 --- !u!114 &3198518219397569818
 MonoBehaviour:
   m_ObjectHideFlags: 0
