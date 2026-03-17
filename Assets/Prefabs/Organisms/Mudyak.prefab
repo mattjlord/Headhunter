@@ -4838,6 +4838,7 @@ GameObject:
   - component: {fileID: 8816648452552321067}
   - component: {fileID: 8816648452552321069}
   - component: {fileID: 8816648452552321056}
+  - component: {fileID: 7759847040372767279}
   m_Layer: 7
   m_Name: Mudyak
   m_TagString: Untagged
@@ -5025,27 +5026,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edbfdebbf577f1e479af9fa840fea4fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _foodLocations:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  _waterLocations:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  _foodLocations: []
+  _waterLocations: []
   _shelterLocations: []
 --- !u!114 &8816648452552321081
 MonoBehaviour:
@@ -5069,13 +5051,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8816648452552321084}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf4cb20433c411148ae5922e1cfbdf9a, type: 3}
+  m_Script: {fileID: 11500000, guid: df373cce918e9d24db78de11827d8880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _walkSpeed: 0.25
-  _runSpeed: 0.5
+  _walkSpeed: 15
+  _runSpeed: 30
   _footstepFrequency: 0.25
-  _footstepLoudness: 40
+  _footstepLoudness: 45
   _footprintPrefab: {fileID: 7769087844988270549, guid: bd47f62d7894b5c4788cc9bb7d114947, type: 3}
 --- !u!114 &8816648452552321071
 MonoBehaviour:
@@ -5178,6 +5160,28 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 5.5, z: 0}
+--- !u!195 &7759847040372767279
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8816648452552321084}
+  m_Enabled: 1
+  m_AgentTypeID: -1372625422
+  m_Radius: 5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &8816648453989378103
 GameObject:
   m_ObjectHideFlags: 0

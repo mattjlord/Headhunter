@@ -2391,11 +2391,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 426138443}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf4cb20433c411148ae5922e1cfbdf9a, type: 3}
+  m_Script: {fileID: 11500000, guid: 3919bef7659835f4996fea12a91a18cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _walkSpeed: 0.25
-  _runSpeed: 0.5
+  _walkSpeed: 18
+  _runSpeed: 36
   _footstepFrequency: 0.25
   _footstepLoudness: 10
   _footprintPrefab: {fileID: 0}

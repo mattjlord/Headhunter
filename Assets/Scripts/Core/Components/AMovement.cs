@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Movement : MonoBehaviour
+public abstract class AMovement : MonoBehaviour
 {
     [SerializeField] private float _walkSpeed; // TODO: Integrate vitals into speed
     [SerializeField] private float _runSpeed;
@@ -9,28 +9,29 @@ public class Movement : MonoBehaviour
 
     [SerializeField] private GameObject _footprintPrefab;
 
+    protected Vector2 dir;
+    protected Organism organism;
+
     private float _lastFootstep;
-    private Vector2 _dir;
-    private Organism _organism;
     private bool _isRunning = false;
 
-    private void Awake()
+    protected virtual void Awake()
     {
-        _dir = Vector2.zero;
+        dir = Vector2.zero;
     }
 
-    public bool IsMoving { get { return _dir != Vector2.zero; } }
+    public bool IsMoving { get { return dir != Vector2.zero; } }
 
     public Vector2 Velocity
     {
-        get { return _dir * CurrentSpeed; }
+        get { return dir * CurrentSpeed; }
     }
 
     public float CurrentSpeed
     {
         get
         {
-            if (_dir == Vector2.zero)
+            if (dir == Vector2.zero)
                 return 0f;
             if (_isRunning)
                 return _runSpeed;
@@ -39,14 +40,14 @@ public class Movement : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        if (_organism == null)
+        if (organism == null)
             return;
-        if (_dir != Vector2.zero)
+        if (dir != Vector2.zero)
         {
-            _organism.LookDirection = _dir;
-            if (Time.fixedTime > _lastFootstep + _footstepFrequency)
+            organism.LookDirection = dir;
+            if (Time.time > _lastFootstep + _footstepFrequency)
                 Footstep();
         }
         float speed;
@@ -55,27 +56,35 @@ public class Movement : MonoBehaviour
         else
             speed = _walkSpeed;
 
-
-        _organism.Position += (_dir * speed);
+        UpdateMove(speed);
     }
 
-    public void Move(Organism organism, Vector2 dir, bool run)
+    public void Move(Organism organism, Vector2 value, bool run)
     {
-        _organism = organism;
-        _dir = dir;
+        AssignMoveParams(organism, run);
+        Move(value);
+    }
+
+    private void AssignMoveParams(Organism organism, bool run)
+    {
+        this.organism = organism;
         _isRunning = run;
     }
 
+    protected abstract void Move(Vector2 value); // Value is either a direction (PlayerMovement) or a destination (AIMovement)
+    protected abstract void UpdateMove(float speed);
+    public abstract void StopMovement();
+
     private void Footstep()
     {
-        _lastFootstep = Time.fixedTime;
+        _lastFootstep = Time.time;
 
         GameObject footstepObj = new GameObject();
         footstepObj.AddComponent<Stim_Footstep>();
         footstepObj.AddComponent<PointLocation>();
 
         Stim_Footstep footstep = footstepObj.GetComponent<Stim_Footstep>();
-        footstep.OrganismType = _organism.OrganismType;
+        footstep.OrganismType = organism.OrganismType;
         PointLocation pointLocation = footstepObj.GetComponent<PointLocation>();
 
         float loudness = _footstepLoudness;
@@ -84,9 +93,9 @@ public class Movement : MonoBehaviour
         footstep.Location = pointLocation;
         footstep.SenseType = SenseType.Sound;
         footstep.DetectableDistance = loudness;
-        footstep.ProducerOrganism = _organism;
+        footstep.ProducerOrganism = organism;
 
-        Vector3 footstepPos = VectorUtils.Vec2ToVec3(_organism.Position);
+        Vector3 footstepPos = VectorUtils.Vec2ToVec3(organism.Position);
 
         GameObject instance = Instantiate(footstepObj, footstepPos, Quaternion.identity);
 
@@ -94,8 +103,8 @@ public class Movement : MonoBehaviour
 
         if (_footprintPrefab != null)
         {
-            Vector3 footprintPos = VectorUtils.Vec2ToVec3(_organism.Position);
-            Vector2 lookDir = _organism.LookDirection;
+            Vector3 footprintPos = VectorUtils.Vec2ToVec3(organism.Position);
+            Vector2 lookDir = organism.LookDirection;
 
             float angleInRadians = Mathf.Atan2(lookDir.x, lookDir.y);
             float angleInDeg = Mathf.Rad2Deg * angleInRadians;

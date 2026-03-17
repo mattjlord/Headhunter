@@ -8,7 +8,7 @@ public class Organism : WorldObject
 
     [SerializeField] private Vitals _vitals;
     [SerializeField] private Senses _senses;
-    [SerializeField] private Movement _movement;
+    [SerializeField] private AMovement _movement;
     [SerializeField] private Odor _odor;
     [SerializeField] private Visibility _visibility;
     [SerializeField] private ActionManagement _actionManagement;
@@ -23,7 +23,7 @@ public class Organism : WorldObject
 
     public Vitals Vitals { get { return _vitals; } }
     public Senses Senses { get { return _senses; } }
-    public Movement Movement { get { return _movement; } }
+    public AMovement Movement { get { return _movement; } }
     public Odor Odor { get { return _odor; } }
     public Visibility Visibility { get { return _visibility; } }
     public ActionManagement ActionManagement { get { return _actionManagement; } }

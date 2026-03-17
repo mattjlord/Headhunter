@@ -3,6 +3,13 @@ using UnityEngine;
 
 public class WorldObject : MonoBehaviour
 {
+    // TODO: Refactor all collision logic here if it becomes an issue
+    // This collision system exists because movement is manual.
+    // NavMeshAgents already handle collision + avoidance.
+    // When agents are introduced:
+    // - disable manual collision for AI
+    // - let NavMeshAgent control transform movement
+
     public event Action<WorldObject> OnPositionUpdate;
 
     [SerializeField] private AreaLocation _areaLocation; // Optional, for regional objects like grass and bodies of water

@@ -7,73 +7,9 @@ public class Navigation : MonoBehaviour
 
     private bool _wandering = false;
 
-    private Vector2 _currentDestination;
-    private NavMeshPath _path;
-    private int _pathIndex;
-
-    private void Awake()
-    {
-        _path = new NavMeshPath();
-    }
-
     public void MoveTowards(Organism organism, Vector2 pos, bool run, bool chasing = false)
     {
-        Vector2 dir;
-
-        if (chasing)
-        {
-            // TODO: Fix this to prevent running through walls
-            dir = (pos - organism.Position).normalized;
-        }
-        else
-        {
-            dir = GetNavMeshDir(organism, pos);
-        }
-
-        if (organism.Movement.CurrentSpeed > 0f)
-        {
-            dir = NavUtils.AdjustVelocity(organism, dir * organism.Movement.CurrentSpeed);
-            dir.Normalize();
-        }
-
-        Debug.DrawLine(transform.position + Vector3.up, VectorUtils.Vec2ToVec3(pos) + Vector3.up, Color.cyan);
-
-        organism.Movement.Move(organism, dir, run);
-    }
-
-    Vector2 GetNavMeshDir(Organism organism, Vector2 pos)
-    {
-        if (_currentDestination != pos)
-        {
-            InitPath(organism, pos);
-        }
-
-        if (_path.corners.Length == 0)
-        {
-            Debug.DrawRay(transform.position, Vector3.up * 10, Color.red);
-            Debug.DrawLine(transform.position + (Vector3.up * 10), VectorUtils.Vec2ToVec3(pos) + (Vector3.up * 10), Color.red);
-            Debug.DrawRay(VectorUtils.Vec2ToVec3(pos), Vector3.up * 10, Color.red);
-            return Vector2.zero;
-        }
-
-        Debug.DrawRay(transform.position, Vector3.up * 10, Color.green);
-
-        if (_pathIndex >= _path.corners.Length)
-            return Vector2.zero;
-
-        Vector3 nextPoint = _path.corners[_pathIndex];
-
-        Debug.DrawLine(transform.position + Vector3.up, nextPoint + Vector3.up, Color.blue);
-
-        Vector2 nextPoint2D = VectorUtils.Vec3ToVec2(nextPoint);
-
-        float distToNextPoint = Vector2.Distance(organism.Position, nextPoint2D);
-        if (distToNextPoint < organism.Movement.CurrentSpeed)
-        {
-            _pathIndex++;
-        }
-
-        return (nextPoint2D - organism.Position).normalized;
+        organism.Movement.Move(organism, pos, run);
     }
 
     public bool MoveAwayFrom(Organism organism, Vector2 pos, bool run)
@@ -90,21 +26,13 @@ public class Navigation : MonoBehaviour
             return false;
         }
 
-        Vector2 moveDir = ((Vector2)pointAhead - organism.Position).normalized;
-
-        if (organism.Movement.CurrentSpeed > 0f)
-        {
-            moveDir = NavUtils.AdjustVelocity(organism, moveDir * organism.Movement.CurrentSpeed);
-            moveDir.Normalize();
-        }
-
-        organism.Movement.Move(organism, moveDir, run);
+        organism.Movement.Move(organism, (Vector2)pointAhead, run);
         return true;
     }
 
     public void StopMovement(Organism organism)
     {
-        organism.Movement.Move(organism, Vector2.zero, false);
+        organism.Movement.StopMovement();
     }
 
     public void WanderAround(AIOrganism organism, ALocation location, bool run)
@@ -122,34 +50,5 @@ public class Navigation : MonoBehaviour
     public void StopWandering()
     {
         _wandering = false;
-        _path.ClearCorners();
-    }
-
-    private void InitPath(Organism organism, Vector2 destination)
-    {
-        _currentDestination = destination;
-        _pathIndex = 1;
-        int agentID = NavUtils.GetNavMeshID(organism.OrganismType);
-        NavMeshQueryFilter filter = new NavMeshQueryFilter
-        {
-            agentTypeID = agentID,
-            areaMask = NavMesh.AllAreas
-        };
-        NavMesh.CalculatePath(VectorUtils.Vec2ToVec3(organism.Position), VectorUtils.Vec2ToVec3(destination), filter, _path);
-    }
-
-    private void OnDrawGizmos()
-    {
-        if (_path == null || _path.corners.Length == 0)
-            return;
-
-        Vector3? lastCorner = null;
-
-        foreach(var corner in _path.corners)
-        {
-            if (lastCorner != null)
-                Gizmos.DrawLine((Vector3)lastCorner, corner);
-            lastCorner = corner;
-        }
     }
 }

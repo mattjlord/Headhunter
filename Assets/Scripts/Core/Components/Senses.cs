@@ -22,7 +22,6 @@ public class Senses : MonoBehaviour
                 return CanSmell(stimulus);
         }
     }
-
     public Vector2? GetPointAhead(float radius, OrganismType organismType)
     {
         Vector2 point = VectorUtils.Vec3ToVec2(_headTransform.position + (_headTransform.forward * _sightRadius));
