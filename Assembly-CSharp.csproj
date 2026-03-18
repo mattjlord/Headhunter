@@ -77,14 +77,17 @@
     <Compile Include="Assets\Scripts\Core\Special Objects\Carcass.cs" />
     <Compile Include="Assets\Scripts\Core\Components\Odor.cs" />
     <Compile Include="Assets\Scripts\Core\Inventory\AInventoryItem.cs" />
+    <Compile Include="Assets\Scripts\Art\UI\ClockUI.cs" />
     <Compile Include="Assets\Scripts\Core\Components\Player\Shooting.cs" />
     <Compile Include="Assets\Scripts\Core\Tasks\VitalTask.cs" />
     <Compile Include="Assets\Scripts\Stimuli\Stim_Water.cs" />
-    <Compile Include="Assets\Scripts\Core\Components\Movement.cs" />
+    <Compile Include="Assets\Scripts\Core\TimeManagement.cs" />
     <Compile Include="Assets\Scripts\Core\PlayerOrganism.cs" />
+    <Compile Include="Assets\Scripts\Core\Components\AMovement.cs" />
     <Compile Include="Assets\Scripts\Core\Enums\StimulusResponseType.cs" />
     <Compile Include="Assets\Scripts\Art\UI\InventoryUI.cs" />
     <Compile Include="Assets\Scripts\Core\Components\AI\Memory.cs" />
+    <Compile Include="Assets\Scripts\Core\Components\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Core\Tasks\StimulusResponseTask.cs" />
     <Compile Include="Assets\Scripts\Core\Inventory\Container.cs" />
     <Compile Include="Assets\Scripts\Utils\LanguageUtils.cs" />
@@ -109,6 +112,7 @@
     <Compile Include="Assets\Scripts\Core\Enums\SenseType.cs" />
     <Compile Include="Assets\Scripts\Core\Components\AI\HerdManagement.cs" />
     <Compile Include="Assets\Scripts\Core\Enums\ItemInteractionType.cs" />
+    <Compile Include="Assets\Scripts\Core\Components\AI\AIMovement.cs" />
     <Compile Include="Assets\Scripts\Core\Locations\AreaLocation.cs" />
     <Compile Include="Assets\Scripts\Core\WorldObject.cs" />
     <Compile Include="Assets\Scripts\Core\ALocation.cs" />
