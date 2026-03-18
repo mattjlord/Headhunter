@@ -1,11 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+    public event Action<float> OnEncumbranceChanged;
+
     [SerializeField] private Container _container;
     [SerializeField] private float _carryingCapacity = 50f;
+
+    private void Start()
+    {
+        _container.OnContentsChanged += OnContainerChanged;
+    }
 
     public Container Container => _container;
 
@@ -28,5 +34,11 @@ public class Inventory : MonoBehaviour
                 // TODO: Equip item
                 return;
         }
+    }
+
+    private void OnContainerChanged()
+    {
+        float encumbrance = _container.TotalWeight / _carryingCapacity;
+        OnEncumbranceChanged?.Invoke(encumbrance);
     }
 }

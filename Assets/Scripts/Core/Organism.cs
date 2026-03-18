@@ -36,6 +36,9 @@ public class Organism : WorldObject
     {
         _odor.Organism = this;
         _visibility.Organism = this;
+
+        // Vital impacts - add more as needed
+        _vitals.GetVital(VitalType.Exhaustion).OnValueChanged += OnExhaustionChanged;
     }
 
     public Vector2 LookDirection
@@ -82,5 +85,11 @@ public class Organism : WorldObject
     {
         if (Senses.CanSense(stimulus))
             OnStimulus?.Invoke(stimulus);
+    }
+
+    private void OnExhaustionChanged(float value)
+    {
+        float movementModifier = Mathf.Lerp(1, 0.5f, value / 100f);
+        _movement.ExhaustionModifier = movementModifier;
     }
 }

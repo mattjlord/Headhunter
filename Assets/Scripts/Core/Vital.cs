@@ -7,6 +7,7 @@ using UnityEngine;
 public class Vital
 {
     public event Action OnMaxValueReached;
+    public event Action<float> OnValueChanged;
 
     [SerializeField, Range(0f, 100f)] private float _value;
     [SerializeField, Min(0f)] private float _passiveIncreaseRate; // Per minute of game time
@@ -37,6 +38,7 @@ public class Vital
         }
         _value += (m * value);
         _value = Mathf.Clamp(_value, 0, 100);
+        OnValueChanged?.Invoke(_value);
         if (_value == 100f)
             OnMaxValueReached?.Invoke();
 
@@ -51,6 +53,7 @@ public class Vital
         }
         _value -= (m * value);
         _value = Mathf.Clamp(_value, 0, 100);
+        OnValueChanged?.Invoke(_value);
     }
 
     public void SetIncreaseSensitivity(float value)

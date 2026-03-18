@@ -2,18 +2,26 @@ using UnityEngine;
 
 public abstract class AMovement : MonoBehaviour
 {
-    [SerializeField] private float _walkSpeed; // TODO: Integrate vitals into speed
+    [SerializeField] private float _walkSpeed;
     [SerializeField] private float _runSpeed;
     [SerializeField] private float _footstepFrequency;
     [SerializeField] private float _footstepLoudness;
 
     [SerializeField] private GameObject _footprintPrefab;
 
+    private float _currentSpeed;
+
+    private float _encumbranceModifier = 1f;
+    private float _exhaustionModifier = 1f;
+
     protected Vector2 dir;
     protected Organism organism;
 
     private float _lastFootstep;
     private bool _isRunning = false;
+
+    public float EncumbranceModifier { set { _encumbranceModifier = value; } }
+    public float ExhaustionModifier { set { _exhaustionModifier = value; } }
 
     protected virtual void Awake()
     {
@@ -33,10 +41,8 @@ public abstract class AMovement : MonoBehaviour
         {
             if (dir == Vector2.zero)
                 return 0f;
-            if (_isRunning)
-                return _runSpeed;
             else
-                return _walkSpeed;
+                return _currentSpeed;
         }
     }
 
@@ -50,13 +56,15 @@ public abstract class AMovement : MonoBehaviour
             if (Time.time > _lastFootstep + _footstepFrequency)
                 Footstep();
         }
-        float speed;
         if (_isRunning)
-            speed = _runSpeed;
+            _currentSpeed = _runSpeed;
         else
-            speed = _walkSpeed;
+            _currentSpeed = _walkSpeed;
 
-        UpdateMove(speed);
+        _currentSpeed *= _encumbranceModifier;
+        _currentSpeed *= _exhaustionModifier;
+
+        UpdateMove(_currentSpeed);
     }
 
     public void Move(Organism organism, Vector2 value, bool run)
@@ -69,6 +77,8 @@ public abstract class AMovement : MonoBehaviour
     {
         this.organism = organism;
         _isRunning = run;
+
+        // TODO: Update vitals with extra impact if the organism is walking/running
     }
 
     protected abstract void Move(Vector2 value); // Value is either a direction (PlayerMovement) or a destination (AIMovement)

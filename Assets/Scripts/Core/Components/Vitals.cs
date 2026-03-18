@@ -9,9 +9,6 @@ public class Vitals : MonoBehaviour
     [SerializeField] private Vital _injury;
     [SerializeField] private Vital _toxicity;
 
-    private bool _awake = true;
-    private bool _alive = true;
-
     public void Update()
     {
         _hunger.Update();

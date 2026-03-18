@@ -6,6 +6,8 @@ using UnityEngine;
 [Serializable]
 public class Container
 {
+    public event Action OnContentsChanged;
+
     [SerializeField] private List<InventoryItemInstance> _items;
 
     public List<InventoryItemInstance> Items { get { return _items; } }
@@ -32,6 +34,7 @@ public class Container
 
         receiver.GiveItem(item);
         _items.Remove(item);
+        OnContentsChanged?.Invoke();
     }
 
     public void GiveItem(InventoryItemInstance item)
@@ -42,11 +45,13 @@ public class Container
         }
 
         _items.Add(item);
+        OnContentsChanged?.Invoke();
     }
 
     public void RemoveItem(InventoryItemInstance item)
     {
         _items.Remove(item);
+        OnContentsChanged?.Invoke();
     }
 
     public void RemoveItemOfType(Type type)
@@ -54,6 +59,9 @@ public class Container
         InventoryItemInstance item = _items.FirstOrDefault(i => i.Item.GetType() == type);
 
         if (item != null)
+        {
             _items.Remove(item);
+            OnContentsChanged?.Invoke();
+        }
     }
 }
