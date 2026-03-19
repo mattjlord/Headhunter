@@ -125,6 +125,7 @@
     <Compile Include="Assets\Scripts\Core\Inventory\InventoryItemInstance.cs" />
     <Compile Include="Assets\Scripts\Core\AIOrganism.cs" />
     <Compile Include="Assets\Scripts\Core\Enums\VitalType.cs" />
+    <Compile Include="Assets\Scripts\Core\Special Objects\PlayerShelter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

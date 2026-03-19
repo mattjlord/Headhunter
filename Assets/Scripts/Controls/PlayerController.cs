@@ -30,6 +30,13 @@ public class PlayerController : MonoBehaviour
         _organism.Vitals.GetVital(VitalType.Injury).OnMaxValueReached += () => Application.Quit();
     }
 
+    public void RestInShelter(PlayerShelter shelter)
+    {
+        float minutesElapsed = TimeManagement.SkipToNextSafePeriod();
+        float exhaustionRecovery = shelter.RecoveryPerMinute * minutesElapsed;
+        _organism.Vitals.GetVital(VitalType.Exhaustion).DecreaseValue(exhaustionRecovery);
+    }
+
     public void OpenContainer(Container container)
     {
         _scavengingUI.Container = container;
