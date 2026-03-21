@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public static class NavUtils
 {
-
     public static int GetNavMeshID(OrganismType organismType)
     {
         switch (organismType)

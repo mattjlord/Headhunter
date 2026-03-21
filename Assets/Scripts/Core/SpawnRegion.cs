@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SpawnRegion : MonoBehaviour
 {
     [SerializeField] private MasterOrganismManager _masterOrganismManager;
-    [SerializeField] private int _density;
+    [SerializeField] private int _organismDensity;
     [SerializeField] private float _tickRate = 5f;
     [SerializeField] private List<OrganismType> _organismTypes;
 
@@ -34,11 +35,28 @@ public class SpawnRegion : MonoBehaviour
         }
     }
 
+    private void CheckForPlayer()
+    {
+        float distanceToPlayer = _areaLocation.GetDistanceFrom(_masterOrganismManager.Player.Position, OrganismType.Hunter);
+        if (distanceToPlayer < 200f)
+        {
+            SpawnAllPlants();
+            SpawnAllOrganisms();
+        }
+    }
+
+    public void SpawnAllPlants()
+    {
+        
+    }
+
     public void SpawnAllOrganisms()
     {
         Dictionary<AreaLocation, Dictionary<OrganismType, List<AIOrganism>>> herds = new Dictionary<AreaLocation, Dictionary<OrganismType, List<AIOrganism>>>();
 
-        for (int i = _activeOrganisms.Count; i < _density; i++)
+        int i = _activeOrganisms.Count;
+
+        while (i < _organismDensity)
         {
             int subregionIdx = Random.Range(0, _subregions.Length);
             AreaLocation subregion = _subregions[subregionIdx];
@@ -47,6 +65,11 @@ public class SpawnRegion : MonoBehaviour
 
             int organismTypeIdx = Random.Range(0, _organismTypes.Count - 1);
             OrganismType organismType = _organismTypes[organismTypeIdx];
+
+            if (!NavUtils.PointInBounds(organismType, spawnPoint, 1f, out NavMeshHit hit))
+            {
+                continue;
+            }
 
             if (!_masterOrganismManager.CanSpawnOrganism(organismType))
             {
@@ -62,6 +85,8 @@ public class SpawnRegion : MonoBehaviour
             herd.Add(spawnedOrganism);
 
             _activeOrganisms.Add(spawnedOrganism);
+
+            i++;
         }
 
         foreach (AreaLocation subregion in herds.Keys)
@@ -104,13 +129,6 @@ public class SpawnRegion : MonoBehaviour
         organism.OnPositionUpdate -= RespondToOrganismPos;
 
         _masterOrganismManager.RemoveOrganism(aiOrganism);
-    }
-
-    private void CheckForPlayer()
-    {
-        float distanceToPlayer = _areaLocation.GetDistanceFrom(_masterOrganismManager.Player.Position, OrganismType.Hunter);
-        if (distanceToPlayer < 200f)
-            SpawnAllOrganisms();
     }
 
     private AIOrganism SpawnOrganism(OrganismType organismType, Vector2 spawnPoint)

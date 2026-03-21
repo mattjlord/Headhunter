@@ -21,10 +21,10 @@ public class Stim_Meat : Stimulus
 
     public override void VisitAndInteract(BulletRaptorBrain brain, StimulusResponseType type)
     {
-        if (AssociatedObject == null || AssociatedObject.GetType() != typeof(Carcass))
+        if (AssociatedObject == null || AssociatedObject.GetType() != typeof(PlantOrCarcass))
             return;
 
-        Carcass carcass = AssociatedObject as Carcass;
+        PlantOrCarcass carcass = AssociatedObject as PlantOrCarcass;
 
         brain.Eat(carcass);
     }

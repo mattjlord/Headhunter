@@ -60,10 +60,10 @@
     <Compile Include="Assets\Scripts\Core\Locations\TrailLocation.cs" />
     <Compile Include="Assets\Scripts\Core\Enums\OrganismType.cs" />
     <Compile Include="Assets\Scripts\Stimuli\Stim_Footstep.cs" />
-    <Compile Include="Assets\Scripts\Stimuli\Stim_Meat.cs" />
+    <Compile Include="Assets\Scripts\Stimuli\Resources\Stim_Meat.cs" />
     <Compile Include="Assets\Scripts\Stimuli\Organisms\Stim_Hunter.cs" />
     <Compile Include="Assets\Scripts\Core\Components\Vitals.cs" />
-    <Compile Include="Assets\Scripts\Stimuli\Stim_Grass.cs" />
+    <Compile Include="Assets\Scripts\Stimuli\Resources\Stim_Grass.cs" />
     <Compile Include="Assets\Scripts\Core\Organism.cs" />
     <Compile Include="Assets\Scripts\Core\StimulusInterpretation.cs" />
     <Compile Include="Assets\Scripts\Core\Components\MeleeAttack.cs" />
@@ -72,15 +72,16 @@
     <Compile Include="Assets\Scripts\Core\ABrain.cs" />
     <Compile Include="Assets\Scripts\Core\Stimulus.cs" />
     <Compile Include="Assets\Scripts\Art\UI\VitalsUI.cs" />
+    <Compile Include="Assets\Scripts\Core\Special Objects\PlayerShelter.cs" />
     <Compile Include="Assets\Scripts\Core\BehaviorTask.cs" />
     <Compile Include="Assets\Scripts\Utils\VectorUtils.cs" />
-    <Compile Include="Assets\Scripts\Core\Special Objects\Carcass.cs" />
+    <Compile Include="Assets\Scripts\Core\Special Objects\PlantOrCarcass.cs" />
     <Compile Include="Assets\Scripts\Core\Components\Odor.cs" />
     <Compile Include="Assets\Scripts\Core\Inventory\AInventoryItem.cs" />
     <Compile Include="Assets\Scripts\Art\UI\ClockUI.cs" />
     <Compile Include="Assets\Scripts\Core\Components\Player\Shooting.cs" />
     <Compile Include="Assets\Scripts\Core\Tasks\VitalTask.cs" />
-    <Compile Include="Assets\Scripts\Stimuli\Stim_Water.cs" />
+    <Compile Include="Assets\Scripts\Stimuli\Resources\Stim_Water.cs" />
     <Compile Include="Assets\Scripts\Core\TimeManagement.cs" />
     <Compile Include="Assets\Scripts\Core\PlayerOrganism.cs" />
     <Compile Include="Assets\Scripts\Core\Components\AMovement.cs" />
@@ -117,6 +118,7 @@
     <Compile Include="Assets\Scripts\Core\WorldObject.cs" />
     <Compile Include="Assets\Scripts\Core\ALocation.cs" />
     <Compile Include="Assets\Scripts\Art\UI\ItemDetails.cs" />
+    <Compile Include="Assets\Scripts\Stimuli\Resources\Stim_Fruit.cs" />
     <Compile Include="Assets\Scripts\Core\Components\AI\Navigation.cs" />
     <Compile Include="Assets\Scripts\Core\Organism Managers\OrganismManager.cs" />
     <Compile Include="Assets\Scripts\Brains\BulletRaptorBrain.cs" />
@@ -124,8 +126,8 @@
     <Compile Include="Assets\Scripts\Utils\DrawUtils.cs" />
     <Compile Include="Assets\Scripts\Core\Inventory\InventoryItemInstance.cs" />
     <Compile Include="Assets\Scripts\Core\AIOrganism.cs" />
+    <Compile Include="Assets\Scripts\Stimuli\Resources\Stim_Cactus.cs" />
     <Compile Include="Assets\Scripts\Core\Enums\VitalType.cs" />
-    <Compile Include="Assets\Scripts\Core\Special Objects\PlayerShelter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

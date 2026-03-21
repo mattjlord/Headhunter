@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Carcass : FoodOrWaterObject
+public class PlantOrCarcass : FoodOrWaterObject
 {
     [SerializeField] private Container _scavengeableParts;
 
