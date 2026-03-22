@@ -66,7 +66,7 @@ public class SpawnRegion : MonoBehaviour
                 continue;
             }
 
-            int plantPrefabIdx = Random.Range(0, _plantPrefabs.Count - 1);
+            int plantPrefabIdx = Random.Range(0, _plantPrefabs.Count);
             GameObject plantPrefab = _plantPrefabs[plantPrefabIdx];
 
             Vector3 worldSpawnPoint = VectorUtils.Vec2ToVec3(spawnPoint);
@@ -93,7 +93,7 @@ public class SpawnRegion : MonoBehaviour
 
             Vector2 spawnPoint = subregion.GetRandomPointInArea();
 
-            int organismTypeIdx = Random.Range(0, _organismTypes.Count - 1);
+            int organismTypeIdx = Random.Range(0, _organismTypes.Count);
             OrganismType organismType = _organismTypes[organismTypeIdx];
 
             if (!NavUtils.PointInBounds(organismType, spawnPoint, 1f, out NavMeshHit hit))

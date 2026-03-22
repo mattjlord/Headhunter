@@ -32,7 +32,7 @@ public class BulletRaptorBrain : ABrain
         }
         else
         {
-            Vector2 target = obj.Position + (2 * obj.Movement.Velocity);
+            Vector2 target = obj.Position + 0.25f * obj.Movement.Velocity;
 
             Vector2 targetToThis = (organism.Position - target).normalized;
             target += targetToThis * (obj.Radius + organism.Reach);
