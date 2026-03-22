@@ -7,8 +7,13 @@ public class SpawnRegion : MonoBehaviour
 {
     [SerializeField] private MasterOrganismManager _masterOrganismManager;
     [SerializeField] private int _organismDensity;
+    [SerializeField] private int _plantDensity;
     [SerializeField] private float _tickRate = 5f;
     [SerializeField] private List<OrganismType> _organismTypes;
+
+    // Plant spawning can be more complex in the future if I want
+    [SerializeField] private List<GameObject> _plantPrefabs;
+    private int _plantCount = 0;
 
     private AreaLocation _areaLocation;
     [SerializeField] private AreaLocation[] _subregions;
@@ -47,7 +52,32 @@ public class SpawnRegion : MonoBehaviour
 
     public void SpawnAllPlants()
     {
-        
+        int i = _plantCount;
+
+        while (i < _plantDensity)
+        {
+            int subregionIdx = Random.Range(0, _subregions.Length);
+            AreaLocation subregion = _subregions[subregionIdx];
+
+            Vector2 spawnPoint = subregion.GetRandomPointInArea();
+
+            if (!NavUtils.PointInBounds(OrganismType.Mudyak, spawnPoint, 1f, out NavMeshHit hit)) // This is kinda messy, using mudyak NavMesh for validation
+            {
+                continue;
+            }
+
+            int plantPrefabIdx = Random.Range(0, _plantPrefabs.Count - 1);
+            GameObject plantPrefab = _plantPrefabs[plantPrefabIdx];
+
+            Vector3 worldSpawnPoint = VectorUtils.Vec2ToVec3(spawnPoint);
+
+            float rotation = Random.Range(0, 359);
+
+            Instantiate(plantPrefab, worldSpawnPoint, Quaternion.AngleAxis(rotation, Vector3.up));
+
+            _plantCount++;
+            i++;
+        }
     }
 
     public void SpawnAllOrganisms()

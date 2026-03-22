@@ -2273,9 +2273,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _masterOrganismManager: {fileID: 1171017548}
-  _density: 20
+  _organismDensity: 10
+  _plantDensity: 60
   _tickRate: 5
   _organismTypes: 01000000
+  _plantPrefabs:
+  - {fileID: 785219836578103868, guid: 0e86fc0b8ac0587449571ff51a83e91e, type: 3}
+  - {fileID: 370891624504462976, guid: 1009894f010afd24da1afb877913be55, type: 3}
+  - {fileID: 4362668801954228149, guid: fb62184b4575e9d449aa83e5e0dad610, type: 3}
   _subregions: []
 --- !u!1 &426138443
 GameObject:
@@ -2985,9 +2990,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _masterOrganismManager: {fileID: 1171017548}
-  _density: 20
+  _organismDensity: 15
+  _plantDensity: 60
   _tickRate: 5
   _organismTypes: 01000000
+  _plantPrefabs:
+  - {fileID: 785219836578103868, guid: 0e86fc0b8ac0587449571ff51a83e91e, type: 3}
+  - {fileID: 370891624504462976, guid: 1009894f010afd24da1afb877913be55, type: 3}
+  - {fileID: 4362668801954228149, guid: fb62184b4575e9d449aa83e5e0dad610, type: 3}
   _subregions: []
 --- !u!1 &471797301
 GameObject:
@@ -4863,9 +4873,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _masterOrganismManager: {fileID: 1171017548}
-  _density: 20
+  _organismDensity: 15
+  _plantDensity: 60
   _tickRate: 5
   _organismTypes: 01000000
+  _plantPrefabs:
+  - {fileID: 785219836578103868, guid: 0e86fc0b8ac0587449571ff51a83e91e, type: 3}
+  - {fileID: 370891624504462976, guid: 1009894f010afd24da1afb877913be55, type: 3}
+  - {fileID: 4362668801954228149, guid: fb62184b4575e9d449aa83e5e0dad610, type: 3}
   _subregions: []
 --- !u!1 &868967276
 GameObject:
@@ -10899,9 +10914,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _masterOrganismManager: {fileID: 1171017548}
-  _density: 12
+  _organismDensity: 10
+  _plantDensity: 60
   _tickRate: 5
   _organismTypes: 02000000
+  _plantPrefabs:
+  - {fileID: 785219836578103868, guid: 0e86fc0b8ac0587449571ff51a83e91e, type: 3}
+  - {fileID: 370891624504462976, guid: 1009894f010afd24da1afb877913be55, type: 3}
+  - {fileID: 4362668801954228149, guid: fb62184b4575e9d449aa83e5e0dad610, type: 3}
   _subregions: []
 --- !u!1 &2064665705
 GameObject:
