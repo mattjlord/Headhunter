@@ -329,7 +329,8 @@ GameObject:
   - component: {fileID: 3962123820247030541}
   - component: {fileID: 5175768582697050650}
   - component: {fileID: 2419820126381807568}
-  m_Layer: 0
+  - component: {fileID: 7383013549254709482}
+  m_Layer: 7
   m_Name: Mudyak Carcass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -365,6 +366,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _areaLocation: {fileID: 0}
+  _collisionLayers:
+    serializedVersion: 2
+    m_Bits: 0
   hungerImpact: 0
   thirstImpact: 0
   uses: -1
@@ -421,6 +425,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugColor: {r: 0, g: 1, b: 0, a: 1}
+--- !u!208 &7383013549254709482
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3962123820247030542}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 5, y: 1, z: 5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &4196549248697525081
 GameObject:
   m_ObjectHideFlags: 0

@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 370891624504462983}
   - component: {fileID: 370891624504462982}
   - component: {fileID: 1984144342}
+  - component: {fileID: 8251339939943046065}
   m_Layer: 7
   m_Name: Fern
   m_TagString: Untagged
@@ -170,6 +171,22 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!208 &8251339939943046065
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 370891624504462976}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 4.5, y: 1, z: 4.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &370891624512052451
 GameObject:
   m_ObjectHideFlags: 0
