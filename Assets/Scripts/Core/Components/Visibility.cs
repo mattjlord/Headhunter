@@ -36,4 +36,14 @@ public class Visibility : MonoBehaviour
             _visibilityStimulus.DetectableDistance = value;
         }
     }
+
+    public void Enable()
+    {
+        _visibilityStimulus.DetectableDistance = _visibleDistance;
+    }
+
+    public void Disable()
+    {
+        _visibilityStimulus.DetectableDistance = 0;
+    }
 }

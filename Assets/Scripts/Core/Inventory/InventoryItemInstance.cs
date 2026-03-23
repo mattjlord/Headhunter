@@ -6,6 +6,7 @@ public class InventoryItemInstance
 {
     [SerializeField] private AInventoryItem _item;
     private float _durability;
+    private EquipmentSlot? _equipmentSlot = null;
 
     public InventoryItemInstance(AInventoryItem item)
     {
@@ -13,6 +14,8 @@ public class InventoryItemInstance
     }
 
     public AInventoryItem Item { get => _item; }
+
+    public EquipmentSlot? EquipmentSlot { get => _equipmentSlot; set => _equipmentSlot = value; }
 
     public void DecreaseDurability(float amount)
     {

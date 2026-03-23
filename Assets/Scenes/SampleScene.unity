@@ -2558,6 +2558,14 @@ MonoBehaviour:
   _container:
     _items: []
   _carryingCapacity: 50
+  _head:
+    _item: {fileID: 0}
+  _torso:
+    _item: {fileID: 0}
+  _legs:
+    _item: {fileID: 0}
+  _back:
+    _item: {fileID: 0}
 --- !u!1 &427699251
 GameObject:
   m_ObjectHideFlags: 0
