@@ -9,6 +9,7 @@ public class ItemDetails : MonoBehaviour
     [SerializeField] private TMP_Text _name;
     [SerializeField] private TMP_Text _description;
     [SerializeField] private TMP_Text _weight;
+    [SerializeField] private TMP_Text _durability;
 
     [SerializeField] private Image _image;
 
@@ -22,5 +23,14 @@ public class ItemDetails : MonoBehaviour
         _description.text = item.Item.Description;
         _weight.text = item.Item.Weight.ToString() + " lb";
         _image.sprite = item.Item.Image;
+
+        float durability = item.Durability;
+        if (durability == 100)
+            _durability.text = "";
+        else
+        {
+            _durability.text = ((int)durability).ToString() + "%";
+            _durability.color = Color.Lerp(Color.red, Color.green, durability / 100);
+        }
     }
 }

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 608475f26091548498c0f57898021845, type: 3}
   m_Name: Mudyak Coat
   m_EditorClassIdentifier: 
-  Name: Mudyak Coat
+  Name: Mudyak Pelt
   Description: Hairy, dirty coat of a large bovine.
   Weight: 20
-  Image: {fileID: 0}
+  Image: {fileID: 21300000, guid: e7fef0914509cc34b87f6f45d5fee090, type: 3}
   equipmentSlot: 3
   mudyakStimPrefab: {fileID: 8704636702704656435, guid: 5c11e56de2670ac4e88232ff0c0cbabc, type: 3}

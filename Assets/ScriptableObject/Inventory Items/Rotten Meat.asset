@@ -10,19 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aba2a9eeaf9c6334aa8203dba62d92a4, type: 3}
-  m_Name: Meat
+  m_Name: Rotten Meat
   m_EditorClassIdentifier: 
-  Name: Meat (Raw)
-  Description: Raw animal meat. This would taste better cooked.
+  Name: Meat (Rotten)
+  Description: Rotten animal meat. Smells bad and hardly edible.
   Weight: 2.5
-  Image: {fileID: 21300000, guid: 34f8e624fb21cd048a66db7a33321e67, type: 3}
-  Perishable: 1
-  Cookable: 1
+  Image: {fileID: 21300000, guid: aca9eec5bb32b124a9bcabf670f1a3c0, type: 3}
+  Perishable: 0
+  Cookable: 0
+  DecayRate: 0
   PerishedVersion: {fileID: 0}
   CookedVersion: {fileID: 0}
-  HungerImpact: -10
+  HungerImpact: -3
   ThirstImpact: 0
   ExhaustionImpact: 0
   HeatImpact: 0
   InjuryImpact: 0
-  ToxicityImpact: 10
+  ToxicityImpact: 15

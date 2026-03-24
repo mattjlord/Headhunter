@@ -24,7 +24,7 @@ public class Vital
     {
         if (_passiveIncreaseRate > 0)
         {
-            float increaseThisFrame = _passiveIncreaseRate * (Time.deltaTime / 60f);
+            float increaseThisFrame = _passiveIncreaseRate * (TimeManagement.GameDeltaTime / 60f);
             IncreaseValue(increaseThisFrame);
         }
     }

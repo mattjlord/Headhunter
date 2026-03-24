@@ -40,6 +40,9 @@ public class TimeManagement : MonoBehaviour
     private static int _hours;
     private static int _minutes;
 
+    private static float _gameTime;
+    private static float _deltaTime;
+
     private static float _totalDays = 0;
     private static float _totalHours = 0;
     private static float _totalMinutes = 0;
@@ -47,6 +50,10 @@ public class TimeManagement : MonoBehaviour
     private float _startTime;
 
     private static float _minuteOffset = 0f;
+
+    // Replacing Unity Time
+    public static float GameTime { get => _gameTime; }
+    public static float GameDeltaTime { get => _deltaTime; }
 
     public static int Day { get { return _day; } }
     public static int Hours { get { return _hours; } }
@@ -109,7 +116,12 @@ public class TimeManagement : MonoBehaviour
 
     private void UpdateTime()
     {
-        _totalMinutes = (Time.time * _timeMultiplier) - _startTime + (60 * _hourOffset) + _minuteOffset;
+        float timeThisFrame = (Time.time * _timeMultiplier) - _startTime + _minuteOffset;
+
+        _deltaTime = timeThisFrame - _gameTime;
+        _gameTime = timeThisFrame;
+
+        _totalMinutes = _gameTime + (60 * _hourOffset);
         _totalHours = _totalMinutes / 60f;
         _totalDays = _totalHours / _hoursPerDay;
 

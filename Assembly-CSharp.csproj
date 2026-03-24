@@ -62,6 +62,7 @@
     <Compile Include="Assets\Scripts\Stimuli\Stim_Footstep.cs" />
     <Compile Include="Assets\Scripts\Stimuli\Resources\Stim_Meat.cs" />
     <Compile Include="Assets\Scripts\Stimuli\Organisms\Stim_Hunter.cs" />
+    <Compile Include="Assets\Scripts\Unique Inventory Items\MudyakCoat.cs" />
     <Compile Include="Assets\Scripts\Core\Components\Vitals.cs" />
     <Compile Include="Assets\Scripts\Stimuli\Resources\Stim_Grass.cs" />
     <Compile Include="Assets\Scripts\Core\Organism.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Assets\Scripts\Core\ABrain.cs" />
     <Compile Include="Assets\Scripts\Core\Stimulus.cs" />
     <Compile Include="Assets\Scripts\Art\UI\VitalsUI.cs" />
+    <Compile Include="Assets\Scripts\Core\Inventory\Items\AEquippable.cs" />
     <Compile Include="Assets\Scripts\Core\Special Objects\PlayerShelter.cs" />
     <Compile Include="Assets\Scripts\Core\BehaviorTask.cs" />
     <Compile Include="Assets\Scripts\Utils\VectorUtils.cs" />
@@ -128,8 +130,6 @@
     <Compile Include="Assets\Scripts\Core\AIOrganism.cs" />
     <Compile Include="Assets\Scripts\Stimuli\Resources\Stim_Cactus.cs" />
     <Compile Include="Assets\Scripts\Core\Enums\VitalType.cs" />
-    <Compile Include="Assets\Scripts\Core\Inventory\Items\AEquippable.cs" />
-    <Compile Include="Assets\Scripts\Unique Inventory Items\MudyakCoat.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

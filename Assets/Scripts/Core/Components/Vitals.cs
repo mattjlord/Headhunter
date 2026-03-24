@@ -9,12 +9,21 @@ public class Vitals : MonoBehaviour
     [SerializeField] private Vital _injury;
     [SerializeField] private Vital _toxicity;
 
+    private bool _inShelter = false;
+
+    public bool InShelter { get => _inShelter; set => _inShelter = value; }
+
     public void Update()
     {
         _hunger.Update();
         _thirst.Update();
-        _exhaustion.Update();
-        _heat.Update();
+
+        if (!_inShelter)
+        {
+            _exhaustion.Update();
+            _heat.Update();
+        }
+
         _injury.Update();
         _toxicity.Update();
     }

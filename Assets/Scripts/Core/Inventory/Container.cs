@@ -64,4 +64,12 @@ public class Container
             OnContentsChanged?.Invoke();
         }
     }
+
+    public void Update()
+    {
+        foreach (InventoryItemInstance item in _items)
+        {
+            item.Update();
+        }
+    }
 }

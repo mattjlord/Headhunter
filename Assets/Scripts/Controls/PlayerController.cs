@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public enum ControlState
@@ -32,9 +34,21 @@ public class PlayerController : MonoBehaviour
 
     public void RestInShelter(PlayerShelter shelter)
     {
+        StartCoroutine(RestInShelterAsync(shelter));
+    }
+
+    private IEnumerator RestInShelterAsync(PlayerShelter shelter)
+    {
+        _organism.Vitals.InShelter = true;
+
         float minutesElapsed = TimeManagement.SkipToNextSafePeriod();
         float exhaustionRecovery = shelter.RecoveryPerMinute * minutesElapsed;
         _organism.Vitals.GetVital(VitalType.Exhaustion).DecreaseValue(exhaustionRecovery);
+        _organism.Vitals.GetVital(VitalType.Heat).Value = 0;
+
+        yield return new WaitForSeconds(1); // TODO: More complex wait logic (fade screen, etc.)
+
+        _organism.Vitals.InShelter = false;
     }
 
     public void OpenContainer(Container container)

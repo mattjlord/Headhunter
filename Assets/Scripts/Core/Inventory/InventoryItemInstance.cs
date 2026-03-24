@@ -5,7 +5,7 @@ using UnityEngine;
 public class InventoryItemInstance
 {
     [SerializeField] private AInventoryItem _item;
-    private float _durability;
+    [SerializeField] private float _durability = 100f;
     private EquipmentSlot? _equipmentSlot = null;
 
     public InventoryItemInstance(AInventoryItem item)
@@ -17,9 +17,28 @@ public class InventoryItemInstance
 
     public EquipmentSlot? EquipmentSlot { get => _equipmentSlot; set => _equipmentSlot = value; }
 
-    public void DecreaseDurability(float amount)
+    public float Durability { get => _durability; }
+
+    public void Update()
     {
-        if (amount < 0) { return;  }
+        float decayRate = 0f;
+
+        if (_item.GetType() == typeof(Consumable))
+        {
+            Consumable consumable = _item as Consumable;
+            decayRate = consumable.DecayRate;
+        }
+
+        if (decayRate > 0)
+        {
+            float decayThisFrame = decayRate * (TimeManagement.GameDeltaTime / 60f);
+            DecreaseDurability(decayThisFrame);
+        }
+    }
+
+    private void DecreaseDurability(float amount)
+    {
+        if (amount < 0) { return; }
         float result = _durability - amount;
         if (result > 0)
         {
@@ -27,8 +46,8 @@ public class InventoryItemInstance
         }
         else
         {
-            _durability = 0;
             _item = _item.GetPerishedVersion();
+            _durability = 100;
         }
     }
 }

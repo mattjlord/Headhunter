@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba2a9eeaf9c6334aa8203dba62d92a4, type: 3}
+  m_Name: Raw Meat
+  m_EditorClassIdentifier: 
+  Name: Meat (Raw)
+  Description: Raw animal meat. This would taste better cooked.
+  Weight: 2.5
+  Image: {fileID: 21300000, guid: 34f8e624fb21cd048a66db7a33321e67, type: 3}
+  Perishable: 1
+  Cookable: 1
+  DecayRate: 8
+  PerishedVersion: {fileID: 11400000, guid: ad2fd170aaf9449459b5552ac0ccbada, type: 2}
+  CookedVersion: {fileID: 11400000, guid: 4e0ad79c41b4b13468c795d8729fc483, type: 2}
+  HungerImpact: -10
+  ThirstImpact: 0
+  ExhaustionImpact: 0
+  HeatImpact: 0
+  InjuryImpact: 0
+  ToxicityImpact: 10

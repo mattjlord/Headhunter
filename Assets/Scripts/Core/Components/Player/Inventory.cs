@@ -9,14 +9,28 @@ public class Inventory : MonoBehaviour
     [SerializeField] private float _carryingCapacity = 50f;
 
     // If equipment ever becomes more complex, feel free to refactor this
-    [SerializeField] private InventoryItemInstance? _head = null;
-    [SerializeField] private InventoryItemInstance? _torso = null;
-    [SerializeField] private InventoryItemInstance? _legs = null;
-    [SerializeField] private InventoryItemInstance? _back = null;
+    [SerializeField] private InventoryItemInstance _head = null;
+    [SerializeField] private InventoryItemInstance _torso = null;
+    [SerializeField] private InventoryItemInstance _legs = null;
+    [SerializeField] private InventoryItemInstance _back = null;
+
+    public InventoryItemInstance Head { get => _head; }
+    public InventoryItemInstance Torso { get => _torso; }
+    public InventoryItemInstance Legs { get => _legs; }
+    public InventoryItemInstance Back { get => _back; }
 
     private void Start()
     {
         _container.OnContentsChanged += OnContainerChanged;
+        _head = null;
+        _torso = null;
+        _legs = null;
+        _back = null;
+    }
+
+    private void Update()
+    {
+        _container.Update();
     }
 
     public Container Container => _container;
@@ -25,7 +39,6 @@ public class Inventory : MonoBehaviour
 
     public void ProcessItemInteraction(InventoryItemInstance item, ItemInteractionType interaction, PlayerOrganism organism)
     {
-        Debug.Log("Interaction...");
         switch (interaction)
         {
             case ItemInteractionType.Discard:
@@ -48,7 +61,6 @@ public class Inventory : MonoBehaviour
 
     private void EquipItem(InventoryItemInstance item, PlayerOrganism organism)
     {
-        Debug.Log("Equip");
         AEquippable equippable = item.Item as AEquippable;
 
         AEquippable? lastEquipped = null;
@@ -91,7 +103,6 @@ public class Inventory : MonoBehaviour
 
     private void UnequipItem(InventoryItemInstance item, PlayerOrganism organism)
     {
-        Debug.Log("Unequip");
         AEquippable equippable = item.Item as AEquippable;
         equippable.OnUnequip(organism);
 
