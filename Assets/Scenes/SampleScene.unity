@@ -2592,11 +2592,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _container:
-    _items:
-    - _item: {fileID: 11400000, guid: 8c3fc23e90578634a9aacf231cd8be1a, type: 2}
-      _durability: 100
-    - _item: {fileID: 11400000, guid: b4c548bfa7aabfc499419861b435b328, type: 2}
-      _durability: 100
+    _items: []
   _carryingCapacity: 50
   _head:
     _item: {fileID: 0}

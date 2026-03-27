@@ -391,10 +391,15 @@ MonoBehaviour:
   _scavengeableParts:
     _items:
     - _item: {fileID: 11400000, guid: d584cae5239732641b60d5a552bb500f, type: 2}
+      _durability: 100
     - _item: {fileID: 11400000, guid: d584cae5239732641b60d5a552bb500f, type: 2}
+      _durability: 100
     - _item: {fileID: 11400000, guid: d584cae5239732641b60d5a552bb500f, type: 2}
+      _durability: 100
     - _item: {fileID: 11400000, guid: d584cae5239732641b60d5a552bb500f, type: 2}
+      _durability: 100
     - _item: {fileID: 11400000, guid: d584cae5239732641b60d5a552bb500f, type: 2}
+      _durability: 100
 --- !u!136 &4362668801954228151
 CapsuleCollider:
   m_ObjectHideFlags: 0

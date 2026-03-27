@@ -8,11 +8,6 @@ public class InventoryItemInstance
     [SerializeField] private float _durability = 100f;
     private EquipmentSlot? _equipmentSlot = null;
 
-    public InventoryItemInstance(AInventoryItem item)
-    {
-        _item = item;
-    }
-
     public AInventoryItem Item { get => _item; }
 
     public EquipmentSlot? EquipmentSlot { get => _equipmentSlot; set => _equipmentSlot = value; }
@@ -38,6 +33,7 @@ public class InventoryItemInstance
 
     private void DecreaseDurability(float amount)
     {
+        Debug.Log("Decreasing by " + amount);
         if (amount < 0) { return; }
         float result = _durability - amount;
         if (result > 0)
