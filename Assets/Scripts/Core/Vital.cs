@@ -20,6 +20,8 @@ public class Vital
         set { _value = value; }
     }
 
+    public float PassiveIncreaseRate { set => _passiveIncreaseRate = value; }
+
     public void Update()
     {
         if (_passiveIncreaseRate > 0)

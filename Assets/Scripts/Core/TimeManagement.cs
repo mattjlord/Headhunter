@@ -17,6 +17,8 @@ public class TimeManagement : MonoBehaviour
     [SerializeField] private int _hourOffset;
     [SerializeField] private AnimationCurve _sunRotationCurve;
     [SerializeField] private AnimationCurve _lightCurve;
+    [SerializeField] private AnimationCurve _baseHeatCurve;
+    [SerializeField] private float _highSunHeat;
 
     [SerializeField] private float _minTemp;
     [SerializeField] private float _maxTemp;
@@ -51,6 +53,8 @@ public class TimeManagement : MonoBehaviour
 
     private static float _minuteOffset = 0f;
 
+    private static float _heatIncreaseRate;
+
     // Replacing Unity Time
     public static float GameTime { get => _gameTime; }
     public static float GameDeltaTime { get => _deltaTime; }
@@ -59,6 +63,7 @@ public class TimeManagement : MonoBehaviour
     public static int Hours { get { return _hours; } }
     public static int Minutes { get { return _minutes; } }
     public static TimeOfDay TimeOfDay { get { return _timeOfDay; } }
+    public static float HeatIncreaseRate { get { return _heatIncreaseRate; } }
 
     public static float SkipToNextSafePeriod()
     {
@@ -111,7 +116,7 @@ public class TimeManagement : MonoBehaviour
         UpdateTime();
         UpdateTimeOfDay();
         UpdateLighting();
-        ProcessEvents();
+        UpdateHeat();
     }
 
     private void UpdateTime()
@@ -156,8 +161,15 @@ public class TimeManagement : MonoBehaviour
         _lightData.SetColor(Color.white, temp);
     }
 
-    private void ProcessEvents()
+    private void UpdateHeat()
     {
+        if (_timeOfDay == TimeOfDay.HighSun)
+        {
+            _heatIncreaseRate = _highSunHeat;
+            return;
+        }
 
+        float dayProgress = _totalDays % 1;
+        _heatIncreaseRate = _baseHeatCurve.Evaluate(dayProgress);
     }
 }

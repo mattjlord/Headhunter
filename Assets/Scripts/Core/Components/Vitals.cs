@@ -18,6 +18,8 @@ public class Vitals : MonoBehaviour
         _hunger.Update();
         _thirst.Update();
 
+        _heat.PassiveIncreaseRate = TimeManagement.HeatIncreaseRate;
+
         if (!_inShelter)
         {
             _exhaustion.Update();
