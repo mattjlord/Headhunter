@@ -19,8 +19,6 @@ public class ContainerUI : MonoBehaviour
 
     private InventoryItemInstance? _currentItem;
 
-    [SerializeField] private List<Image> _equipmentFrames;
-
     public Container Container { set { container = value; } }
 
     public InventoryItemInstance? CurrentItem { get { return _currentItem; } }
@@ -49,8 +47,6 @@ public class ContainerUI : MonoBehaviour
         {
             _enabled = value;
             _menuFrame.enabled = value;
-            foreach (Image frame in _equipmentFrames)
-                frame.enabled = value;
             if (value == false)
             {
                 _highlight.SetActive(false);
@@ -66,8 +62,11 @@ public class ContainerUI : MonoBehaviour
                     }
                 }
             }
+            EnabledExtension(value);
         }
     }
+
+    protected virtual void EnabledExtension(bool value) { }
 
     private void DisplayContainer()
     {
