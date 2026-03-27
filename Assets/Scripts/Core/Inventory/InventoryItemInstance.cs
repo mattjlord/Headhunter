@@ -46,4 +46,18 @@ public class InventoryItemInstance
             _durability = 100;
         }
     }
+
+    public void Cook()
+    {
+        if (_item.GetType() != typeof(Consumable))
+            return;
+
+        Consumable consumable = _item as Consumable;
+
+        if (!consumable.Cookable)
+            return;
+
+        _item = consumable.CookedVersion;
+        _durability = 100f;
+    }
 }
