@@ -18,6 +18,8 @@ public class FirePit : WorldObject
         if (_cookRate > 0)
         {
             float cookThisFrame = _cookRate * (TimeManagement.GameDeltaTime / 60f);
+            int itemsCooking = _container.Items.Count;
+            cookThisFrame /= itemsCooking;
             foreach (InventoryItemInstance item in _container.Items)
                 item.Cook(cookThisFrame);
         }
