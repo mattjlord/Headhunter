@@ -247,6 +247,13 @@ public class PlayerController : MonoBehaviour
                     if (inventory.CanTakeItem(currentItem) && _openContainer.Items.Contains(currentItem))
                         _openContainer.TakeItem(currentItem, inventory.Container);
                 }
+
+                currentItem = _inventoryUI.CurrentItem;
+                if (currentItem != null && _inventoryUI.Enabled)
+                {
+                    Inventory inventory = _organism.Inventory;
+                    inventory.Container.TakeItem(currentItem, _openContainer);
+                }
             }
         }
 

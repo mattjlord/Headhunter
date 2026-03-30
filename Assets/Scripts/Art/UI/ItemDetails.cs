@@ -11,6 +11,9 @@ public class ItemDetails : MonoBehaviour
     [SerializeField] private TMP_Text _weight;
     [SerializeField] private TMP_Text _durability;
 
+    [SerializeField] private Image _cookingIcon;
+    [SerializeField] private TMP_Text _cookProgress;
+
     [SerializeField] private Image _image;
 
     [SerializeField] private RectTransform _rectTransform;
@@ -31,6 +34,18 @@ public class ItemDetails : MonoBehaviour
         {
             _durability.text = ((int)durability).ToString() + "%";
             _durability.color = Color.Lerp(Color.red, Color.green, durability / 100);
+        }
+
+        float cookProgress = item.CookProgress;
+        if (cookProgress == 0)
+        {
+            _cookProgress.text = "";
+            _cookingIcon.enabled = false;
+        }
+        else
+        {
+            _cookProgress.text = ((int)cookProgress).ToString() + "%";
+            _cookingIcon.enabled = true;
         }
     }
 }

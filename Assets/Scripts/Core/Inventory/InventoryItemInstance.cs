@@ -6,6 +6,7 @@ public class InventoryItemInstance
 {
     [SerializeField] private AInventoryItem _item;
     [SerializeField] private float _durability = 100f;
+    [SerializeField] private float _cookProgress = 0f;
     private EquipmentSlot? _equipmentSlot = null;
 
     public AInventoryItem Item { get => _item; }
@@ -13,6 +14,8 @@ public class InventoryItemInstance
     public EquipmentSlot? EquipmentSlot { get => _equipmentSlot; set => _equipmentSlot = value; }
 
     public float Durability { get => _durability; }
+
+    public float CookProgress { get => _cookProgress; }
 
     public void Update()
     {
@@ -33,7 +36,6 @@ public class InventoryItemInstance
 
     private void DecreaseDurability(float amount)
     {
-        Debug.Log("Decreasing by " + amount);
         if (amount < 0) { return; }
         float result = _durability - amount;
         if (result > 0)
@@ -47,17 +49,26 @@ public class InventoryItemInstance
         }
     }
 
-    public void Cook()
+    public void Cook(float amount)
     {
         if (_item.GetType() != typeof(Consumable))
             return;
-
-        Consumable consumable = _item as Consumable;
-
-        if (!consumable.Cookable)
-            return;
-
-        _item = consumable.CookedVersion;
-        _durability = 100f;
+        else
+        {
+            Consumable consumable = _item as Consumable;
+            if (!consumable.Cookable)
+                return;
+        }
+        if (amount < 0) { return; }
+        float result = _cookProgress + amount;
+        if (result < 100)
+        {
+            _cookProgress = result;
+        }
+        else
+        {
+            _item = _item.GetCookedVersion();
+            _cookProgress = 0;
+        }
     }
 }

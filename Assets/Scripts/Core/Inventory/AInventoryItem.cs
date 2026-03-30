@@ -11,5 +11,6 @@ public abstract class AInventoryItem : ScriptableObject
     public Sprite Image;
 
     public virtual AInventoryItem? GetPerishedVersion() { return null; }
+    public virtual AInventoryItem? GetCookedVersion() { return null; }
     public virtual List<ItemInteractionType> GetInteractionOptions() => new List<ItemInteractionType>() { ItemInteractionType.Discard };
 }

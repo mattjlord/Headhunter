@@ -41,6 +41,7 @@ public class Consumable : AInventoryItem
     }
 
     public override AInventoryItem? GetPerishedVersion() { return PerishedVersion; }
+    public override AInventoryItem? GetCookedVersion() { return CookedVersion; }
 
     public override List<ItemInteractionType> GetInteractionOptions() => new List<ItemInteractionType>() { ItemInteractionType.Consume, ItemInteractionType.Discard };
 }
