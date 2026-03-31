@@ -60,10 +60,22 @@ MonoBehaviour:
     _items:
     - _item: {fileID: 11400000, guid: b4c548bfa7aabfc499419861b435b328, type: 2}
       _durability: 100
+      _cookProgress: 0
     - _item: {fileID: 11400000, guid: b4c548bfa7aabfc499419861b435b328, type: 2}
       _durability: 100
+      _cookProgress: 0
     - _item: {fileID: 11400000, guid: b4c548bfa7aabfc499419861b435b328, type: 2}
       _durability: 100
+      _cookProgress: 0
+    - _item: {fileID: 11400000, guid: e965b70551e57d64ebf5f62aaf7e6011, type: 2}
+      _durability: 100
+      _cookProgress: 0
+    - _item: {fileID: 11400000, guid: e965b70551e57d64ebf5f62aaf7e6011, type: 2}
+      _durability: 100
+      _cookProgress: 0
+    - _item: {fileID: 11400000, guid: e965b70551e57d64ebf5f62aaf7e6011, type: 2}
+      _durability: 100
+      _cookProgress: 0
 --- !u!136 &3962123820247030541
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -52,6 +52,9 @@ public class SpawnRegion : MonoBehaviour
 
     public void SpawnAllPlants()
     {
+        if (_plantPrefabs.Count == 0)
+            return;
+
         int i = _plantCount;
 
         while (i < _plantDensity)
@@ -82,6 +85,9 @@ public class SpawnRegion : MonoBehaviour
 
     public void SpawnAllOrganisms()
     {
+        if (_organismTypes.Count == 0) 
+            return;
+
         Dictionary<AreaLocation, Dictionary<OrganismType, List<AIOrganism>>> herds = new Dictionary<AreaLocation, Dictionary<OrganismType, List<AIOrganism>>>();
 
         int i = _activeOrganisms.Count;

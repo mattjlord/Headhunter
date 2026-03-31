@@ -7540,7 +7540,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _container:
-    _items: []
+    _items:
+    - _item: {fileID: 11400000, guid: b4c548bfa7aabfc499419861b435b328, type: 2}
+      _durability: 100
+      _cookProgress: 0
+    - _item: {fileID: 11400000, guid: b4c548bfa7aabfc499419861b435b328, type: 2}
+      _durability: 100
+      _cookProgress: 0
+    - _item: {fileID: 11400000, guid: b4c548bfa7aabfc499419861b435b328, type: 2}
+      _durability: 100
+      _cookProgress: 0
   _carryingCapacity: 50
   _head:
     _item: {fileID: 0}
@@ -12576,7 +12585,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mudyakManager: {fileID: 2064665707}
   _bulletRaptorManager: {fileID: 1527434769}
-  _maxOrganisms: 100
+  _maxOrganisms: 0
   _despawnDistance: 400
   _player: {fileID: 426138448}
 --- !u!114 &1171083777 stripped
@@ -19710,10 +19719,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _masterOrganismManager: {fileID: 1171017548}
   _organismDensity: 10
-  _plantDensity: 60
+  _plantDensity: 100
   _tickRate: 5
   _organismTypes: 
-  _plantPrefabs: []
+  _plantPrefabs:
+  - {fileID: 8610690933688826533, guid: 0d408b7b9d814a14598fa1b41c23b571, type: 3}
   _subregions: []
 --- !u!114 &1624187799
 MonoBehaviour:

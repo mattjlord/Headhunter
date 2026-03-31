@@ -25,8 +25,11 @@ public class PlantOrCarcass : FoodOrWaterObject
             }
         }
         uses = count;
-        hungerImpact = -consumable.HungerImpact;
-        thirstImpact = -consumable.ThirstImpact;
+        if (consumable != null)
+        {
+            hungerImpact = -consumable.HungerImpact;
+            thirstImpact = -consumable.ThirstImpact;
+        }
     }
 
     public override void OnInteraction(PlayerController playerController)

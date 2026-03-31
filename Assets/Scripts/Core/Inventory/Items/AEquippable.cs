@@ -9,7 +9,7 @@ public enum EquipmentSlot
     Back
 }
 
-public abstract class AEquippable : AInventoryItem
+public abstract class AEquippable : InventoryItem
 {
     public EquipmentSlot equipmentSlot;
 

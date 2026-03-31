@@ -4,12 +4,12 @@ using UnityEngine;
 [Serializable]
 public class InventoryItemInstance
 {
-    [SerializeField] private AInventoryItem _item;
+    [SerializeField] private InventoryItem _item;
     [SerializeField] private float _durability = 100f;
     [SerializeField] private float _cookProgress = 0f;
     private EquipmentSlot? _equipmentSlot = null;
 
-    public AInventoryItem Item { get => _item; }
+    public InventoryItem Item { get => _item; }
 
     public EquipmentSlot? EquipmentSlot { get => _equipmentSlot; set => _equipmentSlot = value; }
 

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Consumable", menuName = "Inventory Item/Consumable")]
-public class Consumable : AInventoryItem
+public class Consumable : InventoryItem
 {
     public bool Perishable;
     public bool Cookable;
@@ -40,8 +40,8 @@ public class Consumable : AInventoryItem
         }
     }
 
-    public override AInventoryItem? GetPerishedVersion() { return PerishedVersion; }
-    public override AInventoryItem? GetCookedVersion() { return CookedVersion; }
+    public override InventoryItem? GetPerishedVersion() { return PerishedVersion; }
+    public override InventoryItem? GetCookedVersion() { return CookedVersion; }
 
     public override List<ItemInteractionType> GetInteractionOptions() => new List<ItemInteractionType>() { ItemInteractionType.Consume, ItemInteractionType.Discard };
 }
