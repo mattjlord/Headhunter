@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba2a9eeaf9c6334aa8203dba62d92a4, type: 3}
+  m_Name: Bullets
+  m_EditorClassIdentifier: 
+  Name: Bullets (12)
+  Description: A case of 12 bullets.
+  Weight: 0
+  Image: {fileID: 21300000, guid: 6d68c3883706bb249b25fc5866c24431, type: 3}
+  Perishable: 0
+  Cookable: 0
+  DecayRate: 0
+  PerishedVersion: {fileID: 0}
+  CookedVersion: {fileID: 0}
+  HungerImpact: 0
+  ThirstImpact: 0
+  ExhaustionImpact: 0
+  HeatImpact: 0
+  InjuryImpact: 0
+  ToxicityImpact: 0
+  AmmoCount: 12

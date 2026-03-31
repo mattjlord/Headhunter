@@ -17,6 +17,11 @@ public class InventoryItemInstance
 
     public float CookProgress { get => _cookProgress; }
 
+    public InventoryItemInstance(InventoryItem item)
+    {
+        _item = item;
+    }
+
     public void Update()
     {
         float decayRate = 0f;

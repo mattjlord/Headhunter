@@ -133,6 +133,11 @@
     <Compile Include="Assets\Scripts\Stimuli\Resources\Stim_Cactus.cs" />
     <Compile Include="Assets\Scripts\Core\Enums\VitalType.cs" />
     <Compile Include="Assets\Scripts\Core\Inventory\Items\CraftingMaterial.cs" />
+    <Compile Include="Assets\Scripts\Core\Components\Player\Crafting.cs" />
+    <Compile Include="Assets\Scripts\Core\Crafting\CraftingLibrary.cs" />
+    <Compile Include="Assets\Scripts\Core\Crafting\CraftingIngredients.cs" />
+    <Compile Include="Assets\Scripts\Core\Crafting\SerializableRecipe.cs" />
+    <Compile Include="Assets\Scripts\Art\UI\CraftingUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

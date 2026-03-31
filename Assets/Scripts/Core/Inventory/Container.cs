@@ -8,9 +8,15 @@ public class Container
 {
     public event Action OnContentsChanged;
 
+    [SerializeField] private int _maxItems;
     [SerializeField] private List<InventoryItemInstance> _items;
 
-    public List<InventoryItemInstance> Items { get { return _items; } }
+    public List<InventoryItemInstance> Items { get => _items; }
+
+    public bool CanAddItem()
+    {
+        return _items.Count < _maxItems;
+    }
 
     public float TotalWeight
     {
@@ -37,7 +43,7 @@ public class Container
         OnContentsChanged?.Invoke();
     }
 
-    public void GiveItem(InventoryItemInstance item)
+    private void GiveItem(InventoryItemInstance item)
     {
         if (_items.Contains(item))
         {

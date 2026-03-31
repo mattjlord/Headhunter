@@ -6,7 +6,6 @@ public class Consumable : InventoryItem
 {
     public bool Perishable;
     public bool Cookable;
-    // TODO: Implement decay
     public float DecayRate; // Per minute of game time
     public Consumable? PerishedVersion;
     public Consumable? CookedVersion;
@@ -16,8 +15,9 @@ public class Consumable : InventoryItem
     public float HeatImpact;
     public float InjuryImpact;
     public float ToxicityImpact;
+    public int AmmoCount;
 
-    public void ImpactOrganism(Organism organism)
+    public void ImpactOrganism(PlayerOrganism organism)
     {
         Vitals vitals = organism.Vitals;
         ImpactVital(vitals, VitalType.Hunger, HungerImpact);
@@ -26,6 +26,12 @@ public class Consumable : InventoryItem
         ImpactVital(vitals, VitalType.Heat, HeatImpact);
         ImpactVital(vitals, VitalType.Injury, InjuryImpact);
         ImpactVital(vitals, VitalType.Toxicity, ToxicityImpact);
+
+        if (AmmoCount > 0)
+        {
+            Shooting shooting = organism.Shooting;
+            shooting.Bullets += AmmoCount;
+        }
     }
 
     private void ImpactVital(Vitals vitals, VitalType type, float value)

@@ -35,7 +35,7 @@ public class Inventory : MonoBehaviour
 
     public Container Container => _container;
 
-    public bool CanTakeItem(InventoryItemInstance item) => _container.TotalWeight + item.Item.Weight < _carryingCapacity;
+    public bool CanReceiveItem(InventoryItemInstance item) => _container.CanAddItem() && _container.TotalWeight + item.Item.Weight < _carryingCapacity;
 
     public void ProcessItemInteraction(InventoryItemInstance item, ItemInteractionType interaction, PlayerOrganism organism)
     {
@@ -56,6 +56,7 @@ public class Inventory : MonoBehaviour
                 else
                     UnequipItem(item, organism);
                 return;
+
         }
     }
 

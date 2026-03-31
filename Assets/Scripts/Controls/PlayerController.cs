@@ -15,9 +15,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerOrganism _organism;
     [SerializeField] private InventoryUI _inventoryUI;
     [SerializeField] private ContainerUI _scavengingUI;
+    [SerializeField] private CraftingUI _craftingUI;
     [SerializeField] private LayerMask _interactionLayers;
 
-    private ControlState _controlState = ControlState.World;
+    public ControlState ControlState =>
+        MenusEnabled ? ControlState.Menu : ControlState.World;
 
     private Vector2 _lookDirection = Vector2.up;
     private Vector2 _lookPoint;
@@ -30,6 +32,9 @@ public class PlayerController : MonoBehaviour
     private void Start() // TODO: GET RID OF THIS ASAP THIS IS A BAND-AID FIX
     {
         _organism.Vitals.GetVital(VitalType.Injury).OnMaxValueReached += () => Application.Quit();
+        _inventoryUI.Enabled = false;
+        _scavengingUI.Enabled = false;
+        _craftingUI.Enabled = false;
     }
 
     public void RestInShelter(PlayerShelter shelter)
@@ -70,7 +75,7 @@ public class PlayerController : MonoBehaviour
     {
         // TODO: Optimize menu code once there is more than just one menu type
 
-        switch(_controlState)
+        switch(ControlState)
         {
             case ControlState.World:
                 WhileInWorldState();
@@ -183,39 +188,41 @@ public class PlayerController : MonoBehaviour
         {
             if (_inventoryUI.Enabled)
             {
-                if (!_scavengingUI.Enabled)
-                    OnCloseAnyMenu();
                 CloseInventory();
             }
             else
             {
-                if (!_scavengingUI.Enabled)
+                if (!MenusEnabled)
                     OnOpenAnyMenu();
                 OpenInventory();
             }
         }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            if (_craftingUI.Enabled)
+            {
+                CloseCrafting();
+            }
+            else
+            {
+                if (!MenusEnabled)
+                    OnOpenAnyMenu();
+                OpenCrafting();
+            }
+        }
     }
+
+    private bool MenusEnabled => _scavengingUI.Enabled || _inventoryUI.Enabled || _craftingUI.Enabled;
 
     private void OnOpenAnyMenu()
     {
-        _controlState = ControlState.Menu;
         _organism.Movement.Move(_organism, Vector2.zero, false);
     }
 
-    private void OnCloseAnyMenu()
-    {
-        _controlState = ControlState.World;
-    }
-
-    private void OpenInventory()
-    {
-        _inventoryUI.Enabled = true;
-    }
-
-    private void CloseInventory()
-    {
-        _inventoryUI.Enabled = false;
-    }
+    private void OpenInventory() => _inventoryUI.Enabled = true;
+    private void CloseInventory() =>_inventoryUI.Enabled = false;
+    private void OpenCrafting() => _craftingUI.Enabled = true;
+    private void CloseCrafting() => _craftingUI.Enabled = false;
 
     private void ParseAndUpdateMenuClose()
     {
@@ -229,8 +236,10 @@ public class PlayerController : MonoBehaviour
             {
                 CloseContainer();
             }
-
-            OnCloseAnyMenu();
+            if (_craftingUI.enabled)
+            {
+                CloseCrafting();
+            }
         }
     }
 
@@ -244,15 +253,42 @@ public class PlayerController : MonoBehaviour
                 if (currentItem != null)
                 {
                     Inventory inventory = _organism.Inventory;
-                    if (inventory.CanTakeItem(currentItem) && _openContainer.Items.Contains(currentItem))
+                    if (inventory.CanReceiveItem(currentItem) && _openContainer.Items.Contains(currentItem))
                         _openContainer.TakeItem(currentItem, inventory.Container);
                 }
 
                 currentItem = _inventoryUI.CurrentItem;
-                if (currentItem != null && _inventoryUI.Enabled)
+                if (currentItem != null && _inventoryUI.Enabled && _openContainer.CanAddItem())
                 {
                     Inventory inventory = _organism.Inventory;
                     inventory.Container.TakeItem(currentItem, _openContainer);
+                }
+            }
+            else if (_craftingUI.Enabled)
+            {
+                Crafting crafting = _organism.Crafting;
+                Inventory inventory = _organism.Inventory;
+
+                InventoryItemInstance currentInputItem = _craftingUI.CurrentInputItem;
+                InventoryItemInstance currentOutputItem = _craftingUI.CurrentOutputItem;
+
+                if (currentInputItem != null)
+                {
+                    if (inventory.CanReceiveItem(currentInputItem))
+                        crafting.Inputs.TakeItem(currentInputItem, inventory.Container);
+                }
+                else if (currentOutputItem != null)
+                {
+                    if (inventory.CanReceiveItem(currentOutputItem))
+                        crafting.Outputs.TakeItem(currentOutputItem, inventory.Container);
+                }
+                else if (_inventoryUI.Enabled)
+                {
+                    InventoryItemInstance currentInventoryItem = _inventoryUI.CurrentItem;
+                    if (currentInventoryItem == null) return;
+
+                    if (crafting.Inputs.CanAddItem() && currentInventoryItem.Item is CraftingMaterial)
+                        inventory.Container.TakeItem(currentInventoryItem, crafting.Inputs);
                 }
             }
         }

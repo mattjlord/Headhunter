@@ -28,7 +28,6 @@ public class ContainerUI : MonoBehaviour
         _menuFrame = GetComponent<Image>();
         _rectTransform = GetComponent<RectTransform>();
         _highlight.SetActive(false);
-        Enabled = false;
         _iconGrid = UIUtils.InitIconGrid(_rectTransform, _itemIconPrefab);
     }
 
