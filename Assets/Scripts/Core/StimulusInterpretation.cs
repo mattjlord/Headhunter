@@ -58,16 +58,17 @@ public class StimulusInterpretation
         {
             return _priorityOverrideValue;
         }
-        float sum = 0.0f;
+        float max = 0.0f;
         foreach (var entry in _vitalImpactEstimate)
         {
             VitalType vital = entry.Key;
             float rawVitalVal = _organism.Vitals.GetVital(vital).Value;
             float biasedVitalVal = _organism.HerdManagement.GetHerdBiasedVitalValue(rawVitalVal, vital);
-            float vitalImpact = _vitalImpactEstimate[vital];
-            sum += biasedVitalVal * Mathf.Abs(vitalImpact);
+            float vitalImpact = entry.Value * 10;
+            float p =  _organism.Curiosity * biasedVitalVal + (1 - _organism.Curiosity) * Mathf.Abs(vitalImpact);
+            if (p > max) max = p;
         }
-        return Mathf.Clamp(sum * 0.11f, 0, 100);
+        return Mathf.Clamp(max, 0, 100);
     }
 
     private float EvaluateValence()

@@ -1,5 +1,11 @@
 public class Stim_Cactus : Stimulus
 {
+    protected virtual void Update()
+    {
+        base.Update();
+        Fire();
+    }
+
     public override StimulusInterpretation VisitAndInterpret(MudyakBrain brain)
     {
         StimulusInterpretation interpretation = GenerateBaseInterpretation(brain);

@@ -11,8 +11,7 @@ public class Stim_Grass : Stimulus
     public override StimulusInterpretation VisitAndInterpret(MudyakBrain brain)
     {
         StimulusInterpretation interpretation = GenerateBaseInterpretation(brain);
-        interpretation.AssignVitalImpact(VitalType.Hunger, -10);
-        interpretation.AssignVitalImpact(VitalType.Thirst, -2);
+        interpretation.AssignVitalImpact(VitalType.Hunger, -3);
         return interpretation;
     }
 

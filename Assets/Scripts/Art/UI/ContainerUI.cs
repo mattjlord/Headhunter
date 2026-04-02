@@ -23,6 +23,16 @@ public class ContainerUI : MonoBehaviour
 
     public InventoryItemInstance? CurrentItem { get { return _currentItem; } }
 
+    private Image MenuFrame
+    {
+        get
+        {
+            if (_menuFrame == null)
+                _menuFrame = GetComponent<Image>();
+            return _menuFrame;
+        }
+    }
+
     protected virtual void Start()
     {
         _menuFrame = GetComponent<Image>();
@@ -45,7 +55,7 @@ public class ContainerUI : MonoBehaviour
         set
         {
             _enabled = value;
-            _menuFrame.enabled = value;
+            MenuFrame.enabled = value;
             if (value == false)
             {
                 _highlight.SetActive(false);

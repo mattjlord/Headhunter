@@ -68,6 +68,10 @@ public class AreaLocation : ALocation
         Vector2? closestPoint = GetClosestPoint(point, organismType);
         if (closestPoint == null)
             return Mathf.Infinity;
+
+        //Debug.DrawLine(VectorUtils.Vec2ToVec3(point), VectorUtils.Vec2ToVec3((Vector2)closestPoint), Color.cyan);
+        //Debug.Log("Distance to area location: " + Vector2.Distance(transform.position, point));
+
         return Vector2.Distance((Vector2)closestPoint, point);
     }
 

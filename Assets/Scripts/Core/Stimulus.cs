@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+
+[Serializable]
 public class Stimulus : MonoBehaviour
 {
     public event Action<Stimulus> OnDestroyed;
@@ -95,7 +97,8 @@ public class Stimulus : MonoBehaviour
         }
         else
         {
-            dist = Vector2.Distance(organism.Position, _associatedObject.Position);
+            dist = Vector2.Distance(organism.Position, _associatedObject.Position) - _associatedObject.Radius;
+            Debug.Log("Dist: " + dist);
         }
 
         return dist <= reach;

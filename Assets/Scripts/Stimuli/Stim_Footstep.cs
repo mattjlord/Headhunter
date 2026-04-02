@@ -12,7 +12,7 @@ public class Stim_Footstep : Stimulus
     {
         StimulusInterpretation interpretation = GenerateBaseInterpretation(brain);
 
-        if (_organismType != OrganismType.Mudyak)
+        if (_organismType != OrganismType.Mudyak && Location.GetDistanceFrom(brain.Organism.Position, OrganismType.Hunter) < MudyakBrain.HunterThreatDistance)
         {
             interpretation.OverrideValence(-1);
             interpretation.OverridePriority(80);

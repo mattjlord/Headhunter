@@ -593,21 +593,29 @@ MonoBehaviour:
   thirstImpact: 0
   uses: -1
   _scavengeableParts:
+    _maxItems: 20
     _items:
     - _item: {fileID: 11400000, guid: b02cb85d5fa85174da666549fb09eb92, type: 2}
       _durability: 100
+      _cookProgress: 0
     - _item: {fileID: 11400000, guid: b02cb85d5fa85174da666549fb09eb92, type: 2}
       _durability: 100
+      _cookProgress: 0
     - _item: {fileID: 11400000, guid: b02cb85d5fa85174da666549fb09eb92, type: 2}
       _durability: 100
+      _cookProgress: 0
     - _item: {fileID: 11400000, guid: b02cb85d5fa85174da666549fb09eb92, type: 2}
       _durability: 100
+      _cookProgress: 0
     - _item: {fileID: 11400000, guid: b02cb85d5fa85174da666549fb09eb92, type: 2}
       _durability: 100
+      _cookProgress: 0
     - _item: {fileID: 11400000, guid: b02cb85d5fa85174da666549fb09eb92, type: 2}
       _durability: 100
+      _cookProgress: 0
     - _item: {fileID: 11400000, guid: b02cb85d5fa85174da666549fb09eb92, type: 2}
       _durability: 100
+      _cookProgress: 0
 --- !u!136 &785219836578103865
 CapsuleCollider:
   m_ObjectHideFlags: 0

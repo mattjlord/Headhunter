@@ -18,6 +18,7 @@ public class TaskManagement : MonoBehaviour
         List<BehaviorTask> toRemove = new List<BehaviorTask>();
         foreach (var task in _tasks)
         {
+            task.UpdateDebugInfo();
             if (!task.IsFrozen)
                 task.UpdatePriority();
 

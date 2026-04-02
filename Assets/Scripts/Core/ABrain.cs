@@ -24,8 +24,9 @@ public abstract class ABrain : MonoBehaviour
         
         StimulusInterpretation interpretation = AcceptAndInterpret(stimulus);
         StimulusResponseType responseType = interpretation.EvaluateResponseType();
-        BehaviorTask task = GenerateStimulusResponseTask(stimulus, responseType, interpretation.Hostile);
-        task.Priority = interpretation.EvaluatePriority();
+        if (responseType == StimulusResponseType.Ignore) 
+            return;
+        BehaviorTask task = GenerateStimulusResponseTask(stimulus, responseType, interpretation);
 
         if (task.Priority > 0)
         {
@@ -65,9 +66,9 @@ public abstract class ABrain : MonoBehaviour
 
     public abstract void AcceptAndInteract(Stimulus stimulus, StimulusResponseType type);
 
-    public StimulusResponseTask GenerateStimulusResponseTask(Stimulus stimulus, StimulusResponseType responseType, bool hostile)
+    public StimulusResponseTask GenerateStimulusResponseTask(Stimulus stimulus, StimulusResponseType responseType, StimulusInterpretation interpretation)
     {
-        return new StimulusResponseTask(organism, stimulus, responseType, this, hostile);
+        return new StimulusResponseTask(organism, stimulus, responseType, this, interpretation);
     }
 
     // Actions

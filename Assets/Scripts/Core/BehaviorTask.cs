@@ -1,14 +1,17 @@
+using UnityEngine;
+
 [System.Serializable]
 public class BehaviorTask
 {
     private AIOrganism _organism;
 
-    private float _priority;
+    [SerializeField] private float _priority;
     private bool _isFrozen;
     private bool _isRunning;
     private bool _isEssential = false;
 
-    protected string description;
+    [SerializeField] private string _debugName;
+    [SerializeField] protected string description;
 
     public string Description { get { return description; } }
 
@@ -34,6 +37,13 @@ public class BehaviorTask
     {
         get { return _isEssential; }
         set { _isEssential = value;}
+    }
+
+    public bool IsRunning { get => _isRunning; }
+
+    public void UpdateDebugInfo()
+    {
+        _debugName = GetName();
     }
 
     public void Run()

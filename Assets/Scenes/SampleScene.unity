@@ -607,7 +607,7 @@ MonoBehaviour:
   _collisionLayers:
     serializedVersion: 2
     m_Bits: 0
-  hungerImpact: 0
+  hungerImpact: 3
   thirstImpact: 0
   uses: -1
 --- !u!114 &36505341
@@ -887,7 +887,7 @@ MonoBehaviour:
   _collisionLayers:
     serializedVersion: 2
     m_Bits: 0
-  hungerImpact: 0
+  hungerImpact: 3
   thirstImpact: 0
   uses: -1
 --- !u!114 &57766176
@@ -1182,8 +1182,8 @@ MonoBehaviour:
   _collisionLayers:
     serializedVersion: 2
     m_Bits: 0
-  hungerImpact: 0
-  thirstImpact: 0
+  hungerImpact: 5
+  thirstImpact: 1
   uses: -1
 --- !u!114 &162887512
 MonoBehaviour:
@@ -7301,7 +7301,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   hungerImpact: 0
-  thirstImpact: 0
+  thirstImpact: 5
   uses: -1
 --- !u!114 &398336468
 MonoBehaviour:
@@ -7944,7 +7944,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   hungerImpact: 0
-  thirstImpact: 0
+  thirstImpact: 5
   uses: -1
 --- !u!114 &444141124
 MonoBehaviour:
@@ -8371,7 +8371,7 @@ MonoBehaviour:
   _collisionLayers:
     serializedVersion: 2
     m_Bits: 0
-  hungerImpact: 0
+  hungerImpact: 3
   thirstImpact: 0
   uses: -1
 --- !u!114 &493008396
@@ -8716,7 +8716,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   hungerImpact: 0
-  thirstImpact: 0
+  thirstImpact: 5
   uses: -1
 --- !u!64 &538849915
 MeshCollider:
@@ -10504,7 +10504,7 @@ MonoBehaviour:
   _collisionLayers:
     serializedVersion: 2
     m_Bits: 0
-  hungerImpact: 0
+  hungerImpact: 3
   thirstImpact: 0
   uses: -1
 --- !u!114 &795858523
@@ -12505,7 +12505,7 @@ MonoBehaviour:
   _collisionLayers:
     serializedVersion: 2
     m_Bits: 0
-  hungerImpact: 0
+  hungerImpact: 3
   thirstImpact: 0
   uses: -1
 --- !u!114 &1095622925
@@ -13323,7 +13323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mudyakManager: {fileID: 2064665707}
   _bulletRaptorManager: {fileID: 1527434769}
-  _maxOrganisms: 0
+  _maxOrganisms: 1
   _despawnDistance: 400
   _player: {fileID: 426138448}
 --- !u!114 &1171083777 stripped
@@ -13537,7 +13537,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   hungerImpact: 0
-  thirstImpact: 0
+  thirstImpact: 5
   uses: -1
 --- !u!114 &1241769424
 MonoBehaviour:
@@ -14028,7 +14028,7 @@ MonoBehaviour:
   _collisionLayers:
     serializedVersion: 2
     m_Bits: 0
-  hungerImpact: 0
+  hungerImpact: 3
   thirstImpact: 0
   uses: -1
 --- !u!114 &1280535858
@@ -14426,7 +14426,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   hungerImpact: 0
-  thirstImpact: 0
+  thirstImpact: 5
   uses: -1
 --- !u!114 &1422525324
 MonoBehaviour:
@@ -14565,7 +14565,7 @@ MonoBehaviour:
   _collisionLayers:
     serializedVersion: 2
     m_Bits: 0
-  hungerImpact: 0
+  hungerImpact: 3
   thirstImpact: 0
   uses: -1
 --- !u!114 &1425174308
@@ -14660,8 +14660,8 @@ MonoBehaviour:
   _collisionLayers:
     serializedVersion: 2
     m_Bits: 0
-  hungerImpact: 0
-  thirstImpact: 0
+  hungerImpact: 5
+  thirstImpact: 1
   uses: -1
 --- !u!114 &1433483564
 MonoBehaviour:
@@ -15007,7 +15007,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   hungerImpact: 0
-  thirstImpact: 0
+  thirstImpact: 5
   uses: -1
 --- !u!114 &1480944119
 MonoBehaviour:
@@ -15427,7 +15427,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   hungerImpact: 0
-  thirstImpact: 0
+  thirstImpact: 5
   uses: -1
 --- !u!114 &1573673664
 MonoBehaviour:
@@ -20671,7 +20671,7 @@ MonoBehaviour:
   _collisionLayers:
     serializedVersion: 2
     m_Bits: 0
-  hungerImpact: 0
+  hungerImpact: 3
   thirstImpact: 0
   uses: -1
 --- !u!114 &1625344445
@@ -21965,7 +21965,7 @@ MonoBehaviour:
   _collisionLayers:
     serializedVersion: 2
     m_Bits: 0
-  hungerImpact: 0
+  hungerImpact: 3
   thirstImpact: 0
   uses: -1
 --- !u!114 &1901528124
@@ -22058,7 +22058,7 @@ MonoBehaviour:
   _collisionLayers:
     serializedVersion: 2
     m_Bits: 0
-  hungerImpact: 0
+  hungerImpact: 3
   thirstImpact: 0
   uses: -1
 --- !u!114 &1919093430

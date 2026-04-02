@@ -1556,6 +1556,7 @@ MonoBehaviour:
   thirstImpact: 0
   uses: -1
   _scavengeableParts:
+    _maxItems: 20
     _items:
     - _item: {fileID: 11400000, guid: 4b335d3716a195244b9676bdb4943d65, type: 2}
       _durability: 100

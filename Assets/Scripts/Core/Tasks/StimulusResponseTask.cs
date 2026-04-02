@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class StimulusResponseTask : BehaviorTask
 {
-    private Stimulus _stimulus;
+    [SerializeField] private Stimulus _stimulus;
     private StimulusResponseType _responseType;
     private ABrain _brain;
     private bool _hostile;
@@ -10,21 +10,42 @@ public class StimulusResponseTask : BehaviorTask
     private float _threatCheckInterval = 5f;
     private float _lastThreatCheck;
 
-    public StimulusResponseTask(AIOrganism organism, Stimulus stimulus, StimulusResponseType responseType, ABrain brain, bool hostile) : base(organism)
+    private StimulusInterpretation _interpretation;
+
+    public StimulusResponseTask(AIOrganism organism, Stimulus stimulus, StimulusResponseType responseType, ABrain brain, StimulusInterpretation interpretation) : base(organism)
     {
         _stimulus = stimulus;
         _responseType = responseType;
         _brain = brain;
-        _hostile = hostile;
+        _hostile = interpretation.Hostile;
+        _interpretation = interpretation;
+        Priority = _interpretation.EvaluatePriority();
+    }
+
+    public override void UpdatePriority()
+    {
+        Priority = _interpretation.EvaluatePriority();
     }
 
     public override void Update()
     {
+
         if (!_stimulus)
         {
             Priority = 0;
             return;
         }
+
+        // DEBUG REGION
+        Vector2 pos = _brain.Organism.Position;
+        Vector2? stim = _stimulus.Location.GetClosestPoint(pos, _brain.Organism.OrganismType);
+
+        if (stim != null)
+        {
+            Debug.DrawLine(VectorUtils.Vec2ToVec3(pos) + 3 * Vector3.up, VectorUtils.Vec2ToVec3((Vector2)stim), Color.magenta);
+        }
+        // END OF DEBUG REGION
+
         if (Organism.Memory.IsStimulusActive(_stimulus) && !Organism.Senses.CanSense(_stimulus))
         {
             if (_responseType == StimulusResponseType.Flee)
@@ -88,6 +109,8 @@ public class StimulusResponseTask : BehaviorTask
             return;
         }
 
+        description = "Interacting with stimulus";
+
         _brain.AcceptAndInteract(_stimulus, _responseType);
     }
 
@@ -102,7 +125,6 @@ public class StimulusResponseTask : BehaviorTask
 
         if (pursuer != null) // Fleeing an organism, we have additional logic here
         {
-            Debug.Log("Fleeing an organism");
             if (pursuer.WithinReach(Organism.Position, Organism.CombatReach)) // If the organism is within combat range, act as if this organism is cornered
             {
                 OnCornered();
@@ -136,6 +158,7 @@ public class StimulusResponseTask : BehaviorTask
         {
             if (pursuer != null)
             {
+                description = "Cornered and fighting back";
                 OnCornered();
             }
             // Unhandled behavior: cornered by a non-organism (this should never happen)
@@ -169,11 +192,11 @@ public class StimulusResponseTask : BehaviorTask
         switch (_responseType)
         {
             case StimulusResponseType.Pursue:
-                return "Responding to stimulus (goal: pursue)";
+                return "Responding to stimulus " + _stimulus.GetType().Name + " (goal: pursue)";
             case StimulusResponseType.Eliminate:
-                return "Responding to stimulus (goal: eliminate)";
+                return "Responding to stimulus " + _stimulus.GetType().Name + "  (goal: eliminate)";
             case StimulusResponseType.Flee:
-                return "Responding to stimulus (goal: flee)";
+                return "Responding to stimulus " + _stimulus.GetType().Name + "  (goal: flee)";
             default:
                 return "Ignoring stimulus";
         }

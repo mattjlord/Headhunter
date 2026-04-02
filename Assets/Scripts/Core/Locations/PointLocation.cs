@@ -10,6 +10,8 @@ public class PointLocation : ALocation
 
     public override float GetDistanceFrom(Vector2 point, OrganismType organismType)
     {
+        //Debug.DrawLine(VectorUtils.Vec2ToVec3(point), transform.position, Color.cyan);
+        //Debug.Log("Distance to point location: " + Vector2.Distance(transform.position, point));
         return Vector2.Distance(transform.position, point);
     }
 

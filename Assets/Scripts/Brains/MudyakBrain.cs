@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class MudyakBrain : ABrain
 {
+    public static float HunterThreatDistance = 300f;
+
     public override StimulusInterpretation AcceptAndInterpret(Stimulus stimulus)
     {
         return stimulus.VisitAndInterpret(this);

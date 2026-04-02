@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\Core\Organism.cs" />
     <Compile Include="Assets\Scripts\Core\StimulusInterpretation.cs" />
     <Compile Include="Assets\Scripts\Core\Components\MeleeAttack.cs" />
+    <Compile Include="Assets\Scripts\Core\Crafting\CraftingIngredients.cs" />
     <Compile Include="Assets\Scripts\Core\Components\Senses.cs" />
     <Compile Include="Assets\Scripts\Core\Components\AI\LocationKnowledge.cs" />
     <Compile Include="Assets\Scripts\Core\ABrain.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Assets\Scripts\Art\UI\ClockUI.cs" />
     <Compile Include="Assets\Scripts\Core\Components\Player\Shooting.cs" />
     <Compile Include="Assets\Scripts\Core\Tasks\VitalTask.cs" />
+    <Compile Include="Assets\Scripts\Core\Inventory\Items\CraftingMaterial.cs" />
     <Compile Include="Assets\Scripts\Stimuli\Resources\Stim_Water.cs" />
     <Compile Include="Assets\Scripts\Core\TimeManagement.cs" />
     <Compile Include="Assets\Scripts\Core\PlayerOrganism.cs" />
@@ -92,7 +94,9 @@
     <Compile Include="Assets\Scripts\Art\UI\InventoryUI.cs" />
     <Compile Include="Assets\Scripts\Core\Components\AI\Memory.cs" />
     <Compile Include="Assets\Scripts\Core\Components\Player\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\Art\UI\CraftingUI.cs" />
     <Compile Include="Assets\Scripts\Core\Tasks\StimulusResponseTask.cs" />
+    <Compile Include="Assets\Scripts\Core\Crafting\SerializableRecipe.cs" />
     <Compile Include="Assets\Scripts\Core\Inventory\Container.cs" />
     <Compile Include="Assets\Scripts\Utils\LanguageUtils.cs" />
     <Compile Include="Assets\Scripts\Core\Locations\PointLocation.cs" />
@@ -106,6 +110,7 @@
     <Compile Include="Assets\Scripts\Art\UI\ContainerUI.cs" />
     <Compile Include="Assets\Scripts\Brains\MudyakBrain.cs" />
     <Compile Include="Assets\Scripts\Core\Components\Player\Inventory.cs" />
+    <Compile Include="Assets\Scripts\Core\Crafting\CraftingLibrary.cs" />
     <Compile Include="Assets\Scripts\Core\Inventory\Items\Consumable.cs" />
     <Compile Include="Assets\Scripts\Utils\NavUtils.cs" />
     <Compile Include="Assets\Scripts\Utils\UIUtils.cs" />
@@ -131,13 +136,8 @@
     <Compile Include="Assets\Scripts\Core\Inventory\InventoryItemInstance.cs" />
     <Compile Include="Assets\Scripts\Core\AIOrganism.cs" />
     <Compile Include="Assets\Scripts\Stimuli\Resources\Stim_Cactus.cs" />
-    <Compile Include="Assets\Scripts\Core\Enums\VitalType.cs" />
-    <Compile Include="Assets\Scripts\Core\Inventory\Items\CraftingMaterial.cs" />
     <Compile Include="Assets\Scripts\Core\Components\Player\Crafting.cs" />
-    <Compile Include="Assets\Scripts\Core\Crafting\CraftingLibrary.cs" />
-    <Compile Include="Assets\Scripts\Core\Crafting\CraftingIngredients.cs" />
-    <Compile Include="Assets\Scripts\Core\Crafting\SerializableRecipe.cs" />
-    <Compile Include="Assets\Scripts\Art\UI\CraftingUI.cs" />
+    <Compile Include="Assets\Scripts\Core\Enums\VitalType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

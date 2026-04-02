@@ -41,14 +41,16 @@ public class Stim_Hunter : Stimulus
     public override StimulusInterpretation VisitAndInterpret(MudyakBrain brain)
     {
         StimulusInterpretation interpretation = GenerateBaseInterpretation(brain);
-        interpretation.AssignVitalImpact(VitalType.Injury, 10);
-
-        if (SenseType == SenseType.Sight)
+        if (Location.GetDistanceFrom(brain.Organism.Position, OrganismType.Hunter) < MudyakBrain.HunterThreatDistance)
         {
-            interpretation.OverridePriority(100); // If the hunter is in sight, flee
-            interpretation.OverrideValence(1);
-        }
+            interpretation.AssignVitalImpact(VitalType.Injury, 10);
 
+            if (SenseType == SenseType.Sight)
+            {
+                interpretation.OverridePriority(100); // If the hunter is in sight, flee
+                interpretation.OverrideValence(1);
+            }
+        }
         return interpretation;
     }
 
