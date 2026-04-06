@@ -8,8 +8,6 @@ public class AIOrganism : Organism
     [SerializeField] private Navigation _navigation;
     [SerializeField] private Memory _memory;
 
-    [SerializeField] [Range(0, 1)] private float _curiosity = 0.5f;
-
     protected override void Start()
     {
         base.Start();
@@ -20,7 +18,6 @@ public class AIOrganism : Organism
     public HerdManagement HerdManagement { get { return _herdManagement; } }
     public LocationKnowledge LocationKnowledge { get { return _locationKnowledge; } }
     public Navigation Navigation { get { return _navigation; } }
-    public Memory Memory { get { return _memory; } }
-    public float Curiosity { get => _curiosity; }
+    public Memory Memory { get { return _memory; } 
 }
   

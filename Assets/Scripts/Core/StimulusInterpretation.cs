@@ -64,8 +64,7 @@ public class StimulusInterpretation
             VitalType vital = entry.Key;
             float rawVitalVal = _organism.Vitals.GetVital(vital).Value;
             float biasedVitalVal = _organism.HerdManagement.GetHerdBiasedVitalValue(rawVitalVal, vital);
-            float vitalImpact = entry.Value * 10;
-            float p =  _organism.Curiosity * biasedVitalVal + (1 - _organism.Curiosity) * Mathf.Abs(vitalImpact);
+            float p =  biasedVitalVal + Mathf.Abs(entry.Value);
             if (p > max) max = p;
         }
         return Mathf.Clamp(max, 0, 100);
