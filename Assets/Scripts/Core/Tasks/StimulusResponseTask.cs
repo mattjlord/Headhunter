@@ -20,22 +20,21 @@ public class StimulusResponseTask : BehaviorTask
         _hostile = interpretation.Hostile;
         _interpretation = interpretation;
         Priority = _interpretation.EvaluatePriority();
+        IsEssential = false;
     }
 
     public override void UpdatePriority()
     {
-        Priority = _interpretation.EvaluatePriority();
-    }
-
-    public override void Update()
-    {
-
         if (!_stimulus)
         {
             Priority = 0;
             return;
         }
+        Priority = _interpretation.EvaluatePriority();
+    }
 
+    public override void Update()
+    {
         // DEBUG REGION
         Vector2 pos = _brain.Organism.Position;
         Vector2? stim = _stimulus.Location.GetClosestPoint(pos, _brain.Organism.OrganismType);
@@ -55,7 +54,7 @@ public class StimulusResponseTask : BehaviorTask
 
         if (!Organism.Memory.IsStimulusActive(_stimulus) && !Organism.Memory.CanRemember(_stimulus))
         {
-            Priority = 0;
+            _stimulus = null;
             return;
         }
 
@@ -135,7 +134,7 @@ public class StimulusResponseTask : BehaviorTask
 
         if (closestPoint == null)
         {
-            Priority = 0;
+            _stimulus = null;
             return;
         }
 

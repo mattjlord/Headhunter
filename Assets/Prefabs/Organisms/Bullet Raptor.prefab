@@ -4910,6 +4910,7 @@ MonoBehaviour:
   _locationKnowledge: {fileID: 3198518219397569823}
   _navigation: {fileID: 3198518219397569820}
   _memory: {fileID: 3198518219397569826}
+  _curiosity: 0.2
 --- !u!114 &3198518219397569819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5002,6 +5003,7 @@ MonoBehaviour:
   _footstepFrequency: 0.25
   _footstepLoudness: 30
   _footprintPrefab: {fileID: 7769087844988270549, guid: 2ae4e30d4aa0fb043b9075f02bb9e027, type: 3}
+  _animator: {fileID: 0}
 --- !u!114 &3198518219397569810
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -79,7 +79,7 @@ public abstract class ABrain : MonoBehaviour
         if (actionManagement.IsReadyForQueue())
         {
             OrganismAction action = new OrganismAction(organism);
-            action.Duration = 1.0f; // Placeholder, until an eating animation is added
+            action.AnimationName = "Eat";
             action.TriggeredAction = () => obj.ConsumeThis(organism);
             actionManagement.QueueAction(action);
         }
@@ -92,7 +92,7 @@ public abstract class ABrain : MonoBehaviour
         if (actionManagement.IsReadyForQueue())
         {
             OrganismAction action = new OrganismAction(organism);
-            action.Duration = 1.0f; // Placeholder, until an eating animation is added
+            action.AnimationName = "Eat";
             action.TriggeredAction = () => obj.ConsumeThis(organism);
             actionManagement.QueueAction(action);
         }

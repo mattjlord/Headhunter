@@ -8,7 +8,7 @@ public class BehaviorTask
     [SerializeField] private float _priority;
     private bool _isFrozen;
     private bool _isRunning;
-    private bool _isEssential = false;
+    [SerializeField] private bool _isEssential = false;
 
     [SerializeField] private string _debugName;
     [SerializeField] protected string description;
