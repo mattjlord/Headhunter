@@ -4910,6 +4910,7 @@ MonoBehaviour:
   _locationKnowledge: {fileID: 8816648452552321080}
   _navigation: {fileID: 8816648452552321081}
   _memory: {fileID: 8816648452552321071}
+  _curiosity: 0.5
 --- !u!114 &8816648452552321060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4984,7 +4985,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95d050f2032095d47b5f5adfe46a1da1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 0}
+  _animator: {fileID: 2164706660905998892}
 --- !u!114 &8816648452552321062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5059,6 +5060,7 @@ MonoBehaviour:
   _footstepFrequency: 0.25
   _footstepLoudness: 45
   _footprintPrefab: {fileID: 7769087844988270549, guid: bd47f62d7894b5c4788cc9bb7d114947, type: 3}
+  _animator: {fileID: 2164706660905998892}
 --- !u!114 &8816648452552321071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5384,6 +5386,26 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4, y: 5, z: 7}
   m_Center: {x: 0, y: 2.5, z: -0.5}
+--- !u!95 &2164706660905998892
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8546265150864311404}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6dbc6b2e3f44f5a408312e1d73ddd03d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!4 &9066236927935586006 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0682dc19cd77b5447809555c475eb07f, type: 3}

@@ -9,6 +9,8 @@ public abstract class AMovement : MonoBehaviour
 
     [SerializeField] private GameObject _footprintPrefab;
 
+    [SerializeField] private Animator _animator;
+
     private float _currentSpeed;
 
     private float _encumbranceModifier = 1f;
@@ -65,6 +67,8 @@ public abstract class AMovement : MonoBehaviour
         _currentSpeed *= _exhaustionModifier;
 
         UpdateMove(_currentSpeed);
+        if (_animator != null)
+            UpdateAnimation();
     }
 
     public void Move(Organism organism, Vector2 value, bool run)
@@ -124,5 +128,20 @@ public abstract class AMovement : MonoBehaviour
             Destroy(footstepInstance, 1f);
 
         }
+    }
+
+    private void UpdateAnimation()
+    {
+        int moveState;
+
+        if (CurrentSpeed == 0)
+            moveState = 0;
+        else if (!_isRunning)
+            moveState = 1;
+        else
+            moveState = 2;
+
+        _animator.SetInteger("Move State", moveState);
+        _animator.SetFloat("Speed", _currentSpeed);
     }
 }

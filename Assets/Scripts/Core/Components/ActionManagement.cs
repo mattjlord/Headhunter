@@ -36,6 +36,11 @@ public class ActionManagement : MonoBehaviour
         {
             StartNextAction();
         }
+
+        if (_animator != null)
+        {
+            _animator.SetBool("Is Busy", _isBusy);
+        }
     }
 
     private void UpdateCurrentActionDisplacement()
