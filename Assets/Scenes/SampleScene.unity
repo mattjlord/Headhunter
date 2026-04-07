@@ -7657,6 +7657,7 @@ MonoBehaviour:
   _footstepFrequency: 0.25
   _footstepLoudness: 10
   _footprintPrefab: {fileID: 0}
+  _animator: {fileID: 0}
 --- !u!114 &426138451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13323,7 +13324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mudyakManager: {fileID: 2064665707}
   _bulletRaptorManager: {fileID: 1527434769}
-  _maxOrganisms: 1
+  _maxOrganisms: 100
   _despawnDistance: 400
   _player: {fileID: 426138448}
 --- !u!114 &1171083777 stripped

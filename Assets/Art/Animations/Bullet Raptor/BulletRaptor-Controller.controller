@@ -22,7 +22,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -8440978689673379889, guid: e07e74a51a2aff949a78939ae2e1106d, type: 3}
+  m_Motion: {fileID: -5710883616280998064, guid: e5919a0dc0332f344ba183aaf3826534, type: 3}
   m_Tag: 
   m_SpeedParameter: Speed
   m_MirrorParameter: 
@@ -49,7 +49,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -2971474455469776063, guid: c8087b2485899804398075c8fd1aab71, type: 3}
+  m_Motion: {fileID: 6723121238303689578, guid: 20055543cad1af748bd77338e3621a4c, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -76,7 +76,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 6823001261319711601, guid: 87b05d4d171655e4c9a0193dc7a98191, type: 3}
+  m_Motion: {fileID: 6177905338748982984, guid: 8187350b3f56bee40a617e56bd11593a, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -230,7 +230,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Mudyak-Controller
+  m_Name: BulletRaptor-Controller
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Move State
@@ -286,7 +286,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -245427178904362257, guid: f98f7299a7e83b54db59f025920a263c, type: 3}
+  m_Motion: {fileID: 335103431082610655, guid: beac7465898fbb740bece3b539467dab, type: 3}
   m_Tag: 
   m_SpeedParameter: Speed
   m_MirrorParameter: 
@@ -391,7 +391,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -2498894516131765623, guid: fc760ca987935c74fb5e9346d017d6c5, type: 3}
+  m_Motion: {fileID: 7748102479164544538, guid: 69e4bd403b81b4e4cb7c8115f9bbc2e3, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

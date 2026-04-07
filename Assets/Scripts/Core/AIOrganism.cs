@@ -18,6 +18,5 @@ public class AIOrganism : Organism
     public HerdManagement HerdManagement { get { return _herdManagement; } }
     public LocationKnowledge LocationKnowledge { get { return _locationKnowledge; } }
     public Navigation Navigation { get { return _navigation; } }
-    public Memory Memory { get { return _memory; } 
+    public Memory Memory { get { return _memory; } }
 }
-  
