@@ -98,7 +98,6 @@ public class Stimulus : MonoBehaviour
         else
         {
             dist = Vector2.Distance(organism.Position, _associatedObject.Position) - _associatedObject.Radius;
-            Debug.Log("Dist: " + dist);
         }
 
         return dist <= reach;

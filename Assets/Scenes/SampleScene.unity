@@ -7528,7 +7528,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &426138446
 Transform:
   m_ObjectHideFlags: 0
@@ -7718,6 +7718,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 0}
+  _currentAction:
+    _animationName: 
+    _progress: 0
+    _triggerDelay: 0
+    _displacementDelay: 0
+    _displacementStarted: 0
+    _triggered: 0
+  _nextAction:
+    _animationName: 
+    _progress: 0
+    _triggerDelay: 0
+    _displacementDelay: 0
+    _displacementStarted: 0
+    _triggered: 0
 --- !u!136 &426138456
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -15291,7 +15305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efe9466a996c42a45836166105007d5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxOrganisms: 30
+  _maxOrganisms: 20
   _spawnTemplate: {fileID: 3198518219397569825, guid: e7e36ea3e335da94a8d153e280652058, type: 3}
   _minHunger: 0
   _maxHunger: 50

@@ -4,14 +4,14 @@ public class MudyakBrain : ABrain
 {
     public static float HunterThreatDistance = 300f;
 
-    public override StimulusInterpretation AcceptAndInterpret(Stimulus stimulus)
-    {
-        return stimulus.VisitAndInterpret(this);
-    }
-
     public override void AcceptAndInteract(Stimulus stimulus, StimulusResponseType type)
     {
         stimulus.VisitAndInteract(this, type);
+    }
+
+    public override StimulusInterpretation AcceptAndInterpret(Stimulus stimulus)
+    {
+        return stimulus.VisitAndInterpret(this);
     }
 
     public override void Attack(Organism obj)
@@ -24,8 +24,9 @@ public class MudyakBrain : ABrain
 
         if (obj.WithinReach(organism.Position, organism.Reach))
         {
-            action.Duration = 0.3f; // Placeholder
-            action.TriggerDelay = 0.05f; // Placeholder
+            action.AnimationName = "Attack";
+            action.Duration = 1.666667f;
+            action.TriggerDelay = 0.2f;
             action.TriggeredAction = () =>
             {
                 if (obj)
@@ -41,8 +42,10 @@ public class MudyakBrain : ABrain
             Vector2 targetToThis = (organism.Position - target).normalized;
             target += targetToThis * (obj.Radius + organism.Reach);
 
-            action.Duration = 0.2f; // Placeholder
+            action.AnimationName = "Charge";
+            action.Duration = 0.83333f;
             action.Displacement = target - organism.Position;
+            action.DisplacementDelay = 0.2f;
         }
 
         organism.ActionManagement.QueueAction(action);

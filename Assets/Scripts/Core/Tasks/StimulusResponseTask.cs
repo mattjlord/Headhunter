@@ -188,6 +188,8 @@ public class StimulusResponseTask : BehaviorTask
 
     public override string GetName()
     {
+        if (_stimulus == null) 
+            return "";
         switch (_responseType)
         {
             case StimulusResponseType.Pursue:

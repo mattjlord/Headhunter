@@ -5,122 +5,43 @@ using UnityEngine;
 public class ActionManagement : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
-
-    private bool _isBusy = false;
-    private bool _currentActionTriggered = false;
-
-    private OrganismAction _currentAction;
-    private OrganismAction _nextAction;
-
-    private float _elapsedTime = 0;
-
-    private Vector2 _startPosition;
-    private Vector2 _endPosition;
-
-    private void Update()
-    {
-        if (_currentAction != null)
-        {
-            _elapsedTime += Time.deltaTime;
-
-            UpdateCurrentActionDisplacement();
-
-            if (IsCurrentActionTriggerReady())
-                FireCurrentActionTrigger();
-
-            if (IsCurrentActionComplete())
-                OnCurrentActionEnd();
-        }
-
-        if (ReadyForNextAction())
-        {
-            StartNextAction();
-        }
-
-        if (_animator != null)
-        {
-            _animator.SetBool("Is Busy", _isBusy);
-        }
-    }
-
-    private void UpdateCurrentActionDisplacement()
-    {
-        if (_currentAction.Displacement == null || _currentAction.Displacement == Vector2.zero)
-            return;
-
-        float positionLerp = _elapsedTime / _currentAction.Duration;
-
-        Vector2 currentPosition = Vector2.Lerp(_startPosition, _endPosition, positionLerp);
-
-        _currentAction.Organism.Position = currentPosition;
-        _currentAction.Organism.LookDirection = _currentAction.Displacement.normalized;
-    }
-
-    private bool IsCurrentActionTriggerReady()
-    {
-        return _currentAction.TriggeredAction != null && _elapsedTime >= _currentAction.TriggerDelay && !_currentActionTriggered;
-    }
-
-    private bool IsCurrentActionComplete()
-    {
-        if (_currentAction.Duration > 0f)
-            return _elapsedTime >= _currentAction.Duration;
-
-        if (!string.IsNullOrEmpty(_currentAction.AnimationName))
-        {
-            var state = _animator.GetCurrentAnimatorStateInfo(0);
-
-            return state.IsName(_currentAction.AnimationName)
-                   && !state.loop
-                   && state.normalizedTime >= 1f;
-        }
-
-        return true;
-    }
-
-    private void FireCurrentActionTrigger()
-    {
-        _currentAction.TriggeredAction.Invoke();
-        _currentActionTriggered = true;
-    }
-
-    private void OnCurrentActionEnd()
-    {
-        _isBusy = false;
-        _currentAction = null;
-        _elapsedTime = 0;
-    }
-
-    private bool ReadyForNextAction()
-    {
-        return !_isBusy && _nextAction != null;
-    }
-
-    private void StartNextAction()
-    {
-        _currentAction = _nextAction;
-        _nextAction = null;
-        _isBusy = true;
-
-        if (_currentAction.AnimationName != null)
-        {
-            _animator.Play(_currentAction.AnimationName);
-        }
-        if (_currentAction.Displacement != null)
-        {
-            _startPosition = _currentAction.Organism.Position;
-            _endPosition = _startPosition + _currentAction.Displacement;
-        }
-        _currentActionTriggered = false;
-    }
-
+    [SerializeField] private OrganismAction _currentAction;
+    [SerializeField] private OrganismAction _nextAction;
     public bool IsReadyForQueue()
     {
-        return _nextAction == null;
+        return _nextAction == null || !_nextAction.Constructed;
     }
 
     public void QueueAction(OrganismAction action)
     {
         _nextAction = action;
+    }
+
+    private bool IsBusy
+    {
+        get => _currentAction != null && _currentAction.Constructed  && _nextAction != null;
+    }
+
+    private void Update()
+    {
+        bool startNextAction = true;
+
+        if (_currentAction != null && _currentAction.Constructed && !_currentAction.IsFinished)
+            startNextAction = false;
+
+        if (startNextAction)
+        {
+            _currentAction = null;
+            _animator.SetBool("Is Busy", false);
+            if (_nextAction != null && _nextAction.Constructed)
+            {
+                _currentAction = _nextAction;
+                _nextAction = null;
+                _currentAction.Start(_animator);
+            }
+        }
+
+        if (_currentAction != null && _currentAction.Constructed)
+            _currentAction.Update(Time.deltaTime);
     }
 }

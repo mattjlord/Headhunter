@@ -80,6 +80,8 @@ public abstract class ABrain : MonoBehaviour
         {
             OrganismAction action = new OrganismAction(organism);
             action.AnimationName = "Eat";
+            action.Duration = 2.5f;
+            action.TriggerDelay = 1f;
             action.TriggeredAction = () => obj.ConsumeThis(organism);
             actionManagement.QueueAction(action);
         }
@@ -93,6 +95,8 @@ public abstract class ABrain : MonoBehaviour
         {
             OrganismAction action = new OrganismAction(organism);
             action.AnimationName = "Eat";
+            action.Duration = 2.5f;
+            action.TriggerDelay = 1f;
             action.TriggeredAction = () => obj.ConsumeThis(organism);
             actionManagement.QueueAction(action);
         }

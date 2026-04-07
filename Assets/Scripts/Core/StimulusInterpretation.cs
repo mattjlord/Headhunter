@@ -61,6 +61,7 @@ public class StimulusInterpretation
         float max = 0.0f;
         foreach (var entry in _vitalImpactEstimate)
         {
+            if (entry.Value == 0) continue;
             VitalType vital = entry.Key;
             float rawVitalVal = _organism.Vitals.GetVital(vital).Value;
             float biasedVitalVal = _organism.HerdManagement.GetHerdBiasedVitalValue(rawVitalVal, vital);
