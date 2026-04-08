@@ -34,7 +34,10 @@ public class AIMovement : AMovement
     {
         NavMeshPath path = _agent.path;
         if (path.corners.Length > 1)
+        {
             dir = (VectorUtils.Vec3ToVec2(path.corners[1]) - organism.Position).normalized;
+            //organism.ActionManagement.Stop();
+        }
         else
             dir = Vector2.zero;
     }

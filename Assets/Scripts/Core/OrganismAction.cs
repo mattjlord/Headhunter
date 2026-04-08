@@ -84,6 +84,8 @@ public class OrganismAction
 
     public void Update(float deltaTime)
     {
+        //_organism.Movement.StopMovement();
+
         _elapsedTime += deltaTime;
 
         _progress = _elapsedTime / _duration;

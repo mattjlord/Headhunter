@@ -33,6 +33,11 @@ public class StimulusResponseTask : BehaviorTask
         Priority = _interpretation.EvaluatePriority();
     }
 
+    public override void Stop()
+    {
+        Organism.ActionManagement.Stop();
+    }
+
     public override void Update()
     {
         // DEBUG REGION

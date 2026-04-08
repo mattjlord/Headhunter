@@ -17,9 +17,11 @@ public class ActionManagement : MonoBehaviour
         _nextAction = action;
     }
 
-    private bool IsBusy
+    public void Stop()
     {
-        get => _currentAction != null && _currentAction.Constructed  && _nextAction != null;
+        _currentAction = null;
+        _nextAction = null;
+        _animator.SetBool("Is Busy", false);
     }
 
     private void Update()

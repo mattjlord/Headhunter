@@ -58,6 +58,8 @@ public class OrganismManager : MonoBehaviour
 
         _organisms.Add(organism);
 
+        spawnedInstance.transform.parent = transform;
+
         return organism;
     }
 
