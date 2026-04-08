@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Stim_Hunter : Stimulus
@@ -44,6 +45,7 @@ public class Stim_Hunter : Stimulus
     {
         StimulusInterpretation interpretation = GenerateBaseInterpretation(brain);
         float dist = Location.GetDistanceFrom(brain.Organism.Position, OrganismType.Hunter);
+
         if (dist < MudyakBrain.HunterThreatDistance)
         {
             interpretation.AssignVitalImpact(VitalType.Injury, 10);

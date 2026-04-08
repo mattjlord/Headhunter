@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MudyakBrain : ABrain
 {
-    public static float HunterThreatDistance = 300f;
+    public static float HunterThreatDistance = 70f;
 
     public override void AcceptAndInteract(Stimulus stimulus, StimulusResponseType type)
     {

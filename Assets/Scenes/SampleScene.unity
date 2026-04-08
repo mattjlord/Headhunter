@@ -7794,22 +7794,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _container:
     _maxItems: 100
-    _items:
-    - _item: {fileID: 11400000, guid: b4c548bfa7aabfc499419861b435b328, type: 2}
-      _durability: 100
-      _cookProgress: 0
-    - _item: {fileID: 11400000, guid: b4c548bfa7aabfc499419861b435b328, type: 2}
-      _durability: 100
-      _cookProgress: 0
-    - _item: {fileID: 11400000, guid: b4c548bfa7aabfc499419861b435b328, type: 2}
-      _durability: 100
-      _cookProgress: 0
-    - _item: {fileID: 11400000, guid: e965b70551e57d64ebf5f62aaf7e6011, type: 2}
-      _durability: 100
-      _cookProgress: 0
-    - _item: {fileID: 11400000, guid: 4b335d3716a195244b9676bdb4943d65, type: 2}
-      _durability: 100
-      _cookProgress: 0
+    _items: []
   _carryingCapacity: 50
   _head:
     _item: {fileID: 0}
@@ -13338,7 +13323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mudyakManager: {fileID: 2064665707}
   _bulletRaptorManager: {fileID: 1527434769}
-  _maxOrganisms: 1
+  _maxOrganisms: 100
   _despawnDistance: 400
   _player: {fileID: 426138448}
 --- !u!114 &1171083777 stripped
