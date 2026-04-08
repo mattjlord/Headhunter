@@ -54,6 +54,9 @@ public class BehaviorTask
             Start();
         }
         Update();
+
+        // TODO: Remove this later
+        _organism.TaskMsg = GetName();
     }
 
     public void Exit()

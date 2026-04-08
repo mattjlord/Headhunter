@@ -133,15 +133,32 @@ public abstract class AMovement : MonoBehaviour
     private void UpdateAnimation()
     {
         int moveState;
+        // TODO: Remove later
+        string debugMsg;
 
         if (CurrentSpeed == 0)
+        {
             moveState = 0;
+            debugMsg = "Stationary";
+        }
         else if (!_isRunning)
+        {
             moveState = 1;
+            debugMsg = "Walking";
+        }
         else
+        {
             moveState = 2;
+            debugMsg = "Running";
+        }
 
         _animator.SetInteger("Move State", moveState);
         _animator.SetFloat("Speed", _currentSpeed);
+
+        AIOrganism aiOrganism = organism as AIOrganism;
+        if (aiOrganism != null)
+        {
+            aiOrganism.MoveMsg = debugMsg;
+        }
     }
 }

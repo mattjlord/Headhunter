@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class Stim_Hunter : Stimulus
 {
     public override StimulusInterpretation VisitAndInterpret(BulletRaptorBrain brain)
@@ -41,7 +43,8 @@ public class Stim_Hunter : Stimulus
     public override StimulusInterpretation VisitAndInterpret(MudyakBrain brain)
     {
         StimulusInterpretation interpretation = GenerateBaseInterpretation(brain);
-        if (Location.GetDistanceFrom(brain.Organism.Position, OrganismType.Hunter) < MudyakBrain.HunterThreatDistance)
+        float dist = Location.GetDistanceFrom(brain.Organism.Position, OrganismType.Hunter);
+        if (dist < MudyakBrain.HunterThreatDistance)
         {
             interpretation.AssignVitalImpact(VitalType.Injury, 10);
 

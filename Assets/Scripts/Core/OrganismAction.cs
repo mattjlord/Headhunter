@@ -71,7 +71,7 @@ public class OrganismAction
         if (_animationName != null)
         {
             animator.SetBool("Is Busy", true);
-            animator.Play(AnimationName);
+            animator.Play(_animationName, -1, 0);
         }
 
         _elapsedTime = 0;
@@ -84,7 +84,7 @@ public class OrganismAction
 
     public void Update(float deltaTime)
     {
-        //_organism.Movement.StopMovement();
+        _organism.Movement.StopMovement();
 
         _elapsedTime += deltaTime;
 
@@ -100,6 +100,7 @@ public class OrganismAction
 
         if (_displacement != Vector2.zero && _displacementStarted)
         {
+            Debug.DrawLine(VectorUtils.Vec2ToVec3(_startPos), VectorUtils.Vec2ToVec3(_endPos), Color.cyan);
             float displacementProgressBase = _progress - _displacementDelay;
             float displacementProgressMax = 1 - _displacementDelay;
             float displacementProgress = displacementProgressBase / displacementProgressMax;
@@ -112,4 +113,6 @@ public class OrganismAction
     {
         get => _progress >= 1f;
     }
+
+    public float Progress { get { return _progress; } }
 }

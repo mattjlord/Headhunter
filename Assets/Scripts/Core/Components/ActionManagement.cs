@@ -45,5 +45,15 @@ public class ActionManagement : MonoBehaviour
 
         if (_currentAction != null && _currentAction.Constructed)
             _currentAction.Update(Time.deltaTime);
+
+        // TODO: Remove this later, it's sloppy
+        AIOrganism organism = GetComponent<AIOrganism>();
+        if (organism != null)
+        {
+            if (_currentAction != null && _currentAction.Constructed)
+                organism.ActionMsg = _currentAction.AnimationName + " - " + (int)(_currentAction.Progress * 100f) + "%";
+            else
+                organism.ActionMsg = "No Action";
+        }
     }
 }
