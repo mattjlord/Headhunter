@@ -37,6 +37,7 @@ public class Shooting : MonoBehaviour
         if (_muzzleFlashVFX != null)
         {
             GameObject flash = Instantiate(_muzzleFlashVFX, _barrel.position, _barrel.rotation);
+            flash.GetComponent<Stim_Gunshot>().Fire();
             Destroy(flash, 1f);
         }
 

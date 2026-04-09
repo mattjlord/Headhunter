@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4495577691426373057}
   - component: {fileID: 2040731852340249742}
   - component: {fileID: 1608217396072182669}
+  - component: {fileID: 998109637594435002}
+  - component: {fileID: 3526732182359566649}
   m_Layer: 0
   m_Name: Footprint-BulletRaptor
   m_TagString: Untagged
@@ -83,3 +85,41 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &998109637594435002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7769087844988270549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fad6f51eba3ced044af07ea37f8dc1a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugColor: {r: 0, g: 1, b: 0, a: 1}
+--- !u!114 &3526732182359566649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7769087844988270549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91ce49022f313964392a597e2fc72e77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _location: {fileID: 998109637594435002}
+  _senseType: 1
+  detectableDistance: 0
+  _lingering: 0
+  _fixed: 1
+  _associatedObject: {fileID: 0}
+  _observers: 0
+  _audioClips:
+  - {fileID: 8300000, guid: cd5da35828f03cf4a9ee82f4da7d215b, type: 3}
+  - {fileID: 8300000, guid: e12c6c32a0951e34e8c3e9b5087cce91, type: 3}
+  - {fileID: 8300000, guid: 6b5cfc0248519c64495193d9ee3ec5dd, type: 3}
+  - {fileID: 8300000, guid: ab15e4d3e5365fd4895bb7bce6eb01d5, type: 3}
+  _organismType: 0

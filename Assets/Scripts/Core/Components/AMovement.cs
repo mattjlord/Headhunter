@@ -93,28 +93,6 @@ public abstract class AMovement : MonoBehaviour
     {
         _lastFootstep = Time.time;
 
-        GameObject footstepObj = new GameObject();
-        footstepObj.AddComponent<Stim_Footstep>();
-        footstepObj.AddComponent<PointLocation>();
-
-        Stim_Footstep footstep = footstepObj.GetComponent<Stim_Footstep>();
-        footstep.OrganismType = organism.OrganismType;
-        PointLocation pointLocation = footstepObj.GetComponent<PointLocation>();
-
-        float loudness = _footstepLoudness;
-        if (_isRunning) { loudness *= 2f; }
-
-        footstep.Location = pointLocation;
-        footstep.SenseType = SenseType.Sound;
-        footstep.DetectableDistance = loudness;
-        footstep.ProducerOrganism = organism;
-
-        Vector3 footstepPos = VectorUtils.Vec2ToVec3(organism.Position);
-
-        GameObject instance = Instantiate(footstepObj, footstepPos, Quaternion.identity);
-
-        instance.GetComponent<Stim_Footstep>().Fire();
-
         if (_footprintPrefab != null)
         {
             Vector3 footprintPos = VectorUtils.Vec2ToVec3(organism.Position);
@@ -125,6 +103,11 @@ public abstract class AMovement : MonoBehaviour
 
             footprintPos.y = 0.01f;
             GameObject footstepInstance = Instantiate(_footprintPrefab, footprintPos, Quaternion.Euler(0, angleInDeg, 0));
+
+            Stim_Footstep stim = footstepInstance.GetComponent<Stim_Footstep>();
+            stim.DetectableDistance = _footstepLoudness;
+            stim.Fire();
+
             Destroy(footstepInstance, 1f);
 
         }

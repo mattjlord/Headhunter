@@ -624,7 +624,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _location: {fileID: 36505342}
   _senseType: 0
-  _detectableDistance: 100
+  detectableDistance: 0
   _lingering: 1
   _fixed: 1
   _associatedObject: {fileID: 36505340}
@@ -904,7 +904,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _location: {fileID: 57766177}
   _senseType: 0
-  _detectableDistance: 100
+  detectableDistance: 0
   _lingering: 1
   _fixed: 1
   _associatedObject: {fileID: 57766175}
@@ -1334,7 +1334,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _location: {fileID: 162887513}
   _senseType: 0
-  _detectableDistance: 100
+  detectableDistance: 0
   _lingering: 1
   _fixed: 1
   _associatedObject: {fileID: 162887511}
@@ -7636,7 +7636,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _location: {fileID: 398336469}
   _senseType: 0
-  _detectableDistance: 200
+  detectableDistance: 0
   _lingering: 1
   _fixed: 1
   _associatedObject: {fileID: 398336467}
@@ -7841,6 +7841,7 @@ GameObject:
   - component: {fileID: 426138459}
   - component: {fileID: 426138456}
   - component: {fileID: 426138460}
+  - component: {fileID: 426138461}
   m_Layer: 0
   m_Name: Hunter
   m_TagString: Untagged
@@ -7975,7 +7976,7 @@ MonoBehaviour:
   _runSpeed: 36
   _footstepFrequency: 0.25
   _footstepLoudness: 10
-  _footprintPrefab: {fileID: 0}
+  _footprintPrefab: {fileID: 7769087844988270549, guid: 59e7cbac782816e4499b31040c3d9a99, type: 3}
   _animator: {fileID: 0}
 --- !u!114 &426138451
 MonoBehaviour:
@@ -8019,7 +8020,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _location: {fileID: 426138457}
   _senseType: 0
-  _detectableDistance: 0
+  detectableDistance: 0
   _lingering: 0
   _fixed: 1
   _associatedObject: {fileID: 0}
@@ -8098,7 +8099,7 @@ MonoBehaviour:
   _damage: 20
   _firerate: 0.3
   _muzzleFlashVFX: {fileID: 1725342884338980984, guid: 2a65519cbc0367846890ab30ff98d8ff, type: 3}
-  _bullets: 20
+  _bullets: 60
 --- !u!114 &426138459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8113,19 +8114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _container:
     _maxItems: 100
-    _items:
-    - _item: {fileID: 11400000, guid: 38f87ecaf9bbbec4399992b916e02cf8, type: 2}
-      _durability: 100
-      _cookProgress: 0
-    - _item: {fileID: 11400000, guid: b4c548bfa7aabfc499419861b435b328, type: 2}
-      _durability: 100
-      _cookProgress: 0
-    - _item: {fileID: 11400000, guid: e965b70551e57d64ebf5f62aaf7e6011, type: 2}
-      _durability: 100
-      _cookProgress: 0
-    - _item: {fileID: 11400000, guid: 8c3fc23e90578634a9aacf231cd8be1a, type: 2}
-      _durability: 100
-      _cookProgress: 0
+    _items: []
     _name: 
     _showName: 0
   _carryingCapacity: 50
@@ -8167,6 +8156,14 @@ MonoBehaviour:
     _items: []
     _name: 
     _showName: 0
+--- !u!81 &426138461
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426138443}
+  m_Enabled: 1
 --- !u!1 &427699251
 GameObject:
   m_ObjectHideFlags: 0
@@ -8297,7 +8294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _location: {fileID: 444141125}
   _senseType: 0
-  _detectableDistance: 200
+  detectableDistance: 0
   _lingering: 1
   _fixed: 1
   _associatedObject: {fileID: 444141123}
@@ -8725,7 +8722,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _location: {fileID: 493008397}
   _senseType: 0
-  _detectableDistance: 100
+  detectableDistance: 0
   _lingering: 1
   _fixed: 1
   _associatedObject: {fileID: 493008395}
@@ -9031,7 +9028,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _location: {fileID: 538849912}
   _senseType: 0
-  _detectableDistance: 200
+  detectableDistance: 0
   _lingering: 1
   _fixed: 1
   _associatedObject: {fileID: 538849914}
@@ -10938,7 +10935,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _location: {fileID: 795858524}
   _senseType: 0
-  _detectableDistance: 100
+  detectableDistance: 0
   _lingering: 1
   _fixed: 1
   _associatedObject: {fileID: 795858522}
@@ -12016,7 +12013,6 @@ GameObject:
   m_Component:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
-  - component: {fileID: 963194226}
   - component: {fileID: 963194229}
   - component: {fileID: 963194230}
   m_Layer: 0
@@ -12026,14 +12022,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &963194226
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
 --- !u!20 &963194227
 Camera:
   m_ObjectHideFlags: 0
@@ -13038,7 +13026,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _location: {fileID: 1095622926}
   _senseType: 0
-  _detectableDistance: 100
+  detectableDistance: 0
   _lingering: 1
   _fixed: 1
   _associatedObject: {fileID: 1095622924}
@@ -14107,7 +14095,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _location: {fileID: 1241769425}
   _senseType: 0
-  _detectableDistance: 200
+  detectableDistance: 0
   _lingering: 1
   _fixed: 1
   _associatedObject: {fileID: 1241769423}
@@ -14599,7 +14587,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _location: {fileID: 1280535859}
   _senseType: 0
-  _detectableDistance: 100
+  detectableDistance: 0
   _lingering: 1
   _fixed: 1
   _associatedObject: {fileID: 1280535857}
@@ -15208,7 +15196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _location: {fileID: 1422525325}
   _senseType: 0
-  _detectableDistance: 200
+  detectableDistance: 0
   _lingering: 1
   _fixed: 1
   _associatedObject: {fileID: 1422525323}
@@ -15348,7 +15336,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _location: {fileID: 1425174309}
   _senseType: 0
-  _detectableDistance: 100
+  detectableDistance: 0
   _lingering: 1
   _fixed: 1
   _associatedObject: {fileID: 1425174307}
@@ -15443,7 +15431,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _location: {fileID: 1433483565}
   _senseType: 0
-  _detectableDistance: 100
+  detectableDistance: 0
   _lingering: 1
   _fixed: 1
   _associatedObject: {fileID: 1433483563}
@@ -15924,7 +15912,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _location: {fileID: 1480944120}
   _senseType: 0
-  _detectableDistance: 200
+  detectableDistance: 0
   _lingering: 1
   _fixed: 1
   _associatedObject: {fileID: 1480944118}
@@ -16346,7 +16334,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _location: {fileID: 1573673665}
   _senseType: 0
-  _detectableDistance: 200
+  detectableDistance: 0
   _lingering: 1
   _fixed: 1
   _associatedObject: {fileID: 1573673663}
@@ -21691,7 +21679,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _location: {fileID: 1625344445}
   _senseType: 0
-  _detectableDistance: 100
+  detectableDistance: 0
   _lingering: 1
   _fixed: 1
   _associatedObject: {fileID: 1625344443}
@@ -21938,6 +21926,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1669958344}
   m_CullTransparentMesh: 1
+--- !u!1 &1678120085
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1678120086}
+  - component: {fileID: 1678120087}
+  m_Layer: 0
+  m_Name: Audio Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1678120086
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678120085}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 730.0427, y: 122.34027, z: 336.82288}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1678120087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678120085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4a83a15c071d204ba897af7da28015a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerInstance: {fileID: 426138448}
+  _audioPrefabInstance: {fileID: 5095159061513057928, guid: f2ba236e38b82874d9ba7e1f41ce2ce1, type: 3}
 --- !u!1 &1730630838
 GameObject:
   m_ObjectHideFlags: 0
@@ -23099,7 +23133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _location: {fileID: 1901528125}
   _senseType: 0
-  _detectableDistance: 100
+  detectableDistance: 0
   _lingering: 1
   _fixed: 1
   _associatedObject: {fileID: 1901528123}
@@ -23192,7 +23226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _location: {fileID: 1919093431}
   _senseType: 0
-  _detectableDistance: 100
+  detectableDistance: 0
   _lingering: 1
   _fixed: 1
   _associatedObject: {fileID: 1919093429}

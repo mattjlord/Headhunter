@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 6221256210959409740}
   - component: {fileID: 8410307038383929671}
   - component: {fileID: 8564085887353593320}
+  - component: {fileID: -1343124525436950972}
+  - component: {fileID: -4697228766567188588}
   m_Layer: 0
-  m_Name: MuzzleFlash
+  m_Name: Gunshot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,3 +112,37 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-1343124525436950972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1725342884338980984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 862ac2af145d1244fa8a87b8aaa405e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _location: {fileID: -4697228766567188588}
+  _senseType: 0
+  detectableDistance: 100
+  _lingering: 0
+  _fixed: 1
+  _associatedObject: {fileID: 0}
+  _observers: 0
+  _audioClips:
+  - {fileID: 8300000, guid: ea18241406192bc4a938dda060f21cd2, type: 3}
+--- !u!114 &-4697228766567188588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1725342884338980984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fad6f51eba3ced044af07ea37f8dc1a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugColor: {r: 0, g: 1, b: 0, a: 1}

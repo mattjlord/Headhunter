@@ -11,7 +11,7 @@ public class Stimulus : MonoBehaviour
 
     [SerializeField] private ALocation _location;
     [SerializeField] private SenseType _senseType;
-    [SerializeField] private float _detectableDistance;
+    [SerializeField] protected float detectableDistance;
     [SerializeField] private bool _lingering = false;
     [SerializeField] private bool _fixed = true;
 
@@ -41,8 +41,8 @@ public class Stimulus : MonoBehaviour
         set { _producerOrganism = value; }
     }
     public float DetectableDistance { 
-        get { return _detectableDistance; } 
-        set { _detectableDistance = value; }
+        get { return detectableDistance; } 
+        set { detectableDistance = value; }
     }
     public bool Lingering
     {
@@ -112,13 +112,17 @@ public class Stimulus : MonoBehaviour
     {
         if (_location.GetType() == typeof(PointLocation))
         {
-            //DrawUtils.DrawCircle(transform.position + Vector3.up, _detectableDistance, Color.magenta, 1f);
+            //DrawUtils.DrawCircle(transform.position + Vector3.up, detectableDistance, Color.magenta, 1f);
         }
         foreach (AIOrganism organism in MasterOrganismManager.AllOrganisms)
         {
             organism.RespondToStimulus(this);
         }
+
+        OnFire();
     }
+
+    protected virtual void OnFire() { }
 
     public void IncrementObservers()
     {

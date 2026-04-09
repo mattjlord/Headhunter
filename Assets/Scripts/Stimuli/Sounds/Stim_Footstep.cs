@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stim_Footstep : Stimulus
+public class Stim_Footstep : SoundStimulus
 {
     [SerializeField] private OrganismType _organismType;
 
@@ -20,7 +20,6 @@ public class Stim_Footstep : Stimulus
 
         return interpretation;
     }
-    public override void VisitAndInteract(MudyakBrain brain, StimulusResponseType type) { }
 
     public virtual StimulusInterpretation VisitAndInterpret(BulletRaptorBrain brain)
     {
