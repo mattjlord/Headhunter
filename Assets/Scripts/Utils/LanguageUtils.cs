@@ -12,4 +12,22 @@ public static class LanguageUtils
                 return "smells";
         }
     }
+
+    public static string GetInteractionPhrase(InventoryItemInstance instance, ItemInteractionType interactionType)
+    {
+        switch (interactionType)
+        {
+            case ItemInteractionType.Discard:
+                return "Discard";
+            case ItemInteractionType.Consume:
+                return "Consume";
+            case ItemInteractionType.Equip:
+                if (instance.EquipmentSlot == null)
+                    return "Equip";
+                else
+                    return "Unequip";
+            default:
+                return "";
+        }
+    }
 }

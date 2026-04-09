@@ -393,6 +393,8 @@ MonoBehaviour:
     - _item: {fileID: 11400000, guid: 8c3fc23e90578634a9aacf231cd8be1a, type: 2}
       _durability: 100
       _cookProgress: 0
+    _name: Mudyak Carcass
+    _showName: 0
 --- !u!136 &3962123820247030541
 CapsuleCollider:
   m_ObjectHideFlags: 0

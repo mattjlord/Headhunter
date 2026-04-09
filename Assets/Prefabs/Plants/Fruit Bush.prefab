@@ -406,6 +406,8 @@ MonoBehaviour:
     - _item: {fileID: 11400000, guid: d584cae5239732641b60d5a552bb500f, type: 2}
       _durability: 100
       _cookProgress: 0
+    _name: Fruit Bush
+    _showName: 0
 --- !u!136 &4362668801954228151
 CapsuleCollider:
   m_ObjectHideFlags: 0

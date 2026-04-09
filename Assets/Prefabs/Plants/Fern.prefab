@@ -166,6 +166,8 @@ MonoBehaviour:
     - _item: {fileID: 11400000, guid: bfa51ad7f7a644b48ba9e6b2966f74f9, type: 2}
       _durability: 100
       _cookProgress: 0
+    _name: Fern
+    _showName: 0
 --- !u!136 &1984144342
 CapsuleCollider:
   m_ObjectHideFlags: 0

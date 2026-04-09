@@ -11,7 +11,13 @@ public class Container
     [SerializeField] private int _maxItems;
     [SerializeField] private List<InventoryItemInstance> _items;
 
+    [SerializeField] private string _name;
+    [SerializeField] private bool _showName = false;
+
     public List<InventoryItemInstance> Items { get => _items; }
+
+    public string Name { get => _name; }
+    public bool ShowName { get => _showName; }
 
     public bool CanAddItem()
     {

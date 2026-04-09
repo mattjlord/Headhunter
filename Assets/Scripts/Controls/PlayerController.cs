@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private InventoryUI _inventoryUI;
     [SerializeField] private ContainerUI _scavengingUI;
     [SerializeField] private CraftingUI _craftingUI;
+    [SerializeField] private ControlHintsUI _controlHintsUI;
     [SerializeField] private LayerMask _interactionLayers;
 
     public ControlState ControlState =>
@@ -35,6 +36,7 @@ public class PlayerController : MonoBehaviour
         _inventoryUI.Enabled = false;
         _scavengingUI.Enabled = false;
         _craftingUI.Enabled = false;
+        _controlHintsUI.HideAll();
     }
 
     public void RestInShelter(PlayerShelter shelter)
@@ -92,6 +94,8 @@ public class PlayerController : MonoBehaviour
 
     private void WhileInWorldState()
     {
+        _controlHintsUI.HideAll();
+
         ParseLookDirection();
         ParseMovement();
 
@@ -106,6 +110,8 @@ public class PlayerController : MonoBehaviour
     {
         ParseAndUpdateMenuClose();
         ParseAndUpdateItemInteraction();
+
+        UpdateMenuControlHints();
     }
 
     private void ParseLookDirection()
@@ -293,19 +299,93 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse1)) 
+        if (_inventoryUI.Enabled) 
         {
-            if (_inventoryUI.Enabled)
+            InventoryItemInstance currentItem = _inventoryUI.CurrentItem;
+            if (currentItem != null)
             {
-                InventoryItemInstance currentItem = _inventoryUI.CurrentItem;
-                if (currentItem != null)
+                if (Input.GetKeyDown(KeyCode.Mouse1))
                 {
                     Inventory inventory = _organism.Inventory;
-                    List<ItemInteractionType> interactionOptions = currentItem.Item.GetInteractionOptions();
-                    ItemInteractionType selectedOption = interactionOptions[0]; // TODO: Implement an actual context menu later if necessary, this is a temporary solution for single interaction items
+                    ItemInteractionType selectedOption = currentItem.InteractionType;
                     inventory.ProcessItemInteraction(currentItem, selectedOption, _organism);
                 }
+
+                float scroll = Input.GetAxis("Mouse ScrollWheel");
+
+                if (scroll > 0)
+                    currentItem.InteractionIndex++;
+                else if (scroll < 0)
+                    currentItem.InteractionIndex--;
             }
+                
         }
+    }
+
+    private void UpdateMenuControlHints()
+    {
+        InventoryItemInstance inventoryItem = _inventoryUI.CurrentItem;
+        InventoryItemInstance scavengingItem = _scavengingUI.CurrentItem;
+        InventoryItemInstance craftingInputItem = _craftingUI.CurrentInputItem;
+        InventoryItemInstance craftingOutputItem = _craftingUI.CurrentOutputItem;
+
+        string moveDestName = "";
+
+        if (inventoryItem != null)
+        {
+            // LMB
+            if (_craftingUI.Enabled && inventoryItem.Item is CraftingMaterial)
+                moveDestName = "Crafting Menu";
+            else if (_scavengingUI.Enabled)
+                moveDestName = _scavengingUI.Container.Name;
+
+            // MWheel
+            _controlHintsUI.MWheelText = "Switch Interaction";
+
+            // RMB
+            string interactionPhrase = LanguageUtils.GetInteractionPhrase(inventoryItem, inventoryItem.InteractionType);
+            _controlHintsUI.RMBText = interactionPhrase + " Item";
+        }
+        else if (scavengingItem != null)
+        {
+            // LMB
+            if (_inventoryUI.Enabled)
+                moveDestName = "Inventory";
+
+            // MWheel & RMB do nothing
+            _controlHintsUI.MWheelText = "";
+            _controlHintsUI.RMBText = "";
+        }
+        else if (craftingInputItem != null)
+        {
+            // LMB
+            if (_inventoryUI.Enabled)
+                moveDestName = "Inventory";
+
+            // MWheel & RMB do nothing
+            _controlHintsUI.MWheelText = "";
+            _controlHintsUI.RMBText = "";
+        }
+        else if (craftingOutputItem != null)
+        {
+            // LMB
+            if (_inventoryUI.Enabled)
+                moveDestName = "Inventory";
+
+            // MWheel & RMB do nothing
+            _controlHintsUI.MWheelText = "";
+            _controlHintsUI.RMBText = "";
+        }
+        else
+        {
+            _controlHintsUI.HideAll();
+            return;
+        }
+
+        // Handle LMB move text here, in a final step
+        if (moveDestName != "")
+            _controlHintsUI.LMBText = "Move to " + moveDestName;
+        else
+            _controlHintsUI.LMBText = "";
     }
 }

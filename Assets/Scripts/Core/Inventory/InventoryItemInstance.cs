@@ -9,6 +9,23 @@ public class InventoryItemInstance
     [SerializeField] private float _cookProgress = 0f;
     private EquipmentSlot? _equipmentSlot = null;
 
+    private int _interactionIndex = 0;
+
+    public int InteractionIndex
+    {
+        set
+        {
+            int optionCount = _item.GetInteractionOptions().Count;
+            _interactionIndex = ((value % optionCount) + optionCount) % optionCount;
+        }
+        get => _interactionIndex;
+    }
+
+    public ItemInteractionType InteractionType
+    {
+        get => _item.GetInteractionOptions()[_interactionIndex];
+    }
+
     public InventoryItem Item { get => _item; }
 
     public EquipmentSlot? EquipmentSlot { get => _equipmentSlot; set => _equipmentSlot = value; }

@@ -19,7 +19,10 @@ public class ContainerUI : MonoBehaviour
 
     private InventoryItemInstance? _currentItem;
 
-    public Container Container { set { container = value; } }
+    public Container Container { 
+        set { container = value; } 
+        get { return container; }
+    }
 
     public InventoryItemInstance? CurrentItem { get { return _currentItem; } }
 
