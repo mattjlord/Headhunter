@@ -12,4 +12,9 @@ public class PlayerShelter : WorldObject
     {
         playerController.RestInShelter(this);
     }
+
+    public override string GetInteractionPhrase()
+    {
+        return "Go to Sleep";
+    }
 }

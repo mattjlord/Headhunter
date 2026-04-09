@@ -92,4 +92,6 @@ public class WorldObject : MonoBehaviour
     }
 
     public virtual void OnInteraction(PlayerController playerController) { }
+
+    public virtual string GetInteractionPhrase() { return ""; }
 }

@@ -94,8 +94,6 @@ public class PlayerController : MonoBehaviour
 
     private void WhileInWorldState()
     {
-        _controlHintsUI.HideAll();
-
         ParseLookDirection();
         ParseMovement();
 
@@ -169,21 +167,23 @@ public class PlayerController : MonoBehaviour
 
     private void ParseAndUpdateInteraction()
     {
+        _controlHintsUI.RMBText = "";
+
+        Vector3 worldLookPoint = VectorUtils.Vec2ToVec3(_lookPoint);
+        bool objectHit = Physics.Raycast(worldLookPoint + 20 * Vector3.up, Vector3.down * 20f, out RaycastHit hitInfo, _interactionLayers);
+
+        if (!objectHit) { return; }
+
+        WorldObject obj = hitInfo.collider.gameObject.GetComponent<WorldObject>();
+
+        if (obj == null) { return; }
+
+        if (!obj.WithinReach(_organism.Position, _organism.Reach)) { return; }
+
+        _controlHintsUI.RMBText = obj.GetInteractionPhrase();
+
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            Vector3 worldLookPoint = VectorUtils.Vec2ToVec3(_lookPoint);
-            bool objectHit = Physics.Raycast(worldLookPoint + 20 * Vector3.up, Vector3.down * 20f, out RaycastHit hitInfo, _interactionLayers);
-
-            if (!objectHit) { return; }
-
-            WorldObject obj = hitInfo.collider.gameObject.GetComponent<WorldObject>();
-
-            if (obj == null) { return; }
-
-            if (!obj.WithinReach(_organism.Position, _organism.Reach)) { return; }
-
-            Debug.DrawRay(worldLookPoint + 20 * Vector3.up, Vector3.down * 20f, Color.red, 1f);
-
             obj.OnInteraction(this);
         }
     }

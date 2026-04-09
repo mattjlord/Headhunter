@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.HighDefinition;
+using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
 
 public enum TimeOfDay
@@ -18,6 +19,7 @@ public class TimeManagement : MonoBehaviour
     [SerializeField] private AnimationCurve _sunRotationCurve;
     [SerializeField] private AnimationCurve _lightCurve;
     [SerializeField] private AnimationCurve _baseHeatCurve;
+    [SerializeField] private AnimationCurve _heatOverlayCurve;
     [SerializeField] private float _highSunHeat;
 
     [SerializeField] private float _minTemp;
@@ -35,6 +37,8 @@ public class TimeManagement : MonoBehaviour
 
     [SerializeField] private Transform _sunTransform;
     [SerializeField] private HDAdditionalLightData _lightData;
+
+    [SerializeField] private Image _heatOverlay;
 
     private static TimeOfDay _timeOfDay;
 
@@ -150,6 +154,7 @@ public class TimeManagement : MonoBehaviour
     private void UpdateLighting()
     {
         float dayProgress = _totalDays % 1;
+
         float rotationLerp = _sunRotationCurve.Evaluate(dayProgress);
         float sunAngle = Mathf.Lerp(-90, 270, rotationLerp);
         _sunTransform.rotation = Quaternion.Euler(new Vector3(sunAngle, 0, 0));
@@ -159,6 +164,9 @@ public class TimeManagement : MonoBehaviour
         float intensity = Mathf.Lerp(_minIntensity, _maxIntensity, lightProgress);
         _lightData.intensity = intensity;
         _lightData.SetColor(Color.white, temp);
+
+        float overlayProgress = _heatOverlayCurve.Evaluate(dayProgress);
+        _heatOverlay.color = new Color(1f, 1f, 1f, overlayProgress);
     }
 
     private void UpdateHeat()

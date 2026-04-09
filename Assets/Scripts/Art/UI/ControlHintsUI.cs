@@ -6,19 +6,21 @@ using UnityEngine.UI;
 
 public class ControlHintsUI : MonoBehaviour
 {
-    [SerializeField] private Image _lmbIcon;
-    [SerializeField] private TMP_Text _lmbText;
-    [SerializeField] private Image _mWheelIcon;
-    [SerializeField] private TMP_Text _mWheelText;
-    [SerializeField] private Image _rmbIcon;
-    [SerializeField] private TMP_Text _rmbText;
+    [SerializeField] private GameObject _lmb;
+    [SerializeField] private GameObject _mWheel;
+    [SerializeField] private GameObject _rmb;
 
     public string LMBText
     {
         set
         {
-            _lmbIcon.enabled = value != "";
-            _lmbText.text = value;
+            bool active = value != "";
+            _lmb.SetActive(active);
+            if (active)
+            {
+                _lmb.GetComponentInChildren<Image>().enabled = true;
+                _lmb.GetComponentInChildren<TMP_Text>().text = value;
+            }
         }
     }
 
@@ -26,8 +28,13 @@ public class ControlHintsUI : MonoBehaviour
     {
         set
         {
-            _mWheelIcon.enabled = value != "";
-            _mWheelText.text = value;
+            bool active = value != "";
+            _mWheel.SetActive(active);
+            if (active)
+            {
+                _mWheel.GetComponentInChildren<Image>().enabled = true;
+                _mWheel.GetComponentInChildren<TMP_Text>().text = value;
+            }
         }
     }
 
@@ -35,8 +42,13 @@ public class ControlHintsUI : MonoBehaviour
     {
         set
         {
-            _rmbIcon.enabled = value != "";
-            _rmbText.text = value;
+            bool active = value != "";
+            _rmb.SetActive(active);
+            if (active)
+            {
+                _rmb.GetComponentInChildren<Image>().enabled = true;
+                _rmb.GetComponentInChildren<TMP_Text>().text = value;
+            }
         }
     }
 

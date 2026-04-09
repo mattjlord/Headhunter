@@ -37,6 +37,11 @@ public class PlantOrCarcass : FoodOrWaterObject
         playerController.OpenContainer(_scavengeableParts);
     }
 
+    public override string GetInteractionPhrase()
+    {
+        return "Inspect " + _scavengeableParts.Name;
+    }
+
     protected override void OnConsumeOnce()
     {
         _scavengeableParts.RemoveItemOfType(typeof(Consumable));

@@ -13,6 +13,11 @@ public class FirePit : WorldObject
         playerController.OpenContainer(_container);
     }
 
+    public override string GetInteractionPhrase()
+    {
+        return "Use Fire Pit";
+    }
+
     private void Update()
     {
         if (_cookRate > 0)
