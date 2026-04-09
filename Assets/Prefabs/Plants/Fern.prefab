@@ -167,7 +167,7 @@ MonoBehaviour:
       _durability: 100
       _cookProgress: 0
     _name: Fern
-    _showName: 0
+    _showName: 1
 --- !u!136 &1984144342
 CapsuleCollider:
   m_ObjectHideFlags: 0

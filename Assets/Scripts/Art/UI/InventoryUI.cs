@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +18,7 @@ public class InventoryUI : ContainerUI
 
     [SerializeField] private List<Image> _equipmentFrames;
 
+    [SerializeField] private TMP_Text _encumbranceText;
 
     protected override void Start()
     {
@@ -28,6 +30,7 @@ public class InventoryUI : ContainerUI
     {
         base.Update();
         DisplayEquipment();
+        DisplayEncumbrance();
     }
 
     protected override void EnabledExtension(bool value)
@@ -38,6 +41,7 @@ public class InventoryUI : ContainerUI
         _torsoItem.enabled = value;
         _legsItem.enabled = value;
         _backItem.enabled = value;
+        _encumbranceText.enabled = value;
     }
 
     private void DisplayEquipment()
@@ -63,5 +67,12 @@ public class InventoryUI : ContainerUI
             _backItem.sprite = backItem.Item?.Image;
         else
             _backItem.sprite = _backEmptyIcon;
+    }
+
+    private void DisplayEncumbrance()
+    {
+        int inPounds = (int)_inventory.Container.TotalWeight;
+        int inPercent = (int)(_inventory.Container.TotalWeight / _inventory.CarryingCapacity * 100);
+        _encumbranceText.text = $"Encumbrance: {inPercent}% ({inPounds} lb)";
     }
 }

@@ -78,7 +78,7 @@ MonoBehaviour:
       _durability: 100
       _cookProgress: 0
     _name: Bullet Raptor Carcass
-    _showName: 0
+    _showName: 1
 --- !u!136 &3962123820247030541
 CapsuleCollider:
   m_ObjectHideFlags: 0

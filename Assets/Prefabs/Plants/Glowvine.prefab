@@ -1464,7 +1464,7 @@ MonoBehaviour:
       _durability: 100
       _cookProgress: 0
     _name: Glowvine
-    _showName: 0
+    _showName: 1
 --- !u!136 &8240173619866556403
 CapsuleCollider:
   m_ObjectHideFlags: 0

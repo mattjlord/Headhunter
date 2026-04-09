@@ -5,18 +5,18 @@ public static class UIUtils
 {
     private static int gridSize = 50;
 
-    public static Image[][] InitIconGrid(RectTransform rectTransform, GameObject iconPrefab)
+    public static InventoryIconUI[][] InitIconGrid(RectTransform rectTransform, GameObject iconPrefab)
     {
         Rect rect = rectTransform.rect;
 
         int columns = (int)rect.width / gridSize;
         int rows = (int)rect.height / gridSize;
 
-        Image[][] grid = new Image[rows][];
+        InventoryIconUI[][] grid = new InventoryIconUI[rows][];
 
         for (int x = 0; x < rows; x++)
         {
-            grid[x] = new Image[columns];
+            grid[x] = new InventoryIconUI[columns];
         }
 
         Vector2 start = new Vector2(rect.xMin, rect.yMax);
@@ -31,9 +31,9 @@ public static class UIUtils
                 );
 
                 // Instantiate prefab
-                GameObject icon = Object.Instantiate(iconPrefab, rectTransform, false);
+                GameObject instance = Object.Instantiate(iconPrefab, rectTransform, false);
 
-                RectTransform iconRect = icon.GetComponent<RectTransform>();
+                RectTransform iconRect = instance.GetComponent<RectTransform>();
 
                 // Ensure proper UI setup
                 iconRect.anchorMin = new Vector2(0, 1);
@@ -43,18 +43,20 @@ public static class UIUtils
 
                 iconRect.anchoredPosition = cellPosition;
 
-                Image image = icon.GetComponent<Image>();
+                Image image = instance.GetComponent<Image>();
                 image.raycastTarget = false;
                 image.enabled = false; // start hidden
 
-                grid[y][x] = image;
+                InventoryIconUI icon = instance.GetComponent<InventoryIconUI>();
+
+                grid[y][x] = icon;
             }
         }
 
         return grid;
     }
 
-    public static void DisplayContainerContents(Container container, RectTransform rectTransform, Vector2 mousePosition, Image[][] iconGrid, 
+    public static void DisplayContainerContents(Container container, RectTransform rectTransform, Vector2 mousePosition, InventoryIconUI[][] iconGrid, 
                                                 out InventoryItemInstance? currentItem, out Vector2? currentItemPos)
     {
         currentItem = null;
@@ -76,7 +78,7 @@ public static class UIUtils
             {
                 if (itemIdx >= lastIdx)
                 {
-                    iconGrid[y][x].enabled = false;
+                    iconGrid[y][x].Enabled = false;
                     continue;
                 }
 
@@ -95,12 +97,11 @@ public static class UIUtils
 
                 if (iconGrid != null)
                 {
-                    Image gridImage = iconGrid[y][x];
-                    gridImage.sprite = item.Item.Image;
-                    gridImage.enabled = true;
+                    InventoryIconUI icon = iconGrid[y][x];
+                    icon.Item = item;
                 }
 
-                    itemIdx++;
+                itemIdx++;
             }
         }
     }

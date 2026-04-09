@@ -617,7 +617,7 @@ MonoBehaviour:
       _durability: 100
       _cookProgress: 0
     _name: Cactus
-    _showName: 0
+    _showName: 1
 --- !u!136 &785219836578103865
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -18,6 +18,7 @@ public class Inventory : MonoBehaviour
     public InventoryItemInstance Torso { get => _torso; }
     public InventoryItemInstance Legs { get => _legs; }
     public InventoryItemInstance Back { get => _back; }
+    public float CarryingCapacity { get => _carryingCapacity; }
 
     private void Start()
     {

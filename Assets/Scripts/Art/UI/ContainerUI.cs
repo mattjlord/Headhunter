@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,13 +10,14 @@ public class ContainerUI : MonoBehaviour
     [SerializeField] private GameObject _highlight;
     [SerializeField] private GameObject _itemIconPrefab;
     [SerializeField] private ItemDetails _itemDetails;
+    [SerializeField] private TMP_Text _containerName;
 
     private bool _enabled;
 
     private Image _menuFrame;
     private RectTransform _rectTransform;
 
-    private Image[][] _iconGrid;
+    private InventoryIconUI[][] _iconGrid;
 
     private InventoryItemInstance? _currentItem;
 
@@ -65,15 +67,17 @@ public class ContainerUI : MonoBehaviour
                 _itemDetails.gameObject.SetActive(false);
                 if (_iconGrid != null)
                 {
-                    foreach (Image[] row in _iconGrid)
+                    foreach (InventoryIconUI[] row in _iconGrid)
                     {
-                        foreach (Image image in row)
+                        foreach (InventoryIconUI icon in row)
                         {
-                            image.enabled = false;
+                            icon.Enabled = value;
                         }
                     }
                 }
             }
+            if (_containerName != null)
+                _containerName.enabled = value;
             EnabledExtension(value);
         }
     }
@@ -118,5 +122,8 @@ public class ContainerUI : MonoBehaviour
             _itemDetails.gameObject.SetActive(false);
             _currentItem = null;
         }
+
+        if (container.ShowName)
+            _containerName.text = container.Name;
     }
 }
