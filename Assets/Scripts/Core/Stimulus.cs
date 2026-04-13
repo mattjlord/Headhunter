@@ -147,6 +147,12 @@ public class Stimulus : MonoBehaviour
     }
     public virtual void VisitAndInteract(BulletRaptorBrain brain, StimulusResponseType type) { }
 
+    public virtual StimulusInterpretation VisitAndInterpret(ElectrowaspBrain brain)
+    {
+        return GenerateBaseInterpretation(brain);
+    }
+    public virtual void VisitAndInteract(ElectrowaspBrain brain, StimulusResponseType type) { }
+
     public virtual string GetDescription()
     {
         return "a stimulus";

@@ -55,7 +55,7 @@ public abstract class AMovement : MonoBehaviour
         if (dir != Vector2.zero)
         {
             organism.LookDirection = dir;
-            if (Time.time > _lastFootstep + _footstepFrequency)
+            if (_footstepLoudness > 0 && Time.time > _lastFootstep + _footstepFrequency)
                 Footstep();
         }
         if (_isRunning)

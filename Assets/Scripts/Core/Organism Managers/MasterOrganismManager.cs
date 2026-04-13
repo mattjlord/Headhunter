@@ -6,6 +6,7 @@ public class MasterOrganismManager : MonoBehaviour
 {
     [SerializeField] private OrganismManager _mudyakManager;
     [SerializeField] private OrganismManager _bulletRaptorManager;
+    [SerializeField] private OrganismManager _electrowaspManager;
     [SerializeField] private int _maxOrganisms = 100;
     [SerializeField] private float _despawnDistance = 400f;
     [SerializeField] private PlayerOrganism _player;
@@ -56,6 +57,8 @@ public class MasterOrganismManager : MonoBehaviour
                 return _mudyakManager;
             case OrganismType.BulletRaptor:
                 return _bulletRaptorManager;
+            case OrganismType.Electrowasp:
+                return _electrowaspManager;
             default:
                 return null;
         }

@@ -70,6 +70,9 @@ public class Odor : MonoBehaviour
             case OrganismType.BulletRaptor:
                 obj.AddComponent<Stim_BulletRaptor>();
                 return;
+            case OrganismType.Electrowasp:
+                obj.AddComponent<Stim_Electrowasp>();
+                return;
         }
     }
 

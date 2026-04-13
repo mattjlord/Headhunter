@@ -144,6 +144,8 @@
     <Compile Include="Assets\Scripts\Core\Components\Player\Crafting.cs" />
     <Compile Include="Assets\Scripts\Core\Enums\VitalType.cs" />
     <Compile Include="Assets\Scripts\Art\UI\MapUI.cs" />
+    <Compile Include="Assets\Scripts\Brains\ElectrowaspBrain.cs" />
+    <Compile Include="Assets\Scripts\Stimuli\Organisms\Stim_Electrowasp.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

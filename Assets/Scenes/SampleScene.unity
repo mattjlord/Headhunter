@@ -2697,6 +2697,76 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 386440256}
   m_CullTransparentMesh: 1
+--- !u!1 &388341178
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 388341179}
+  - component: {fileID: 388341180}
+  m_Layer: 0
+  m_Name: Electrowasp Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &388341179
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 388341178}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 457755462}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &388341180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 388341178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efe9466a996c42a45836166105007d5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxOrganisms: 50
+  _spawnTemplate: {fileID: 6473850851980995949, guid: 17b7aa3467f7e314f9756ed7c82a6732, type: 3}
+  _minHunger: 0
+  _maxHunger: 50
+  _minThirst: 0
+  _maxThirst: 50
+  _minExhaustion: 0
+  _maxExhaustion: 0
+  _minHeat: 0
+  _maxHeat: 0
+  _minInjury: 0
+  _maxInjury: 0
+  _minToxicity: 0
+  _maxToxicity: 0
+  _foodLocations:
+  - {fileID: 835918154}
+  - {fileID: 465059918}
+  - {fileID: 408573044}
+  _waterLocations:
+  - {fileID: 835918154}
+  - {fileID: 465059918}
+  - {fileID: 408573044}
+  - {fileID: 2054095826}
+  - {fileID: 1624187799}
+  _shelterLocations: []
+  _organisms: []
 --- !u!1 &388544779
 GameObject:
   m_ObjectHideFlags: 0
@@ -8491,6 +8561,7 @@ Transform:
   - {fileID: 1171017547}
   - {fileID: 2064665706}
   - {fileID: 1527434768}
+  - {fileID: 388341179}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9657,7 +9728,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugColor: {r: 0, g: 1, b: 0, a: 1}
   _points:
-  - {x: 256.4073, y: 41.987732}
+  - {x: 245.2601, y: 54.42108}
   - {x: 179.89261, y: 115.97308}
   - {x: -105.7681, y: 111.4801}
   - {x: 83.42758, y: -50.15973}
@@ -10570,7 +10641,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugColor: {r: 0, g: 1, b: 0, a: 1}
   _points:
-  - {x: 246.04126, y: 76.04657}
+  - {x: 243.02158, y: 80.976685}
   - {x: 131.49207, y: 266.07892}
   - {x: -55.35858, y: -15.367279}
   - {x: 12.176605, y: -78.31091}
@@ -13828,6 +13899,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mudyakManager: {fileID: 2064665707}
   _bulletRaptorManager: {fileID: 1527434769}
+  _electrowaspManager: {fileID: 388341180}
   _maxOrganisms: 100
   _despawnDistance: 400
   _player: {fileID: 426138448}
@@ -16262,7 +16334,7 @@ MonoBehaviour:
   _minHunger: 0
   _maxHunger: 50
   _minThirst: 0
-  _maxThirst: 0
+  _maxThirst: 50
   _minExhaustion: 0
   _maxExhaustion: 0
   _minHeat: 0
@@ -21717,7 +21789,7 @@ MonoBehaviour:
   _organismDensity: 10
   _plantDensity: 100
   _tickRate: 5
-  _organismTypes: 
+  _organismTypes: 03000000
   _plantPrefabs:
   - {fileID: 8610690933688826533, guid: 0d408b7b9d814a14598fa1b41c23b571, type: 3}
   _subregions: []
