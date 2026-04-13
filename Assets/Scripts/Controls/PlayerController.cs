@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private ContainerUI _scavengingUI;
     [SerializeField] private CraftingUI _craftingUI;
     [SerializeField] private ControlHintsUI _controlHintsUI;
+    [SerializeField] private MapUI _mapUI;
     [SerializeField] private LayerMask _interactionLayers;
 
     public ControlState ControlState =>
@@ -37,6 +38,7 @@ public class PlayerController : MonoBehaviour
         _scavengingUI.Enabled = false;
         _craftingUI.Enabled = false;
         _controlHintsUI.HideAll();
+        _mapUI.Enabled = false;
     }
 
     public void RestInShelter(PlayerShelter shelter)
@@ -215,6 +217,10 @@ public class PlayerController : MonoBehaviour
                     OnOpenAnyMenu();
                 OpenCrafting();
             }
+        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            _mapUI.Enabled = !_mapUI.Enabled;
         }
     }
 

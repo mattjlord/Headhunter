@@ -81,6 +81,7 @@
     <Compile Include="Assets\Scripts\Utils\VectorUtils.cs" />
     <Compile Include="Assets\Scripts\Core\Special Objects\PlantOrCarcass.cs" />
     <Compile Include="Assets\Scripts\Core\Components\Odor.cs" />
+    <Compile Include="Assets\Scripts\Core\SoundStimulus.cs" />
     <Compile Include="Assets\Scripts\Core\Inventory\InventoryItem.cs" />
     <Compile Include="Assets\Scripts\Art\UI\ClockUI.cs" />
     <Compile Include="Assets\Scripts\Core\Components\Player\Shooting.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="Assets\Scripts\Core\Components\AMovement.cs" />
     <Compile Include="Assets\Scripts\Core\Enums\StimulusResponseType.cs" />
     <Compile Include="Assets\Scripts\Art\UI\InventoryUI.cs" />
+    <Compile Include="Assets\Scripts\Art\UI\InventoryIconUI.cs" />
     <Compile Include="Assets\Scripts\Core\Components\AI\Memory.cs" />
     <Compile Include="Assets\Scripts\Core\Components\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Art\UI\CraftingUI.cs" />
@@ -116,12 +118,15 @@
     <Compile Include="Assets\Scripts\Utils\UIUtils.cs" />
     <Compile Include="Assets\Scripts\Core\Vital.cs" />
     <Compile Include="Assets\Scripts\Controls\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Stimuli\Sounds\Stim_Gunshot.cs" />
     <Compile Include="Assets\Scripts\Core\Special Objects\FoodOrWaterObject.cs" />
     <Compile Include="Assets\Scripts\Core\Organism Managers\MasterOrganismManager.cs" />
     <Compile Include="Assets\Scripts\Core\Enums\SenseType.cs" />
+    <Compile Include="Assets\Scripts\Art\UI\ControlHintsUI.cs" />
     <Compile Include="Assets\Scripts\Core\Components\AI\HerdManagement.cs" />
     <Compile Include="Assets\Scripts\Core\Special Objects\FirePit.cs" />
     <Compile Include="Assets\Scripts\Core\Enums\ItemInteractionType.cs" />
+    <Compile Include="Assets\Scripts\Core\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Core\Components\AI\AIMovement.cs" />
     <Compile Include="Assets\Scripts\Core\Locations\AreaLocation.cs" />
     <Compile Include="Assets\Scripts\Core\WorldObject.cs" />
@@ -138,11 +143,7 @@
     <Compile Include="Assets\Scripts\Stimuli\Resources\Stim_Cactus.cs" />
     <Compile Include="Assets\Scripts\Core\Components\Player\Crafting.cs" />
     <Compile Include="Assets\Scripts\Core\Enums\VitalType.cs" />
-    <Compile Include="Assets\Scripts\Art\UI\ControlHintsUI.cs" />
-    <Compile Include="Assets\Scripts\Art\UI\InventoryIconUI.cs" />
-    <Compile Include="Assets\Scripts\Stimuli\Sounds\Stim_Gunshot.cs" />
-    <Compile Include="Assets\Scripts\Core\SoundStimulus.cs" />
-    <Compile Include="Assets\Scripts\Core\AudioManager.cs" />
+    <Compile Include="Assets\Scripts\Art\UI\MapUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
