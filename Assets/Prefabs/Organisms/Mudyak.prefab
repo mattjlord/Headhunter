@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5142908981178064402
 Transform:
   m_ObjectHideFlags: 0
@@ -4910,7 +4910,9 @@ MonoBehaviour:
   _locationKnowledge: {fileID: 8816648452552321080}
   _navigation: {fileID: 8816648452552321081}
   _memory: {fileID: 8816648452552321071}
-  _curiosity: 0
+  TaskMsg: 
+  ActionMsg: 
+  MoveMsg: 
 --- !u!114 &8816648452552321060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4986,6 +4988,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 2164706660905998892}
+  _currentAction:
+    _animationName: 
+    _progress: 0
+    _triggerDelay: 0
+    _displacementDelay: 0
+    _displacementStarted: 0
+    _triggered: 0
+  _nextAction:
+    _animationName: 
+    _progress: 0
+    _triggerDelay: 0
+    _displacementDelay: 0
+    _displacementStarted: 0
+    _triggered: 0
 --- !u!114 &8816648452552321062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5143,7 +5159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _location: {fileID: 8816648452552321067}
   _senseType: 0
-  _detectableDistance: 0
+  detectableDistance: 0
   _lingering: 0
   _fixed: 1
   _associatedObject: {fileID: 8816648452552321059}

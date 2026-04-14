@@ -26,6 +26,32 @@ public class Stim_Mudyak : Stimulus
         brain.Attack(organism);
     }
 
+    public override StimulusInterpretation VisitAndInterpret(ElectrowaspBrain brain)
+    {
+        StimulusInterpretation interpretation = GenerateBaseInterpretation(brain);
+
+        if (AssociatedObject != null && AssociatedObject.LeechOrganism != null && AssociatedObject.LeechOrganism != brain.Organism)
+            return interpretation;
+
+        if (ProducerOrganism != null && ProducerOrganism.LeechOrganism != null && ProducerOrganism.LeechOrganism != brain.Organism)
+            return interpretation;
+
+        //interpretation.AssignVitalImpact(VitalType.Hunger, -8);
+
+        if (SenseType == SenseType.Sight)
+            interpretation.AssignVitalImpact(VitalType.Hunger, -10);
+
+        return interpretation;
+    }
+
+    public override void VisitAndInteract(ElectrowaspBrain brain, StimulusResponseType type)
+    {
+        if (AssociatedObject == null || AssociatedObject.GetType() != typeof(AIOrganism))
+            return;
+
+        brain.Leech(AssociatedObject, OrganismType.Mudyak);
+    }
+
     public override string GetDescription()
     {
         return "a mudyak";

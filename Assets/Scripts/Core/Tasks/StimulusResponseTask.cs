@@ -30,6 +30,7 @@ public class StimulusResponseTask : BehaviorTask
             Priority = 0;
             return;
         }
+        _interpretation = _brain.AcceptAndInterpret(_stimulus);
         Priority = _interpretation.EvaluatePriority();
     }
 

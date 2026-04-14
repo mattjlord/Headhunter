@@ -11,10 +11,12 @@ public class Odor : MonoBehaviour
     private OrganismType _organismType;
 
     private GameObject _odorTrailObj;
-    private Stimulus _odorTrailStim;
+    [SerializeField] private Stimulus _odorTrailStim;
     private TrailLocation _odorTrail;
 
     private int _trailLength = 0;
+
+    private OrganismType? _overrideOrganismType = null;
 
     public Organism Organism 
     { 
@@ -24,6 +26,26 @@ public class Odor : MonoBehaviour
             _organismType = value.OrganismType;
             GenerateOdorTrail();
         } 
+    }
+
+    private OrganismType CurrentOrganismType
+    {
+        get
+        {
+            if (_overrideOrganismType == null)
+                return _organismType;
+            else
+                return (OrganismType)_overrideOrganismType;
+        }
+    }
+
+    public OrganismType? OverrideOrganismType
+    {
+        set
+        {
+            _overrideOrganismType = value;
+            GenerateOdorTrail();
+        }
     }
 
     private void FixedUpdate()
@@ -38,6 +60,10 @@ public class Odor : MonoBehaviour
 
     private void GenerateOdorTrail()
     {
+        Transform odor = _organism.transform.Find("Odor Trail");
+        if (odor != null)
+            Destroy(odor.gameObject);
+
         GameObject odorTrailObj = new GameObject();
         AttachOdorTrailStimulus(odorTrailObj);
         odorTrailObj.AddComponent<TrailLocation>();
@@ -55,11 +81,12 @@ public class Odor : MonoBehaviour
         _odorTrailStim.Lingering = true;
 
         _odorTrailObj.transform.parent = transform;
+        _odorTrailObj.name = "Odor Trail";
     }
 
     private void AttachOdorTrailStimulus(GameObject obj)
     {
-        switch (_organismType)
+        switch (CurrentOrganismType)
         {
             case OrganismType.Hunter:
                 obj.AddComponent<Stim_Hunter>();

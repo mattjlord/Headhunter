@@ -18,4 +18,9 @@ public class PlayerMovement : AMovement
     {
         organism.Position += dir * speed * Time.deltaTime;
     }
+
+    public override void HideFromNavMesh()
+    {
+        // Does nothing currently
+    }
 }

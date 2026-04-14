@@ -607,6 +607,7 @@ MonoBehaviour:
   _collisionLayers:
     serializedVersion: 2
     m_Bits: 0
+  _leechOrganism: {fileID: 0}
   hungerImpact: 3
   thirstImpact: 0
   uses: -1
@@ -629,6 +630,7 @@ MonoBehaviour:
   _fixed: 1
   _associatedObject: {fileID: 36505340}
   _observers: 0
+  _producerOrganism: {fileID: 0}
 --- !u!114 &36505342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -887,6 +889,7 @@ MonoBehaviour:
   _collisionLayers:
     serializedVersion: 2
     m_Bits: 0
+  _leechOrganism: {fileID: 0}
   hungerImpact: 3
   thirstImpact: 0
   uses: -1
@@ -909,6 +912,7 @@ MonoBehaviour:
   _fixed: 1
   _associatedObject: {fileID: 57766175}
   _observers: 0
+  _producerOrganism: {fileID: 0}
 --- !u!114 &57766177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1317,6 +1321,7 @@ MonoBehaviour:
   _collisionLayers:
     serializedVersion: 2
     m_Bits: 0
+  _leechOrganism: {fileID: 0}
   hungerImpact: 5
   thirstImpact: 1
   uses: -1
@@ -1339,6 +1344,7 @@ MonoBehaviour:
   _fixed: 1
   _associatedObject: {fileID: 162887511}
   _observers: 0
+  _producerOrganism: {fileID: 0}
 --- !u!114 &162887513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2741,12 +2747,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efe9466a996c42a45836166105007d5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxOrganisms: 50
+  _maxOrganisms: 1
   _spawnTemplate: {fileID: 6473850851980995949, guid: 17b7aa3467f7e314f9756ed7c82a6732, type: 3}
   _minHunger: 0
   _maxHunger: 50
   _minThirst: 0
-  _maxThirst: 50
+  _maxThirst: 0
   _minExhaustion: 0
   _maxExhaustion: 0
   _minHeat: 0
@@ -7690,6 +7696,7 @@ MonoBehaviour:
   _collisionLayers:
     serializedVersion: 2
     m_Bits: 0
+  _leechOrganism: {fileID: 0}
   hungerImpact: 0
   thirstImpact: 5
   uses: -1
@@ -7712,6 +7719,7 @@ MonoBehaviour:
   _fixed: 1
   _associatedObject: {fileID: 398336467}
   _observers: 0
+  _producerOrganism: {fileID: 0}
 --- !u!114 &398336469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7997,6 +8005,7 @@ MonoBehaviour:
   _collisionLayers:
     serializedVersion: 2
     m_Bits: 129
+  _leechOrganism: {fileID: 0}
   _vitals: {fileID: 426138447}
   _senses: {fileID: 426138449}
   _movement: {fileID: 426138450}
@@ -8063,6 +8072,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _strength: 10
   _trailMaxLength: 5
+  _odorTrailStim: {fileID: 0}
 --- !u!114 &426138452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8096,6 +8106,7 @@ MonoBehaviour:
   _fixed: 1
   _associatedObject: {fileID: 0}
   _observers: 0
+  _producerOrganism: {fileID: 0}
 --- !u!114 &426138454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8185,7 +8196,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _container:
     _maxItems: 100
-    _items: []
+    _items:
+    - _item: {fileID: 11400000, guid: 8c3fc23e90578634a9aacf231cd8be1a, type: 2}
+      _durability: 100
+      _cookProgress: 0
     _name: 
     _showName: 0
   _carryingCapacity: 50
@@ -8348,6 +8362,7 @@ MonoBehaviour:
   _collisionLayers:
     serializedVersion: 2
     m_Bits: 0
+  _leechOrganism: {fileID: 0}
   hungerImpact: 0
   thirstImpact: 5
   uses: -1
@@ -8370,6 +8385,7 @@ MonoBehaviour:
   _fixed: 1
   _associatedObject: {fileID: 444141123}
   _observers: 0
+  _producerOrganism: {fileID: 0}
 --- !u!114 &444141125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8671,7 +8687,7 @@ MonoBehaviour:
   _organismDensity: 15
   _plantDensity: 60
   _tickRate: 5
-  _organismTypes: 01000000
+  _organismTypes: 0100000003000000
   _plantPrefabs:
   - {fileID: 785219836578103868, guid: 0e86fc0b8ac0587449571ff51a83e91e, type: 3}
   - {fileID: 370891624504462976, guid: 1009894f010afd24da1afb877913be55, type: 3}
@@ -8777,6 +8793,7 @@ MonoBehaviour:
   _collisionLayers:
     serializedVersion: 2
     m_Bits: 0
+  _leechOrganism: {fileID: 0}
   hungerImpact: 3
   thirstImpact: 0
   uses: -1
@@ -8799,6 +8816,7 @@ MonoBehaviour:
   _fixed: 1
   _associatedObject: {fileID: 493008395}
   _observers: 0
+  _producerOrganism: {fileID: 0}
 --- !u!114 &493008397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9105,6 +9123,7 @@ MonoBehaviour:
   _fixed: 1
   _associatedObject: {fileID: 538849914}
   _observers: 0
+  _producerOrganism: {fileID: 0}
 --- !u!114 &538849914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9121,6 +9140,7 @@ MonoBehaviour:
   _collisionLayers:
     serializedVersion: 2
     m_Bits: 0
+  _leechOrganism: {fileID: 0}
   hungerImpact: 0
   thirstImpact: 5
   uses: -1
@@ -10990,6 +11010,7 @@ MonoBehaviour:
   _collisionLayers:
     serializedVersion: 2
     m_Bits: 0
+  _leechOrganism: {fileID: 0}
   hungerImpact: 3
   thirstImpact: 0
   uses: -1
@@ -11012,6 +11033,7 @@ MonoBehaviour:
   _fixed: 1
   _associatedObject: {fileID: 795858522}
   _observers: 0
+  _producerOrganism: {fileID: 0}
 --- !u!114 &795858524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12354,6 +12376,7 @@ GameObject:
   - component: {fileID: 968806169}
   - component: {fileID: 968806170}
   - component: {fileID: 968806171}
+  - component: {fileID: 968806173}
   m_Layer: 0
   m_Name: World Terrain
   m_TagString: Untagged
@@ -12526,6 +12549,36 @@ MonoBehaviour:
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: cf2ac2b80603fac43a76c76a9f279a0a, type: 2}
+  m_BuildHeightMesh: 0
+--- !u!114 &968806173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 968806165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 1479372276
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 1
+  m_DefaultArea: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.6666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: af071466c45dbf64d9cd69519eacc721, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &1003624643
 GameObject:
@@ -13081,6 +13134,7 @@ MonoBehaviour:
   _collisionLayers:
     serializedVersion: 2
     m_Bits: 0
+  _leechOrganism: {fileID: 0}
   hungerImpact: 3
   thirstImpact: 0
   uses: -1
@@ -13103,6 +13157,7 @@ MonoBehaviour:
   _fixed: 1
   _associatedObject: {fileID: 1095622924}
   _observers: 0
+  _producerOrganism: {fileID: 0}
 --- !u!114 &1095622926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14151,6 +14206,7 @@ MonoBehaviour:
   _collisionLayers:
     serializedVersion: 2
     m_Bits: 0
+  _leechOrganism: {fileID: 0}
   hungerImpact: 0
   thirstImpact: 5
   uses: -1
@@ -14173,6 +14229,7 @@ MonoBehaviour:
   _fixed: 1
   _associatedObject: {fileID: 1241769423}
   _observers: 0
+  _producerOrganism: {fileID: 0}
 --- !u!114 &1241769425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14643,6 +14700,7 @@ MonoBehaviour:
   _collisionLayers:
     serializedVersion: 2
     m_Bits: 0
+  _leechOrganism: {fileID: 0}
   hungerImpact: 3
   thirstImpact: 0
   uses: -1
@@ -14665,6 +14723,7 @@ MonoBehaviour:
   _fixed: 1
   _associatedObject: {fileID: 1280535857}
   _observers: 0
+  _producerOrganism: {fileID: 0}
 --- !u!114 &1280535859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15329,6 +15388,7 @@ MonoBehaviour:
   _collisionLayers:
     serializedVersion: 2
     m_Bits: 0
+  _leechOrganism: {fileID: 0}
   hungerImpact: 0
   thirstImpact: 5
   uses: -1
@@ -15351,6 +15411,7 @@ MonoBehaviour:
   _fixed: 1
   _associatedObject: {fileID: 1422525323}
   _observers: 0
+  _producerOrganism: {fileID: 0}
 --- !u!114 &1422525325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15469,6 +15530,7 @@ MonoBehaviour:
   _collisionLayers:
     serializedVersion: 2
     m_Bits: 0
+  _leechOrganism: {fileID: 0}
   hungerImpact: 3
   thirstImpact: 0
   uses: -1
@@ -15491,6 +15553,7 @@ MonoBehaviour:
   _fixed: 1
   _associatedObject: {fileID: 1425174307}
   _observers: 0
+  _producerOrganism: {fileID: 0}
 --- !u!114 &1425174309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15564,6 +15627,7 @@ MonoBehaviour:
   _collisionLayers:
     serializedVersion: 2
     m_Bits: 0
+  _leechOrganism: {fileID: 0}
   hungerImpact: 5
   thirstImpact: 1
   uses: -1
@@ -15586,6 +15650,7 @@ MonoBehaviour:
   _fixed: 1
   _associatedObject: {fileID: 1433483563}
   _observers: 0
+  _producerOrganism: {fileID: 0}
 --- !u!114 &1433483565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15836,6 +15901,7 @@ MonoBehaviour:
   _collisionLayers:
     serializedVersion: 2
     m_Bits: 0
+  _leechOrganism: {fileID: 0}
   _recoveryPerMinute: 1
 --- !u!1 &1463931247
 GameObject:
@@ -16045,6 +16111,7 @@ MonoBehaviour:
   _collisionLayers:
     serializedVersion: 2
     m_Bits: 0
+  _leechOrganism: {fileID: 0}
   hungerImpact: 0
   thirstImpact: 5
   uses: -1
@@ -16067,6 +16134,7 @@ MonoBehaviour:
   _fixed: 1
   _associatedObject: {fileID: 1480944118}
   _observers: 0
+  _producerOrganism: {fileID: 0}
 --- !u!114 &1480944120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16329,7 +16397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efe9466a996c42a45836166105007d5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxOrganisms: 20
+  _maxOrganisms: 0
   _spawnTemplate: {fileID: 3198518219397569825, guid: e7e36ea3e335da94a8d153e280652058, type: 3}
   _minHunger: 0
   _maxHunger: 50
@@ -16424,6 +16492,7 @@ MonoBehaviour:
   _collisionLayers:
     serializedVersion: 2
     m_Bits: 0
+  _leechOrganism: {fileID: 0}
   _container:
     _maxItems: 20
     _items: []
@@ -16467,6 +16536,7 @@ MonoBehaviour:
   _collisionLayers:
     serializedVersion: 2
     m_Bits: 0
+  _leechOrganism: {fileID: 0}
   hungerImpact: 0
   thirstImpact: 5
   uses: -1
@@ -16489,6 +16559,7 @@ MonoBehaviour:
   _fixed: 1
   _associatedObject: {fileID: 1573673663}
   _observers: 0
+  _producerOrganism: {fileID: 0}
 --- !u!114 &1573673665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21864,6 +21935,7 @@ MonoBehaviour:
   _collisionLayers:
     serializedVersion: 2
     m_Bits: 0
+  _leechOrganism: {fileID: 0}
   hungerImpact: 3
   thirstImpact: 0
   uses: -1
@@ -21910,6 +21982,7 @@ MonoBehaviour:
   _fixed: 1
   _associatedObject: {fileID: 1625344443}
   _observers: 0
+  _producerOrganism: {fileID: 0}
 --- !u!114 &1664483928 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3774933241026320062, guid: f6a1652f933b68146b09197f2e9bd006, type: 3}
@@ -23342,6 +23415,7 @@ MonoBehaviour:
   _collisionLayers:
     serializedVersion: 2
     m_Bits: 0
+  _leechOrganism: {fileID: 0}
   hungerImpact: 3
   thirstImpact: 0
   uses: -1
@@ -23364,6 +23438,7 @@ MonoBehaviour:
   _fixed: 1
   _associatedObject: {fileID: 1901528123}
   _observers: 0
+  _producerOrganism: {fileID: 0}
 --- !u!114 &1901528125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23435,6 +23510,7 @@ MonoBehaviour:
   _collisionLayers:
     serializedVersion: 2
     m_Bits: 0
+  _leechOrganism: {fileID: 0}
   hungerImpact: 3
   thirstImpact: 0
   uses: -1
@@ -23457,6 +23533,7 @@ MonoBehaviour:
   _fixed: 1
   _associatedObject: {fileID: 1919093429}
   _observers: 0
+  _producerOrganism: {fileID: 0}
 --- !u!114 &1919093431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24677,7 +24754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efe9466a996c42a45836166105007d5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxOrganisms: 20
+  _maxOrganisms: 0
   _spawnTemplate: {fileID: 8816648452552321084, guid: efeb276522646ca4a8293c349391a27b, type: 3}
   _minHunger: 0
   _maxHunger: 50

@@ -19,11 +19,18 @@ public class WorldObject : MonoBehaviour
 
     private float _posUpdateRate = 5f;
     private float _lastPosUpdate;
+    [SerializeField] private Organism _leechOrganism;
 
     protected virtual void Awake()
     {
         _collider = GetComponent<CapsuleCollider>();
         _lastPosUpdate = Time.time;
+    }
+
+    public Organism LeechOrganism
+    {
+        get { return _leechOrganism; }
+        set { _leechOrganism = value; }
     }
 
     public Vector2 Position

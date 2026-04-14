@@ -8,7 +8,8 @@ public class AIMovement : AMovement
     public override void StopMovement()
     {
         dir = Vector2.zero;
-        _agent.isStopped = true;
+        if (_agent.enabled)
+            _agent.isStopped = true;
     }
 
     protected override void Awake()
@@ -19,6 +20,10 @@ public class AIMovement : AMovement
 
     protected override void Move(Vector2 value)
     {
+        if (!_agent.enabled && value != Vector2.zero)
+            _agent.enabled = true;
+        else if (!_agent.enabled)
+            return;
         _agent.isStopped = false;
         _agent.SetDestination(VectorUtils.Vec2ToVec3(value));
         UpdateDir();
@@ -40,5 +45,10 @@ public class AIMovement : AMovement
         }
         else
             dir = Vector2.zero;
+    }
+
+    public override void HideFromNavMesh()
+    {
+        _agent.enabled = false;
     }
 }

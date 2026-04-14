@@ -144,4 +144,6 @@ public abstract class AMovement : MonoBehaviour
             aiOrganism.MoveMsg = debugMsg;
         }
     }
+
+    public abstract void HideFromNavMesh();
 }

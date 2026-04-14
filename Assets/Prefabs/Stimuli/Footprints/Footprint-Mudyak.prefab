@@ -122,4 +122,4 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e12c6c32a0951e34e8c3e9b5087cce91, type: 3}
   - {fileID: 8300000, guid: 6b5cfc0248519c64495193d9ee3ec5dd, type: 3}
   - {fileID: 8300000, guid: ab15e4d3e5365fd4895bb7bce6eb01d5, type: 3}
-  _organismType: 0
+  _organismType: 1

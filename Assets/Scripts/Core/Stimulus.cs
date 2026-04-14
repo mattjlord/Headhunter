@@ -22,7 +22,7 @@ public class Stimulus : MonoBehaviour
     private float _spawnTime;
     private float _minLifetime = 1f;
 
-    private Organism? _producerOrganism;
+    [SerializeField] private Organism? _producerOrganism;
     public ALocation Location { 
         get { return _location; }
         set { _location = value; }
@@ -110,10 +110,8 @@ public class Stimulus : MonoBehaviour
 
     public void Fire()
     {
-        if (_location.GetType() == typeof(PointLocation))
-        {
+        //if (_location.GetType() == typeof(PointLocation))
             //DrawUtils.DrawCircle(transform.position + Vector3.up, detectableDistance, Color.magenta, 1f);
-        }
         foreach (AIOrganism organism in MasterOrganismManager.AllOrganisms)
         {
             organism.RespondToStimulus(this);

@@ -121,8 +121,8 @@ MonoBehaviour:
   _actionManagement: {fileID: 6473850851980995963}
   _meleeAttack: {fileID: 181743010248844886}
   _organismType: 3
-  _reach: 4
-  _combatReach: 4
+  _reach: 6
+  _combatReach: 6
   _debugColor: {r: 0, g: 1, b: 0.8998494, a: 1}
   _taskManagement: {fileID: 6473850851980995959}
   _herdManagement: {fileID: 6473850851980995958}
@@ -405,7 +405,7 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6473850851980995949}
   m_Enabled: 1
-  m_AgentTypeID: -1372625422
+  m_AgentTypeID: 1479372276
   m_Radius: 5
   m_Speed: 3.5
   m_Acceleration: 80
@@ -436,7 +436,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7265417232053164867
 Transform:
   m_ObjectHideFlags: 0

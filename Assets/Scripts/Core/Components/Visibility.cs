@@ -7,6 +7,8 @@ public class Visibility : MonoBehaviour
     [SerializeField] private float _visibleDistance;
     [SerializeField] private Stimulus _visibilityStimulus;
 
+    private Stimulus _overrideStimulus;
+
     private Organism _organism;
 
     public Organism Organism
@@ -23,9 +25,12 @@ public class Visibility : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        _visibilityStimulus.Fire();
+        if (_overrideStimulus == null)
+            _visibilityStimulus.Fire();
+        else
+            _overrideStimulus.Fire();
     }
 
     public float VisibleDistance {
@@ -37,13 +42,9 @@ public class Visibility : MonoBehaviour
         }
     }
 
-    public void Enable()
+    public Stimulus OverrideStimulus
     {
-        _visibilityStimulus.DetectableDistance = _visibleDistance;
-    }
-
-    public void Disable()
-    {
-        _visibilityStimulus.DetectableDistance = 0;
+        get { return _overrideStimulus;}
+        set { _overrideStimulus = value; }
     }
 }
