@@ -60,6 +60,7 @@
     <Compile Include="Assets\Scripts\Core\Components\Visibility.cs" />
     <Compile Include="Assets\Scripts\Core\Locations\TrailLocation.cs" />
     <Compile Include="Assets\Scripts\Core\Enums\OrganismType.cs" />
+    <Compile Include="Assets\Scripts\Art\UI\MapUI.cs" />
     <Compile Include="Assets\Scripts\Stimuli\Sounds\Stim_Footstep.cs" />
     <Compile Include="Assets\Scripts\Stimuli\Resources\Stim_Meat.cs" />
     <Compile Include="Assets\Scripts\Stimuli\Organisms\Stim_Hunter.cs" />
@@ -135,17 +136,16 @@
     <Compile Include="Assets\Scripts\Stimuli\Resources\Stim_Fruit.cs" />
     <Compile Include="Assets\Scripts\Core\Components\AI\Navigation.cs" />
     <Compile Include="Assets\Scripts\Core\Organism Managers\OrganismManager.cs" />
+    <Compile Include="Assets\Scripts\Brains\ElectrowaspBrain.cs" />
     <Compile Include="Assets\Scripts\Brains\BulletRaptorBrain.cs" />
     <Compile Include="Assets\Scripts\Core\VitalResourceObject.cs" />
+    <Compile Include="Assets\Scripts\Stimuli\Organisms\Stim_Electrowasp.cs" />
     <Compile Include="Assets\Scripts\Utils\DrawUtils.cs" />
     <Compile Include="Assets\Scripts\Core\Inventory\InventoryItemInstance.cs" />
     <Compile Include="Assets\Scripts\Core\AIOrganism.cs" />
     <Compile Include="Assets\Scripts\Stimuli\Resources\Stim_Cactus.cs" />
     <Compile Include="Assets\Scripts\Core\Components\Player\Crafting.cs" />
     <Compile Include="Assets\Scripts\Core\Enums\VitalType.cs" />
-    <Compile Include="Assets\Scripts\Art\UI\MapUI.cs" />
-    <Compile Include="Assets\Scripts\Brains\ElectrowaspBrain.cs" />
-    <Compile Include="Assets\Scripts\Stimuli\Organisms\Stim_Electrowasp.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

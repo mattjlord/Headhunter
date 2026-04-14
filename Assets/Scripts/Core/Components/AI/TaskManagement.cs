@@ -24,7 +24,6 @@ public class TaskManagement : MonoBehaviour
 
             if (task.Priority == 0 && !task.IsEssential)
             {
-                Debug.Log("Time to remove task: " + task.GetName());
                 if (task == _currentTask)
                 {
                     _currentTask.Exit();

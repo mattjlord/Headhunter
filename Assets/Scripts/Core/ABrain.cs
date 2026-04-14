@@ -24,9 +24,11 @@ public abstract class ABrain : MonoBehaviour
         
         StimulusInterpretation interpretation = AcceptAndInterpret(stimulus);
         StimulusResponseType responseType = interpretation.EvaluateResponseType();
+        BehaviorTask task = GenerateStimulusResponseTask(stimulus, responseType, interpretation);
+
         if (responseType == StimulusResponseType.Ignore) 
             return;
-        BehaviorTask task = GenerateStimulusResponseTask(stimulus, responseType, interpretation);
+        
 
         if (task.Priority > 0)
         {

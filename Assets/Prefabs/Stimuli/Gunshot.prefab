@@ -125,12 +125,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _location: {fileID: -4697228766567188588}
-  _senseType: 0
+  _senseType: 1
   detectableDistance: 100
   _lingering: 0
   _fixed: 1
   _associatedObject: {fileID: 0}
   _observers: 0
+  _producerOrganism: {fileID: 0}
   _audioClips:
   - {fileID: 8300000, guid: ea18241406192bc4a938dda060f21cd2, type: 3}
 --- !u!114 &-4697228766567188588

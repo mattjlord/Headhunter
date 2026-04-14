@@ -8087,6 +8087,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _visibleDistance: 150
   _visibilityStimulus: {fileID: 426138453}
+  _overrideStimulus: {fileID: 0}
 --- !u!114 &426138453
 MonoBehaviour:
   m_ObjectHideFlags: 0

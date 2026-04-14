@@ -7,11 +7,12 @@ public class MudyakCoat : AEquippable
 
     public override void OnEquip(PlayerOrganism organism)
     {
-        GameObject instance = Instantiate(mudyakStimPrefab, organism.transform);
-        instance.GetComponent<Visibility>().Organism = organism;
+        GameObject instance = Instantiate(mudyakStimPrefab, organism.transform.position, Quaternion.identity);
         instance.name = "Mudyak Stimulus";
+        instance.transform.SetParent(organism.transform);
         organism.Visibility.OverrideStimulus = instance.GetComponent<Stim_Mudyak>();
         organism.Odor.OverrideOrganismType = OrganismType.Mudyak;
+        instance.GetComponent<Stim_Mudyak>().AssociatedObject = organism;
     }
 
     public override void OnUnequip(PlayerOrganism organism)

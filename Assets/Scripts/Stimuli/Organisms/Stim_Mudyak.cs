@@ -46,7 +46,7 @@ public class Stim_Mudyak : Stimulus
 
     public override void VisitAndInteract(ElectrowaspBrain brain, StimulusResponseType type)
     {
-        if (AssociatedObject == null || AssociatedObject.GetType() != typeof(AIOrganism))
+        if (AssociatedObject == null)
             return;
 
         brain.Leech(AssociatedObject, OrganismType.Mudyak);

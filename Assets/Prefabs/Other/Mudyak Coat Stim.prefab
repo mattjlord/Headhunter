@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8704636702704656431}
   - component: {fileID: 8704636702704656432}
-  - component: {fileID: 8704636702704656433}
   - component: {fileID: 8704636702704656430}
   m_Layer: 0
   m_Name: Mudyak Coat Stim
@@ -48,25 +47,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _location: {fileID: 8704636702704656430}
   _senseType: 0
-  _detectableDistance: 0
+  detectableDistance: 0
   _lingering: 0
   _fixed: 1
   _associatedObject: {fileID: 0}
   _observers: 0
---- !u!114 &8704636702704656433
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8704636702704656435}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b48bb004944a0a840a0f0460cd1f35df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _visibleDistance: 200
-  _visibilityStimulus: {fileID: 8704636702704656432}
+  _producerOrganism: {fileID: 0}
 --- !u!114 &8704636702704656430
 MonoBehaviour:
   m_ObjectHideFlags: 0

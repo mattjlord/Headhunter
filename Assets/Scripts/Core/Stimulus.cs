@@ -110,8 +110,24 @@ public class Stimulus : MonoBehaviour
 
     public void Fire()
     {
-        //if (_location.GetType() == typeof(PointLocation))
-            //DrawUtils.DrawCircle(transform.position + Vector3.up, detectableDistance, Color.magenta, 1f);
+        /*
+        Color debugColor = Color.white;
+        switch(_senseType)
+        {
+            case SenseType.Sight:
+                debugColor = Color.cyan;
+                break;
+            case SenseType.Sound:
+                debugColor = Color.yellow;
+                break;
+            case SenseType.Smell:
+                debugColor = Color.magenta;
+                break;
+        }
+
+        if (_location.GetType() == typeof(PointLocation))
+            DrawUtils.DrawCircle(transform.position + Vector3.up, detectableDistance, debugColor, 1f);*/
+
         foreach (AIOrganism organism in MasterOrganismManager.AllOrganisms)
         {
             organism.RespondToStimulus(this);
