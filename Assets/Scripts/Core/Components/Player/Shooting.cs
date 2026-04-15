@@ -32,7 +32,7 @@ public class Shooting : MonoBehaviour
         _bullets -= 1;
 
         Vector3 worldForward = VectorUtils.Vec2ToVec3(forward);
-        bool hitSomething = Physics.Raycast(_barrel.position, worldForward * _range, out RaycastHit hit);
+        bool hitSomething = Physics.Raycast(_barrel.position, worldForward * _range, out RaycastHit hit, _range, _hitLayers);
 
         if (_muzzleFlashVFX != null)
         {
@@ -44,14 +44,6 @@ public class Shooting : MonoBehaviour
         if (hitSomething)
         {
             Debug.DrawLine(_barrel.position, hit.point, Color.red, 0.5f);
-
-            /*Transform parent = hit.transform.parent;
-            if (parent == null) return;
-            Organism organism = parent.gameObject.GetComponent<AIOrganism>();
-            if (organism != null)
-            {
-                organism.Vitals.GetVital(VitalType.Injury).IncreaseValue(_damage);
-            }*/
 
             IDamageable damageable = hit.transform.gameObject.GetComponent<IDamageable>();
 

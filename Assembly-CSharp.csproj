@@ -122,6 +122,7 @@
     <Compile Include="Assets\Scripts\Core\Vital.cs" />
     <Compile Include="Assets\Scripts\Controls\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Stimuli\Sounds\Stim_Gunshot.cs" />
+    <Compile Include="Assets\Scripts\Core\Damageable\Explosive.cs" />
     <Compile Include="Assets\Scripts\Core\Special Objects\FoodOrWaterObject.cs" />
     <Compile Include="Assets\Scripts\Core\Organism Managers\MasterOrganismManager.cs" />
     <Compile Include="Assets\Scripts\Core\Enums\SenseType.cs" />

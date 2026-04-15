@@ -96,6 +96,8 @@ public class PlayerController : MonoBehaviour
 
     private void WhileInWorldState()
     {
+        _controlHintsUI.MWheelText = "";
+
         ParseLookDirection();
         ParseMovement();
 

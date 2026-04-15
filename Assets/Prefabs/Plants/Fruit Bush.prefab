@@ -385,6 +385,7 @@ MonoBehaviour:
   _collisionLayers:
     serializedVersion: 2
     m_Bits: 0
+  _leechOrganism: {fileID: 0}
   hungerImpact: 0
   thirstImpact: 0
   uses: -1
@@ -436,11 +437,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _location: {fileID: 4362668801954228144}
   _senseType: 0
-  _detectableDistance: 80
+  detectableDistance: 100
   _lingering: 1
   _fixed: 1
   _associatedObject: {fileID: 4362668801954228150}
   _observers: 0
+  _producerOrganism: {fileID: 0}
 --- !u!114 &4362668801954228144
 MonoBehaviour:
   m_ObjectHideFlags: 0
