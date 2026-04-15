@@ -114,7 +114,7 @@ public class Organism : WorldObject
                 break;
         }
 
-        _vitals.GetVital(vitalType).Value += damage;
+        _vitals.GetVital(vitalType).IncreaseValue(damage);
 
         if (worldSource != null)
         {

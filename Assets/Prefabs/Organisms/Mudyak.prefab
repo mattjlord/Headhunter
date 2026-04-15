@@ -4812,6 +4812,37 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &6129011935039272071
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1176677224997535697}
+  m_Layer: 7
+  m_Name: Attack Impact Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1176677224997535697
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6129011935039272071}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.5, z: 5.75}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8816648452552321082}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8816648452552321084
 GameObject:
   m_ObjectHideFlags: 0
@@ -4861,6 +4892,7 @@ Transform:
   - {fileID: 8816648453989378102}
   - {fileID: 9066236927935586006}
   - {fileID: 5142908981178064402}
+  - {fileID: 1176677224997535697}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4894,6 +4926,7 @@ MonoBehaviour:
   _collisionLayers:
     serializedVersion: 2
     m_Bits: 129
+  _leechOrganism: {fileID: 0}
   _vitals: {fileID: 8816648452552321060}
   _senses: {fileID: 8816648452552321061}
   _movement: {fileID: 8816648452552321057}
@@ -4905,6 +4938,7 @@ MonoBehaviour:
   _reach: 7
   _combatReach: 15
   _debugColor: {r: 1, g: 0.6604271, b: 0, a: 1}
+  _bloodPrefab: {fileID: 1422757883014379404, guid: a4ef22782b5ad4e47a637c061abcd29c, type: 3}
   _taskManagement: {fileID: 8816648452552321062}
   _herdManagement: {fileID: 8816648452552321063}
   _locationKnowledge: {fileID: 8816648452552321080}
@@ -5104,6 +5138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _strength: 120
   _trailMaxLength: 20
+  _odorTrailStim: {fileID: 0}
 --- !u!114 &2380456198257632007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5118,6 +5153,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _baseDamage: 12.5
   _variance: 5
+  _damageType: 0
+  _impactPoint: {fileID: 1176677224997535697}
 --- !u!114 &8816648452552321068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5132,6 +5169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _visibleDistance: 200
   _visibilityStimulus: {fileID: 8816648452552321069}
+  _overrideStimulus: {fileID: 0}
 --- !u!114 &8816648452552321067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5164,6 +5202,7 @@ MonoBehaviour:
   _fixed: 1
   _associatedObject: {fileID: 8816648452552321059}
   _observers: 0
+  _producerOrganism: {fileID: 0}
 --- !u!136 &8816648452552321056
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5422,6 +5461,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &682860773698239383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8546265150864311404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c654b362088fd9e48b9da7b5c001f777, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  organism: {fileID: 8816648452552321059}
 --- !u!4 &9066236927935586006 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0682dc19cd77b5447809555c475eb07f, type: 3}

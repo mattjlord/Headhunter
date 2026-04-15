@@ -125,6 +125,7 @@ MonoBehaviour:
   _reach: 6
   _combatReach: 6
   _debugColor: {r: 0, g: 1, b: 0.8998494, a: 1}
+  _bloodPrefab: {fileID: 1422757883014379404, guid: a4ef22782b5ad4e47a637c061abcd29c, type: 3}
   _taskManagement: {fileID: 6473850851980995959}
   _herdManagement: {fileID: 6473850851980995958}
   _locationKnowledge: {fileID: 6473850851980995945}
@@ -339,6 +340,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _baseDamage: 7.5
   _variance: 0
+  _damageType: 0
+  _impactPoint: {fileID: 0}
 --- !u!114 &6473850851980995965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5386,6 +5389,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &6737626431354078922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7347485627772304449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c654b362088fd9e48b9da7b5c001f777, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  organism: {fileID: 6473850851980995954}
 --- !u!4 &7979344532382131963 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: caced43698566b34486bc47a2effbeec, type: 3}
