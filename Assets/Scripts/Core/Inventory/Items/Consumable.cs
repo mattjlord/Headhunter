@@ -50,4 +50,6 @@ public class Consumable : InventoryItem
     public override InventoryItem? GetCookedVersion() { return CookedVersion; }
 
     public override List<ItemInteractionType> GetInteractionOptions() => new List<ItemInteractionType>() { ItemInteractionType.Consume, ItemInteractionType.Discard };
+
+    public override string GetTypeName() => "Consumable";
 }

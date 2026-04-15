@@ -6,13 +6,14 @@ public class MeleeAttack : MonoBehaviour
 {
     [SerializeField] private float _baseDamage;
     [SerializeField] private float _variance;
+    [SerializeField] private DamageType _damageType = DamageType.Physical;
+    [SerializeField] private Transform _impactPoint;
     // TODO: Bleeding
 
-    public void AttackOrganism(Organism organism)
+    public void AttackOrganism(Organism target, Organism attacker)
     {
-        Debug.Log(gameObject.name + " is attacking organism " + organism.gameObject.name);
         float damage = GenerateDamage();
-        organism.Vitals.GetVital(VitalType.Injury).IncreaseValue(damage);
+        target.TakeDamage(damage, _damageType, attacker.Position, _impactPoint.position);
     }
 
     private float GenerateDamage()

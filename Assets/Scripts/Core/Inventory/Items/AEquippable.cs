@@ -17,4 +17,6 @@ public abstract class AEquippable : InventoryItem
     public abstract void OnUnequip(PlayerOrganism organism);
 
     public override List<ItemInteractionType> GetInteractionOptions() => new List<ItemInteractionType>() { ItemInteractionType.Equip, ItemInteractionType.Discard };
+
+    public override string GetTypeName() => "Equipment - " + equipmentSlot;
 }

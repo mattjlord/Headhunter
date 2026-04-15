@@ -43,11 +43,9 @@ public static class UIUtils
 
                 iconRect.anchoredPosition = cellPosition;
 
-                Image image = instance.GetComponent<Image>();
-                image.raycastTarget = false;
-                image.enabled = false; // start hidden
-
                 InventoryIconUI icon = instance.GetComponent<InventoryIconUI>();
+
+                icon.Enabled = false;
 
                 grid[y][x] = icon;
             }

@@ -13,4 +13,6 @@ public class InventoryItem : ScriptableObject
     public virtual InventoryItem? GetPerishedVersion() { return null; }
     public virtual InventoryItem? GetCookedVersion() { return null; }
     public virtual List<ItemInteractionType> GetInteractionOptions() => new List<ItemInteractionType>() { ItemInteractionType.Discard };
+
+    public virtual string GetTypeName() => "Generic Item";
 }

@@ -1415,6 +1415,8 @@ GameObject:
   - component: {fileID: 8610690933688826531}
   - component: {fileID: 8240173619866556403}
   - component: {fileID: 60903920263704468}
+  - component: {fileID: -2836056370050139617}
+  - component: {fileID: 7212487230211236517}
   m_Layer: 7
   m_Name: Glowvine
   m_TagString: Untagged
@@ -1454,8 +1456,9 @@ MonoBehaviour:
   _collisionLayers:
     serializedVersion: 2
     m_Bits: 0
+  _leechOrganism: {fileID: 0}
   hungerImpact: 0
-  thirstImpact: 0
+  thirstImpact: 5
   uses: -1
   _scavengeableParts:
     _maxItems: 20
@@ -1495,3 +1498,36 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &-2836056370050139617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8610690933688826533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 828f7baaacff4254890f29d47be5e63d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _location: {fileID: 7212487230211236517}
+  _senseType: 0
+  detectableDistance: 0
+  _lingering: 0
+  _fixed: 1
+  _associatedObject: {fileID: 8610690933688826531}
+  _observers: 0
+  _producerOrganism: {fileID: 0}
+--- !u!114 &7212487230211236517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8610690933688826533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fad6f51eba3ced044af07ea37f8dc1a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugColor: {r: 0, g: 1, b: 0, a: 1}

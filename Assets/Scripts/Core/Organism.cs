@@ -19,6 +19,8 @@ public class Organism : WorldObject
 
     [SerializeField] private Color _debugColor;
 
+    [SerializeField] private GameObject _bloodPrefab;
+
     private Vector2 _lookDirection = Vector2.up;
 
     public Vitals Vitals { get { return _vitals; } }
@@ -91,5 +93,33 @@ public class Organism : WorldObject
     {
         float movementModifier = Mathf.Lerp(1, 0.5f, value / 100f);
         _movement.ExhaustionModifier = movementModifier;
+    }
+
+    public void TakeDamage(float damage, DamageType damageType, Vector2? worldSource, Vector3? impactPoint)
+    {
+        VitalType vitalType = VitalType.Injury;
+
+        switch (damageType)
+        {
+            case DamageType.Physical:
+                vitalType = VitalType.Injury;
+                if (impactPoint != null && _bloodPrefab != null)
+                    Instantiate(_bloodPrefab, (Vector3)impactPoint, Quaternion.identity);
+                break;
+            case DamageType.Toxic:
+                vitalType = VitalType.Toxicity;
+                break;
+            case DamageType.Fire:
+                vitalType = VitalType.Heat;
+                break;
+        }
+
+        _vitals.GetVital(vitalType).Value += damage;
+
+        if (worldSource != null)
+        {
+            Vector2 lookDir = ((Vector2)worldSource - Position).normalized;
+            LookDirection = lookDir;
+        }
     }
 }

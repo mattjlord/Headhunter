@@ -10,4 +10,6 @@ public enum CraftingMaterialType
 public class CraftingMaterial : InventoryItem
 {
     public CraftingMaterialType type;
+
+    public override string GetTypeName() => "Crafting Material";
 }

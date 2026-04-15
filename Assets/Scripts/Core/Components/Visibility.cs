@@ -48,11 +48,14 @@ public class Visibility : MonoBehaviour
         set 
         { 
             _overrideStimulus = value;
-            _overrideStimulus.DetectableDistance = _visibleDistance;
-            _overrideStimulus.SenseType = SenseType.Sight;
-            _overrideStimulus.AssociatedObject = _organism;
-            _overrideStimulus.Lingering = true;
-            _overrideStimulus.Fixed = false;
+            if (value != null)
+            {
+                _overrideStimulus.DetectableDistance = _visibleDistance;
+                _overrideStimulus.SenseType = SenseType.Sight;
+                _overrideStimulus.AssociatedObject = _organism;
+                _overrideStimulus.Lingering = true;
+                _overrideStimulus.Fixed = false;
+            }
         }
     }
 }

@@ -27,6 +27,16 @@ public class Stim_Water : Stimulus
 
         FoodOrWaterObject obj = AssociatedObject as FoodOrWaterObject;
 
+        brain.Drink(obj);
+    }
+
+    public override void VisitAndInteract(BulletRaptorBrain brain, StimulusResponseType type)
+    {
+        if (AssociatedObject == null || AssociatedObject.GetType() != typeof(FoodOrWaterObject))
+            return;
+
+        FoodOrWaterObject obj = AssociatedObject as FoodOrWaterObject;
+
         brain.Eat(obj);
     }
 

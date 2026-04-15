@@ -18,6 +18,10 @@ public class ItemDetails : MonoBehaviour
 
     [SerializeField] private RectTransform _rectTransform;
 
+    [SerializeField] private TMP_Text _itemType;
+
+    [SerializeField] private TMP_Text _equippedIndicator;
+
     public void ShowItem(Vector2 mousePos, InventoryItemInstance item)
     {
         _rectTransform.anchoredPosition = mousePos;
@@ -47,5 +51,9 @@ public class ItemDetails : MonoBehaviour
             _cookProgress.text = ((int)cookProgress).ToString() + "%";
             _cookingIcon.enabled = true;
         }
+
+        _itemType.text = item.Item.GetTypeName();
+
+        _equippedIndicator.enabled = item.EquipmentSlot != null;
     }
 }

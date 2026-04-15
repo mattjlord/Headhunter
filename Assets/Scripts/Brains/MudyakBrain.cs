@@ -31,7 +31,7 @@ public class MudyakBrain : ABrain
             {
                 if (obj)
                 {
-                    organism.MeleeAttack.AttackOrganism(obj);
+                    organism.MeleeAttack.AttackOrganism(obj, organism);
                 }
             };
         }

@@ -28,7 +28,7 @@ public class BulletRaptorBrain : ABrain
             action.TriggeredAction = () =>
             {
                 if (obj)
-                    organism.MeleeAttack.AttackOrganism(obj);
+                    organism.MeleeAttack.AttackOrganism(obj, organism);
             };
         }
         else

@@ -171,6 +171,18 @@ public class PlayerController : MonoBehaviour
     {
         _controlHintsUI.RMBText = "";
 
+        if (_organism.LeechOrganism != null)
+        {
+            _controlHintsUI.RMBText = "Catch Wasp";
+
+            if (Input.GetKeyDown(KeyCode.Mouse1))
+            {
+
+            }
+
+            return;
+        }
+
         Vector3 worldLookPoint = VectorUtils.Vec2ToVec3(_lookPoint);
         bool objectHit = Physics.Raycast(worldLookPoint + 20 * Vector3.up, Vector3.down * 20f, out RaycastHit hitInfo, _interactionLayers);
 
