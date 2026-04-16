@@ -20,6 +20,8 @@ public class OrganismAction
     private Vector2 _startPos;
     private Vector2 _endPos;
 
+    private Action _exitAction;
+
     public OrganismAction(Organism organism)
     {
         _organism = organism;
@@ -66,13 +68,20 @@ public class OrganismAction
         set { _displacementDelay = Mathf.Clamp(value, 0, 1); }
     }
 
+    public Action ExitAction
+    {
+        get { return _exitAction; }
+        set { _exitAction = value; }
+    }
+
     public void Start(Animator animator)
     {
         if (_animationName != null)
         {
-            animator.SetBool("Is Busy", true);
             animator.Play(_animationName, -1, 0);
         }
+
+        animator.SetBool("Is Busy", true);
 
         _elapsedTime = 0;
         _displacementStarted = false;
@@ -80,6 +89,13 @@ public class OrganismAction
 
         _startPos = _organism.Position;
         _endPos = _organism.Position + _displacement;
+    }
+
+    public void Stop()
+    {
+        Debug.Log("Calling 'stop' on this organism");
+        if (_exitAction != null)
+            _exitAction();
     }
 
     public void Update(float deltaTime)
@@ -96,6 +112,7 @@ public class OrganismAction
         if (!_triggered && _progress >= _triggerDelay)
         {
             _triggeredAction?.Invoke();
+            _triggered = true;
         }
 
         if (_displacement != Vector2.zero && _displacementStarted)

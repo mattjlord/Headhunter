@@ -104,6 +104,20 @@ public abstract class ABrain : MonoBehaviour
         }
     }
 
+    public void Rest(OrganismShelter shelter)
+    {
+        ActionManagement actionManagement = organism.ActionManagement;
+
+        if (actionManagement.IsReadyForQueue())
+        {
+            shelter.Enter(organism);
+            OrganismAction action = new OrganismAction(organism);
+            action.Duration = 1f;
+            action.ExitAction = () => shelter.Exit(organism);
+            actionManagement.QueueAction(action);
+        }    
+    }
+
     public abstract void Attack(Organism obj);
 
     public void Die(VitalType type)

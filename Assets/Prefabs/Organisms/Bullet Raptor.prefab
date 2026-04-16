@@ -5050,7 +5050,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _walkSpeed: 25
   _runSpeed: 50
-  _footstepFrequency: 0.25
+  _footstepFrequency: 6
   _footstepLoudness: 30
   _footprintPrefab: {fileID: 7769087844988270549, guid: 2ae4e30d4aa0fb043b9075f02bb9e027, type: 3}
   _animator: {fileID: 3468078633594694819}

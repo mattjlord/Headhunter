@@ -19,6 +19,11 @@ public class ActionManagement : MonoBehaviour
 
     public void Stop()
     {
+        Debug.Log("Stopping all actions");
+        if (_currentAction != null && _currentAction.Constructed)
+            _currentAction.Stop();
+        else if (_nextAction != null && _nextAction.Constructed)
+            _nextAction.Stop();
         _currentAction = null;
         _nextAction = null;
         _animator.SetBool("Is Busy", false);

@@ -41,11 +41,10 @@ public class WorldObject : MonoBehaviour
             Vector3 targetPos = VectorUtils.Vec2ToVec3(value);
             if (_collider != null)
             {
-                // TODO: Clean up collision later
                 if (WouldCollideAt(targetPos))
                 {
                     Debug.Log("Cannot move: collision detected!");
-                    return; // Don't set position
+                    return;
                 }
             }
 
