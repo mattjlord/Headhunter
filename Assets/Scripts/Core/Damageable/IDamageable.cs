@@ -10,4 +10,6 @@ public enum DamageType
 public interface IDamageable
 {
     public void TakeDamage(float damage, DamageType damageType, Vector2? worldSource, Vector3? impactPoint);
+
+    public bool Enabled();
 }

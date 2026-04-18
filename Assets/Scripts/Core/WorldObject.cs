@@ -21,6 +21,8 @@ public class WorldObject : MonoBehaviour
     private float _lastPosUpdate;
     [SerializeField] private Organism _leechOrganism;
 
+    [SerializeField] private bool _passable = false;
+
     protected virtual void Awake()
     {
         _collider = GetComponent<CapsuleCollider>();
@@ -58,6 +60,8 @@ public class WorldObject : MonoBehaviour
         }
     }
 
+    public bool Passable => _passable;
+
     public float Radius => _collider ? _collider.radius : 0;
 
     public AreaLocation AreaLocation => _areaLocation;
@@ -85,6 +89,11 @@ public class WorldObject : MonoBehaviour
         Collider[] hits = Physics.OverlapCapsule(point1, point2, scaledRadius, _collisionLayers);
         foreach (var hit in hits)
         {
+            WorldObject obj = hit.gameObject.GetComponent<WorldObject>();
+
+            if (obj != null && obj.Passable)
+                continue;
+
             if (hit != _collider) // ignore self
                 return true;
         }

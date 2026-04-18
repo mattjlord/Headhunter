@@ -11,9 +11,13 @@ public class Explosive : MonoBehaviour, IDamageable
     [SerializeField] private LayerMask _collisionLayers;
     [SerializeField] private DamageType _damageType = DamageType.Physical;
 
+    private bool _detonated = false;
+
     public void TakeDamage(float damage, DamageType damageType, Vector2? worldSource, Vector3? impactPoint)
     {
         Debug.DrawRay(transform.position, 10 * Vector3.up, Color.red);
+
+        _detonated = true;
 
         if (damageType != DamageType.Physical)
             return;
@@ -28,7 +32,7 @@ public class Explosive : MonoBehaviour, IDamageable
 
             IDamageable damageable = hit.transform.GetComponent<IDamageable>();
 
-            if (damageable == null) continue;
+            if (damageable == null || !damageable.Enabled()) continue;
 
             float dist = Vector3.Distance(hit.transform.position, transform.position);
             float lerp = dist / _radius;
@@ -42,4 +46,6 @@ public class Explosive : MonoBehaviour, IDamageable
 
         Destroy(gameObject);
     }
+
+    public bool Enabled() => !_detonated;
 }

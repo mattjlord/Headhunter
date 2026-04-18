@@ -116,6 +116,8 @@ public class StimulusResponseTask : BehaviorTask
 
         description = "Interacting with stimulus";
 
+        Debug.Log("Interacting");
+
         Vector2 lookDir = ((Vector2)stimulusLocation.GetClosestPoint(Organism.Position, Organism.OrganismType) - Organism.Position).normalized;
         Organism.LookDirection = lookDir;
 

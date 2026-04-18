@@ -99,6 +99,7 @@
     <Compile Include="Assets\Scripts\Art\UI\InventoryIconUI.cs" />
     <Compile Include="Assets\Scripts\Core\Components\AI\Memory.cs" />
     <Compile Include="Assets\Scripts\Core\Components\Player\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\Core\Special Objects\OrganismShelter.cs" />
     <Compile Include="Assets\Scripts\Art\UI\CraftingUI.cs" />
     <Compile Include="Assets\Scripts\Core\Tasks\StimulusResponseTask.cs" />
     <Compile Include="Assets\Scripts\Core\Crafting\SerializableRecipe.cs" />
@@ -142,6 +143,7 @@
     <Compile Include="Assets\Scripts\Core\Damageable\DamageableOrganism.cs" />
     <Compile Include="Assets\Scripts\Brains\ElectrowaspBrain.cs" />
     <Compile Include="Assets\Scripts\Brains\BulletRaptorBrain.cs" />
+    <Compile Include="Assets\Scripts\Stimuli\Resources\Stim_OrganismShelter.cs" />
     <Compile Include="Assets\Scripts\Core\VitalResourceObject.cs" />
     <Compile Include="Assets\Scripts\Stimuli\Organisms\Stim_Electrowasp.cs" />
     <Compile Include="Assets\Scripts\Utils\DrawUtils.cs" />
@@ -150,8 +152,6 @@
     <Compile Include="Assets\Scripts\Stimuli\Resources\Stim_Cactus.cs" />
     <Compile Include="Assets\Scripts\Core\Components\Player\Crafting.cs" />
     <Compile Include="Assets\Scripts\Core\Enums\VitalType.cs" />
-    <Compile Include="Assets\Scripts\Stimuli\Resources\Stim_OrganismShelter.cs" />
-    <Compile Include="Assets\Scripts\Core\Special Objects\OrganismShelter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -13,7 +13,10 @@ public class OrganismShelter : WorldObject
 
     [SerializeField] private List<Organism> _organismsInShelter = new List<Organism>();
 
-    public bool AtCapacity => _organismsInShelter.Count >= _capacity;
+    public bool CanEnter(Organism organism)
+    {
+        return _organismsInShelter.Contains(organism) || _organismsInShelter.Count <= _capacity;
+    }
 
     private void Update()
     {

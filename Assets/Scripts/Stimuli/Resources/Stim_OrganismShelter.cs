@@ -17,7 +17,7 @@ public class Stim_OrganismShelter : Stimulus
         StimulusInterpretation interpretation = GenerateBaseInterpretation(brain);
 
         if (_organismType == OrganismType.Mudyak)
-            AssignImpact(interpretation);
+            AssignImpact(interpretation, brain);
 
         return interpretation;
     }
@@ -27,7 +27,7 @@ public class Stim_OrganismShelter : Stimulus
         StimulusInterpretation interpretation = GenerateBaseInterpretation(brain);
 
         if (_organismType == OrganismType.BulletRaptor)
-            AssignImpact(interpretation);
+            AssignImpact(interpretation, brain);
 
         return interpretation;
     }
@@ -37,20 +37,20 @@ public class Stim_OrganismShelter : Stimulus
         StimulusInterpretation interpretation = GenerateBaseInterpretation(brain);
 
         if (_organismType == OrganismType.Electrowasp)
-            AssignImpact(interpretation);
+            AssignImpact(interpretation, brain);
 
         return interpretation;
     }
 
 
 
-    private void AssignImpact(StimulusInterpretation interpretation)
+    private void AssignImpact(StimulusInterpretation interpretation, ABrain brain)
     {
         if (AssociatedObject == null || AssociatedObject.GetType() != typeof(OrganismShelter)) return;
 
         OrganismShelter shelter = AssociatedObject as OrganismShelter;
 
-        if (shelter.AtCapacity) return;
+        if (!shelter.CanEnter(brain.Organism)) return;
 
         interpretation.AssignVitalImpact(VitalType.Exhaustion, -10);
         interpretation.AssignVitalImpact(VitalType.Injury, -10);

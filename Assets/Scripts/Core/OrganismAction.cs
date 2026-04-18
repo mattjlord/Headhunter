@@ -4,7 +4,7 @@ using UnityEngine;
 [Serializable]
 public class OrganismAction
 {
-    private bool _constructed = false;
+    [SerializeField] private bool _constructed = false;
     private Organism _organism;
     [SerializeField] private string? _animationName;
     [SerializeField] [Range(0,1)] private float _progress;

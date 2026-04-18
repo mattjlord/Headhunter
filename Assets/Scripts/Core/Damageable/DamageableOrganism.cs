@@ -10,4 +10,6 @@ public class DamageableOrganism : MonoBehaviour, IDamageable
     {
         organism.TakeDamage(damage, damageType, worldSource, impactPoint);
     }
+
+    public bool Enabled() => true;
 }
