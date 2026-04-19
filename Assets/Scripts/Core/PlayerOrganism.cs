@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 
 public class PlayerOrganism : Organism
 {
+    public event Action<Organism> OnOrganismKilled;
 
     [SerializeField] private Shooting _shooting;
     [SerializeField] private Inventory _inventory;
@@ -11,6 +13,7 @@ public class PlayerOrganism : Organism
     {
         base.Start();
         _inventory.OnEncumbranceChanged += OnEncumbranceChanged;
+        _shooting.OnOrganismKilled += OnOrganismKilled;
     }
 
     public Shooting Shooting { get { return _shooting; } }

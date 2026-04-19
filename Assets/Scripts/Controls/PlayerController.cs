@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
 
     private Container _openContainer = null;
 
+    private bool _controlsEnabled = true;
+
     private void Start() // TODO: GET RID OF THIS ASAP THIS IS A BAND-AID FIX
     {
         _organism.Vitals.GetVital(VitalType.Injury).OnMaxValueReached += () => Application.Quit();
@@ -68,6 +70,11 @@ public class PlayerController : MonoBehaviour
         OnOpenAnyMenu();
     }
 
+    public bool ControlsEnabled
+    {
+        set => _controlsEnabled = value;
+    }
+
     private void CloseContainer()
     {
         _scavengingUI.Container = null;
@@ -77,6 +84,9 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (!_controlsEnabled)
+            return;
+
         // TODO: Optimize menu code once there is more than just one menu type
 
         switch(ControlState)

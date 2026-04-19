@@ -46,6 +46,8 @@ public class TimeManagement : MonoBehaviour
     private static int _hours;
     private static int _minutes;
 
+    private static int _startHour;
+
     private static float _gameTime;
     private static float _deltaTime;
 
@@ -68,6 +70,8 @@ public class TimeManagement : MonoBehaviour
     public static int Minutes { get { return _minutes; } }
     public static TimeOfDay TimeOfDay { get { return _timeOfDay; } }
     public static float HeatIncreaseRate { get { return _heatIncreaseRate; } }
+
+    public static int StartHour => _startHour;
 
     public static float SkipToNextSafePeriod()
     {
@@ -113,6 +117,7 @@ public class TimeManagement : MonoBehaviour
     private void Start()
     {
         _startTime = Time.time;
+        _startHour = _hourOffset;
     }
 
     private void Update()

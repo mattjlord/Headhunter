@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public enum DamageType
@@ -9,7 +10,7 @@ public enum DamageType
 
 public interface IDamageable
 {
-    public void TakeDamage(float damage, DamageType damageType, Vector2? worldSource, Vector3? impactPoint);
+    public void TakeDamage(float damage, DamageType damageType, Vector2? worldSource, Vector3? impactPoint, Action<Organism> killEvent = null);
 
     public bool Enabled();
 }

@@ -123,7 +123,7 @@ public abstract class ABrain : MonoBehaviour
     public void Die(VitalType type)
     {
         if (_carcass != null)
-            Instantiate(_carcass, VectorUtils.Vec2ToVec3(organism.Position), Quaternion.identity);
+            Instantiate(_carcass, VectorUtils.Vec2ToVec3(organism.Position), transform.rotation);
         organism.OnOrganismDie();
         Destroy(gameObject);
     }

@@ -23,6 +23,8 @@ public class Organism : WorldObject
 
     private Vector2 _lookDirection = Vector2.up;
 
+    private bool _killEventRegistered = false;
+
     public Vitals Vitals { get { return _vitals; } }
     public Senses Senses { get { return _senses; } }
     public AMovement Movement { get { return _movement; } }
@@ -95,7 +97,7 @@ public class Organism : WorldObject
         _movement.ExhaustionModifier = movementModifier;
     }
 
-    public void TakeDamage(float damage, DamageType damageType, Vector2? worldSource, Vector3? impactPoint)
+    public void TakeDamage(float damage, DamageType damageType, Vector2? worldSource, Vector3? impactPoint, Action<Organism> killEvent = null)
     {
         VitalType vitalType = VitalType.Injury;
 
@@ -112,6 +114,14 @@ public class Organism : WorldObject
             case DamageType.Fire:
                 vitalType = VitalType.Heat;
                 break;
+        }
+
+        if (killEvent != null && !_killEventRegistered)
+        {
+            _killEventRegistered = true;
+            Vital vital = _vitals.GetVital(vitalType);
+            void Handler() { vital.OnMaxValueReached -= Handler; killEvent(this); }
+            vital.OnMaxValueReached += Handler;
         }
 
         _vitals.GetVital(vitalType).IncreaseValue(damage);

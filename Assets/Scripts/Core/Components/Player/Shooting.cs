@@ -1,9 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class Shooting : MonoBehaviour
 {
+    public event Action<Organism> OnOrganismKilled;
+
     [SerializeField] private Transform _barrel;
     [SerializeField] private LayerMask _hitLayers;
     [SerializeField] private float _range;
@@ -48,7 +49,7 @@ public class Shooting : MonoBehaviour
             IDamageable damageable = hit.transform.gameObject.GetComponent<IDamageable>();
 
             if (damageable != null)
-                damageable.TakeDamage(_damage, DamageType.Physical, VectorUtils.Vec3ToVec2(_barrel.position), hit.point);
+                damageable.TakeDamage(_damage, DamageType.Physical, VectorUtils.Vec3ToVec2(_barrel.position), hit.point, OnOrganismKilled);
         }
     }
 }

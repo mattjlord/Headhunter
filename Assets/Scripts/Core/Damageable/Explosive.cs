@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class Explosive : MonoBehaviour, IDamageable
@@ -13,7 +12,7 @@ public class Explosive : MonoBehaviour, IDamageable
 
     private bool _detonated = false;
 
-    public void TakeDamage(float damage, DamageType damageType, Vector2? worldSource, Vector3? impactPoint)
+    public void TakeDamage(float damage, DamageType damageType, Vector2? worldSource, Vector3? impactPoint, Action<Organism> killEvent = null)
     {
         Debug.DrawRay(transform.position, 10 * Vector3.up, Color.red);
 
