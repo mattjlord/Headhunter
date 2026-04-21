@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum ControlState
 {
@@ -189,7 +190,8 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Mouse1))
             {
-
+                // TODO: Actual logic, this is for the DEMO only
+                SceneManager.LoadScene("Demo-Win-Screen");
             }
 
             return;

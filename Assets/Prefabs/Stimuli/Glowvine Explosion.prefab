@@ -54,7 +54,8 @@ MonoBehaviour:
   _associatedObject: {fileID: 0}
   _observers: 0
   _producerOrganism: {fileID: 0}
-  _audioClips: []
+  _audioClips:
+  - {fileID: 8300000, guid: 3c8d6403772712e4bb4efa1298432c82, type: 3}
 --- !u!114 &121005763753898681
 MonoBehaviour:
   m_ObjectHideFlags: 0

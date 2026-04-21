@@ -12,10 +12,9 @@ public class Stim_Footstep : SoundStimulus
     {
         StimulusInterpretation interpretation = GenerateBaseInterpretation(brain);
 
-        if (_organismType != OrganismType.Mudyak && Location.GetDistanceFrom(brain.Organism.Position, OrganismType.Hunter) < MudyakBrain.HunterThreatDistance)
+        if (_organismType == OrganismType.BulletRaptor && Location.GetDistanceFrom(brain.Organism.Position, OrganismType.Hunter) < MudyakBrain.HunterThreatDistance)
         {
-            interpretation.OverrideValence(-1);
-            interpretation.OverridePriority(80);
+            interpretation.AssignVitalImpact(VitalType.Injury, 10);
         }
 
         return interpretation;

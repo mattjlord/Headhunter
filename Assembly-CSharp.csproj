@@ -112,6 +112,7 @@
     <Compile Include="Assets\Scripts\Core\Components\AI\TaskManagement.cs" />
     <Compile Include="Assets\Scripts\Core\OrganismAction.cs" />
     <Compile Include="Assets\Scripts\Stimuli\Organisms\Stim_BulletRaptor.cs" />
+    <Compile Include="Assets\Scripts\Core\GameRules.cs" />
     <Compile Include="Assets\Scripts\Core\SpawnRegion.cs" />
     <Compile Include="Assets\Scripts\Art\UI\ContainerUI.cs" />
     <Compile Include="Assets\Scripts\Brains\MudyakBrain.cs" />
@@ -130,6 +131,7 @@
     <Compile Include="Assets\Scripts\Art\UI\ControlHintsUI.cs" />
     <Compile Include="Assets\Scripts\Core\Components\AI\HerdManagement.cs" />
     <Compile Include="Assets\Scripts\Core\Special Objects\FirePit.cs" />
+    <Compile Include="Assets\Scripts\Art\UI\GameOverUI.cs" />
     <Compile Include="Assets\Scripts\Core\Enums\ItemInteractionType.cs" />
     <Compile Include="Assets\Scripts\Core\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Core\Components\AI\AIMovement.cs" />
@@ -152,8 +154,6 @@
     <Compile Include="Assets\Scripts\Stimuli\Resources\Stim_Cactus.cs" />
     <Compile Include="Assets\Scripts\Core\Components\Player\Crafting.cs" />
     <Compile Include="Assets\Scripts\Core\Enums\VitalType.cs" />
-    <Compile Include="Assets\Scripts\Core\GameRules.cs" />
-    <Compile Include="Assets\Scripts\Art\UI\GameOverUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

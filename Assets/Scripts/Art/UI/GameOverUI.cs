@@ -33,7 +33,7 @@ public class GameOverUI : MonoBehaviour
                 causeOfDeath = "You collapsed from exhaustion.";
                 break;
             case VitalType.Heat:
-                causeOfDeath = "You succumbed to the heat of the sun.";
+                causeOfDeath = "You overheated.";
                 break;
             case VitalType.Injury:
                 causeOfDeath = "You died from your wounds.";
